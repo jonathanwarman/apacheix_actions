@@ -36,7 +36,7 @@ Edit As screen:
             PaddingTop: =APP_INPUT_CONTROLS.DatePicker.PaddingTop
             Size: =APP_INPUT_CONTROLS.DatePicker.Size
             Width: =160
-            X: =65
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =526
             ZIndex: =2
 
@@ -46,8 +46,8 @@ Edit As screen:
             DisplayMode: =If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             Height: =160
             Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
-            Width: =Parent.Width - 2*If(App.Width > 680, 65, App.Width > 400, 30, 15)
-            X: =If(App.Width > 680, 65, App.Width > 400, 30, 15)
+            Width: =Parent.Width - 2*Self.X
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =212
             ZIndex: =3
 
@@ -91,8 +91,8 @@ Edit As screen:
             Size: =16
             Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Textbox.Underline
-            Width: =405
-            X: =65
+            Width: =Parent.Width - 2*Self.X
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =69
             ZIndex: =4
 
@@ -141,7 +141,7 @@ Edit As screen:
             Strikethrough: =APP_INPUT_CONTROLS.Dropdown.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Dropdown.Underline
             Width: =200
-            X: =65
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =415
             ZIndex: =5
 
@@ -194,7 +194,7 @@ Edit As screen:
             Strikethrough: =APP_INPUT_CONTROLS.Radio.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Radio.Underline
             Width: =327
-            X: =143
+            X: =100 + (Parent.Width / 100 * 5) // 5% margins 
             Y: =152
             ZIndex: =6
 
@@ -235,7 +235,7 @@ Edit As screen:
             VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
             Visible: =!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open"
             Width: =100
-            X: =483
+            X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
             Y: =575
             ZIndex: =7
 
@@ -286,7 +286,7 @@ Edit As screen:
             Underline: =APP_BUTTONS.Secondary.Underline
             VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
             Width: =100
-            X: =370
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =575
             ZIndex: =8
 
@@ -487,7 +487,7 @@ Edit As screen:
             VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
             Visible: =!btn_ReOpen.Visible
             Width: =100
-            X: =483
+            X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
             Y: =575
             ZIndex: =9
 
@@ -528,7 +528,7 @@ Edit As screen:
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Width: =179
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =65
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =49
             ZIndex: =10
 
@@ -569,7 +569,7 @@ Edit As screen:
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Width: =80
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =65
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =152
             ZIndex: =11
 
@@ -610,7 +610,7 @@ Edit As screen:
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Width: =179
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =65
+            X: =Parent.Width / 100 * 5 // 5% margins
             Y: =192
             ZIndex: =12
 
