@@ -981,7 +981,7 @@ Home As screen:
         HoverFill: =APP_BUTTONS.Primary.HoverFill
         Italic: =APP_BUTTONS.Primary.Italic
         OnSelect: |-
-            =Set(g_CurrentAction, Blank()); 
+            =Set(g_TheAction, Blank());
             Navigate(Edit);
         PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
         PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
