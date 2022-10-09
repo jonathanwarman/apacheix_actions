@@ -2,7 +2,7 @@ Edit As screen:
 
     EditPanel As groupContainer.manualLayoutContainer:
         Height: =631
-        Width: =If(App.Width > 680, 660, App.Width - 20)
+        Width: =EditScreenCardWidth
         X: =Parent.Width/2 - Self.Width/2
         Y: =60
         ZIndex: =1
@@ -36,7 +36,7 @@ Edit As screen:
             PaddingTop: =APP_INPUT_CONTROLS.DatePicker.PaddingTop
             Size: =APP_INPUT_CONTROLS.DatePicker.Size
             Width: =160
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =526
             ZIndex: =2
 
@@ -47,7 +47,7 @@ Edit As screen:
             Height: =160
             Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
             Width: =Parent.Width - 2*Self.X
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =212
             ZIndex: =3
 
@@ -92,7 +92,7 @@ Edit As screen:
             Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Textbox.Underline
             Width: =Parent.Width - 2*Self.X
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =69
             ZIndex: =4
 
@@ -141,7 +141,7 @@ Edit As screen:
             Strikethrough: =APP_INPUT_CONTROLS.Dropdown.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Dropdown.Underline
             Width: =200
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =415
             ZIndex: =5
 
@@ -286,7 +286,7 @@ Edit As screen:
             Underline: =APP_BUTTONS.Secondary.Underline
             VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
             Width: =100
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =575
             ZIndex: =8
 
@@ -528,7 +528,7 @@ Edit As screen:
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Width: =179
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =49
             ZIndex: =10
 
@@ -569,7 +569,7 @@ Edit As screen:
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Width: =80
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =152
             ZIndex: =11
 
@@ -610,7 +610,7 @@ Edit As screen:
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Width: =179
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =Parent.Width / 100 * 5 // 5% margins
+            X: =EditScreenCardMargin
             Y: =192
             ZIndex: =12
 
@@ -650,7 +650,7 @@ Edit As screen:
             Underline: =APP_LABELS.SecondaryText.Underline
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =65
+            X: =EditScreenCardMargin
             Y: =395
             ZIndex: =13
 
@@ -691,7 +691,7 @@ Edit As screen:
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Width: =100
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =65
+            X: =EditScreenCardMargin
             Y: =506
             ZIndex: =14
 
@@ -736,89 +736,6 @@ Edit As screen:
             X: =65
             Y: =444
             ZIndex: =19
-
-        lbl_SecondaryText_11 As label:
-            Align: =APP_LABELS.SecondaryText.Align
-            BorderColor: =APP_LABELS.SecondaryText.BorderColor
-            BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-            BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-            Color: =APP_LABELS.SecondaryText.Color
-            DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-            DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-            DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-            DisplayMode: =DisplayMode.View
-            Fill: =APP_LABELS.SecondaryText.Fill
-            FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-            FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-            Font: =APP_LABELS.SecondaryText.Font
-            FontWeight: =APP_LABELS.SecondaryText.FontWeight
-            Height: =20
-            HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-            HoverColor: =APP_LABELS.SecondaryText.HoverColor
-            HoverFill: =APP_LABELS.SecondaryText.HoverFill
-            Italic: =APP_LABELS.SecondaryText.Italic
-            LineHeight: =APP_LABELS.SecondaryText.LineHeight
-            Overflow: =APP_LABELS.SecondaryText.Overflow
-            PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-            PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
-            PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
-            PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-            PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-            PressedColor: =APP_LABELS.SecondaryText.PressedColor
-            PressedFill: =APP_LABELS.SecondaryText.PressedFill
-            Size: =APP_LABELS.SecondaryText.Size - 2
-            Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-            Text: |-
-                ="External Owner:"
-            Underline: =APP_LABELS.SecondaryText.Underline
-            VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-            Width: =100
-            Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =358
-            Y: =395
-            ZIndex: =20
-
-        txt_ExternalOwners As text:
-            Align: =APP_INPUT_CONTROLS.Textbox.Align
-            BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
-            BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
-            BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
-            Clear: =APP_INPUT_CONTROLS.Textbox.Clear
-            Color: =APP_INPUT_CONTROLS.Textbox.Color
-            Default: ="TBD Not in the list yet"
-            DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
-            DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
-            DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
-            EnableSpellCheck: =true
-            Fill: =APP_INPUT_CONTROLS.Textbox.Fill
-            FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
-            FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
-            Font: =APP_INPUT_CONTROLS.Textbox.Font
-            FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
-            Height: =25
-            HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
-            HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
-            HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
-            Italic: =APP_INPUT_CONTROLS.Textbox.Italic
-            LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
-            PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
-            PaddingLeft: =APP_INPUT_CONTROLS.Textbox.PaddingLeft
-            PaddingRight: =APP_INPUT_CONTROLS.Textbox.PaddingRight
-            PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
-            PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
-            PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
-            PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
-            RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-            RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-            RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-            RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-            Size: =APP_INPUT_CONTROLS.Textbox.Size
-            Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
-            Underline: =APP_INPUT_CONTROLS.Textbox.Underline
-            Width: =225
-            X: =358
-            Y: =415
-            ZIndex: =21
 
         lbl_PrimaryText_3 As label:
             Align: =APP_LABELS.PrimaryText.Align
@@ -920,7 +837,7 @@ Edit As screen:
         grp_Closer As groupContainer.manualLayoutContainer:
             Height: =77
             Width: =241
-            X: =278
+            X: =Parent.Width -Self.Width -EditScreenCardMargin
             Y: =460
             ZIndex: =24
 
@@ -1109,6 +1026,93 @@ Edit As screen:
             Text: ="Send Emails"
             X: =260
             ZIndex: =26
+
+        grp_ExternalOwner As groupContainer.manualLayoutContainer:
+            Height: =49
+            Width: =241
+            X: =Parent.Width -Self.Width -EditScreenCardMargin
+            Y: =395
+            ZIndex: =27
+
+            lbl_SecondaryText_11 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =20
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: |-
+                    ="External Owner:"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =100
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                ZIndex: =1
+
+            txt_ExternalOwners As text:
+                Align: =APP_INPUT_CONTROLS.Textbox.Align
+                BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
+                BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
+                BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
+                Clear: =APP_INPUT_CONTROLS.Textbox.Clear
+                Color: =APP_INPUT_CONTROLS.Textbox.Color
+                Default: ="TBD Not in the list yet"
+                DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
+                DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
+                DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
+                EnableSpellCheck: =true
+                Fill: =APP_INPUT_CONTROLS.Textbox.Fill
+                FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
+                FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
+                Font: =APP_INPUT_CONTROLS.Textbox.Font
+                FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
+                Height: =25
+                HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
+                HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
+                HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+                Italic: =APP_INPUT_CONTROLS.Textbox.Italic
+                LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
+                PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
+                PaddingLeft: =APP_INPUT_CONTROLS.Textbox.PaddingLeft
+                PaddingRight: =APP_INPUT_CONTROLS.Textbox.PaddingRight
+                PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
+                PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
+                PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
+                PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
+                RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                Size: =APP_INPUT_CONTROLS.Textbox.Size
+                Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
+                Underline: =APP_INPUT_CONTROLS.Textbox.Underline
+                Width: =225
+                Y: =20
+                ZIndex: =2
 
     Toast_v2___1 As Toast_v2__:
         Message: =g_Toast
