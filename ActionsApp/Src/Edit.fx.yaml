@@ -1,6 +1,6 @@
 Edit As screen:
     OnVisible: |-
-        =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "ID", "Title"));
+        =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee", ID <> g_TheAction.Owner.Id), "ID", "Title"));
         Set(g_CurrentAction, g_TheAction);
 
     EditPanel As groupContainer.manualLayoutContainer:
@@ -227,6 +227,30 @@ Edit As screen:
             HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
             HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
             Italic: =APP_BUTTONS.LittleDanger.Italic
+            OnSelect: |+
+                =// Note this is the same as the re-open button in the editor window.
+                If(g_TheAction.Status <> "Open",
+                    // Close the action.
+                    Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                        Status: "Open",
+                        ClosedOn: Blank(),
+                        ClosedBy: Blank()
+                    }));
+                
+                    If(!IsBlank(g_TheAction.RequestedCloser) || !IsBlank(g_TheAction.Notify),
+                        With({Email: EmailFn.Builder({
+                            To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email) &";" & g_TheAction.Notify,
+                            Subject: "ACTION RE-OPENED: " & g_TheAction.Title,
+                            Header: "",
+                            Content: "",
+                            MinWidth: 550
+                        })},
+                            Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                        );
+                    );
+                )
+                
+                
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
             PaddingRight: =APP_BUTTONS.LittleDanger.PaddingRight
@@ -388,10 +412,12 @@ Edit As screen:
                                     Owner: tmp_CurrentUser
                                 }));
                             , // else
-                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                    RequestedOwner: tmp_OwnerDropdown
-                                }));
-                                Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
+                                If(g_TheAction.Owner.Id <> drop_EditOwner.Selected.ID,
+                                    Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                        RequestedOwner: tmp_OwnerDropdown
+                                    }));
+                                    Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
+                                )
                             );
                         );
                     );
@@ -736,7 +762,7 @@ Edit As screen:
             HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
             Italic: =APP_BUTTONS.LittleDanger.Italic
             OnSelect: |
-                =/*
+                =
                 // Note shouldn't need a guard against g_TheAction being Blank as the button will only be shown after a record has been created.
                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
                     RequestedOwner: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() }
@@ -748,7 +774,7 @@ Edit As screen:
                 , // Else
                     Set(varToast, { Text: Concat(Errors(Actions), Column & ": " & Message), Type: "Error", Timestamp: Now() });
                 );
-                */
+                
                 Reset(drop_EditOwner);
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
@@ -977,10 +1003,11 @@ Edit As screen:
                 BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
                 Clear: =APP_INPUT_CONTROLS.Textbox.Clear
                 Color: =APP_INPUT_CONTROLS.Textbox.Color
-                Default: ="TBD Not in the list yet"
+                Default: ="TBD Not yet implemented!"
                 DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
                 DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
                 DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
+                DisplayMode: =DisplayMode.Disabled
                 EnableSpellCheck: =true
                 Fill: =APP_INPUT_CONTROLS.Textbox.Fill
                 FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
@@ -1033,7 +1060,7 @@ Edit As screen:
             HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
             Italic: =APP_BUTTONS.LittleDanger.Italic
             OnSelect: |-
-                =//Remove(Actions, g_TheAction);
+                =RemoveIf(Actions, ID = g_TheAction.ID);
                 Select(btn_EditCancel);
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
@@ -1056,24 +1083,6 @@ Edit As screen:
             Y: =69
             ZIndex: =28
 
-        Label3 As label:
-            Text: =">>" & g_CurrentAction.ID & "<<"
-            X: =168
-            Y: =9
-            ZIndex: =29
-
-        Label3_1 As label:
-            Text: =">>" & g_TheAction.ID & "<<"
-            X: =33
-            Y: =9
-            ZIndex: =30
-
-        Label3_2 As label:
-            Text: =">>" & IsBlank(g_CurrentAction) & "<<"
-            X: =270
-            Y: =9
-            ZIndex: =31
-
     Toast_v2___1 As Toast_v2__:
         Message: =g_Toast
         Width: =Parent.Width
@@ -1095,4 +1104,19 @@ Edit As screen:
         Text: ="Send Emails"
         Width: =100
         ZIndex: =3
+
+    Label3 As label:
+        Text: =">>" & g_CurrentAction.ID & "<<"
+        X: =235
+        ZIndex: =4
+
+    Label3_1 As label:
+        Text: =">>" & g_TheAction.ID & "<<"
+        X: =100
+        ZIndex: =5
+
+    Label3_2 As label:
+        Text: =">>" & IsBlank(g_CurrentAction) & "<<"
+        X: =337
+        ZIndex: =6
 
