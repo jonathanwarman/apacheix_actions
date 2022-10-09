@@ -1,0 +1,69 @@
+ShadowRectangle_v2__ As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =300
+    Style: |-
+        ={
+            Box: {Fill: "#FFFFFFFF", Opacity: 1, BorderThickness: 0, BorderColor: "#000000", Radius: 10},
+            Shadow: {OffsetX: 0, OffsetY: 0, Color: "#000000", Blur: 5, Opacity: 0.5}
+        }
+    Width: =300
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Image1_1 As image:
+        Height: =Parent.Height
+        Image: |-
+            =With({
+                Shadow: ShadowRectangle_v2__.Style.Shadow,  
+                Box: ShadowRectangle_v2__.Style.Box,
+                MarginLeft: Max(ShadowRectangle_v2__.Style.Shadow.Blur * 3 - ShadowRectangle_v2__.Style.Shadow.OffsetX, 0),
+                MarginRight: Max(ShadowRectangle_v2__.Style.Shadow.Blur * 3 + ShadowRectangle_v2__.Style.Shadow.OffsetX, 0),
+                MarginTop: Max(ShadowRectangle_v2__.Style.Shadow.Blur * 3 - ShadowRectangle_v2__.Style.Shadow.OffsetY,0),
+                MarginBottom: Max(ShadowRectangle_v2__.Style.Shadow.Blur * 3 + ShadowRectangle_v2__.Style.Shadow.OffsetY, 0)
+            }, 
+                
+                "data:image/svg+xml," & EncodeUrl(
+                "<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+            <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+            <svg version='1.1'
+                xmlns='http://www.w3.org/2000/svg'
+                xmlns:xlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYMid meet' viewBox='0 0 " & Parent.Width & " " & Parent.Height & "' width='" & Parent.Width & "' height='" & Parent.Height & "'>
+                <g>
+                    <g>
+                        <filter id='shadow' x='-20%' y='-20%' width='200%' height='200%' filterUnits='userSpaceOnUse' primitiveUnits='userSpaceOnUse'>
+                            <feFlood></feFlood>
+                            <feComposite in2='SourceAlpha' operator='in'></feComposite>
+                            <feGaussianBlur stdDeviation='" & Shadow.Blur & "'></feGaussianBlur>
+                            <feOffset dx='" & Shadow.OffsetX & "' dy='" & Shadow.OffsetY & "' result='afterOffset'></feOffset>
+                            <feFlood flood-color='" & Shadow.Color & "' flood-opacity='" & Substitute(Text(Shadow.Opacity), ",", ".") & "'></feFlood>
+                            <feComposite in2='afterOffset' operator='in'></feComposite>
+                            <feMorphology operator='dilate' radius='1'></feMorphology>
+                            <feComposite in2='SourceAlpha' operator='out'></feComposite>
+                        </filter>
+                    </g>        
+                    <rect 
+                        id='boxForFill' 
+                        x='" & MarginLeft & "' 
+                        y='" & MarginTop & "' 
+                        width='" & Parent.Width - MarginLeft - MarginRight & "' 
+                        height='" & Parent.Height - MarginTop - MarginBottom & "' 
+                        fill='" & Box.Fill & "' 
+                        stroke='" & Box.BorderColor & "' stroke-width='" & Box.BorderThickness & "'
+                        fill-opacity='" & Substitute(Text(Box.Opacity), ",", ".") & "'
+                        rx='" & Box.Radius & "'
+                    />
+                    <rect 
+                        id='boxForShadow' 
+                        x='" & MarginLeft & "' 
+                        y='" & MarginTop & "' 
+                        width='" & Parent.Width - MarginLeft - MarginRight & "' 
+                        height='" & Parent.Height - MarginTop - MarginBottom & "' 
+                        rx='" & Box.Radius & "'
+                        filter='url(#shadow)'/>
+                </g>
+            </svg>"
+            ))
+        Width: =Parent.Width
+        ZIndex: =2
+
