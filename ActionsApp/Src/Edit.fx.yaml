@@ -1,4 +1,6 @@
 Edit As screen:
+    OnVisible: |-
+        =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "ID", "Title"))
 
     EditPanel As groupContainer.manualLayoutContainer:
         Height: =631
@@ -884,7 +886,7 @@ Edit As screen:
                 HoverColor: =APP_INPUT_CONTROLS.Dropdown.HoverColor
                 HoverFill: =APP_INPUT_CONTROLS.Dropdown.HoverFill
                 Italic: =APP_INPUT_CONTROLS.Dropdown.Italic
-                Items: =Filter(People, IsReal, Relationship = "Apache iX Employee")
+                Items: =g_ListOfClosers
                 PaddingBottom: =APP_INPUT_CONTROLS.Dropdown.PaddingBottom
                 PaddingLeft: =APP_INPUT_CONTROLS.Dropdown.PaddingLeft
                 PaddingRight: =APP_INPUT_CONTROLS.Dropdown.PaddingRight
