@@ -77315,36 +77315,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "App.g_CurrentAction"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "App.g_CurrentAction",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "g_CurrentAction",
-                "module": "App",
-                "type": "App"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-UnusedVariables",
-          "ruleIndex": 10
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "App.CustomLoadingSpinner"
                 }
               ],
