@@ -445,7 +445,9 @@ Home As screen:
                     DisabledBorderColor: =
                     DisabledColor: =
                     DisabledFill: =RGBA(0,0,0,0)
-                    Fill: =RGBA(50,0,0,0.2)//RGBA(0,0,0,0)
+                    Fill: |-
+                        =//RGBA(50,0,0,0.2)
+                        RGBA(0,0,0,0)
                     FocusedBorderColor: =
                     FocusedBorderThickness: =0
                     Font: =APP_BUTTONS.Primary.Font
