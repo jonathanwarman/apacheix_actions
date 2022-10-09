@@ -487,7 +487,7 @@ Home As screen:
                     DisabledBorderColor: =
                     DisabledColor: =
                     DisabledFill: =RGBA(0,0,0,0)
-                    Fill: =RGBA(0,0,0,0)
+                    Fill: =RGBA(50,0,0,0.2)//RGBA(0,0,0,0)
                     FocusedBorderColor: =
                     FocusedBorderThickness: =0
                     Font: =APP_BUTTONS.Primary.Font
@@ -965,7 +965,6 @@ Home As screen:
 
     btn_HomeAddAction As button:
         Align: =APP_BUTTONS.Primary.Align
-        AutoDisableOnSelect: =false
         BorderColor: =APP_BUTTONS.Primary.BorderColor
         BorderStyle: =APP_BUTTONS.Primary.BorderStyle
         BorderThickness: =APP_BUTTONS.Primary.BorderThickness
