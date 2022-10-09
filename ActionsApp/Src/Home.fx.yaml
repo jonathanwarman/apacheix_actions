@@ -961,7 +961,7 @@ Home As screen:
                 Y: =382
                 ZIndex: =4
 
-    btn_Primary_3 As button:
+    btn_HomeAddAction As button:
         Align: =APP_BUTTONS.Primary.Align
         BorderColor: =APP_BUTTONS.Primary.BorderColor
         BorderStyle: =APP_BUTTONS.Primary.BorderStyle
@@ -1001,7 +1001,7 @@ Home As screen:
         Underline: =APP_BUTTONS.Primary.Underline
         VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
         Width: =100
-        X: =1105
+        X: =App.Width - Self.Width - 20
         Y: =37
         ZIndex: =6
 
