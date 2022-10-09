@@ -102,7 +102,7 @@ Edit As screen:
 
         drop_EditOwner As dropdown:
             AllowEmptySelection: =true
-            BorderColor: =If(And(!IsBlank(g_CurrentAction), g_CurrentAction.Owner.Id <> Self.Selected.ID), Color.Red, APP_INPUT_CONTROLS.Dropdown.BorderColor)
+            BorderColor: =If(And(!IsBlank(g_TheAction), g_TheAction.Owner.Id <> Self.Selected.ID), Color.Red, APP_INPUT_CONTROLS.Dropdown.BorderColor)
             BorderStyle: =APP_INPUT_CONTROLS.Dropdown.BorderStyle
             BorderThickness: =APP_INPUT_CONTROLS.Dropdown.BorderThickness
             ChevronBackground: =APP_INPUT_CONTROLS.Dropdown.ChevronBackground
@@ -113,13 +113,19 @@ Edit As screen:
             ChevronHoverFill: =APP_INPUT_CONTROLS.Dropdown.ChevronHoverFill
             Color: =APP_INPUT_CONTROLS.Dropdown.Color
             Default: |-
-                =If(!IsBlank(g_CurrentAction.RequestedOwner), g_CurrentAction.RequestedOwner.Value,
-                    If(IsBlank(g_CurrentAction), USER.Name, g_CurrentAction.Owner.Value)
+                =If(IsBlank(g_TheAction), 
+                    USER.Name
+                , // else
+                    If(!IsBlank(g_TheAction.RequestedOwner), 
+                        g_TheAction.RequestedOwner.Value
+                    , // else
+                        g_TheAction.Owner.Value
+                    )
                 )
             DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
             DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
             DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
-            DisplayMode: =If(Or(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", !IsBlank(g_CurrentAction.RequestedOwner)), DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode: =If(Or(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", !IsBlank(g_TheAction.RequestedOwner)), DisplayMode.Disabled, DisplayMode.Edit)
             Fill: =APP_INPUT_CONTROLS.Dropdown.Fill
             FocusedBorderColor: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderColor
             FocusedBorderThickness: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderThickness
