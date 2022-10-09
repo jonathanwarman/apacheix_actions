@@ -46,8 +46,8 @@ Edit As screen:
             DisplayMode: =If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             Height: =160
             Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
-            Width: =518
-            X: =65
+            Width: =Parent.Width - 2*If(App.Width > 680, 65, App.Width > 400, 30, 15)
+            X: =If(App.Width > 680, 65, App.Width > 400, 30, 15)
             Y: =212
             ZIndex: =3
 
