@@ -453,7 +453,7 @@ Home As screen:
                         HoverColor: =APP_LABELS.PrimaryText.HoverColor
                         HoverFill: =APP_LABELS.PrimaryText.HoverFill
                         Italic: =APP_LABELS.PrimaryText.Italic
-                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight + 0.1
                         Overflow: =APP_LABELS.PrimaryText.Overflow
                         PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
                         PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
@@ -462,7 +462,7 @@ Home As screen:
                         PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
                         PressedColor: =APP_LABELS.PrimaryText.PressedColor
                         PressedFill: =APP_LABELS.PrimaryText.PressedFill
-                        Size: =APP_LABELS.PrimaryText.Size -2
+                        Size: =APP_LABELS.PrimaryText.Size -3
                         Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
                         Text: =ThisItem.Owner.Value & If(!IsBlank(ThisItem.RequestedOwner), Char(10) & "> " & ThisItem.RequestedOwner.Value)
                         Underline: =APP_LABELS.PrimaryText.Underline

@@ -95,7 +95,7 @@ Edit As screen:
             Size: =16
             Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Textbox.Underline
-            Width: =Parent.Width - 2*Self.X
+            Width: =Parent.Width - 2*Self.X - 80 // Minus 80 for Delete Action button
             X: =EditScreenCardMargin
             Y: =69
             ZIndex: =4
@@ -350,7 +350,7 @@ Edit As screen:
                         Title: txt_EditActionText.Text,
                         Detail: txt_EditActionDetail.HtmlText,
                         Status: "Open",
-                        Target: date_EditTarget.SelectedDate,
+                        Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),
                         RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, tmp_Blank, tmp_Closer),
                         Importance: rad_EditImportance.Selected.Value
                         //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
@@ -1011,6 +1011,52 @@ Edit As screen:
                 X: =1
                 Y: =20
                 ZIndex: =2
+
+        btn_CancelRequestedOwner_1 As button:
+            Align: =APP_BUTTONS.LittleDanger.Align
+            BorderColor: =APP_BUTTONS.LittleDanger.BorderColor
+            BorderStyle: =APP_BUTTONS.LittleDanger.BorderStyle
+            BorderThickness: =APP_BUTTONS.LittleDanger.BorderThickness
+            Color: =APP_BUTTONS.LittleDanger.Color
+            DisabledBorderColor: =APP_BUTTONS.LittleDanger.DisabledBorderColor
+            DisabledColor: =APP_BUTTONS.LittleDanger.DisabledColor
+            DisabledFill: =APP_BUTTONS.LittleDanger.DisabledFill
+            DisplayMode: =If(IsBlank(g_CurrentAction2), DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =APP_BUTTONS.LittleDanger.Fill
+            FocusedBorderColor: =APP_BUTTONS.LittleDanger.FocusedBorderColor
+            FocusedBorderThickness: =APP_BUTTONS.LittleDanger.FocusedBorderThickness
+            Font: =APP_BUTTONS.LittleDanger.Font
+            FontWeight: =APP_BUTTONS.LittleDanger.FontWeight
+            Height: =30
+            HoverBorderColor: =APP_BUTTONS.LittleDanger.HoverBorderColor
+            HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
+            HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
+            Italic: =APP_BUTTONS.LittleDanger.Italic
+            OnSelect: |-
+                =
+                Remove(Actions, g_CurrentAction2);
+                Select(btn_EditCancel);
+            PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
+            PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
+            PaddingRight: =APP_BUTTONS.LittleDanger.PaddingRight
+            PaddingTop: =APP_BUTTONS.LittleDanger.PaddingTop
+            PressedBorderColor: =APP_BUTTONS.LittleDanger.PressedBorderColor
+            PressedColor: =APP_BUTTONS.LittleDanger.PressedColor
+            PressedFill: =APP_BUTTONS.LittleDanger.PressedFill
+            RadiusBottomLeft: =APP_BUTTONS.LittleDanger.RadiusBottomLeft
+            RadiusBottomRight: =APP_BUTTONS.LittleDanger.RadiusBottomRight
+            RadiusTopLeft: =APP_BUTTONS.LittleDanger.RadiusTopLeft
+            RadiusTopRight: =APP_BUTTONS.LittleDanger.RadiusTopright
+            Size: =APP_BUTTONS.LittleDanger.Size - 2
+            Strikethrough: =APP_BUTTONS.LittleDanger.Strikethrough
+            Text: ="Delete Action"
+            Underline: =APP_BUTTONS.LittleDanger.Underline
+            VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
+            Visible: =!IsBlank(g_CurrentAction2.RequestedOwner)
+            Width: =70
+            X: =Parent.Width -Self.Width - EditScreenCardMargin
+            Y: =69
+            ZIndex: =28
 
     Toast_v2___1 As Toast_v2__:
         Message: =g_Toast
