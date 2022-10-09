@@ -481,7 +481,7 @@ Home As screen:
                     BorderColor: =
                     BorderStyle: =
                     BorderThickness: =0
-                    Color: =RGBA(0,0,0,0)
+                    Color: =RGBA(0,0,0,1)
                     DisabledBorderColor: =
                     DisabledColor: =
                     DisabledFill: =RGBA(0,0,0,0)
@@ -509,9 +509,9 @@ Home As screen:
                     RadiusBottomRight: =0
                     RadiusTopLeft: =0
                     RadiusTopRight: =0
-                    Size: =5
+                    Size: =10
                     Strikethrough: =APP_BUTTONS.Primary.Strikethrough
-                    Text: =""
+                    Text: ="fhjhfhjfhj"
                     Tooltip: ="Edit action"
                     Underline: =APP_BUTTONS.Primary.Underline
                     VerticalAlign: =VerticalAlign.Top
