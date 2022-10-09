@@ -1,7 +1,7 @@
 Edit As screen:
     OnVisible: |-
         =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "ID", "Title"));
-        //Set(g_CurrentAction, g_TheAction);
+        Set(g_CurrentAction, g_TheAction);
 
     EditPanel As groupContainer.manualLayoutContainer:
         Height: =631
