@@ -1005,7 +1005,7 @@ Home As screen:
         ZIndex: =6
 
     Label1 As label:
-        Text: ="Text"
+        Text: ="Text2"
         X: =187
         Y: =22
         ZIndex: =7

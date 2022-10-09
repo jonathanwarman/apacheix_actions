@@ -321,7 +321,6 @@ Edit As screen:
                     Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() });
                     
                 , // Else
-                false
                 
                     /*
                     // Look for an existing context.
@@ -336,7 +335,7 @@ Edit As screen:
                         })})
                     );
                     */
-                /*
+                
                     // Temp variables to make setting Owner and Closer easier.
                     With({         
                         tmp_ActionRecord: If(IsBlank(g_CurrentAction), Defaults(Actions), g_CurrentAction),
@@ -400,7 +399,7 @@ Edit As screen:
                     );
                 
                     ); // end with
-                */
+                
                 ); // end if
             PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
             PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
