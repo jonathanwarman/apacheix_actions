@@ -251,7 +251,7 @@ Home As screen:
             BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor
             BorderStyle: =APP_INPUT_CONTROLS.Slider.BorderStyle
             BorderThickness: =APP_INPUT_CONTROLS.Slider.BorderThickness
-            Default: =300
+            Default: =Self.Width/3 // 1/3 of the width
             DisabledBorderColor: =APP_INPUT_CONTROLS.Slider.DisabledBorderColor
             FocusedBorderColor: =APP_INPUT_CONTROLS.Slider.FocusedBorderColor
             FocusedBorderThickness: =APP_INPUT_CONTROLS.Slider.FocusedBorderThickness
@@ -485,7 +485,7 @@ Home As screen:
                 BorderStyle: =APP_INPUT_CONTROLS.Toggle.BorderStyle
                 BorderThickness: =APP_INPUT_CONTROLS.Toggle.BorderThickness
                 Color: =APP_INPUT_CONTROLS.Toggle.Color
-                Default: =true
+                Default: =If(App.Width > 400, true, false)
                 DisabledBorderColor: =APP_INPUT_CONTROLS.Toggle.DisabledBorderColor
                 DisabledColor: =APP_INPUT_CONTROLS.Toggle.DisabledColor
                 FalseFill: |+

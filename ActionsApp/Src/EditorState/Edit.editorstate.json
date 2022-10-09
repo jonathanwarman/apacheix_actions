@@ -3921,7 +3921,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "EditPanel",
-      "ParentIndex": 1,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -4140,7 +4140,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "fn_EditActionSendEmails",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -4379,7 +4379,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "grp_Closer",
-      "ParentIndex": 14,
+      "ParentIndex": 13,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -5178,7 +5178,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "lbl_PrimaryText_3",
-      "ParentIndex": 13,
+      "ParentIndex": 14,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
