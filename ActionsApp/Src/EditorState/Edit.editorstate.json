@@ -298,7 +298,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "true",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "Visible",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -1177,7 +1177,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "DisplayMode.Edit",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "DisplayMode",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -1919,7 +1919,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "true",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "Visible",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -2298,7 +2298,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "DisplayMode.Edit",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "DisplayMode",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -2862,7 +2862,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "DisplayMode.Edit",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "DisplayMode",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -2961,7 +2961,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "\"1\"",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "Default",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -3320,7 +3320,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "RGBA(0, 18, 107, 1)",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "BorderColor",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -3441,7 +3441,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "DisplayMode.Edit",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "DisplayMode",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -3540,7 +3540,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "\"1\"",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "Default",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -5160,7 +5160,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "true",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "Visible",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -5692,7 +5692,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "true",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "Visible",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -10134,7 +10134,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "RGBA(0, 0, 0, 1)",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "RadioSelectionFill",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -10272,7 +10272,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "DisplayMode.Edit",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "DisplayMode",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -10889,7 +10889,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "\"Enter some <strong>rich text</strong> here.\"",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "Default",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -10908,7 +10908,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "DisplayMode.Edit",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "DisplayMode",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
@@ -10916,7 +10916,7 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "RGBA(0, 18, 107, 1)",
+          "AutoRuleBindingString": "",
           "InvariantPropertyName": "BorderColor",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
