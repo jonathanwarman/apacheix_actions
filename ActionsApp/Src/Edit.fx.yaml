@@ -335,12 +335,12 @@ Edit As screen:
                     */
                 
                     // Temp variables to make setting Owner and Closer easier.
-                    With({ 
+                    With({         
                         tmp_ActionRecord: If(IsBlank(g_CurrentAction), Defaults(Actions), g_CurrentAction),
+                        tmp_Blank: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() },
                         tmp_CurrentUser: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name },
                         tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.Name },
-                        tmpCloser: If(IsBlank(drop_EditCloser.Selected), Blank(), 
-                            { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.Name })
+                        tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.Title }
                 
                                 //tmpOwnerDropdown: If(IsBlank(dd_RequestedOwner.SelectedItems) || IsEmpty(dd_RequestedOwner.SelectedItems), Blank(), First(dd_RequestedOwner.SelectedItems)),
                         /*tmpOwnerDropdown: LookUp(drop_EditOwner.Items, Result = drop_EditOwner.Selected.Text),
@@ -365,7 +365,7 @@ Edit As screen:
                         Detail: txt_EditActionDetail.HtmlText,
                         Status: "Open",
                         Target: date_EditTarget.SelectedDate,
-                        RequestedCloser: If(rad_EditImportance.Selected.Value = "Low", Blank(), tmpCloser),
+                        RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, tmp_Blank, tmp_Closer),
                         Importance: rad_EditImportance.Selected.Value
                         //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
                     }));
@@ -378,13 +378,14 @@ Edit As screen:
                             If(drop_EditOwner.Selected.ID = USER.ID,
                                 Set(g_CurrentAction, Patch(Actions, Defaults(Actions), { 
                                     Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
-                                    RequestedOwner: Blank()
+                                    RequestedOwner: tmp_Blank
                                 }));
                             , // else
                                 Set(g_CurrentAction, Patch(Actions, Defaults(Actions), { 
                                     Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
                                     RequestedOwner: tmp_OwnerDropdown
                                 }));
+                                Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
                             );
                 
                         , // Else existing action
@@ -398,6 +399,7 @@ Edit As screen:
                                 Set(g_CurrentAction, Patch(Actions, g_CurrentAction, { 
                                     RequestedOwner: tmp_OwnerDropdown
                                 }));
+                                Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
                             );
                         );
                     );
@@ -735,7 +737,7 @@ Edit As screen:
             Visible: =!IsBlank(g_CurrentAction.RequestedOwner)
             Width: =100
             Wrap: =APP_LABELS.SecondaryText.Wrap
-            X: =65
+            X: =EditScreenCardMargin
             Y: =444
             ZIndex: =19
 
@@ -777,7 +779,7 @@ Edit As screen:
             Visible: =!IsBlank(g_CurrentAction.RequestedOwner)
             Width: =179
             Wrap: =APP_LABELS.PrimaryText.Wrap
-            X: =65
+            X: =EditScreenCardMargin
             Y: =460
             ZIndex: =22
 
@@ -832,12 +834,12 @@ Edit As screen:
             VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
             Visible: =!IsBlank(g_CurrentAction.RequestedOwner)
             Width: =70
-            X: =272
+            X: =drop_EditOwner.X + drop_EditOwner.Width + 15
             Y: =415
             ZIndex: =23
 
         grp_Closer As groupContainer.manualLayoutContainer:
-            Height: =77
+            Height: =46
             Width: =241
             X: =Parent.Width -Self.Width -EditScreenCardMargin
             Y: =460
@@ -899,7 +901,8 @@ Edit As screen:
                 Size: =APP_INPUT_CONTROLS.Dropdown.Size
                 Strikethrough: =APP_INPUT_CONTROLS.Dropdown.Strikethrough
                 Underline: =APP_INPUT_CONTROLS.Dropdown.Underline
-                Width: =200
+                Width: =Parent.Width -2
+                X: =1
                 Y: =20
                 ZIndex: =1
 
@@ -940,6 +943,7 @@ Edit As screen:
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
                 Width: =100
                 Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =1
                 ZIndex: =2
 
             lbl_SecondaryText_9 As label:
@@ -985,34 +989,6 @@ Edit As screen:
                 X: =50
                 ZIndex: =3
 
-            btn_ClearCloser As icon.EmojiSmile:
-                BorderColor: =APP_BUTTONS.Icon.BorderColor
-                BorderStyle: =APP_BUTTONS.Icon.BorderStyle
-                BorderThickness: =APP_BUTTONS.Icon.BorderThickness
-                Color: =APP_BUTTONS.Icon.Color
-                DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
-                DisabledColor: =APP_BUTTONS.Icon.DisabledColor
-                DisabledFill: =APP_BUTTONS.Icon.DisabledFill
-                Fill: =APP_BUTTONS.Icon.Fill
-                FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
-                FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
-                Height: =25
-                HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
-                HoverColor: =APP_BUTTONS.Icon.HoverColor
-                HoverFill: =APP_BUTTONS.Icon.HoverFill
-                Icon: =Icon.Cancel
-                PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
-                PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
-                PaddingRight: =APP_BUTTONS.Icon.PaddingRight
-                PaddingTop: =APP_BUTTONS.Icon.PaddingTop
-                PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
-                PressedColor: =APP_BUTTONS.Icon.PressedColor
-                PressedFill: =APP_BUTTONS.Icon.PressedFill
-                Width: =25
-                X: =200
-                Y: =20
-                ZIndex: =4
-
         Label1 As label:
             Text: =drop_EditOwner.Selected.ID & "-" & USER.ID
             X: =265
@@ -1030,7 +1006,7 @@ Edit As screen:
             ZIndex: =26
 
         grp_ExternalOwner As groupContainer.manualLayoutContainer:
-            Height: =49
+            Height: =46
             Width: =241
             X: =Parent.Width -Self.Width -EditScreenCardMargin
             Y: =395
@@ -1073,6 +1049,7 @@ Edit As screen:
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
                 Width: =100
                 Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =1
                 ZIndex: =1
 
             txt_ExternalOwners As text:
@@ -1112,7 +1089,8 @@ Edit As screen:
                 Size: =APP_INPUT_CONTROLS.Textbox.Size
                 Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
                 Underline: =APP_INPUT_CONTROLS.Textbox.Underline
-                Width: =225
+                Width: =Parent.Width -2
+                X: =1
                 Y: =20
                 ZIndex: =2
 
