@@ -1051,6 +1051,12 @@ Edit As screen:
             Y: =69
             ZIndex: =28
 
+        Label3 As label:
+            Text: =">>" & g_TheAction.ID & "<<"
+            X: =208
+            Y: =9
+            ZIndex: =29
+
     Toast_v2___1 As Toast_v2__:
         Message: =g_Toast
         Width: =Parent.Width
