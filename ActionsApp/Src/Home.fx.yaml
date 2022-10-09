@@ -159,7 +159,7 @@ Home As screen:
                     Width: =80
                     X: =img_Importance.X + img_Importance.Width
                     Y: =-2
-                    ZIndex: =3
+                    ZIndex: =2
 
                 img_Importance As image:
                     Height: =27
@@ -173,7 +173,7 @@ Home As screen:
                         )
                     Width: =44
                     X: =lbl_ActionText.X + lbl_ActionText.Width
-                    ZIndex: =4
+                    ZIndex: =3
 
                 lbl_ActionText As label:
                     Align: =APP_LABELS.PrimaryText.Align
@@ -217,7 +217,7 @@ Home As screen:
                     Width: |
                         =If(App.Width < 500, 300, slide_Slider_2.Value)
                     Wrap: =tog_WrapActionText.Value
-                    ZIndex: =5
+                    ZIndex: =4
 
                 lbl_ActionDetail As htmlViewer:
                     AutoHeight: =true
@@ -228,129 +228,13 @@ Home As screen:
                     Visible: =g_HomeSelectedAction.ID = ThisItem.ID
                     Width: =lbl_ActionText.Width
                     Y: =lbl_ActionText.Height
-                    ZIndex: =6
-
-                btn_ExpandAction As button:
-                    Align: =Align.Right
-                    BorderColor: =
-                    BorderStyle: =
-                    BorderThickness: =0
-                    Color: =RGBA(0,0,0,0)
-                    DisabledBorderColor: =
-                    DisabledColor: =
-                    DisabledFill: =RGBA(0,0,0,0)
-                    DisplayMode: =
-                    Fill: =RGBA(0,0,0,0)
-                    FocusedBorderColor: =
-                    FocusedBorderThickness: =0
-                    Font: =APP_BUTTONS.Primary.Font
-                    FontWeight: =Lighter
-                    Height: =Parent.Height
-                    HoverBorderColor: =
-                    HoverColor: =Color.White
-                    HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
-                    Italic: =APP_BUTTONS.Primary.Italic
-                    OnSelect: =Set(g_HomeSelectedAction, ThisItem);
-                    PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
-                    PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
-                    PaddingRight: =APP_BUTTONS.Primary.PaddingRight
-                    PaddingTop: =APP_BUTTONS.Primary.PaddingTop
-                    PressedBorderColor: =
-                    PressedColor: =
-                    PressedFill: =
-                    RadiusBottomLeft: =0
-                    RadiusBottomRight: =0
-                    RadiusTopLeft: =0
-                    RadiusTopRight: =0
-                    Size: =5
-                    Strikethrough: =APP_BUTTONS.Primary.Strikethrough
-                    Text: =""
-                    Tooltip: ="Expand - show detail"
-                    Underline: =APP_BUTTONS.Primary.Underline
-                    VerticalAlign: =VerticalAlign.Top
-                    Visible: =g_HomeSelectedAction.ID <> ThisItem.ID
-                    Width: =lbl_ActionText.Width
-                    ZIndex: =7
-
-                btn_EditAction As button:
-                    Align: =Align.Right
-                    BorderColor: =
-                    BorderStyle: =
-                    BorderThickness: =0
-                    Color: =RGBA(0,0,0,0)
-                    DisabledBorderColor: =
-                    DisabledColor: =
-                    DisabledFill: =RGBA(0,0,0,0)
-                    DisplayMode: =
-                    Fill: =RGBA(0,0,0,0)
-                    FocusedBorderColor: =
-                    FocusedBorderThickness: =0
-                    Font: =APP_BUTTONS.Primary.Font
-                    FontWeight: =Lighter
-                    Height: =Parent.Height
-                    HoverBorderColor: =
-                    HoverColor: =Color.White
-                    HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
-                    Italic: =APP_BUTTONS.Primary.Italic
-                    OnSelect: |-
-                        =Set(g_CurrentAction2, ThisItem);
-                        Navigate(Edit);
-                    PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
-                    PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
-                    PaddingRight: =APP_BUTTONS.Primary.PaddingRight
-                    PaddingTop: =APP_BUTTONS.Primary.PaddingTop
-                    PressedBorderColor: =
-                    PressedColor: =
-                    PressedFill: =
-                    RadiusBottomLeft: =0
-                    RadiusBottomRight: =0
-                    RadiusTopLeft: =0
-                    RadiusTopRight: =0
-                    Size: =5
-                    Strikethrough: =APP_BUTTONS.Primary.Strikethrough
-                    Text: =""
-                    Tooltip: ="Edit action"
-                    Underline: =APP_BUTTONS.Primary.Underline
-                    VerticalAlign: =VerticalAlign.Top
-                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
-                    Width: =lbl_ActionText.Width -20
-                    ZIndex: =8
-
-                btn_CollapseAction As icon.EmojiSmile:
-                    BorderColor: =APP_BUTTONS.Icon.BorderColor
-                    BorderStyle: =APP_BUTTONS.Icon.BorderStyle
-                    BorderThickness: =APP_BUTTONS.Icon.BorderThickness
-                    Color: =APP_BUTTONS.Icon.Color
-                    DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
-                    DisabledColor: =APP_BUTTONS.Icon.DisabledColor
-                    DisabledFill: =APP_BUTTONS.Icon.DisabledFill
-                    Fill: =APP_BUTTONS.Icon.Fill
-                    FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
-                    FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
-                    Height: =Parent.Height
-                    HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
-                    HoverColor: =APP_BUTTONS.Icon.HoverColor
-                    HoverFill: =APP_BUTTONS.Icon.HoverFill
-                    Icon: =Icon.ChevronUp
-                    OnSelect: =Set(g_HomeSelectedAction, Blank());
-                    PaddingBottom: =Parent.Height - 18
-                    PaddingLeft: =2
-                    PaddingRight: =2
-                    PaddingTop: =2
-                    PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
-                    PressedColor: =APP_BUTTONS.Icon.PressedColor
-                    PressedFill: =APP_BUTTONS.Icon.PressedFill
-                    Tooltip: ="Collapse - hide detail"
-                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
-                    Width: =20
-                    X: =lbl_ActionText.Width -Self.Width
-                    ZIndex: =9
+                    ZIndex: =5
 
                 grp_Owner As groupContainer.manualLayoutContainer:
                     Height: =Parent.Height
                     Width: =If(g_HomeExpandOwner,180, 60)
                     X: =chk_ActionStatus.X + chk_ActionStatus.Width
-                    ZIndex: =10
+                    ZIndex: =6
 
                     Image1_4 As image:
                         Height: =25
@@ -548,7 +432,122 @@ Home As screen:
                     Width: =80
                     Wrap: =APP_LABELS.PrimaryText.Wrap
                     X: =grp_Owner.X + grp_Owner.Width
-                    ZIndex: =11
+                    ZIndex: =7
+
+                btn_ExpandAction As button:
+                    Align: =Align.Right
+                    BorderColor: =
+                    BorderStyle: =
+                    BorderThickness: =0
+                    Color: =RGBA(0,0,0,0)
+                    DisabledBorderColor: =
+                    DisabledColor: =
+                    DisabledFill: =RGBA(0,0,0,0)
+                    DisplayMode: =
+                    Fill: =RGBA(0,0,0,0)
+                    FocusedBorderColor: =
+                    FocusedBorderThickness: =0
+                    Font: =APP_BUTTONS.Primary.Font
+                    FontWeight: =Lighter
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =Color.White
+                    HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+                    Italic: =APP_BUTTONS.Primary.Italic
+                    OnSelect: =Set(g_HomeSelectedAction, ThisItem);
+                    PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+                    PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+                    PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+                    PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =5
+                    Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+                    Text: =""
+                    Tooltip: ="Expand - show detail"
+                    Underline: =APP_BUTTONS.Primary.Underline
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =g_HomeSelectedAction.ID <> ThisItem.ID
+                    Width: =lbl_ActionText.Width
+                    ZIndex: =8
+
+                btn_EditAction As button:
+                    Align: =Align.Right
+                    BorderColor: =
+                    BorderStyle: =
+                    BorderThickness: =0
+                    Color: =RGBA(0,0,0,0)
+                    DisabledBorderColor: =
+                    DisabledColor: =
+                    DisabledFill: =RGBA(0,0,0,0)
+                    Fill: =RGBA(0,0,0,0)
+                    FocusedBorderColor: =
+                    FocusedBorderThickness: =0
+                    Font: =APP_BUTTONS.Primary.Font
+                    FontWeight: =Lighter
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =Color.White
+                    HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+                    Italic: =APP_BUTTONS.Primary.Italic
+                    OnSelect: |-
+                        =Set(g_CurrentAction2, ThisItem);
+                        Navigate(Edit);
+                    PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+                    PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+                    PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+                    PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =5
+                    Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+                    Text: =""
+                    Tooltip: ="Edit action"
+                    Underline: =APP_BUTTONS.Primary.Underline
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
+                    Width: =lbl_ActionText.Width -20
+                    ZIndex: =9
+
+                btn_CollapseAction As icon.EmojiSmile:
+                    BorderColor: =APP_BUTTONS.Icon.BorderColor
+                    BorderStyle: =APP_BUTTONS.Icon.BorderStyle
+                    BorderThickness: =APP_BUTTONS.Icon.BorderThickness
+                    Color: =APP_BUTTONS.Icon.Color
+                    DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
+                    DisabledColor: =APP_BUTTONS.Icon.DisabledColor
+                    DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+                    Fill: =APP_BUTTONS.Icon.Fill
+                    FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
+                    FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
+                    Height: =Parent.Height
+                    HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
+                    HoverColor: =APP_BUTTONS.Icon.HoverColor
+                    HoverFill: =APP_BUTTONS.Icon.HoverFill
+                    Icon: =Icon.ChevronUp
+                    OnSelect: =Set(g_HomeSelectedAction, Blank());
+                    PaddingBottom: =Parent.Height - 18
+                    PaddingLeft: =2
+                    PaddingRight: =2
+                    PaddingTop: =2
+                    PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
+                    PressedColor: =APP_BUTTONS.Icon.PressedColor
+                    PressedFill: =APP_BUTTONS.Icon.PressedFill
+                    Tooltip: ="Collapse - hide detail"
+                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
+                    Width: =20
+                    X: =lbl_ActionText.Width -Self.Width
+                    ZIndex: =10
 
         slide_Slider_2 As slider:
             BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor

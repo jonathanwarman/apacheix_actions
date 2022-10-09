@@ -917,12 +917,6 @@ Edit As screen:
                 X: =50
                 ZIndex: =3
 
-        Label1 As label:
-            Text: =drop_EditOwner.Selected.ID & "-" & USER.ID
-            X: =265
-            Y: =302
-            ZIndex: =25
-
         grp_ExternalOwner As groupContainer.manualLayoutContainer:
             Height: =46
             Width: =241
