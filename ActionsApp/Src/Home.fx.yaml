@@ -532,8 +532,8 @@ Home As screen:
                         Height: =25
                         Icon: =Icon.ArrowRight
                         Visible: =!IsBlank(ThisItem.RequestedOwner)
-                        Width: =15
-                        X: =24
+                        Width: =13
+                        X: =25
                         Y: =1
                         ZIndex: =4
 
@@ -833,7 +833,7 @@ Home As screen:
                 PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
                 PressedColor: =APP_BUTTONS.Icon.PressedColor
                 PressedFill: =APP_BUTTONS.Icon.PressedFill
-                Tooltip: =If(g_HomeExpandOwner,"Minimise","Maximise")
+                Tooltip: =If(g_HomeExpandOwner,"Minimise","Maximise") & " owner"
                 Width: =15
                 X: =th_4.X + th_4.Width -Self.Width
                 ZIndex: =7
