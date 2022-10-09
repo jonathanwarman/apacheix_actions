@@ -227,7 +227,7 @@ Home As screen:
                     HtmlText: |-
                         =If(IsBlank(ThisItem.Detail), "<i style='color:gray'>Action has no detail.</i>", ThisItem.Detail)
                     Size: =7
-                    Visible: =g_CurrentAction.ID = ThisItem.ID
+                    Visible: =true //g_CurrentAction.ID = ThisItem.ID
                     Width: =lbl_ActionText.Width
                     Y: =lbl_ActionText.Height
                     ZIndex: =5
@@ -455,7 +455,7 @@ Home As screen:
                     HoverColor: =Color.White
                     HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
                     Italic: =APP_BUTTONS.Primary.Italic
-                    OnSelect: =Set(g_CurrentAction, ThisItem);
+                    OnSelect: =//Set(g_CurrentAction, ThisItem);
                     PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                     PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
                     PaddingRight: =APP_BUTTONS.Primary.PaddingRight
@@ -515,7 +515,7 @@ Home As screen:
                     Tooltip: ="Edit action"
                     Underline: =APP_BUTTONS.Primary.Underline
                     VerticalAlign: =VerticalAlign.Top
-                    Visible: =g_CurrentAction.ID = ThisItem.ID
+                    Visible: =true // g_CurrentAction.ID = ThisItem.ID
                     Width: =lbl_ActionText.Width -20
                     ZIndex: =9
 
@@ -545,7 +545,7 @@ Home As screen:
                     PressedColor: =APP_BUTTONS.Icon.PressedColor
                     PressedFill: =APP_BUTTONS.Icon.PressedFill
                     Tooltip: ="Collapse - hide detail"
-                    Visible: =g_CurrentAction.ID = ThisItem.ID
+                    Visible: =true // g_CurrentAction.ID = ThisItem.ID
                     Width: =20
                     X: =lbl_ActionText.Width -Self.Width
                     ZIndex: =10
@@ -981,7 +981,7 @@ Home As screen:
         HoverFill: =APP_BUTTONS.Primary.HoverFill
         Italic: =APP_BUTTONS.Primary.Italic
         OnSelect: |-
-            =Set(g_CurrentAction, Blank()); 
+            =//Set(g_CurrentAction, Blank()); 
             Navigate(Edit);
         PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
         PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
