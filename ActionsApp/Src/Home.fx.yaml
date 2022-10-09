@@ -445,7 +445,6 @@ Home As screen:
                     DisabledBorderColor: =
                     DisabledColor: =
                     DisabledFill: =RGBA(0,0,0,0)
-                    DisplayMode: =
                     Fill: =RGBA(0,0,0,0)
                     FocusedBorderColor: =
                     FocusedBorderThickness: =0
