@@ -79,7 +79,8 @@ Home As screen:
                     DisabledBorderColor: =APP_INPUT_CONTROLS.Checkbox.DisabledBorderColor
                     DisabledColor: =APP_INPUT_CONTROLS.Checkbox.DisabledColor
                     DisabledFill: =APP_INPUT_CONTROLS.Checkbox.DisabledFill
-                    DisplayMode: =If(USER.ID = ThisItem.Owner.Id, DisplayMode.Edit, DisplayMode.View)
+                    DisplayMode: |
+                        =If(USER.ID = ThisItem.Owner.Id, DisplayMode.Edit,DisplayMode.Disabled)
                     Fill: =APP_COLORS.Transparent
                     FocusedBorderColor: =APP_INPUT_CONTROLS.Checkbox.FocusedBorderColor
                     FocusedBorderThickness: =APP_INPUT_CONTROLS.Checkbox.FocusedBorderThickness
@@ -123,6 +124,7 @@ Home As screen:
                                     
                     OnUncheck: |-
                         =
+                        // Note this is the same as the re-open button in the editor window.
                         If(ThisItem.Status <> "Open",
                             // Close the action.
                             Patch(Actions, ThisItem, { 
