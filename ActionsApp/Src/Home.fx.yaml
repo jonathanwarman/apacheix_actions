@@ -569,7 +569,7 @@ Home As screen:
                     PressedFill: =APP_LABELS.PrimaryText.PressedFill
                     Size: =APP_LABELS.PrimaryText.Size -2
                     Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
-                    Text: =ThisItem.Target
+                    Text: =If(IsBlank(ThisItem.Target), "-", ThisItem.Target)
                     Underline: =APP_LABELS.PrimaryText.Underline
                     VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
                     Visible: =g_HomeExpandOwner
@@ -1009,7 +1009,9 @@ Home As screen:
         HoverColor: =APP_BUTTONS.Primary.HoverColor
         HoverFill: =APP_BUTTONS.Primary.HoverFill
         Italic: =APP_BUTTONS.Primary.Italic
-        OnSelect: =Set(g_CurrentAction, Blank()); Navigate(Edit);
+        OnSelect: |-
+            =Set(g_CurrentAction, Blank()); 
+            Navigate(Edit);
         PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
         PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
         PaddingRight: =APP_BUTTONS.Primary.PaddingRight

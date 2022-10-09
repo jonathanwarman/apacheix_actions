@@ -18,6 +18,7 @@ Edit As screen:
             BorderStyle: =APP_INPUT_CONTROLS.DatePicker.BorderStyle
             BorderThickness: =APP_INPUT_CONTROLS.DatePicker.BorderThickness
             Color: =APP_INPUT_CONTROLS.DatePicker.Color
+            DefaultDate: =Today()-1
             DisabledBorderColor: =APP_INPUT_CONTROLS.DatePicker.DisabledBorderColor
             DisabledColor: =APP_INPUT_CONTROLS.DatePicker.DisabledColor
             DisabledFill: =APP_INPUT_CONTROLS.DatePicker.DisabledFill
