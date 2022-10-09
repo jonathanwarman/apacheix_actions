@@ -1008,7 +1008,8 @@ Home As screen:
 
     Label1 As label:
         Text: ="Text2"
-        X: =187
+        Width: =39
+        X: =20
         Y: =22
         ZIndex: =7
 
