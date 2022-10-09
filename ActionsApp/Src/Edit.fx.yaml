@@ -39,7 +39,7 @@ Edit As screen:
             Size: =APP_INPUT_CONTROLS.DatePicker.Size
             Width: =160
             X: =EditScreenCardMargin
-            Y: =526
+            Y: =514
             ZIndex: =2
 
         txt_EditActionDetail As richTextEditor:
@@ -696,7 +696,7 @@ Edit As screen:
             Width: =100
             Wrap: =APP_LABELS.SecondaryText.Wrap
             X: =EditScreenCardMargin
-            Y: =506
+            Y: =494
             ZIndex: =14
 
         lbl_SecondaryText_10 As label:
@@ -738,7 +738,7 @@ Edit As screen:
             Width: =100
             Wrap: =APP_LABELS.SecondaryText.Wrap
             X: =EditScreenCardMargin
-            Y: =444
+            Y: =448
             ZIndex: =19
 
         lbl_PrimaryText_3 As label:
@@ -780,7 +780,7 @@ Edit As screen:
             Width: =179
             Wrap: =APP_LABELS.PrimaryText.Wrap
             X: =EditScreenCardMargin
-            Y: =460
+            Y: =464
             ZIndex: =22
 
         btn_CancelRequestedOwner As button:
@@ -842,7 +842,7 @@ Edit As screen:
             Height: =46
             Width: =241
             X: =Parent.Width -Self.Width -EditScreenCardMargin
-            Y: =460
+            Y: =448
             ZIndex: =24
 
             drop_EditCloser As dropdown:
