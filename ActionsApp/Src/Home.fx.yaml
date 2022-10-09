@@ -50,7 +50,7 @@ Home As screen:
 
             Container6 As groupContainer.manualLayoutContainer:
                 Fill: =RGBA(230, 230, 230, 1)
-                Height: =lbl_ActionText.Height
+                Height: =lbl_ActionText.Height + If(lbl_ActionDetail.Visible, lbl_ActionDetail.Height)
                 Width: =Parent.TemplateWidth - 15 // 15px for scrollbar.
                 ZIndex: =1
 
@@ -246,6 +246,101 @@ Home As screen:
                         =If(App.Width < 500, 300, slide_Slider_2.Value)
                     Wrap: =tog_WrapActionText.Value
                     ZIndex: =5
+
+                lbl_ActionDetail As htmlViewer:
+                    AutoHeight: =true
+                    Height: =27
+                    HtmlText: |-
+                        =If(IsBlank(ThisItem.Detail), "<i style='color:gray'>Action has no detail.</i>", ThisItem.Detail)
+                    Size: =7
+                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
+                    Width: =lbl_ActionText.Width
+                    Y: =lbl_ActionText.Height
+                    ZIndex: =6
+
+                btn_ExpandAction As button:
+                    Align: =Align.Right
+                    BorderColor: =
+                    BorderStyle: =
+                    BorderThickness: =0
+                    Color: =RGBA(0,0,0,0)
+                    DisabledBorderColor: =
+                    DisabledColor: =
+                    DisabledFill: =RGBA(0,0,0,0)
+                    DisplayMode: =
+                    Fill: =RGBA(0,0,0,0)
+                    FocusedBorderColor: =
+                    FocusedBorderThickness: =0
+                    Font: =APP_BUTTONS.Primary.Font
+                    FontWeight: =Lighter
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =Color.White
+                    HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+                    Italic: =APP_BUTTONS.Primary.Italic
+                    OnSelect: =Set(g_HomeSelectedAction, If(g_HomeSelectedAction.ID = ThisItem.ID, Blank(), ThisItem));
+                    PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+                    PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+                    PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+                    PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =5
+                    Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+                    Text: ="Show detail"
+                    Underline: =APP_BUTTONS.Primary.Underline
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =g_HomeSelectedAction.ID <> ThisItem.ID
+                    Width: =lbl_ActionText.Width
+                    ZIndex: =7
+
+                btn_EditAction As button:
+                    Align: =Align.Right
+                    BorderColor: =
+                    BorderStyle: =
+                    BorderThickness: =0
+                    Color: =RGBA(0,0,0,0)
+                    DisabledBorderColor: =
+                    DisabledColor: =
+                    DisabledFill: =RGBA(0,0,0,0)
+                    DisplayMode: =
+                    Fill: =RGBA(0,0,0,0)
+                    FocusedBorderColor: =
+                    FocusedBorderThickness: =0
+                    Font: =APP_BUTTONS.Primary.Font
+                    FontWeight: =Lighter
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =Color.White
+                    HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+                    Italic: =APP_BUTTONS.Primary.Italic
+                    OnSelect: |-
+                        =Set(g_CurrentAction, ThisItem);
+                        Navigate(Edit);
+                    PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+                    PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+                    PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+                    PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =5
+                    Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+                    Text: ="Edit"
+                    Underline: =APP_BUTTONS.Primary.Underline
+                    VerticalAlign: =VerticalAlign.Top
+                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
+                    Width: =lbl_ActionText.Width
+                    ZIndex: =8
 
         slide_Slider_2 As slider:
             BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor

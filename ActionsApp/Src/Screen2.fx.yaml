@@ -819,3 +819,44 @@ Screen2 As screen:
         Y: =257
         ZIndex: =20
 
+    btn_Primary_4 As button:
+        Align: =APP_BUTTONS.Primary.Align
+        BorderColor: =
+        BorderStyle: =
+        BorderThickness: =0
+        Color: =Color.Black
+        DisabledBorderColor: =
+        DisabledColor: =
+        DisabledFill: =RGBA(0,0,0,0)
+        DisplayMode: =
+        Fill: =RGBA(0,0,0,0)
+        FocusedBorderColor: =
+        FocusedBorderThickness: =0
+        Font: =APP_BUTTONS.Primary.Font
+        FontWeight: =APP_BUTTONS.Primary.FontWeight
+        Height: =25
+        HoverBorderColor: =
+        HoverColor: =
+        HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+        Italic: =APP_BUTTONS.Primary.Italic
+        PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+        PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+        PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+        PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+        PressedBorderColor: =
+        PressedColor: =
+        PressedFill: =
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =10
+        Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+        Text: ="Hidden Overlay Button"
+        Underline: =APP_BUTTONS.Primary.Underline
+        VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
+        Width: =257
+        X: =786
+        Y: =43
+        ZIndex: =21
+

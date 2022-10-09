@@ -81,7 +81,7 @@
         "Name": "Timer1",
         "Parent": "LoadingSpinner_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 86,
+        "PublishOrderIndex": 90,
         "Rules": [
           {
             "Category": "Data",
@@ -406,7 +406,7 @@
             "Name": "Image1",
             "Parent": "Container1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 88,
+            "PublishOrderIndex": 92,
             "Rules": [
               {
                 "Category": "Data",
@@ -747,7 +747,7 @@
             "Name": "Label2",
             "Parent": "Container1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 89,
+            "PublishOrderIndex": 93,
             "Rules": [
               {
                 "Category": "Data",
@@ -1076,7 +1076,7 @@
         "Name": "Container1",
         "Parent": "LoadingSpinner_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 87,
+        "PublishOrderIndex": 91,
         "Rules": [
           {
             "Category": "Design",
