@@ -318,7 +318,7 @@ Edit As screen:
                 =
                 // Data input validation
                 If(IsBlank(txt_EditActionText.Text), 
-                    Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: "Error", Timestamp: Now() });
+                    Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() });
                     
                 , // Else
                 
@@ -1069,7 +1069,7 @@ Edit As screen:
             =Set(g_Toast, { Text: "Sending email: " &
                 Switch(g_EditActionSendEmail,
                     "RevertRequestedOwner", g_EditActionSendEmail
-                ), Type: "Notify", Timestamp: Now() });
+                ), Type: TOAST_TYPE.Notify, Timestamp: Now() });
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =0
