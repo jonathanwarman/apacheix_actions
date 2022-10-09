@@ -436,6 +436,7 @@ Home As screen:
 
                 btn_ExpandAction As button:
                     Align: =Align.Right
+                    AutoDisableOnSelect: =false
                     BorderColor: =
                     BorderStyle: =
                     BorderThickness: =0
@@ -478,6 +479,7 @@ Home As screen:
 
                 btn_EditAction As button:
                     Align: =Align.Right
+                    AutoDisableOnSelect: =false
                     BorderColor: =
                     BorderStyle: =
                     BorderThickness: =0
@@ -520,6 +522,7 @@ Home As screen:
                     ZIndex: =9
 
                 btn_CollapseAction As icon.EmojiSmile:
+                    AutoDisableOnSelect: =false
                     BorderColor: =APP_BUTTONS.Icon.BorderColor
                     BorderStyle: =APP_BUTTONS.Icon.BorderStyle
                     BorderThickness: =APP_BUTTONS.Icon.BorderThickness
@@ -962,6 +965,7 @@ Home As screen:
 
     btn_HomeAddAction As button:
         Align: =APP_BUTTONS.Primary.Align
+        AutoDisableOnSelect: =false
         BorderColor: =APP_BUTTONS.Primary.BorderColor
         BorderStyle: =APP_BUTTONS.Primary.BorderStyle
         BorderThickness: =APP_BUTTONS.Primary.BorderThickness
