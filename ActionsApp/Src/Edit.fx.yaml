@@ -1,6 +1,7 @@
 Edit As screen:
     OnVisible: |-
-        =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "ID", "Title"))
+        =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "ID", "Title"));
+        Set(g_CurrentAction, g_CurrentAction2)
 
     EditPanel As groupContainer.manualLayoutContainer:
         Height: =631
@@ -56,17 +57,17 @@ Edit As screen:
 
         txt_EditActionText As text:
             Align: =APP_INPUT_CONTROLS.Textbox.Align
-            BorderColor: =If(And(!IsBlank(g_CurrentAction), g_CurrentAction.Title <> Self.Text), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
+            BorderColor: =If(And(!IsBlank(g_CurrentAction2), g_CurrentAction2.Title <> Self.Text), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
             BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
             BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
             Clear: =APP_INPUT_CONTROLS.Textbox.Clear
             Color: =APP_INPUT_CONTROLS.Textbox.Color
-            Default: =g_CurrentAction.Title
+            Default: =g_CurrentAction2.Title
             DelayOutput: =true
             DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
             DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
             DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
-            DisplayMode: =If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode: =If(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             EnableSpellCheck: =true
             Fill: =APP_INPUT_CONTROLS.Textbox.Fill
             FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
