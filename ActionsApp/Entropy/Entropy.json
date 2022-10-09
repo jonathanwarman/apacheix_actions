@@ -71,7 +71,7 @@
     "EditPanel": 102,
     "EmailFn": 71,
     "EmailFns_v1__": 12,
-    "fn_EditActionSendEmails": 104,
+    "fn_EditActionSendEmails": 154,
     "fn_InitAppSpecificsAndFinish": 70,
     "fn_InitAppSpecificsAndFinish_1": 7,
     "fn_InitColors": 66,
@@ -178,7 +178,7 @@
       "{\r\n    To: \"jonathan.warman@apacheix.co.uk\", \r\n    Subject: \"Test Email\", \r\n    Header: \"Contextual header\",\r\n    Content: \"\r\n        <p>Put your email content here.\r\n    \",\r\n    MinWidth: 550\r\n}"
     ]
   },
-  "HeaderLastSavedDateTimeUTC": "10/09/2022 11:43:31",
+  "HeaderLastSavedDateTimeUTC": "10/09/2022 11:45:48",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {
     "9901563c-93f2-4716-b0c3-eff3116c8fdd": "\"/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/63817a258eb74e5eb0a06e57ff801f6c\"",
@@ -412,7 +412,7 @@
       "37ad2fc234c34df0bb283b66e46cd983": 1,
       "712ff2a93a474f9b85e9644ca20c4c06": 2,
       "864e6e1a3c014d9ab0275850cb323356": 1,
-      "button": 35,
+      "button": 36,
       "c558d601e60f4fd8acbd25a85897c997": 2,
       "checkbox": 7,
       "combobox": 2,

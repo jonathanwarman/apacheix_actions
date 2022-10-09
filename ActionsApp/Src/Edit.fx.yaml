@@ -995,16 +995,6 @@ Edit As screen:
             Y: =302
             ZIndex: =25
 
-        fn_EditActionSendEmails As button:
-            OnSelect: |
-                =Set(g_Toast, { Text: "Sending email: " &
-                    Switch(g_EditActionSendEmail,
-                        "RevertRequestedOwner", g_EditActionSendEmail
-                    ), Type: "Notify", Timestamp: Now() });
-            Text: ="Send Emails"
-            X: =260
-            ZIndex: =26
-
         grp_ExternalOwner As groupContainer.manualLayoutContainer:
             Height: =46
             Width: =241
@@ -1099,4 +1089,20 @@ Edit As screen:
         Width: =Parent.Width
         Y: =Self.DynamicY
         ZIndex: =2
+
+    fn_EditActionSendEmails As button:
+        Height: =20
+        OnSelect: |
+            =Set(g_Toast, { Text: "Sending email: " &
+                Switch(g_EditActionSendEmail,
+                    "RevertRequestedOwner", g_EditActionSendEmail
+                ), Type: "Notify", Timestamp: Now() });
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =10
+        Text: ="Send Emails"
+        Width: =100
+        ZIndex: =3
 
