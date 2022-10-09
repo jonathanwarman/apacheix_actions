@@ -335,7 +335,7 @@ Edit As screen:
                         })})
                     );
                     */
-                
+                false /*
                     // Temp variables to make setting Owner and Closer easier.
                     With({         
                         tmp_ActionRecord: If(IsBlank(g_CurrentAction), Defaults(Actions), g_CurrentAction),
@@ -399,7 +399,7 @@ Edit As screen:
                     );
                 
                     ); // end with
-                
+                */
                 ); // end if
             PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
             PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
@@ -730,8 +730,9 @@ Edit As screen:
             HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
             HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
             Italic: =APP_BUTTONS.LittleDanger.Italic
-            OnSelect: |-
-                =// Note shouldn't need a guard against g_CurrentAction being Blank as the button will only be shown after a record has been created.
+            OnSelect: |
+                =/*
+                // Note shouldn't need a guard against g_CurrentAction being Blank as the button will only be shown after a record has been created.
                 Set(g_CurrentAction, Patch(Actions, g_CurrentAction, { 
                     RequestedOwner: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() }
                 }));
@@ -742,7 +743,7 @@ Edit As screen:
                 , // Else
                     Set(varToast, { Text: Concat(Errors(Actions), Column & ": " & Message), Type: "Error", Timestamp: Now() });
                 );
-                
+                */
                 Reset(drop_EditOwner);
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
@@ -763,7 +764,7 @@ Edit As screen:
             Visible: =!IsBlank(g_CurrentAction.RequestedOwner)
             Width: =70
             X: =drop_EditOwner.X + drop_EditOwner.Width + 15
-            Y: =415
+            Y: =400
             ZIndex: =23
 
         grp_Closer As groupContainer.manualLayoutContainer:
@@ -1028,7 +1029,7 @@ Edit As screen:
             Italic: =APP_BUTTONS.LittleDanger.Italic
             OnSelect: |-
                 =
-                Remove(Actions, g_CurrentAction);
+                //Remove(Actions, g_CurrentAction);
                 Select(btn_EditCancel);
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
