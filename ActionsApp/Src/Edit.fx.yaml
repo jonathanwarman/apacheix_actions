@@ -341,24 +341,8 @@ Edit As screen:
                         tmp_CurrentUser: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name },
                         tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.Name },
                         tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.Title }
-                
-                                //tmpOwnerDropdown: If(IsBlank(dd_RequestedOwner.SelectedItems) || IsEmpty(dd_RequestedOwner.SelectedItems), Blank(), First(dd_RequestedOwner.SelectedItems)),
-                        /*tmpOwnerDropdown: LookUp(drop_EditOwner.Items, Result = drop_EditOwner.Selected.Text),
-                
-                        
-                        tmpCloserIsDropdown: 
-                            { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", 
-                                Id: First('Edit Action Requested Closer'.SelectedItems).ID, 
-                                Value: First('Edit Action Requested Closer'.SelectedItems).Name }
-                        */
                     },
-                        /*UpdateContext({ 
-                            tmpOwnerIsDropdown: 
-                                { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", 
-                                    Id: If(IsBlank(tmpOwnerDropdown.ID), Blank(), tmpOwnerDropdown.ID),
-                                    Value: If(IsBlank(tmpOwnerDropdown.ID), Blank(), tmpOwnerDropdown.Result)
-                                }
-                        });*/    
+                 
                     
                     Set(g_CurrentAction, Patch(Actions, tmp_ActionRecord, { 
                         Title: txt_EditActionText.Text,
@@ -403,64 +387,6 @@ Edit As screen:
                             );
                         );
                     );
-                
-                /*
-                        // If no owner selected then creator is the owner, or current user is selected as owner.
-                        If(IsBlank(drop_EditOwner.Selected) || drop_EditOwner.Selected.ID = tmpCurrentUser.Id, 
-                            Set(g_CurrentAction, Patch(Actions, g_CurrentAction, { 
-                                Owner: tmpCurrentUser,
-                                RequestedOwner: Blank()
-                            }));
-                
-                        , // Else
-                
-                            If(g_CurrentAction
-                            
-                            // ** Current User takes the action.  
-                            // If dropdown = current user, owner := current user and requested := blank  (note that checking if current user is allowed to change this is done in the controls DisplayMode)
-                            If(tmpOwnerDropdown.ID = USER.ID,
-                                Patch(Actions, varRecord, { 
-                                    Owner: tmpOwnerIsDropdown,
-                                    RequestedOwner: Blank()
-                                })
-                            , // Else            
-                                
-                                If(IsBlank(tmpOwnerDropdown),
-                                    // ** Ensure someone owns action.
-                                    // If dropdown = blank and owner = blank and requested = blank, owner := current user.
-                                    If(IsBlank(varRecord.Owner) && IsBlank(varRecord.RequestedOwner),
-                                        Patch(Actions, varRecord, { 
-                                            Owner: tmpOwnerIsCurrentUser
-                                        })
-                                    , // Else
-                                        
-                                        // ** Dropdown changed and then cleared, so no changes needed.
-                                        // If dropdown = blank and requested = blank (and owner <> blank otherwise above case triggered), reset()
-                                        If(IsBlank(varRecord.RequestedOwner),
-                                            Reset(drop_EditOwner);
-                                        , // Else
-                
-                                            // ** Retract the requested owner.
-                                            // If dropdown = blank and requested <> blank, requested := blank
-                                            Patch(Actions, varRecord, { 
-                                                RequestedOwner: Blank()
-                                            })
-                                        )
-                                    )
-                                , // Else
-                
-                                    // ** Request a new owner.
-                                    // If dropdown <> current user and owner <> current user, requested := dropdown 
-                                    If(varRecord.Owner.Id <> USER.ID,
-                                        Patch(Actions, varRecord, { 
-                                            RequestedOwner: tmpOwnerIsDropdown
-                                        })
-                                    )
-                                )
-                            )
-                        )
-                    );
-                    */
                         
                     If(IsEmpty(Errors(Actions)),
                         Set(varToast, { Text: "Saved!", Type: "Success", Timestamp: Now() });
