@@ -79,7 +79,7 @@ Home As screen:
                     HoverFill: =APP_BUTTONS.Icon.HoverFill
                     Icon: =Icon.Edit
                     OnSelect: |-
-                        =//Set(g_CurrentAction, ThisItem);
+                        =Set(g_CurrentAction2, ThisItem);
                         Navigate(Edit);
                     PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
                     PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
@@ -321,7 +321,7 @@ Home As screen:
                     HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
                     Italic: =APP_BUTTONS.Primary.Italic
                     OnSelect: |-
-                        =//Set(g_CurrentAction, ThisItem);
+                        =Set(g_CurrentAction2, ThisItem);
                         Navigate(Edit);
                     PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                     PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
@@ -1010,7 +1010,7 @@ Home As screen:
         HoverFill: =APP_BUTTONS.Primary.HoverFill
         Italic: =APP_BUTTONS.Primary.Italic
         OnSelect: |-
-            =Set(g_CurrentAction, Blank()); 
+            =Set(g_CurrentAction2, Blank()); 
             Navigate(Edit);
         PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
         PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
