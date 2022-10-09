@@ -1,7 +1,7 @@
 Edit As screen:
     OnVisible: |-
         =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "ID", "Title"));
-        //Set(g_CurrentAction, g_CurrentAction2)
+        //Set(g_CurrentAction, g_CurrentAction)
 
     EditPanel As groupContainer.manualLayoutContainer:
         Height: =631
@@ -23,7 +23,7 @@ Edit As screen:
             DisabledBorderColor: =APP_INPUT_CONTROLS.DatePicker.DisabledBorderColor
             DisabledColor: =APP_INPUT_CONTROLS.DatePicker.DisabledColor
             DisabledFill: =APP_INPUT_CONTROLS.DatePicker.DisabledFill
-            DisplayMode: =If(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode: =If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             Fill: =APP_INPUT_CONTROLS.DatePicker.Fill
             FocusedBorderColor: =APP_INPUT_CONTROLS.DatePicker.FocusedBorderColor
             FocusedBorderThickness: =APP_INPUT_CONTROLS.DatePicker.FocusedBorderThickness
@@ -45,9 +45,9 @@ Edit As screen:
             ZIndex: =2
 
         txt_EditActionDetail As richTextEditor:
-            BorderColor: =If(And(!IsBlank(g_CurrentAction2), g_CurrentAction2.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
-            Default: =g_CurrentAction2.Detail
-            DisplayMode: =If(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+            BorderColor: =If(And(!IsBlank(g_CurrentAction), g_CurrentAction.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
+            Default: =g_CurrentAction.Detail
+            DisplayMode: =If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             Height: =160
             Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
             Width: =Parent.Width - 2*Self.X
@@ -57,17 +57,17 @@ Edit As screen:
 
         txt_EditActionText As text:
             Align: =APP_INPUT_CONTROLS.Textbox.Align
-            BorderColor: =If(And(!IsBlank(g_CurrentAction2), g_CurrentAction2.Title <> Self.Text), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
+            BorderColor: =If(And(!IsBlank(g_CurrentAction), g_CurrentAction.Title <> Self.Text), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
             BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
             BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
             Clear: =APP_INPUT_CONTROLS.Textbox.Clear
             Color: =APP_INPUT_CONTROLS.Textbox.Color
-            Default: =g_CurrentAction2.Title
+            Default: =g_CurrentAction.Title
             DelayOutput: =true
             DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
             DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
             DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
-            DisplayMode: =If(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode: =If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             EnableSpellCheck: =true
             Fill: =APP_INPUT_CONTROLS.Textbox.Fill
             FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
@@ -102,7 +102,7 @@ Edit As screen:
 
         drop_EditOwner As dropdown:
             AllowEmptySelection: =true
-            BorderColor: =If(And(!IsBlank(g_CurrentAction2), g_CurrentAction2.Owner.Id <> Self.Selected.ID), Color.Red, APP_INPUT_CONTROLS.Dropdown.BorderColor)
+            BorderColor: =If(And(!IsBlank(g_CurrentAction), g_CurrentAction.Owner.Id <> Self.Selected.ID), Color.Red, APP_INPUT_CONTROLS.Dropdown.BorderColor)
             BorderStyle: =APP_INPUT_CONTROLS.Dropdown.BorderStyle
             BorderThickness: =APP_INPUT_CONTROLS.Dropdown.BorderThickness
             ChevronBackground: =APP_INPUT_CONTROLS.Dropdown.ChevronBackground
@@ -113,13 +113,13 @@ Edit As screen:
             ChevronHoverFill: =APP_INPUT_CONTROLS.Dropdown.ChevronHoverFill
             Color: =APP_INPUT_CONTROLS.Dropdown.Color
             Default: |-
-                =If(!IsBlank(g_CurrentAction2.RequestedOwner), g_CurrentAction2.RequestedOwner.Value,
-                    If(IsBlank(g_CurrentAction2), USER.Name, g_CurrentAction2.Owner.Value)
+                =If(!IsBlank(g_CurrentAction.RequestedOwner), g_CurrentAction.RequestedOwner.Value,
+                    If(IsBlank(g_CurrentAction), USER.Name, g_CurrentAction.Owner.Value)
                 )
             DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
             DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
             DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
-            DisplayMode: =If(Or(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", !IsBlank(g_CurrentAction2.RequestedOwner)), DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode: =If(Or(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", !IsBlank(g_CurrentAction.RequestedOwner)), DisplayMode.Disabled, DisplayMode.Edit)
             Fill: =APP_INPUT_CONTROLS.Dropdown.Fill
             FocusedBorderColor: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderColor
             FocusedBorderThickness: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderThickness
@@ -155,17 +155,17 @@ Edit As screen:
             BorderStyle: =APP_INPUT_CONTROLS.Radio.BorderStyle
             BorderThickness: =APP_INPUT_CONTROLS.Radio.BorderThickness
             Color: =APP_INPUT_CONTROLS.Radio.Color
-            Default: =If(IsBlank(g_CurrentAction2), "Normal", g_CurrentAction2.Importance)
+            Default: =If(IsBlank(g_CurrentAction), "Normal", g_CurrentAction.Importance)
             DisabledBorderColor: =APP_INPUT_CONTROLS.Radio.DisabledBorderColor
             DisabledColor: =APP_INPUT_CONTROLS.Radio.DisabledColor
             DisabledFill: =APP_INPUT_CONTROLS.Radio.DisabledFill
             DisplayMode: |-
                 =// Disabled when not Open
-                If(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", 
+                If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", 
                     DisplayMode.Disabled
                 , // else
                     // The Importance can only be changed when it's a new action, and after it's set only by the action's creator, the current closer (if there is one), or the super users.
-                    If(IsBlank(g_CurrentAction2) || g_CurrentAction2.'Created By'.Email = USER.Email || IsBlank(g_CurrentAction2.RequestedCloser) || USER.ID = g_CurrentAction2.RequestedCloser.Id || APP_PERMISSIONS.IsSuperUser
+                    If(IsBlank(g_CurrentAction) || g_CurrentAction.'Created By'.Email = USER.Email || IsBlank(g_CurrentAction.RequestedCloser) || USER.ID = g_CurrentAction.RequestedCloser.Id || APP_PERMISSIONS.IsSuperUser
                     , // then
                         DisplayMode.Edit
                     , // else
@@ -192,7 +192,7 @@ Edit As screen:
             PressedFill: =APP_INPUT_CONTROLS.Radio.PressedFill
             RadioBackgroundFill: =APP_INPUT_CONTROLS.Radio.RadioBackgroundFill
             RadioBorderColor: =APP_INPUT_CONTROLS.Radio.RadioBorderColor
-            RadioSelectionFill: =If(And(!IsBlank(g_CurrentAction2), g_CurrentAction2.Importance <> Self.Selected.Value), Color.Red, APP_INPUT_CONTROLS.Radio.RadioSelectionFill)  
+            RadioSelectionFill: =If(And(!IsBlank(g_CurrentAction), g_CurrentAction.Importance <> Self.Selected.Value), Color.Red, APP_INPUT_CONTROLS.Radio.RadioSelectionFill)  
             RadioSize: =APP_INPUT_CONTROLS.Radio.RadioSize
             Size: =APP_INPUT_CONTROLS.Radio.Size
             Strikethrough: =APP_INPUT_CONTROLS.Radio.Strikethrough
@@ -237,7 +237,7 @@ Edit As screen:
             Text: ="Re-Open"
             Underline: =APP_BUTTONS.LittleDanger.Underline
             VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
-            Visible: =!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open"
+            Visible: =!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open"
             Width: =100
             X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
             Y: =575
@@ -303,7 +303,7 @@ Edit As screen:
             DisabledBorderColor: =APP_BUTTONS.Primary.DisabledBorderColor
             DisabledColor: =APP_BUTTONS.Primary.DisabledColor
             DisabledFill: =APP_BUTTONS.Primary.DisabledFill
-            DisplayMode: =If(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode: =If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             Fill: =APP_BUTTONS.Primary.Fill
             FocusedBorderColor: =APP_BUTTONS.Primary.FocusedBorderColor
             FocusedBorderThickness: =APP_BUTTONS.Primary.FocusedBorderThickness
@@ -338,7 +338,7 @@ Edit As screen:
                 
                     // Temp variables to make setting Owner and Closer easier.
                     With({         
-                        tmp_ActionRecord: If(IsBlank(g_CurrentAction2), Defaults(Actions), g_CurrentAction2),
+                        tmp_ActionRecord: If(IsBlank(g_CurrentAction), Defaults(Actions), g_CurrentAction),
                         tmp_Blank: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() },
                         tmp_CurrentUser: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name },
                         tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.Name },
@@ -346,7 +346,7 @@ Edit As screen:
                     },
                  
                     
-                    Set(g_CurrentAction2, Patch(Actions, tmp_ActionRecord, { 
+                    Set(g_CurrentAction, Patch(Actions, tmp_ActionRecord, { 
                         Title: txt_EditActionText.Text,
                         Detail: txt_EditActionDetail.HtmlText,
                         Status: "Open",
@@ -360,14 +360,14 @@ Edit As screen:
                     If(IsEmpty(Errors(Actions)),
                 
                         // New action
-                        If(IsBlank(g_CurrentAction2),
+                        If(IsBlank(g_CurrentAction),
                             If(drop_EditOwner.Selected.ID = USER.ID,
-                                Set(g_CurrentAction2, Patch(Actions, Defaults(Actions), { 
+                                Set(g_CurrentAction, Patch(Actions, Defaults(Actions), { 
                                     Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
                                     RequestedOwner: tmp_Blank
                                 }));
                             , // else
-                                Set(g_CurrentAction2, Patch(Actions, Defaults(Actions), { 
+                                Set(g_CurrentAction, Patch(Actions, Defaults(Actions), { 
                                     Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
                                     RequestedOwner: tmp_OwnerDropdown
                                 }));
@@ -378,11 +378,11 @@ Edit As screen:
                             
                             // If the action is being taken by the current user, just set the owner.
                             If(drop_EditOwner.Selected.ID = USER.ID,
-                                Set(g_CurrentAction2, Patch(Actions, g_CurrentAction2, { 
+                                Set(g_CurrentAction, Patch(Actions, g_CurrentAction, { 
                                     Owner: tmp_CurrentUser
                                 }));
                             , // else
-                                Set(g_CurrentAction2, Patch(Actions, g_CurrentAction2, { 
+                                Set(g_CurrentAction, Patch(Actions, g_CurrentAction, { 
                                     RequestedOwner: tmp_OwnerDropdown
                                 }));
                                 Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
@@ -578,7 +578,7 @@ Edit As screen:
             Size: =APP_LABELS.SecondaryText.Size - 2
             Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
             Text: |-
-                =If(IsBlank(g_CurrentAction2.RequestedOwner), "Owner:", "Requested Owner:")
+                =If(IsBlank(g_CurrentAction.RequestedOwner), "Owner:", "Requested Owner:")
             Underline: =APP_LABELS.SecondaryText.Underline
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
             Wrap: =APP_LABELS.SecondaryText.Wrap
@@ -662,7 +662,7 @@ Edit As screen:
                 ="Current Owner:"
             Underline: =APP_LABELS.SecondaryText.Underline
             VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-            Visible: =!IsBlank(g_CurrentAction2.RequestedOwner)
+            Visible: =!IsBlank(g_CurrentAction.RequestedOwner)
             Width: =100
             Wrap: =APP_LABELS.SecondaryText.Wrap
             X: =EditScreenCardMargin
@@ -701,10 +701,10 @@ Edit As screen:
             PressedFill: =APP_LABELS.PrimaryText.PressedFill
             Size: =APP_LABELS.PrimaryText.Size
             Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
-            Text: =g_CurrentAction2.Owner.Value
+            Text: =g_CurrentAction.Owner.Value
             Underline: =APP_LABELS.PrimaryText.Underline
             VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-            Visible: =!IsBlank(g_CurrentAction2.RequestedOwner)
+            Visible: =!IsBlank(g_CurrentAction.RequestedOwner)
             Width: =179
             Wrap: =APP_LABELS.PrimaryText.Wrap
             X: =EditScreenCardMargin
@@ -732,7 +732,7 @@ Edit As screen:
             Italic: =APP_BUTTONS.LittleDanger.Italic
             OnSelect: |-
                 =// Note shouldn't need a guard against g_CurrentAction being Blank as the button will only be shown after a record has been created.
-                Set(g_CurrentAction2, Patch(Actions, g_CurrentAction2, { 
+                Set(g_CurrentAction, Patch(Actions, g_CurrentAction, { 
                     RequestedOwner: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() }
                 }));
                 
@@ -760,7 +760,7 @@ Edit As screen:
             Text: ="Revert"
             Underline: =APP_BUTTONS.LittleDanger.Underline
             VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
-            Visible: =!IsBlank(g_CurrentAction2.RequestedOwner)
+            Visible: =!IsBlank(g_CurrentAction.RequestedOwner)
             Width: =70
             X: =drop_EditOwner.X + drop_EditOwner.Width + 15
             Y: =415
@@ -787,19 +787,19 @@ Edit As screen:
                 Color: =APP_INPUT_CONTROLS.Dropdown.Color
                 Default: |-
                     =// This ensures that when changing the importance to Low, the field looks empty regardless of whether g_CurrentAction still has a closer selected. 
-                    If(rad_EditImportance.Selected.Value = "Low", Blank(), g_CurrentAction2.RequestedCloser.Value)
+                    If(rad_EditImportance.Selected.Value = "Low", Blank(), g_CurrentAction.RequestedCloser.Value)
                 DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
                 DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
                 DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
                 DisplayMode: |-
                     =// Disabled when not Open
-                    If(!IsBlank(g_CurrentAction2) && g_CurrentAction2.Status <> "Open", 
+                    If(!IsBlank(g_CurrentAction) && g_CurrentAction.Status <> "Open", 
                         DisplayMode.Disabled
                     , // else
                         // The Requested Closer can only be changed when it's a new action or closer is blank, and after it's set only by the action's creator, the current closer, or the super users.
                         If( rad_EditImportance.Selected.Value <> "Low" && (
-                            IsBlank(g_CurrentAction2) || IsBlank(g_CurrentAction2.RequestedCloser) || 
-                            g_CurrentAction2.'Created By'.Email = USER.Email || USER.ID = g_CurrentAction2.RequestedCloser.Id || APP_PERMISSIONS.IsSuperUser)
+                            IsBlank(g_CurrentAction) || IsBlank(g_CurrentAction.RequestedCloser) || 
+                            g_CurrentAction.'Created By'.Email = USER.Email || USER.ID = g_CurrentAction.RequestedCloser.Id || APP_PERMISSIONS.IsSuperUser)
                         , // then
                             DisplayMode.Edit
                         , // else
@@ -1015,7 +1015,7 @@ Edit As screen:
             DisabledBorderColor: =APP_BUTTONS.LittleDanger.DisabledBorderColor
             DisabledColor: =APP_BUTTONS.LittleDanger.DisabledColor
             DisabledFill: =APP_BUTTONS.LittleDanger.DisabledFill
-            DisplayMode: =If(IsBlank(g_CurrentAction2), DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode: =If(IsBlank(g_CurrentAction), DisplayMode.Disabled, DisplayMode.Edit)
             Fill: =APP_BUTTONS.LittleDanger.Fill
             FocusedBorderColor: =APP_BUTTONS.LittleDanger.FocusedBorderColor
             FocusedBorderThickness: =APP_BUTTONS.LittleDanger.FocusedBorderThickness
@@ -1028,7 +1028,7 @@ Edit As screen:
             Italic: =APP_BUTTONS.LittleDanger.Italic
             OnSelect: |-
                 =
-                Remove(Actions, g_CurrentAction2);
+                Remove(Actions, g_CurrentAction);
                 Select(btn_EditCancel);
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft

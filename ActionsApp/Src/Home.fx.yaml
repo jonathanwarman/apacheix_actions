@@ -498,7 +498,7 @@ Home As screen:
                     HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
                     Italic: =APP_BUTTONS.Primary.Italic
                     OnSelect: |-
-                        =//Set(g_CurrentAction2, ThisItem);
+                        =Set(g_CurrentAction, ThisItem);
                         Navigate(Edit);
                     PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                     PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
@@ -983,7 +983,7 @@ Home As screen:
         HoverFill: =APP_BUTTONS.Primary.HoverFill
         Italic: =APP_BUTTONS.Primary.Italic
         OnSelect: |-
-            =//Set(g_CurrentAction2, Blank()); 
+            =Set(g_CurrentAction, Blank()); 
             Navigate(Edit);
         PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
         PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
