@@ -1012,7 +1012,7 @@ Edit As screen:
                 Y: =20
                 ZIndex: =2
 
-        btn_CancelRequestedOwner_1 As button:
+        btn_DeleteAction As button:
             Align: =APP_BUTTONS.LittleDanger.Align
             BorderColor: =APP_BUTTONS.LittleDanger.BorderColor
             BorderStyle: =APP_BUTTONS.LittleDanger.BorderStyle
@@ -1052,7 +1052,6 @@ Edit As screen:
             Text: ="Delete Action"
             Underline: =APP_BUTTONS.LittleDanger.Underline
             VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
-            Visible: =!IsBlank(g_CurrentAction2.RequestedOwner)
             Width: =70
             X: =Parent.Width -Self.Width - EditScreenCardMargin
             Y: =69
