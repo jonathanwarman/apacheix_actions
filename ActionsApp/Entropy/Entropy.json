@@ -115,6 +115,7 @@
     "Label2": 26,
     "Label2_1": 5,
     "lbl_ActionDetail": 164,
+    "lbl_ActionTarget": 161,
     "lbl_ActionText": 151,
     "lbl_AppRelease": 121,
     "lbl_DialogTitle_1": 63,
@@ -129,7 +130,6 @@
     "lbl_PrimaryText_2": 97,
     "lbl_PrimaryText_3": 89,
     "lbl_PrimaryText_4": 160,
-    "lbl_PrimaryText_5": 161,
     "lbl_SecondaryText_1": 40,
     "lbl_SecondaryText_10": 84,
     "lbl_SecondaryText_11": 80,
@@ -193,7 +193,7 @@
       "{\r\n    To: \"jonathan.warman@apacheix.co.uk\", \r\n    Subject: \"Test Email\", \r\n    Header: \"Contextual header\",\r\n    Content: \"\r\n        <p>Put your email content here.\r\n    \",\r\n    MinWidth: 550\r\n}"
     ]
   },
-  "HeaderLastSavedDateTimeUTC": "10/09/2022 16:38:43",
+  "HeaderLastSavedDateTimeUTC": "10/09/2022 16:45:00",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {
     "9901563c-93f2-4716-b0c3-eff3116c8fdd": "\"/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/63817a258eb74e5eb0a06e57ff801f6c\"",
@@ -364,6 +364,7 @@
     "Label2": 100,
     "Label2_1": 102,
     "lbl_ActionDetail": 41,
+    "lbl_ActionTarget": 39,
     "lbl_ActionText": 29,
     "lbl_AppRelease": 0,
     "lbl_DialogTitle_1": 139,
@@ -378,7 +379,6 @@
     "lbl_PrimaryText_2": 74,
     "lbl_PrimaryText_3": 67,
     "lbl_PrimaryText_4": 38,
-    "lbl_PrimaryText_5": 39,
     "lbl_SecondaryText_1": 117,
     "lbl_SecondaryText_10": 62,
     "lbl_SecondaryText_11": 58,

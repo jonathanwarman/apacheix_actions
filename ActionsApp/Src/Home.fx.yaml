@@ -58,7 +58,9 @@ Home As screen:
                     Fill: =RGBA(255, 255, 214, 1)
                     Height: =Parent.Height
                     Size: =6
-                    Text: =ThisItem.RequestedCloser.Value
+                    Text: |-
+                        =//ThisItem.RequestedCloser.Value
+                        ThisItem.Target
                     VerticalAlign: =VerticalAlign.Top
                     Width: =100
                     X: =Parent.Width -Self.Width
@@ -225,7 +227,7 @@ Home As screen:
                     HtmlText: |-
                         =If(IsBlank(ThisItem.Detail), "<i style='color:gray'>Action has no detail.</i>", ThisItem.Detail)
                     Size: =7
-                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
+                    Visible: =g_CurrentAction.ID = ThisItem.ID
                     Width: =lbl_ActionText.Width
                     Y: =lbl_ActionText.Height
                     ZIndex: =5
@@ -393,7 +395,7 @@ Home As screen:
                         Y: =1
                         ZIndex: =4
 
-                lbl_PrimaryText_5 As label:
+                lbl_ActionTarget As label:
                     Align: =Align.Center
                     BorderColor: =APP_LABELS.PrimaryText.BorderColor
                     BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
@@ -428,7 +430,6 @@ Home As screen:
                     Text: =If(IsBlank(ThisItem.Target), "-", ThisItem.Target)
                     Underline: =APP_LABELS.PrimaryText.Underline
                     VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                    Visible: =g_HomeExpandOwner
                     Width: =80
                     Wrap: =APP_LABELS.PrimaryText.Wrap
                     X: =grp_Owner.X + grp_Owner.Width
@@ -455,7 +456,7 @@ Home As screen:
                     HoverColor: =Color.White
                     HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
                     Italic: =APP_BUTTONS.Primary.Italic
-                    OnSelect: =Set(g_HomeSelectedAction, ThisItem);
+                    OnSelect: =Set(g_CurrentAction, ThisItem);
                     PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                     PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
                     PaddingRight: =APP_BUTTONS.Primary.PaddingRight
@@ -473,7 +474,7 @@ Home As screen:
                     Tooltip: ="Expand - show detail"
                     Underline: =APP_BUTTONS.Primary.Underline
                     VerticalAlign: =VerticalAlign.Top
-                    Visible: =g_HomeSelectedAction.ID <> ThisItem.ID
+                    Visible: =g_CurrentAction.ID <> ThisItem.ID
                     Width: =lbl_ActionText.Width
                     ZIndex: =8
 
@@ -497,9 +498,7 @@ Home As screen:
                     HoverColor: =Color.White
                     HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
                     Italic: =APP_BUTTONS.Primary.Italic
-                    OnSelect: |-
-                        =Set(g_CurrentAction, ThisItem);
-                        Navigate(Edit);
+                    OnSelect: =Navigate(Edit);
                     PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                     PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
                     PaddingRight: =APP_BUTTONS.Primary.PaddingRight
@@ -513,11 +512,11 @@ Home As screen:
                     RadiusTopRight: =0
                     Size: =10
                     Strikethrough: =APP_BUTTONS.Primary.Strikethrough
-                    Text: ="fhjhfhjfhj"
+                    Text: =""
                     Tooltip: ="Edit action"
                     Underline: =APP_BUTTONS.Primary.Underline
                     VerticalAlign: =VerticalAlign.Top
-                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
+                    Visible: =g_CurrentAction.ID = ThisItem.ID
                     Width: =lbl_ActionText.Width -20
                     ZIndex: =9
 
@@ -538,7 +537,7 @@ Home As screen:
                     HoverColor: =APP_BUTTONS.Icon.HoverColor
                     HoverFill: =APP_BUTTONS.Icon.HoverFill
                     Icon: =Icon.ChevronUp
-                    OnSelect: =Set(g_HomeSelectedAction, Blank());
+                    OnSelect: =Set(g_CurrentAction, Blank());
                     PaddingBottom: =Parent.Height - 18
                     PaddingLeft: =2
                     PaddingRight: =2
@@ -547,7 +546,7 @@ Home As screen:
                     PressedColor: =APP_BUTTONS.Icon.PressedColor
                     PressedFill: =APP_BUTTONS.Icon.PressedFill
                     Tooltip: ="Collapse - hide detail"
-                    Visible: =g_HomeSelectedAction.ID = ThisItem.ID
+                    Visible: =g_CurrentAction.ID = ThisItem.ID
                     Width: =20
                     X: =lbl_ActionText.Width -Self.Width
                     ZIndex: =10
