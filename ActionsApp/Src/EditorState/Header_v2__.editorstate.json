@@ -181,7 +181,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_HideNavBar",
-      "ParentIndex": 5,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -602,7 +602,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "FlexiblePadding_1",
-      "ParentIndex": 4,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -814,17 +814,17 @@
         {
           "Category": "Design",
           "PropertyName": "ZIndex",
-          "RuleProviderType": "System"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Design",
           "PropertyName": "Y",
-          "RuleProviderType": "System"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Design",
           "PropertyName": "X",
-          "RuleProviderType": "System"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Design",
@@ -987,7 +987,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "icon_Help",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1283,7 +1283,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "icon_Settings",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1588,7 +1588,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "img_AppLogo",
-      "ParentIndex": 0,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2910,7 +2910,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "txt_TitleAndReleaseType",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
