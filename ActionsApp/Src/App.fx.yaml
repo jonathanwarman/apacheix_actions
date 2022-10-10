@@ -294,6 +294,35 @@ App As appinfo:
                 PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
                 RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius
             },
+            Success: {
+                Color: Color.White,
+                Fill: APP_COLORS.Success,
+                BorderColor: APP_COLORS.Success,
+                BorderStyle: Solid, BorderThickness: 1, 
+        
+                HoverColor: Color.White,
+                HoverFill: ColorFade(APP_COLORS.Success, -20%),
+                HoverBorderColor: ColorFade(APP_COLORS.Success,-20%),
+        
+                FocusedBorderThickness: 2, 
+                FocusedBorderColor: APP_COLORS.Success,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Success, -20%),
+                PressedBorderColor: Color.White,
+                
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.MidGray,
+                
+                Font: APP_COMMONS.Button.Font, 
+                Size: APP_COMMONS.Button.Size,
+                FontWeight: APP_COMMONS.Button.FontWeight, Italic: false, Underline: false, Strikethrough: false, 
+                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
+                RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius
+            },
             BigDanger: {
                 Color: Color.White,
                 Fill: APP_COLORS.Danger,
