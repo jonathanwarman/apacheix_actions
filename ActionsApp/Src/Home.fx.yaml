@@ -644,7 +644,10 @@ Home As screen:
                                 Set(g_ShowQuickPost, ThisItem.ID);
                             , // else
                             
-                                Patch(Actions, g_TheAction, { History: Mid(g_TheAction.History, 0, Len(g_TheAction.History)-1) & "," & JSON({ Statement: txt_NewPost.Text }) & "]" });
+                                If(IsBlank(ThisItem.History),
+                                    Patch(Actions, ThisItem, { History: JSON({ Statement: txt_NewPost.Text })}),
+                                    Patch(Actions, ThisItem, { History: Mid(ThisItem.History, 0, Len(ThisItem.History)-1) & "," & JSON({ Statement: txt_NewPost.Text }) & "]" })
+                                );
                                 Set(g_ShowQuickPost, Blank());
                             )
                         PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
@@ -691,12 +694,12 @@ Home As screen:
                         Size: =APP_LABELS.PrimaryText.Size - 3
                         Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
                         Text: |-
-                            =Last(ForAll(Table(ParseJSON(g_TheAction.History)), {
+                            =If(IsBlank(ThisItem.History), "-", Last(ForAll(Table(ParseJSON(ThisItem.History)), {
                                     Statement: Text(ThisRecord.Value.Statement),
                                     PostedBy: Text(ThisRecord.Value.PostedBy),
                                     PostedOn: Text(ThisRecord.Value.PostedOn)
                                 }
-                            )).Statement
+                            )).Statement)
                             
                             /*
                             ForAll(Table(ParseJSON(myJSON)),
@@ -735,6 +738,7 @@ Home As screen:
                         HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
                         Italic: =APP_INPUT_CONTROLS.Textbox.Italic
                         LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
+                        Mode: =TextMode.MultiLine
                         PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
                         PaddingLeft: =APP_INPUT_CONTROLS.Textbox.PaddingLeft
                         PaddingRight: =APP_INPUT_CONTROLS.Textbox.PaddingRight

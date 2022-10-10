@@ -77415,17 +77415,17 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.AccessibleLabel"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.AccessibleLabel",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
-                "member": "AccessibleLabel",
+                "member": "TabIndex",
                 "module": "Home",
                 "type": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend"
               }
@@ -77437,8 +77437,8 @@
           "properties": {
             "level": "Medium"
           },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 5
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 6
         },
         {
           "locations": [
@@ -77475,17 +77475,17 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.TabIndex"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.TabIndex",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
-                "member": "TabIndex",
+                "member": "AccessibleLabel",
                 "module": "Home",
                 "type": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend"
               }
@@ -77497,8 +77497,8 @@
           "properties": {
             "level": "Medium"
           },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 6
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 5
         },
         {
           "locations": [
