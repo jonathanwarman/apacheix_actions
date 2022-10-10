@@ -159,7 +159,7 @@
             "Name": "icon_Settings",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 146,
+            "PublishOrderIndex": 149,
             "Rules": [
               {
                 "Category": "Design",
@@ -497,7 +497,7 @@
             "Name": "icon_Help",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 147,
+            "PublishOrderIndex": 150,
             "Rules": [
               {
                 "Category": "Design",
@@ -832,7 +832,7 @@
             "Name": "txt_TitleAndReleaseType",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 148,
+            "PublishOrderIndex": 151,
             "Rules": [
               {
                 "Category": "Data",
@@ -1082,7 +1082,7 @@
             "Name": "FlexiblePadding_1",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 149,
+            "PublishOrderIndex": 152,
             "Rules": [
               {
                 "Category": "Design",
@@ -1380,7 +1380,7 @@
             "Name": "btn_HideNavBar",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 150,
+            "PublishOrderIndex": 153,
             "Rules": [
               {
                 "Category": "Data",
@@ -1746,7 +1746,7 @@
             "Name": "img_AppLogo",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 151,
+            "PublishOrderIndex": 154,
             "Rules": [
               {
                 "Category": "Data",
@@ -2112,7 +2112,7 @@
             "Name": "img_User",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 152,
+            "PublishOrderIndex": 155,
             "Rules": [
               {
                 "Category": "Data",
@@ -2372,7 +2372,7 @@
         "Name": "Container1_1",
         "Parent": "Header_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 145,
+        "PublishOrderIndex": 148,
         "Rules": [
           {
             "Category": "Design",

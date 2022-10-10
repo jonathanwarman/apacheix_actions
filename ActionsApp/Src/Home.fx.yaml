@@ -2000,7 +2000,7 @@ Home As screen:
 
     Label1 As label:
         Text: |-
-            ="Logged In as: " & USER.Name & Char(10) & "v1"
+            ="Logged In as: " & USER.Name & Char(10) & "v2"
         Width: =344
         X: =575
         Y: =5

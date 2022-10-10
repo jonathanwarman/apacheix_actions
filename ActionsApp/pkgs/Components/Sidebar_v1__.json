@@ -80,7 +80,7 @@
         "Name": "backdrop",
         "Parent": "Sidebar_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 153,
+        "PublishOrderIndex": 156,
         "Rules": [
           {
             "Category": "Design",
@@ -317,7 +317,7 @@
                 "Name": "icon_NavBurger",
                 "Parent": "grp_Hamburger",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 156,
+                "PublishOrderIndex": 159,
                 "Rules": [
                   {
                     "Category": "Design",
@@ -780,7 +780,7 @@
                 "Name": "Button1_2",
                 "Parent": "grp_Hamburger",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 157,
+                "PublishOrderIndex": 160,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -1181,7 +1181,7 @@
                 "Name": "Label1_2",
                 "Parent": "grp_Hamburger",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 158,
+                "PublishOrderIndex": 161,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -1542,7 +1542,7 @@
             "Name": "grp_Hamburger",
             "Parent": "sidebar",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 155,
+            "PublishOrderIndex": 158,
             "Rules": [
               {
                 "Category": "Design",
@@ -1782,7 +1782,7 @@
                 "Name": "icon_NavHome",
                 "Parent": "grp_Home",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 160,
+                "PublishOrderIndex": 163,
                 "Rules": [
                   {
                     "Category": "Design",
@@ -2245,7 +2245,7 @@
                 "Name": "Button1_3",
                 "Parent": "grp_Home",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 161,
+                "PublishOrderIndex": 164,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -2632,7 +2632,7 @@
                 "Name": "Label1_3",
                 "Parent": "grp_Home",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 162,
+                "PublishOrderIndex": 165,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -3000,7 +3000,7 @@
             "Name": "grp_Home",
             "Parent": "sidebar",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 159,
+            "PublishOrderIndex": 162,
             "Rules": [
               {
                 "Category": "Design",
@@ -3143,7 +3143,7 @@
                 "Name": "galleryTemplate4",
                 "Parent": "Gallery4",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 164,
+                "PublishOrderIndex": 167,
                 "Rules": [
                   {
                     "Category": "Design",
@@ -3239,7 +3239,7 @@
                     "Name": "Separator",
                     "Parent": "grp_Separator",
                     "PersistMetaDataIDKey": false,
-                    "PublishOrderIndex": 166,
+                    "PublishOrderIndex": 169,
                     "Rules": [
                       {
                         "Category": "Design",
@@ -3403,7 +3403,7 @@
                 "Name": "grp_Separator",
                 "Parent": "Gallery4",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 165,
+                "PublishOrderIndex": 168,
                 "Rules": [
                   {
                     "Category": "Design",
@@ -3636,7 +3636,7 @@
                     "Name": "Image1_2",
                     "Parent": "grp_MenuItem",
                     "PersistMetaDataIDKey": false,
-                    "PublishOrderIndex": 168,
+                    "PublishOrderIndex": 171,
                     "Rules": [
                       {
                         "Category": "Data",
@@ -4112,7 +4112,7 @@
                     "Name": "Button1",
                     "Parent": "grp_MenuItem",
                     "PersistMetaDataIDKey": false,
-                    "PublishOrderIndex": 169,
+                    "PublishOrderIndex": 172,
                     "Rules": [
                       {
                         "Category": "Data",
@@ -4484,7 +4484,7 @@
                     "Name": "Label1_1",
                     "Parent": "grp_MenuItem",
                     "PersistMetaDataIDKey": false,
-                    "PublishOrderIndex": 170,
+                    "PublishOrderIndex": 173,
                     "Rules": [
                       {
                         "Category": "Data",
@@ -4812,7 +4812,7 @@
                 "Name": "grp_MenuItem",
                 "Parent": "Gallery4",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 167,
+                "PublishOrderIndex": 170,
                 "Rules": [
                   {
                     "Category": "Design",
@@ -5042,7 +5042,7 @@
             "Name": "Gallery4",
             "Parent": "sidebar",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 163,
+            "PublishOrderIndex": 166,
             "Rules": [
               {
                 "Category": "Data",
@@ -5305,7 +5305,7 @@
                 "Name": "ico_SubmitFeedback",
                 "Parent": "Container3",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 172,
+                "PublishOrderIndex": 175,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -5582,7 +5582,7 @@
                 "Name": "txt_Details",
                 "Parent": "Container3",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 173,
+                "PublishOrderIndex": 176,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -5792,7 +5792,7 @@
                 "Name": "img_ApacheLogo",
                 "Parent": "Container3",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 174,
+                "PublishOrderIndex": 177,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -6274,7 +6274,7 @@
                 "Name": "btn_SubmitFeedback",
                 "Parent": "Container3",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 175,
+                "PublishOrderIndex": 178,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -6822,7 +6822,7 @@
                 "Name": "btn_OpenAboutScreen",
                 "Parent": "Container3",
                 "PersistMetaDataIDKey": false,
-                "PublishOrderIndex": 176,
+                "PublishOrderIndex": 179,
                 "Rules": [
                   {
                     "Category": "Data",
@@ -7197,7 +7197,7 @@
             "Name": "Container3",
             "Parent": "sidebar",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 171,
+            "PublishOrderIndex": 174,
             "Rules": [
               {
                 "Category": "Design",
@@ -7380,7 +7380,7 @@
         "Name": "sidebar",
         "Parent": "Sidebar_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 154,
+        "PublishOrderIndex": 157,
         "Rules": [
           {
             "Category": "Design",
@@ -7592,7 +7592,7 @@
             "Name": "shadowBox",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 178,
+            "PublishOrderIndex": 181,
             "Rules": [
               {
                 "Category": "Data",
@@ -8098,7 +8098,7 @@
             "Name": "lbl_Heading1_3",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 179,
+            "PublishOrderIndex": 182,
             "Rules": [
               {
                 "Category": "Data",
@@ -8679,7 +8679,7 @@
             "Name": "rad_Type",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 180,
+            "PublishOrderIndex": 183,
             "Rules": [
               {
                 "Category": "Data",
@@ -9292,7 +9292,7 @@
             "Name": "txt_AppName",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 181,
+            "PublishOrderIndex": 184,
             "Rules": [
               {
                 "Category": "Data",
@@ -9945,7 +9945,7 @@
             "Name": "txt_Title",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 182,
+            "PublishOrderIndex": 185,
             "Rules": [
               {
                 "Category": "Data",
@@ -10612,7 +10612,7 @@
             "Name": "txt_Description",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 183,
+            "PublishOrderIndex": 186,
             "Rules": [
               {
                 "Category": "Data",
@@ -11252,7 +11252,7 @@
             "Name": "btn_Cancel",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 184,
+            "PublishOrderIndex": 187,
             "Rules": [
               {
                 "Category": "Data",
@@ -11871,7 +11871,7 @@
             "Name": "btn_Submit",
             "Parent": "dialog_SubmitFeedback",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 185,
+            "PublishOrderIndex": 188,
             "Rules": [
               {
                 "Category": "Data",
@@ -12223,7 +12223,7 @@
         "Name": "dialog_SubmitFeedback",
         "Parent": "Sidebar_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 177,
+        "PublishOrderIndex": 180,
         "Rules": [
           {
             "Category": "Design",

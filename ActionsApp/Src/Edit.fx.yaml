@@ -1193,3 +1193,22 @@ Edit As screen:
         Y: =Self.DynamicY
         ZIndex: =8
 
+    Container2 As groupContainer.verticalAutoLayoutContainer:
+        Height: =631
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        Width: =283
+        X: =32
+        Y: =60
+        ZIndex: =9
+
+        Container4 As groupContainer.manualLayoutContainer:
+            LayoutMinHeight: =631
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            ShadowRectangle_v2___4 As ShadowRectangle_v2__:
+                Height: =Parent.Height
+                Width: =Parent.Width
+
