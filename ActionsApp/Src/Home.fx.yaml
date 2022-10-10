@@ -645,7 +645,7 @@ Home As screen:
                             , // else
                             
                                 If(IsBlank(ThisItem.History),
-                                    Patch(Actions, ThisItem, { History: JSON({ Statement: txt_NewPost.Text })}),
+                                    Patch(Actions, ThisItem, { History: JSON(Table({ Statement: txt_NewPost.Text }))}),
                                     Patch(Actions, ThisItem, { History: Mid(ThisItem.History, 0, Len(ThisItem.History)-1) & "," & JSON({ Statement: txt_NewPost.Text }) & "]" })
                                 );
                                 Set(g_ShowQuickPost, Blank());
