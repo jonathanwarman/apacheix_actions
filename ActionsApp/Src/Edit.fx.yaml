@@ -1060,7 +1060,7 @@ Edit As screen:
             HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
             Italic: =APP_BUTTONS.LittleDanger.Italic
             OnSelect: |-
-                =RemoveIf(Actions, ID = g_TheAction.ID);
+                =//RemoveIf(Actions, ID = g_TheAction.ID);
                 Select(btn_EditCancel);
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft

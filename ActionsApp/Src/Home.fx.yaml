@@ -1030,7 +1030,7 @@ Home As screen:
         ZIndex: =5
 
     Label1 As label:
-        Text: ="8"
+        Text: ="9"
         Width: =39
         X: =20
         Y: =22
