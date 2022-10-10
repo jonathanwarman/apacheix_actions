@@ -40,7 +40,7 @@ Header_v2__ As CanvasComponent:
             }
         }
     User: |-
-        ={ Id: -1, Name: User().FullName, Email: User().Email & "T", Image: User().Image }
+        ={ Id: -1, Name: User().FullName, Email: User().Email, Image: User().Image }
     Width: =App.Width
     X: =0
     Y: =0
@@ -220,7 +220,7 @@ Header_v2__ As CanvasComponent:
         PaddingRight: =0
         PaddingTop: =0
         Size: =12
-        Text: =If(Header_v2__.User.Email <> User().Email, "[Test User]")
+        Text: =If(Lower(Header_v2__.User.Email) <> Lower(User().Email), "[Test User]")
         Visible: =Header_v2__.AppRelease.Type = "Dev"
         Width: =100
         X: =Parent.Width - Self.Width - 80
