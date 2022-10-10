@@ -797,6 +797,23 @@ Home As screen:
                         HoverColor: =APP_BUTTONS.BigDanger.HoverColor
                         HoverFill: =APP_BUTTONS.BigDanger.HoverFill
                         Italic: =APP_BUTTONS.BigDanger.Italic
+                        OnSelect: |-
+                            =With({tmp_OriginalRequestedOwner: g_TheAction.RequestedOwner},
+                                
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                    RequestedOwner: BLANK_RECORD
+                                }));
+                            
+                                With({Email: EmailFn.Builder({
+                                    To: LookUp(People, ID = tmp_OriginalRequestedOwner.Id, Email) & g_TheAction.Notify,
+                                    Subject: "ACTION TRANSFER REJECTED: " & g_TheAction.Title,
+                                    Header: "",
+                                    Content: "", // The requested person would not take ownership of the action. Liaise with the person to agree responsibility for this action.
+                                    MinWidth: 550
+                                })},
+                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                );
+                            );
                         PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
                         PaddingRight: =APP_BUTTONS.BigDanger.PaddingRight
@@ -837,6 +854,24 @@ Home As screen:
                         HoverColor: =APP_BUTTONS.Success.HoverColor
                         HoverFill: =APP_BUTTONS.Success.HoverFill
                         Italic: =APP_BUTTONS.Success.Italic
+                        OnSelect: |-
+                            =With({tmp_OriginalOwner: g_TheAction.Owner},
+                                
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                    Owner: USER_RECORD,
+                                    RequestedOwner: BLANK_RECORD
+                                }));
+                            
+                                With({Email: EmailFn.Builder({
+                                    To: LookUp(People, ID = tmp_OriginalOwner.Id, Email) & g_TheAction.Notify,
+                                    Subject: "ACTION TRANSFERED: " & g_TheAction.Title,
+                                    Header: "",
+                                    Content: "", // You are no longer the owner
+                                    MinWidth: 550
+                                })},
+                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                );
+                            );
                         PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
                         PaddingRight: =APP_BUTTONS.Success.PaddingRight
@@ -926,10 +961,9 @@ Home As screen:
                         Italic: =APP_BUTTONS.BigDanger.Italic
                         OnSelect: |-
                             =// Close the action.
-                            Patch(Actions, g_TheAction, { 
-                                Status: "Open",
-                                RequestedCloser: BLANK_RECORD
-                            });
+                            Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                Status: "Open"
+                            }));
                             
                             With({Email: EmailFn.Builder({
                                 To: LookUp(People, ID = g_TheAction.Owner.Id, Email) & g_TheAction.Notify,
@@ -982,11 +1016,11 @@ Home As screen:
                         Italic: =APP_BUTTONS.Success.Italic
                         OnSelect: |
                             =// Close the action.
-                            Patch(Actions, g_TheAction, { 
+                            Set(g_TheAction, Patch(Actions, g_TheAction, { 
                                 Status: "Closed",
                                 ClosedOn: Today(),
                                 ClosedBy: USER_RECORD
-                            });
+                            }));
                             
                             With({Email: EmailFn.Builder({
                                 To: LookUp(People, ID = g_TheAction.Owner.Id, Email) & g_TheAction.Notify,
@@ -1508,7 +1542,7 @@ Home As screen:
 
     Label1 As label:
         Text: |-
-            ="Logged In as: " & USER.Name & Char(10) & "v18"
+            ="Logged In as: " & USER.Name & Char(10) & "v19"
         Width: =344
         X: =40
         ZIndex: =6
