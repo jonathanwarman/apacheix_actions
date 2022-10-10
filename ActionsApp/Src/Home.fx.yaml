@@ -771,7 +771,7 @@ Home As screen:
                     Height: =Parent.Height
                     Visible: =ThisItem.RequestedOwner.Id = USER.ID
                     Width: =Parent.Width - Self.X
-                    X: =484.33333333333326
+                    X: =img_Importance.X + img_Importance.Width
                     ZIndex: =18
 
                     btn_AcceptOwnership As button:
@@ -815,6 +815,94 @@ Home As screen:
                         ZIndex: =1
 
                     btn_RejectOwnership As button:
+                        Align: =APP_BUTTONS.BigDanger.Align
+                        BorderColor: =APP_BUTTONS.BigDanger.BorderColor
+                        BorderStyle: =APP_BUTTONS.BigDanger.BorderStyle
+                        BorderThickness: =APP_BUTTONS.BigDanger.BorderThickness
+                        Color: =APP_BUTTONS.BigDanger.Color
+                        DisabledBorderColor: =APP_BUTTONS.BigDanger.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.BigDanger.DisabledColor
+                        DisabledFill: =APP_BUTTONS.BigDanger.DisabledFill
+                        DisplayMode: =
+                        Fill: =APP_BUTTONS.BigDanger.Fill
+                        FocusedBorderColor: =APP_BUTTONS.BigDanger.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.BigDanger.FocusedBorderThickness
+                        Font: =APP_BUTTONS.BigDanger.Font
+                        FontWeight: =APP_BUTTONS.BigDanger.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_BUTTONS.BigDanger.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.BigDanger.HoverColor
+                        HoverFill: =APP_BUTTONS.BigDanger.HoverFill
+                        Italic: =APP_BUTTONS.BigDanger.Italic
+                        PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.BigDanger.PaddingRight
+                        PaddingTop: =APP_BUTTONS.BigDanger.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.BigDanger.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.BigDanger.PressedColor
+                        PressedFill: =APP_BUTTONS.BigDanger.PressedFill
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Size: =APP_BUTTONS.BigDanger.Size - 2
+                        Strikethrough: =APP_BUTTONS.BigDanger.Strikethrough
+                        Text: ="Reject"
+                        Underline: =APP_BUTTONS.BigDanger.Underline
+                        VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
+                        Width: =80
+                        X: =110
+                        Y: =5
+                        ZIndex: =2
+
+                grp_OtherActionsConfirmClosure As groupContainer.manualLayoutContainer:
+                    Height: =Parent.Height
+                    Visible: =ThisItem.Status = "Pending Closure" && ThisItem.RequestedCloser.Id = USER.ID
+                    Width: =Parent.Width - Self.X
+                    X: =img_Importance.X + img_Importance.Width
+                    ZIndex: =19
+
+                    btn_ConfirmClosure As button:
+                        Align: =APP_BUTTONS.Success.Align
+                        BorderColor: =APP_BUTTONS.Success.BorderColor
+                        BorderStyle: =APP_BUTTONS.Success.BorderStyle
+                        BorderThickness: =APP_BUTTONS.Success.BorderThickness
+                        Color: =APP_BUTTONS.Success.Color
+                        DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.Success.DisabledColor
+                        DisabledFill: =APP_BUTTONS.Success.DisabledFill
+                        DisplayMode: =
+                        Fill: =APP_BUTTONS.Success.Fill
+                        FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
+                        Font: =APP_BUTTONS.Success.Font
+                        FontWeight: =APP_BUTTONS.Success.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_BUTTONS.Success.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.Success.HoverColor
+                        HoverFill: =APP_BUTTONS.Success.HoverFill
+                        Italic: =APP_BUTTONS.Success.Italic
+                        PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.Success.PaddingRight
+                        PaddingTop: =APP_BUTTONS.Success.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.Success.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.Success.PressedColor
+                        PressedFill: =APP_BUTTONS.Success.PressedFill
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Size: =APP_BUTTONS.Success.Size - 2
+                        Strikethrough: =APP_BUTTONS.Success.Strikethrough
+                        Text: ="Accept"
+                        Underline: =APP_BUTTONS.Success.Underline
+                        VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
+                        Width: =80
+                        Y: =5
+                        ZIndex: =1
+
+                    btn_RejectClosure As button:
                         Align: =APP_BUTTONS.BigDanger.Align
                         BorderColor: =APP_BUTTONS.BigDanger.BorderColor
                         BorderStyle: =APP_BUTTONS.BigDanger.BorderStyle
