@@ -961,13 +961,13 @@ Home As screen:
                         Italic: =APP_BUTTONS.BigDanger.Italic
                         OnSelect: |-
                             =// Close the action.
-                            Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                            Patch(Actions, ThisItem, { 
                                 Status: "Open"
-                            }));
+                            });
                             
                             With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = g_TheAction.Owner.Id, Email) & g_TheAction.Notify,
-                                Subject: "ACTION CLOSURE REJECTED: " & g_TheAction.Title,
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                Subject: "ACTION CLOSURE REJECTED: " & ThisItem.Title,
                                 Header: "",
                                 Content: "", // So and so does not agree this action can be closed. Liaise with them to agree closure criteria.
                                 MinWidth: 550
@@ -1016,15 +1016,15 @@ Home As screen:
                         Italic: =APP_BUTTONS.Success.Italic
                         OnSelect: |
                             =// Close the action.
-                            Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                            Patch(Actions, ThisItem, { 
                                 Status: "Closed",
                                 ClosedOn: Today(),
                                 ClosedBy: USER_RECORD
-                            }));
+                            });
                             
                             With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = g_TheAction.Owner.Id, Email) & g_TheAction.Notify,
-                                Subject: "ACTION CLOSED: " & g_TheAction.Title,
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                Subject: "ACTION CLOSED: " & ThisItem.Title,
                                 Header: "",
                                 Content: "", // So and so has confirmed this action as closed.
                                 MinWidth: 550
