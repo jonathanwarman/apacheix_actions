@@ -1876,7 +1876,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_Primary_4",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -7669,7 +7669,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "lbl_Heading2_2",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -8193,7 +8193,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "lbl_Heading3_2",
-      "ParentIndex": 4,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -8702,7 +8702,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "lbl_PrimaryText_2",
-      "ParentIndex": 1,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

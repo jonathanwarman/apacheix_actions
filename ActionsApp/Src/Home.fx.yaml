@@ -257,7 +257,7 @@ Home As screen:
 
                 grp_OtherInfo As groupContainer.manualLayoutContainer:
                     Height: =Parent.Height
-                    Visible: =Not(grp_OtherActionsAcceptOwnership.Visible)
+                    Visible: =Not(grp_OtherActionsAcceptOwnership.Visible || grp_OtherActionsConfirmClosure.Visible)
                     Width: =Parent.Width - Self.X
                     X: =img_Importance.X + img_Importance.Width
                     ZIndex: =17
@@ -765,6 +765,7 @@ Home As screen:
                         Underline: =APP_INPUT_CONTROLS.Checkbox.Underline
                         VerticalAlign: =APP_INPUT_CONTROLS.Checkbox.VerticalAlign
                         Width: =80
+                        Y: =-2
                         ZIndex: =5
 
                 grp_OtherActionsAcceptOwnership As groupContainer.manualLayoutContainer:
@@ -773,46 +774,6 @@ Home As screen:
                     Width: =Parent.Width - Self.X
                     X: =img_Importance.X + img_Importance.Width
                     ZIndex: =18
-
-                    btn_AcceptOwnership As button:
-                        Align: =APP_BUTTONS.Success.Align
-                        BorderColor: =APP_BUTTONS.Success.BorderColor
-                        BorderStyle: =APP_BUTTONS.Success.BorderStyle
-                        BorderThickness: =APP_BUTTONS.Success.BorderThickness
-                        Color: =APP_BUTTONS.Success.Color
-                        DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
-                        DisabledColor: =APP_BUTTONS.Success.DisabledColor
-                        DisabledFill: =APP_BUTTONS.Success.DisabledFill
-                        DisplayMode: =
-                        Fill: =APP_BUTTONS.Success.Fill
-                        FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
-                        FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
-                        Font: =APP_BUTTONS.Success.Font
-                        FontWeight: =APP_BUTTONS.Success.FontWeight
-                        Height: =20
-                        HoverBorderColor: =APP_BUTTONS.Success.HoverBorderColor
-                        HoverColor: =APP_BUTTONS.Success.HoverColor
-                        HoverFill: =APP_BUTTONS.Success.HoverFill
-                        Italic: =APP_BUTTONS.Success.Italic
-                        PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
-                        PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
-                        PaddingRight: =APP_BUTTONS.Success.PaddingRight
-                        PaddingTop: =APP_BUTTONS.Success.PaddingTop
-                        PressedBorderColor: =APP_BUTTONS.Success.PressedBorderColor
-                        PressedColor: =APP_BUTTONS.Success.PressedColor
-                        PressedFill: =APP_BUTTONS.Success.PressedFill
-                        RadiusBottomLeft: =5
-                        RadiusBottomRight: =5
-                        RadiusTopLeft: =5
-                        RadiusTopRight: =5
-                        Size: =APP_BUTTONS.Success.Size - 2
-                        Strikethrough: =APP_BUTTONS.Success.Strikethrough
-                        Text: ="Accept"
-                        Underline: =APP_BUTTONS.Success.Underline
-                        VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
-                        Width: =80
-                        Y: =5
-                        ZIndex: =1
 
                     btn_RejectOwnership As button:
                         Align: =APP_BUTTONS.BigDanger.Align
@@ -823,7 +784,6 @@ Home As screen:
                         DisabledBorderColor: =APP_BUTTONS.BigDanger.DisabledBorderColor
                         DisabledColor: =APP_BUTTONS.BigDanger.DisabledColor
                         DisabledFill: =APP_BUTTONS.BigDanger.DisabledFill
-                        DisplayMode: =
                         Fill: =APP_BUTTONS.BigDanger.Fill
                         FocusedBorderColor: =APP_BUTTONS.BigDanger.FocusedBorderColor
                         FocusedBorderThickness: =APP_BUTTONS.BigDanger.FocusedBorderThickness
@@ -851,18 +811,11 @@ Home As screen:
                         Underline: =APP_BUTTONS.BigDanger.Underline
                         VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
                         Width: =80
-                        X: =110
-                        Y: =5
-                        ZIndex: =2
+                        X: =220
+                        Y: =3
+                        ZIndex: =1
 
-                grp_OtherActionsConfirmClosure As groupContainer.manualLayoutContainer:
-                    Height: =Parent.Height
-                    Visible: =ThisItem.Status = "Pending Closure" && ThisItem.RequestedCloser.Id = USER.ID
-                    Width: =Parent.Width - Self.X
-                    X: =img_Importance.X + img_Importance.Width
-                    ZIndex: =19
-
-                    btn_ConfirmClosure As button:
+                    btn_AcceptOwnership As button:
                         Align: =APP_BUTTONS.Success.Align
                         BorderColor: =APP_BUTTONS.Success.BorderColor
                         BorderStyle: =APP_BUTTONS.Success.BorderStyle
@@ -871,7 +824,6 @@ Home As screen:
                         DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
                         DisabledColor: =APP_BUTTONS.Success.DisabledColor
                         DisabledFill: =APP_BUTTONS.Success.DisabledFill
-                        DisplayMode: =
                         Fill: =APP_BUTTONS.Success.Fill
                         FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
                         FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
@@ -899,8 +851,56 @@ Home As screen:
                         Underline: =APP_BUTTONS.Success.Underline
                         VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
                         Width: =80
-                        Y: =5
-                        ZIndex: =1
+                        X: =130
+                        Y: =3
+                        ZIndex: =2
+
+                    lbl_PrimaryText_8 As label:
+                        Align: =APP_LABELS.PrimaryText.Align
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        FontWeight: =FontWeight.Bold
+                        Height: =20
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size - 4
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: |-
+                            ="Ownership tranfer requested:"
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                        Width: =130
+                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        ZIndex: =3
+
+                grp_OtherActionsConfirmClosure As groupContainer.manualLayoutContainer:
+                    Height: =Parent.Height
+                    Visible: =ThisItem.Status = "Pending Closure" && ThisItem.RequestedCloser.Id = USER.ID
+                    Width: =Parent.Width - Self.X
+                    X: =img_Importance.X + img_Importance.Width
+                    ZIndex: =19
 
                     btn_RejectClosure As button:
                         Align: =APP_BUTTONS.BigDanger.Align
@@ -911,7 +911,6 @@ Home As screen:
                         DisabledBorderColor: =APP_BUTTONS.BigDanger.DisabledBorderColor
                         DisabledColor: =APP_BUTTONS.BigDanger.DisabledColor
                         DisabledFill: =APP_BUTTONS.BigDanger.DisabledFill
-                        DisplayMode: =
                         Fill: =APP_BUTTONS.BigDanger.Fill
                         FocusedBorderColor: =APP_BUTTONS.BigDanger.FocusedBorderColor
                         FocusedBorderThickness: =APP_BUTTONS.BigDanger.FocusedBorderThickness
@@ -939,9 +938,89 @@ Home As screen:
                         Underline: =APP_BUTTONS.BigDanger.Underline
                         VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
                         Width: =80
-                        X: =110
-                        Y: =5
+                        X: =190
+                        Y: =3
+                        ZIndex: =1
+
+                    btn_ConfirmClosure As button:
+                        Align: =APP_BUTTONS.Success.Align
+                        BorderColor: =APP_BUTTONS.Success.BorderColor
+                        BorderStyle: =APP_BUTTONS.Success.BorderStyle
+                        BorderThickness: =APP_BUTTONS.Success.BorderThickness
+                        Color: =APP_BUTTONS.Success.Color
+                        DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.Success.DisabledColor
+                        DisabledFill: =APP_BUTTONS.Success.DisabledFill
+                        Fill: =APP_BUTTONS.Success.Fill
+                        FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
+                        Font: =APP_BUTTONS.Success.Font
+                        FontWeight: =APP_BUTTONS.Success.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_BUTTONS.Success.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.Success.HoverColor
+                        HoverFill: =APP_BUTTONS.Success.HoverFill
+                        Italic: =APP_BUTTONS.Success.Italic
+                        PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.Success.PaddingRight
+                        PaddingTop: =APP_BUTTONS.Success.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.Success.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.Success.PressedColor
+                        PressedFill: =APP_BUTTONS.Success.PressedFill
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Size: =APP_BUTTONS.Success.Size - 2
+                        Strikethrough: =APP_BUTTONS.Success.Strikethrough
+                        Text: ="Confirm"
+                        Underline: =APP_BUTTONS.Success.Underline
+                        VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
+                        Width: =80
+                        X: =100
+                        Y: =3
                         ZIndex: =2
+
+                    lbl_PrimaryText_9 As label:
+                        Align: =APP_LABELS.PrimaryText.Align
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        FontWeight: =FontWeight.Bold
+                        Height: =20
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size - 4
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: |-
+                            ="Closure requested:"
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                        Width: =90
+                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        ZIndex: =3
 
         slide_Slider_2 As slider:
             BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor

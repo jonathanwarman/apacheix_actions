@@ -630,8 +630,8 @@ Screen2 As screen:
         VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
         Width: =179
         Wrap: =APP_LABELS.PrimaryText.Wrap
-        X: =451
-        Y: =8
+        X: =536
+        Y: =113
         ZIndex: =15
 
     lbl_SecondaryText_2 As label:
