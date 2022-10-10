@@ -1,0 +1,1016 @@
+Sidebar_v1__ As CanvasComponent:
+    MenuActions(Number As Number):
+        Number:
+            Default: =0
+        ThisProperty:
+            Default: |-
+                =// See the guidance in the Menu property on how to set this up. 
+                
+                Switch(Number,
+                    1, Notify("Hello")
+                )
+    AboutScreen: =App.ActiveScreen
+    AppRelease: |-
+        ={ Type: "Dev", Release: 1, Fix: 0 }
+    AppTitle: ="MyApp"
+    DynamicWidth: =If(g_ShowMenu || g_ShowSubmitFeedbackDialog, App.Width, Sidebar_v1__.Style.Width.Collapsed)
+    Fill: =RGBA(0,0,0,0)
+    Height: =App.Height - Self.Y
+    Menu: |
+        ={
+            HomeScreen: App.ActiveScreen,
+        
+            // This table populates the dynamic nav bar. This works in conjunction with the MenuActions behaviour property. 
+            // Clicking a menu item will trigger the MenuActions code, passing the Number parameter.
+            // MenuActions does a switch on the Number parameter and hence runs the code relative to that number, which can be anything.
+            // Add more records below, ensure there is a corresponding MenuActions switch statement, and ensure the numbers line up!
+        
+            // Tooltip: If Blank() the item's text is used, otherwise the tooltip text is used. If the item is disabled, then the disabled tooltip is added to the normal tooltip.
+        
+            Items: Table(
+                { Number: 1, Text: "Goto Screen", Image: SampleImage, Tooltip: Blank(), Disabled: false, DisabledTooltip: "You lack permissions", SeparatorBefore: true },
+                { Number: 2, Text: "Notify me", Image: SampleImage, Tooltip: "Special tooltip", Disabled: false, DisabledTooltip: "Future process steps not available", SeparatorBefore: true }
+            )
+        }
+    OnReset: |-
+        =Set(APP_COLORS, Sidebar_v1__.Style.Colors);
+        Set(APP_BUTTONS,Sidebar_v1__.Style.Buttons);
+        Set(APP_INPUT_CONTROLS, Sidebar_v1__.Style.Controls);
+        Set(APP_LABELS, Sidebar_v1__.Style.Labels);
+    Style: |-
+        ={
+            Width: {
+                Collapsed: 50,
+                Expanded: 300
+            },        
+            Fill: Color.DarkGray,
+            MenuItem: {
+                Color: Color.White, 
+                HoverFill: Color.Gray,
+                FontSize: 14,
+                IconSize: 50,
+                IconPadding: 10
+            },
+            Separator: {
+                VerticalPadding: 5,
+                Thickness: 2,
+                Color: Color.Gray
+            },
+        
+            // The following standard components are used in the Submit Feedback dialog; this should be replaced by the app specific definition.
+        
+            Colors: {
+                // Standard app colours...
+        
+                AppColor:       ColorValue("#0275d8FF"),
+                AppColorShade:  ColorValue("#ffd699FF"),
+                Action:         ColorValue("#0275d8FF"),        
+                Highlight:      ColorValue("#8dc1edFF"),
+                Hover:          ColorValue("#8dc1ed66"),
+                PrimaryText:    ColorValue("#303030FF"),
+                SecondaryText:  ColorValue("#A9A9A9FF"),
+                Outline:        ColorValue("#D3D3D3FF"),        
+                LightGray:      ColorValue("#F8F8F8FF"),
+                MidGray:        ColorValue("#BEBEBEFF"),
+                DarkGray:       ColorValue("#696969FF"),
+                Success:        ColorValue("#5cb85cFF"),
+                Danger:         ColorValue("#d9534fFF"),
+                Warning:        ColorValue("#f0ad4eFF"),
+                Info:           ColorValue("#5bc0deFF"),        
+                Transparent:    RGBA(0,0,0,0)
+        
+                // Create other app specific colours below here...
+            },
+        
+            Buttons: {
+                Primary: {
+                    Color: Color.White,
+                    Fill: ColorValue("#0275d8FF"),
+                    BorderColor: ColorValue("#0275d8FF"),
+                    BorderStyle: Solid, BorderThickness: 1, 
+        
+                    HoverColor: Color.White,
+                    HoverFill: ColorFade(ColorValue("#0275d8FF"), -20%),
+                    HoverBorderColor: ColorFade(ColorValue("#0275d8FF"),-20%),
+        
+                    FocusedBorderThickness: 2, 
+                    FocusedBorderColor: ColorValue("#0275d8FF"),
+                    
+                    PressedColor: Color.White,
+                    PressedFill: ColorFade(ColorValue("#0275d8FF"), -20%),
+                    PressedBorderColor: Color.White,
+                    
+                    DisabledFill: RGBA(244, 244, 244, 1),
+                    DisabledColor: ColorValue("#BEBEBEFF"),
+                    DisabledBorderColor: ColorValue("#BEBEBEFF"),
+                    
+                    Font: Font.'Open Sans',
+                    Size: 10,
+                    FontWeight: FontWeight.Semibold, Italic: false, Underline: false, Strikethrough: false, 
+                    Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                    PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,
+                    RadiusTopLeft: 10, RadiusTopright: 10, RadiusBottomLeft: 10, RadiusBottomRight: 10
+                },
+                Secondary: {
+                    Color: ColorValue("#0275d8FF"),
+                    Fill: Color.White,
+                    BorderColor: ColorValue("#0275d8FF"),
+                    BorderStyle: Solid, BorderThickness: 1, 
+        
+                    HoverColor: Color.White,
+                    HoverFill: ColorFade(ColorValue("#0275d8FF"), -20%),
+                    HoverBorderColor: ColorFade(ColorValue("#0275d8FF"),-20%),
+        
+                    FocusedBorderThickness: 2, 
+                    FocusedBorderColor: ColorValue("#0275d8FF"),
+                    
+                    PressedColor: Color.White,
+                    PressedFill: ColorFade(ColorValue("#0275d8FF"), -20%),
+                    PressedBorderColor: Color.White,
+                    
+                    DisabledFill: RGBA(244, 244, 244, 1),
+                    DisabledColor: ColorValue("#BEBEBEFF"),
+                    DisabledBorderColor: ColorValue("#BEBEBEFF"),
+                    
+                    Font: Font.'Open Sans',
+                    Size: 10,
+                    FontWeight: FontWeight.Semibold, Italic: false, Underline: false, Strikethrough: false, 
+                    Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                    PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,
+                    RadiusTopLeft: 10, RadiusTopright: 10, RadiusBottomLeft: 10, RadiusBottomRight: 10
+                }
+            },
+        
+            Labels: {
+                H1: {
+                    // Not really used in headings.
+                    Overflow: Overflow.Hidden, Wrap: true,
+                    DisabledColor: RGBA(166, 166, 166, 1), PressedColor: Color.Black, HoverColor: Color.Black,
+                    BorderColor: RGBA(0, 18, 107, 1), PressedBorderColor: RGBA(0, 18, 107, 1), HoverBorderColor: RGBA(0, 18, 107, 1), DisabledBorderColor: RGBA(56, 56, 56, 1), FocusedBorderColor: RGBA(0, 18, 107, 1),
+                    BorderStyle: Solid, BorderThickness: 0, FocusedBorderThickness: 0,
+                    Fill: RGBA(0, 0, 0, 0), DisabledFill: RGBA(0, 0, 0, 0), PressedFill: RGBA(0, 0, 0, 0), HoverFill: RGBA(0, 0, 0, 0),
+                    LineHeight: 1.2,
+                    PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,
+        
+                    // Main properties for labels.
+                    Color: ColorValue("#303030FF"),
+                    Font: Font.'Open Sans',
+                    FontWeight: FontWeight.Bold,      
+                    Size: 18,
+                    Italic: false, Underline: false, Strikethrough: false,
+                    Align: Align.Left, VerticalAlign: VerticalAlign.Middle
+                },
+                PrimaryText: {
+                    // Main properties for labels.
+                    Color: ColorValue("#303030FF"),
+                    Font: Font.'Open Sans',
+                    FontWeight: FontWeight.Normal,      
+                    Size: 10,
+                    Italic: false, Underline: false, Strikethrough: false,
+                    Align: Align.Left, VerticalAlign: VerticalAlign.Middle,
+                    
+                    // Not really used in headings.
+                    Overflow: Overflow.Hidden, Wrap: true,
+                    DisabledColor: RGBA(166, 166, 166, 1), PressedColor: Color.Black, HoverColor: Color.Black,
+                    BorderColor: RGBA(0, 18, 107, 1), PressedBorderColor: RGBA(0, 18, 107, 1), HoverBorderColor: RGBA(0, 18, 107, 1), DisabledBorderColor: RGBA(56, 56, 56, 1), FocusedBorderColor: RGBA(0, 18, 107, 1),
+                    BorderStyle: Solid, BorderThickness: 0, FocusedBorderThickness: 0,
+                    Fill: RGBA(0, 0, 0, 0), DisabledFill: RGBA(0, 0, 0, 0), PressedFill: RGBA(0, 0, 0, 0), HoverFill: RGBA(0, 0, 0, 0),
+                    LineHeight: 1.2,
+                    PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5
+                }
+            },    
+        
+            Controls: {
+                Textbox: {
+                    BorderStyle: BorderStyle.Solid,
+                    BorderThickness: 1,
+                    BorderColor: ColorValue("#D3D3D3FF"),
+                    FocusedBorderColor: ColorValue("#0275d8FF"),
+                    FocusedBorderThickness: 2,
+                    HoverBorderColor: ColorValue("#0275d8FF"),
+                    PressedBorderColor: ColorValue("#0275d8FF"),
+                    BorderRadius: 0,
+        
+                    Font: Font.'Open Sans',
+                    Size: 10,
+                    Color: ColorValue("#303030FF"),
+                    FontWeight: FontWeight.Normal,
+                    Italic: false, Underline: false, Strikethrough: false,
+        
+                    PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 12,
+        
+                    Fill: Color.White,
+                    HoverFill: ColorValue("#8dc1ed66"),
+                    PressedFill: RGBA(0, 0, 0, 0),
+        
+                    HoverColor: Color.Black,
+                    PressedColor: Color.White,
+        
+                    Clear: false,
+                    LineHeight: 1.2,
+                    Align: Align.Left,
+                    
+                    DisabledColor: RGBA(166, 166, 166, 1),
+                    DisabledFill: RGBA(244, 244, 244, 1),
+                    DisabledBorderColor: RGBA(166, 166, 166, 1)
+                },
+                Radio: {
+                    BorderStyle: None,
+                    BorderThickness: 0,
+                    BorderColor: Color.Black,
+                    FocusedBorderColor: ColorValue("#0275d8FF"),
+                    FocusedBorderThickness: 2,
+                    
+                    Font: Font.'Open Sans',
+                    Size: 10,
+                    Color: ColorValue("#303030FF"),
+                    FontWeight: FontWeight.Normal,
+                    Italic: false, Underline: false, Strikethrough: false,
+        
+                    PaddingTop: 2, PaddingRight: 0, PaddingBottom: 0, PaddingLeft: 0,
+                    Align: Align.Left,
+                    LineHeight: 1.8,
+                    
+                    Fill: Color.White,
+                    HoverFill: ColorValue("#8dc1ed66"),
+                    PressedFill: RGBA(0, 0, 0, 0),
+        
+                    HoverColor: Color.Black,
+                    PressedColor: Color.White,     
+        
+                    RadioSize: 20,
+                    RadioBorderColor: ColorValue("#D3D3D3FF"),
+                    RadioBackgroundFill: Color.White,
+                    RadioSelectionFill: ColorValue("#0275d8FF"),
+                    
+                    DisabledColor: RGBA(186, 186, 186, 1),
+                    DisabledFill: RGBA(0, 0, 0, 0),
+                    DisabledBorderColor: RGBA(166, 166, 166, 1)          
+                }
+            },
+        
+            // For the Submit Feedback dialog box.
+            DialogShadow: { OffsetX: 0, OffsetY: 0, Color: "#000000", Blur: 5, Opacity: 0.5},
+            DialogBox: {Fill: "#FFFFFF", Opacity: 1, BorderThickness: 0, BorderColor: "#000000", Radius: 10}
+        }
+    Width: =Sidebar_v1__.DynamicWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    backdrop As rectangle:
+        Fill: =RGBA(255,255,255,0.5)
+        Height: =Parent.Height
+        OnSelect: |-
+            =Set(g_ShowMenu, false);
+            Set(g_ShowSubmitFeedbackDialog, false);
+        Width: =Parent.Width
+        ZIndex: =1
+
+    sidebar As groupContainer.verticalAutoLayoutContainer:
+        Fill: =Sidebar_v1__.Style.Fill
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =If(g_ShowMenu, Sidebar_v1__.Style.Width.Expanded, Sidebar_v1__.Style.Width.Collapsed)
+        ZIndex: =2
+
+        grp_Hamburger As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =Sidebar_v1__.Style.MenuItem.IconSize
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Sidebar_v1__.Style.Width.Expanded
+            ZIndex: =1
+
+            icon_NavBurger As icon.AddDocument:
+                Color: =Sidebar_v1__.Style.MenuItem.Color
+                Height: =Sidebar_v1__.Style.MenuItem.IconSize
+                HoverFill: =Sidebar_v1__.Style.MenuItem.HoverFill
+                Icon: =Icon.Hamburger
+                PaddingBottom: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingLeft: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingRight: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingTop: =Sidebar_v1__.Style.MenuItem.IconPadding
+                Width: =Sidebar_v1__.Style.MenuItem.IconSize
+                ZIndex: =1
+
+            Label1_2 As label:
+                Color: =Sidebar_v1__.Style.MenuItem.Color
+                FontWeight: =FontWeight.Bold
+                Height: =Sidebar_v1__.Style.MenuItem.IconSize
+                Size: =Sidebar_v1__.Style.MenuItem.FontSize
+                Text: ="Navigation"
+                Width: =Sidebar_v1__.Style.Width.Expanded - Sidebar_v1__.Style.Width.Collapsed
+                X: =Sidebar_v1__.Style.Width.Collapsed
+                ZIndex: =2
+
+            Button1_2 As button:
+                BorderColor: =RGBA(0,0,0,0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =0
+                Color: =RGBA(0,0,0,0)
+                DisabledBorderColor: =RGBA(0,0,0,0)
+                DisabledColor: =RGBA(0,0,0,0)
+                DisabledFill: =RGBA(0,0,0,0)
+                Fill: =RGBA(0,0,0,0)
+                FocusedBorderColor: =RGBA(0,0,0,0)
+                FocusedBorderThickness: =0
+                Height: =Parent.Height
+                HoverBorderColor: =RGBA(0,0,0,0)
+                HoverColor: =RGBA(0,0,0,0)
+                HoverFill: =RGBA(0,0,0,0.2)
+                OnSelect: =Set(g_ShowMenu, !g_ShowMenu)
+                PaddingBottom: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingLeft: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingRight: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingTop: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PressedBorderColor: =RGBA(0,0,0,0)
+                PressedColor: =RGBA(0,0,0,0)
+                PressedFill: =RGBA(0,0,0,0)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =0
+                Text: =""
+                Tooltip: =If(g_ShowMenu, "Collapse", "Expand") & " menu"
+                Width: =Parent.Width
+                ZIndex: =3
+
+        grp_Home As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: |-
+                =If(Sidebar_v1__.Menu.HomeScreen = App.ActiveScreen,
+                    // i.e. Highlights the current screen.
+                    RGBA(0, 0, 0, 0.4)
+                
+                , // else    
+                    RGBA(0, 0, 0, 0)
+                )
+            FillPortions: =0
+            Height: =Sidebar_v1__.Style.MenuItem.IconSize
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Sidebar_v1__.Style.Width.Expanded
+            ZIndex: =2
+
+            icon_NavHome As icon.AddDocument:
+                Color: =Sidebar_v1__.Style.MenuItem.Color
+                Height: =Sidebar_v1__.Style.MenuItem.IconSize
+                HoverFill: =Sidebar_v1__.Style.MenuItem.HoverFill
+                Icon: =Icon.Home
+                PaddingBottom: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingLeft: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingRight: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingTop: =Sidebar_v1__.Style.MenuItem.IconPadding
+                Width: =Sidebar_v1__.Style.MenuItem.IconSize
+                ZIndex: =1
+
+            Label1_3 As label:
+                Color: =Sidebar_v1__.Style.MenuItem.Color
+                FontWeight: =FontWeight.Semibold
+                Height: =Sidebar_v1__.Style.MenuItem.IconSize
+                Size: =Sidebar_v1__.Style.MenuItem.FontSize
+                Text: ="Home"
+                Tooltip: =If(g_ShowMenu, "Collapse", "Expand") & " menu"
+                Width: =Sidebar_v1__.Style.Width.Expanded - Sidebar_v1__.Style.Width.Collapsed
+                X: =Sidebar_v1__.Style.Width.Collapsed
+                ZIndex: =2
+
+            Button1_3 As button:
+                BorderColor: =RGBA(0,0,0,0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =0
+                Color: =RGBA(0,0,0,0)
+                DisabledBorderColor: =RGBA(0,0,0,0)
+                DisabledColor: =RGBA(0,0,0,0)
+                DisabledFill: =RGBA(0,0,0,0)
+                Fill: =RGBA(0,0,0,0)
+                FocusedBorderColor: =RGBA(0,0,0,0)
+                FocusedBorderThickness: =0
+                Height: =Parent.Height
+                HoverBorderColor: =RGBA(0,0,0,0)
+                HoverColor: =RGBA(0,0,0,0)
+                HoverFill: =RGBA(0,0,0,0.2)
+                OnSelect: |-
+                    =Set(g_ShowMenu, false);
+                    Navigate(Sidebar_v1__.Menu.HomeScreen)
+                PaddingBottom: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingLeft: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingRight: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingTop: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PressedBorderColor: =RGBA(0,0,0,0)
+                PressedColor: =RGBA(0,0,0,0)
+                PressedFill: =RGBA(0,0,0,0)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =0
+                Text: =""
+                Tooltip: ="Home"
+                Width: =Parent.Width
+                ZIndex: =3
+
+        Gallery4 As gallery.variableTemplateHeightGallery:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Items: =Sidebar_v1__.Menu.Items
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            TemplatePadding: =0
+            TemplateSize: =10
+            ZIndex: =4
+
+            grp_MenuItem As groupContainer.manualLayoutContainer:
+                Fill: |
+                    =// i.e. Highlights the current screen.
+                    //RGBA(0, 0, 0, 0.4) 
+                    RGBA(5, 45, 0, 0)
+                Height: =Sidebar_v1__.Style.MenuItem.IconSize
+                Width: =Sidebar_v1__.Style.Width.Expanded
+                Y: =If(ThisItem.SeparatorBefore, grp_Separator.Height, 0)
+                ZIndex: =2
+
+                Image1_2 As image:
+                    Height: =Sidebar_v1__.Style.MenuItem.IconSize
+                    HoverFill: =Sidebar_v1__.Style.MenuItem.HoverFill
+                    Image: =ThisItem.Image
+                    PaddingBottom: =Sidebar_v1__.Style.MenuItem.IconPadding
+                    PaddingLeft: =Sidebar_v1__.Style.MenuItem.IconPadding
+                    PaddingRight: =Sidebar_v1__.Style.MenuItem.IconPadding
+                    PaddingTop: =Sidebar_v1__.Style.MenuItem.IconPadding
+                    Width: =Sidebar_v1__.Style.MenuItem.IconSize
+                    ZIndex: =1
+
+                Label1_1 As label:
+                    Color: =Sidebar_v1__.Style.MenuItem.Color
+                    Height: =Sidebar_v1__.Style.MenuItem.IconSize
+                    Size: =Sidebar_v1__.Style.MenuItem.FontSize
+                    Text: =ThisItem.Text
+                    Width: =Sidebar_v1__.Style.Width.Expanded - Sidebar_v1__.Style.Width.Collapsed
+                    X: =Sidebar_v1__.Style.Width.Collapsed
+                    ZIndex: =2
+
+                Button1 As button:
+                    BorderColor: =RGBA(0,0,0,0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =0
+                    Color: =RGBA(0,0,0,0)
+                    DisabledBorderColor: =RGBA(0,0,0,0)
+                    DisabledColor: =RGBA(0,0,0,0)
+                    DisabledFill: =RGBA(0,0,0,0)
+                    DisplayMode: =If(ThisItem.Disabled, DisplayMode.Disabled, DisplayMode.Edit)
+                    Fill: =RGBA(0,0,0,0)
+                    FocusedBorderColor: =RGBA(0,0,0,0)
+                    FocusedBorderThickness: =0
+                    Height: =Parent.Height
+                    HoverBorderColor: =RGBA(0,0,0,0)
+                    HoverColor: =RGBA(0,0,0,0)
+                    HoverFill: =RGBA(0,0,0,0.2)
+                    OnSelect: |-
+                        =Set(g_ShowMenu, false);
+                        Sidebar_v1__.MenuActions(ThisItem.Number)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =RGBA(0,0,0,0)
+                    PressedColor: =RGBA(0,0,0,0)
+                    PressedFill: =RGBA(0,0,0,0)
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =0
+                    Text: =""
+                    Tooltip: |-
+                        =If(IsBlank(ThisItem.Tooltip), ThisItem.Text, ThisItem.Tooltip) & If(ThisItem.Disabled, Char(10) & "Disabled: " & ThisItem.DisabledTooltip)
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+            grp_Separator As groupContainer.manualLayoutContainer:
+                Height: =Sidebar_v1__.Style.Separator.VerticalPadding*2 + Sidebar_v1__.Style.Separator.Thickness
+                Visible: =ThisItem.SeparatorBefore
+                Width: =Sidebar_v1__.Style.Width.Expanded
+                ZIndex: =3
+
+                Separator As rectangle:
+                    Fill: =Sidebar_v1__.Style.Separator.Color
+                    Height: =Sidebar_v1__.Style.Separator.Thickness
+                    Width: =If(g_ShowMenu, Sidebar_v1__.Style.Width.Expanded, Sidebar_v1__.Style.Width.Collapsed) - Self.X*2
+                    X: =5
+                    Y: =Sidebar_v1__.Style.Separator.VerticalPadding
+                    ZIndex: =1
+
+        Container3 As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =50
+            LayoutMinHeight: =50
+            LayoutMinWidth: =Parent.Width
+            Width: =Parent.Width
+            ZIndex: =7
+
+            img_ApacheLogo As image:
+                Height: =50
+                Image: ='Apache Logo - Feather'
+                OnSelect: |-
+                    =Launch("https://www.apacheix.co.uk")
+                PaddingBottom: =5
+                PaddingTop: =5
+                Width: =30
+                X: =Sidebar_v1__.Style.Width.Expanded - Self.Width
+                ZIndex: =2
+
+            txt_Details As htmlViewer:
+                Height: =Parent.Height
+                HtmlText: |-
+                    ="
+                    <div style='text-align:right; color:#DDDDDD'>Developed by Apache iX Ltd<br>
+                    App Version: <b>" & Sidebar_v1__.AppRelease.Release & "." & Sidebar_v1__.AppRelease.Fix & " (" & Sidebar_v1__.AppRelease.Type & ")</b>
+                    </div>
+                    "
+                PaddingTop: =7
+                Size: =9
+                Width: =Sidebar_v1__.Style.Width.Expanded - Self.X - img_ApacheLogo.Width
+                X: =Sidebar_v1__.Style.Width.Collapsed
+                ZIndex: =4
+
+            ico_SubmitFeedback As image:
+                Height: =Parent.Height
+                Image: |-
+                    ="data:image/svg+xml," & 
+                     EncodeUrl(
+                        "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' viewBox='-10 0 3500 2048'>
+                      <g transform='translate(0,-50), rotate(180,1000,1024)'>
+                       <path fill='#DDDDDD'
+                    d='M1608 1151q65 -2 122 -27.5t99 -68.5t66.5 -100.5t24.5 -122.5v-192h-128v192q0 32 -10.5 61.5t-29 54t-44.5 42t-57 26.5q6 -29 9.5 -59.5t3.5 -60.5v-256q0 -7 -1 -13t-2 -13l6 6q60 -60 92 -138t32 -163t-32 -162.5t-92 -137.5l-90 90q42 42 64 95.5t22 113.5q0 68 -31 132q-31 -100 -90.5 -183t-139.5 -142t-176.5 -92t-201.5 -33t-201.5 33t-176.5 92t-139.5 142t-90.5 183q-31 -64 -31 -132q0 -60 22 -113.5t64 -95.5l-90 -90q-60 60 -92.5 137.5t-32.5 162.5t32.5 163t92.5 138l6 -6q-1 7 -2 13t-1 13v256q0 30 3.5 60.5t9.5 59.5q-31 -9 -57 -26.5t-44.5 -42t-29 -54t-10.5 -61.5v-192h-128v192q0 65 24.5 122.5t66.5 100.5t99 68.5t122 27.5q31 70 80 135q-57 10 -105.5 38.5t-83.5 70.5t-55 94.5t-20 110.5v192h128v-192q0 -40 15 -75t41 -61t61 -41t75 -15h64v-3q47 35 96 59q-15 32 -23.5 66.5t-8.5 69.5q0 70 31 135l-140 140l90 90l127 -127q45 39 98.5 60.5t113.5 21.5t113.5 -21.5t98.5 -60.5l127 127l90 -90l-140 -140q31 -65 31 -135q0 -35 -8.5 -69.5t-23.5 -66.5q26 -13 49.5 -27.5t46.5 -31.5v3h64q40 0 75 15t61 41t41 61t15 75v192h128v-192q0 -58 -20 -110.5t-55 -94.5t-83.5 -70.5t-105.5 -38.5q49 -65 80 -135zM1024 1792q-40 0 -75 -15t-61 -41t-41 -61t-15 -75q0 -50 24 -90q42 11 83.5 17.5t84.5 6.5t84.5 -6.5t83.5 -17.5q24 40 24 90q0 40 -15 75t-41 61t-61 41t-75 15zM1536 896q0 104 -41 197t-110.5 163t-162.5 111t-198 41t-198 -41t-162.5 -111t-110.5 -163t-41 -197v-256q0 -106 40.5 -199t110 -162.5t162.5 -110t199 -40.5t199 40.5t162.5 110t110 162.5t40.5 199v256z' />
+                      </g>
+                    
+                      <g transform='translate(1650,0), rotate(180,1000,1024)'>
+                       <path fill='#DDDDDD'
+                    d='M960 2048q97 0 187 -25t168.5 -71t142.5 -110t110 -142.5t71 -168.5t25 -187q0 -145 -55 -269t-157 -225q-83 -82 -127.5 -183t-44.5 -219v-256q0 -40 -15 -75t-41 -61t-61 -41t-75 -15h-256q-40 0 -75 15t-61 41t-41 61t-15 75v256q0 118 -44.5 219t-127.5 183q-102 101 -157 225t-55 269q0 97 25 187t71 168.5t110 142.5t142.5 110t168.5 71t187 25zM1088 128q26 0 45 19t19 45v192h-384v-192q0 -26 19 -45t45 -19h256zM1155 512q13 129 66 234t143 196q83 84 127.5 183.5t44.5 218.5t-45.5 224t-123.5 183t-183 123.5t-224 45.5t-224 -45.5t-183 -123.5t-123.5 -183t-45.5 -224t44.5 -218.5t127.5 -183.5q90 -91 143 -196t66 -234h390z' />
+                      </g>
+                    
+                    </svg>"
+                    )
+                PaddingBottom: =5
+                PaddingLeft: =5
+                PaddingRight: =5
+                PaddingTop: =5
+                Tooltip: =
+                Width: =Sidebar_v1__.Style.Width.Collapsed
+                ZIndex: =5
+
+            btn_SubmitFeedback As button:
+                BorderColor: =RGBA(0,0,0,0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =0
+                Color: =RGBA(0,0,0,0)
+                DisabledBorderColor: =RGBA(0,0,0,0)
+                DisabledColor: =RGBA(0,0,0,0)
+                DisabledFill: =RGBA(0,0,0,0)
+                Fill: =RGBA(0,0,0,0)
+                FocusedBorderColor: =RGBA(0,0,0,0)
+                FocusedBorderThickness: =0
+                Height: =Parent.Height - 10
+                HoverBorderColor: =RGBA(0,0,0,0)
+                HoverColor: =RGBA(0,0,0,0)
+                HoverFill: =RGBA(0,0,0,0.2)
+                OnSelect: |-
+                    =Set(g_ShowSubmitFeedbackDialog, true);
+                    Set(g_ShowMenu, false);
+                    Reset(Sidebar_v1__);
+                PaddingBottom: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingLeft: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingRight: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingTop: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PressedBorderColor: =RGBA(0,0,0,0)
+                PressedColor: =RGBA(0,0,0,0)
+                PressedFill: =RGBA(0,0,0,0)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =If(g_ShowMenu, 5, 0)
+                RadiusTopLeft: =0
+                RadiusTopRight: =If(g_ShowMenu, 5, 0)
+                Size: =0
+                Text: =""
+                Tooltip: ="Submit feedback" & Char(10) & "Feature requests or bugs"
+                Width: =Sidebar_v1__.Style.Width.Collapsed
+                Y: =5
+                ZIndex: =6
+
+            btn_OpenAboutScreen As button:
+                BorderColor: =RGBA(0,0,0,0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =0
+                Color: =RGBA(0,0,0,0)
+                DisabledBorderColor: =RGBA(0,0,0,0)
+                DisabledColor: =RGBA(0,0,0,0)
+                DisabledFill: =RGBA(0,0,0,0)
+                Fill: =RGBA(0,0,0,0)
+                FocusedBorderColor: =RGBA(0,0,0,0)
+                FocusedBorderThickness: =0
+                Height: =Parent.Height - 10
+                HoverBorderColor: =RGBA(0,0,0,0)
+                HoverColor: =RGBA(0,0,0,0)
+                HoverFill: =RGBA(0,0,0,0.2)
+                OnSelect: |
+                    =If(Sidebar_v1__.AboutScreen = App.ActiveScreen, 
+                        Notify("Sorry, there is no About page for this app.")
+                    , // else
+                        Navigate(Sidebar_v1__.AboutScreen);
+                    );
+                    Select(backdrop);
+                PaddingBottom: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingLeft: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingRight: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PaddingTop: =Sidebar_v1__.Style.MenuItem.IconPadding
+                PressedBorderColor: =RGBA(0,0,0,0)
+                PressedColor: =RGBA(0,0,0,0)
+                PressedFill: =RGBA(0,0,0,0)
+                RadiusBottomLeft: =If(g_ShowMenu, 5, 0)
+                RadiusBottomRight: =0
+                RadiusTopLeft: =If(g_ShowMenu, 5, 0)
+                RadiusTopRight: =0
+                Size: =0
+                Text: =""
+                Tooltip: ="Click to get more info about Apache iX and this app's release notes"
+                Width: =Sidebar_v1__.Style.Width.Expanded - Self.X
+                X: =Sidebar_v1__.Style.Width.Collapsed
+                Y: =5
+                ZIndex: =7
+
+    dialog_SubmitFeedback As groupContainer.manualLayoutContainer:
+        Height: =500
+        Visible: =g_ShowSubmitFeedbackDialog
+        X: =App.Width/2 - Self.Width/2
+        Y: =Parent.Height/2 - Self.Height/2
+        ZIndex: =3
+
+        shadowBox As image:
+            Height: =Parent.Height
+            Image: |-
+                ="data:image/svg+xml," & EncodeUrl(
+                    "<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+                <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+                <svg version='1.1'
+                    xmlns='http://www.w3.org/2000/svg'
+                    xmlns:xlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYMid meet' viewBox='0 0 " & Parent.Width & " " & Parent.Height & "' width='" & Parent.Width & "' height='" & Parent.Height & "'>
+                    <g>
+                        <g>
+                            <filter id='shadow' x='-20%' y='-20%' width='200%' height='200%' filterUnits='userSpaceOnUse' primitiveUnits='userSpaceOnUse'>
+                                <feFlood></feFlood>
+                                <feComposite in2='SourceAlpha' operator='in'></feComposite>
+                                <feGaussianBlur stdDeviation='" & Sidebar_v1__.Style.DialogShadow.Blur & "'></feGaussianBlur>
+                                <feOffset dx='" & Sidebar_v1__.Style.DialogShadow.OffsetX & "' dy='" & Sidebar_v1__.Style.DialogShadow.OffsetY & "' result='afterOffset'></feOffset>
+                                <feFlood flood-color='" & Sidebar_v1__.Style.DialogShadow.Color & "' flood-opacity='" & Substitute(Text(Sidebar_v1__.Style.DialogShadow.Opacity), ",", ".") & "'></feFlood>
+                                <feComposite in2='afterOffset' operator='in'></feComposite>
+                                <feMorphology operator='dilate' radius='1'></feMorphology>
+                                <feComposite in2='SourceAlpha' operator='out'></feComposite>
+                            </filter>
+                        </g>        
+                        <rect 
+                            id='boxForFill' 
+                            x='" & Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetX, 0) & "' 
+                            y='" & Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetY,0) & "' 
+                            width='" & Parent.Width - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetX, 0) - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 + Sidebar_v1__.Style.DialogShadow.OffsetX, 0) & "' 
+                            height='" & Parent.Height - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetY,0) - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 + Sidebar_v1__.Style.DialogShadow.OffsetY, 0) & "' 
+                            fill='" & Sidebar_v1__.Style.DialogBox.Fill & "' 
+                            stroke='" & Sidebar_v1__.Style.DialogBox.BorderColor & "' stroke-width='" & Sidebar_v1__.Style.DialogBox.BorderThickness & "'
+                            fill-opacity='" & Substitute(Text(Sidebar_v1__.Style.DialogBox.Opacity), ",", ".") & "'
+                            rx='" & Sidebar_v1__.Style.DialogBox.Radius & "'
+                        />
+                        <rect 
+                            id='boxForShadow' 
+                            x='" & Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetX, 0) & "' 
+                            y='" & Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetY,0) & "' 
+                            width='" & Parent.Width - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetX, 0) - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 + Sidebar_v1__.Style.DialogShadow.OffsetX, 0) & "' 
+                            height='" & Parent.Height - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 - Sidebar_v1__.Style.DialogShadow.OffsetY,0) - Max(Sidebar_v1__.Style.DialogShadow.Blur * 3 + Sidebar_v1__.Style.DialogShadow.OffsetY, 0) & "' 
+                            rx='" & Sidebar_v1__.Style.DialogBox.Radius & "'
+                            filter='url(#shadow)'/>
+                    </g>
+                </svg>"
+                )
+            Width: =Parent.Width
+            ZIndex: =1
+
+        btn_Cancel As button:
+            Align: =APP_BUTTONS.Secondary.Align
+            BorderColor: =APP_BUTTONS.Secondary.BorderColor
+            BorderStyle: =APP_BUTTONS.Secondary.BorderStyle
+            BorderThickness: =APP_BUTTONS.Secondary.BorderThickness
+            Color: =APP_BUTTONS.Secondary.Color
+            DisabledBorderColor: =APP_BUTTONS.Secondary.DisabledBorderColor
+            DisabledColor: =APP_BUTTONS.Secondary.DisabledColor
+            DisabledFill: =APP_BUTTONS.Secondary.DisabledFill
+            Fill: =APP_BUTTONS.Secondary.Fill
+            FocusedBorderColor: =APP_BUTTONS.Secondary.FocusedBorderColor
+            FocusedBorderThickness: =APP_BUTTONS.Secondary.FocusedBorderThickness
+            Font: =APP_BUTTONS.Secondary.Font
+            FontWeight: =APP_BUTTONS.Secondary.FontWeight
+            Height: =25
+            HoverBorderColor: =APP_BUTTONS.Secondary.HoverBorderColor
+            HoverColor: =APP_BUTTONS.Secondary.HoverColor
+            HoverFill: =APP_BUTTONS.Secondary.HoverFill
+            Italic: =APP_BUTTONS.Secondary.Italic
+            OnSelect: |-
+                =// Clear the input controls ready for next time.
+                Reset(rad_Type);
+                Reset(txt_Title);
+                Reset(txt_Description);
+                Reset(txt_AppName);
+                
+                Set(g_ShowSubmitFeedbackDialog, false);
+            PaddingBottom: =APP_BUTTONS.Secondary.PaddingBottom
+            PaddingLeft: =APP_BUTTONS.Secondary.PaddingLeft
+            PaddingRight: =APP_BUTTONS.Secondary.PaddingRight
+            PaddingTop: =APP_BUTTONS.Secondary.PaddingTop
+            PressedBorderColor: =APP_BUTTONS.Secondary.PressedBorderColor
+            PressedColor: =APP_BUTTONS.Secondary.PressedColor
+            PressedFill: =APP_BUTTONS.Secondary.PressedFill
+            RadiusBottomLeft: =APP_BUTTONS.Secondary.RadiusBottomLeft
+            RadiusBottomRight: =APP_BUTTONS.Secondary.RadiusBottomRight
+            RadiusTopLeft: =APP_BUTTONS.Secondary.RadiusTopLeft
+            RadiusTopRight: =APP_BUTTONS.Secondary.RadiusTopright
+            Size: =APP_BUTTONS.Secondary.Size
+            Strikethrough: =APP_BUTTONS.Secondary.Strikethrough
+            Text: ="Cancel"
+            Underline: =APP_BUTTONS.Secondary.Underline
+            VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
+            Width: =100
+            X: =60
+            Y: =Parent.Height - Self.Height - 40
+            ZIndex: =2
+
+        btn_Submit As button:
+            Align: =APP_BUTTONS.Primary.Align
+            BorderColor: =APP_BUTTONS.Primary.BorderColor
+            BorderStyle: =APP_BUTTONS.Primary.BorderStyle
+            BorderThickness: =APP_BUTTONS.Primary.BorderThickness
+            Color: =APP_BUTTONS.Primary.Color
+            DisabledBorderColor: =APP_BUTTONS.Primary.DisabledBorderColor
+            DisabledColor: =APP_BUTTONS.Primary.DisabledColor
+            DisabledFill: =APP_BUTTONS.Primary.DisabledFill
+            DisplayMode: =If(IsBlank(txt_Title.Text), DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =APP_BUTTONS.Primary.Fill
+            FocusedBorderColor: =APP_BUTTONS.Primary.FocusedBorderColor
+            FocusedBorderThickness: =APP_BUTTONS.Primary.FocusedBorderThickness
+            Font: =APP_BUTTONS.Primary.Font
+            FontWeight: =APP_BUTTONS.Primary.FontWeight
+            Height: =25
+            HoverBorderColor: =APP_BUTTONS.Primary.HoverBorderColor
+            HoverColor: =APP_BUTTONS.Primary.HoverColor
+            HoverFill: =APP_BUTTONS.Primary.HoverFill
+            Italic: =APP_BUTTONS.Primary.Italic
+            OnSelect: |-
+                =Office365Outlook.SendEmailV2(
+                    /* To */        "feedback@apacheix.dev;" & User().Email, // Also send it to the submitter.
+                    /* Subject */   "!!! [" & rad_Type.Selected.Value & "] " & txt_Title.Text, 
+                    /* Body */      "<h1>" &  txt_Title.Text & "</h1>" &
+                                    "<p><i>Type:</i> &nbsp;&nbsp;" &  rad_Type.Selected.Value &
+                                    "<p><i>AppContext:</i> &nbsp;&nbsp;" &  txt_AppName.Text &
+                                    "<p><i>Description:</i> &nbsp;&nbsp;" &  txt_Description.Text);
+                
+                // Execute cancel btton to reset controls and hide dialog.
+                Select(btn_Cancel);
+            PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+            PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+            PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+            PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+            PressedBorderColor: =APP_BUTTONS.Primary.PressedBorderColor
+            PressedColor: =APP_BUTTONS.Primary.PressedColor
+            PressedFill: =APP_BUTTONS.Primary.PressedFill
+            RadiusBottomLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+            RadiusBottomRight: =APP_BUTTONS.Primary.RadiusBottomRight
+            RadiusTopLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+            RadiusTopRight: =APP_BUTTONS.Primary.RadiusTopright
+            Size: =APP_BUTTONS.Primary.Size
+            Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+            Text: ="Submit"
+            Tooltip: =If(IsBlank(txt_Title.Text), "Add a descriptive title for your feedback.", "")
+            Underline: =APP_BUTTONS.Primary.Underline
+            VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
+            Width: =100
+            X: =Parent.Width - Self.Width - 60
+            Y: =Parent.Height - Self.Height - 40
+            ZIndex: =3
+
+        rad_Type As radio:
+            Align: =APP_INPUT_CONTROLS.Radio.Align
+            BorderColor: =APP_INPUT_CONTROLS.Radio.BorderColor
+            BorderStyle: =APP_INPUT_CONTROLS.Radio.BorderStyle
+            BorderThickness: =APP_INPUT_CONTROLS.Radio.BorderThickness
+            Color: =APP_INPUT_CONTROLS.Radio.Color
+            Default: ="Bug"
+            DisabledBorderColor: =APP_INPUT_CONTROLS.Radio.DisabledBorderColor
+            DisabledColor: =APP_INPUT_CONTROLS.Radio.DisabledColor
+            DisabledFill: =APP_INPUT_CONTROLS.Radio.DisabledFill
+            Fill: =APP_INPUT_CONTROLS.Radio.Fill
+            FocusedBorderColor: =APP_INPUT_CONTROLS.Radio.FocusedBorderColor
+            FocusedBorderThickness: =APP_INPUT_CONTROLS.Radio.FocusedBorderThickness
+            Font: =APP_INPUT_CONTROLS.Radio.Font
+            FontWeight: =APP_INPUT_CONTROLS.Radio.FontWeight
+            Height: =30
+            HoverColor: =APP_INPUT_CONTROLS.Radio.HoverColor
+            HoverFill: =APP_INPUT_CONTROLS.Radio.HoverFill
+            Italic: =APP_INPUT_CONTROLS.Radio.Italic
+            Items: =["Bug","Request"]
+            Layout: =Layout.Horizontal
+            LineHeight: =APP_INPUT_CONTROLS.Radio.LineHeight
+            PaddingBottom: =APP_INPUT_CONTROLS.Radio.PaddingBottom
+            PaddingLeft: =APP_INPUT_CONTROLS.Radio.PaddingLeft
+            PaddingRight: =APP_INPUT_CONTROLS.Radio.PaddingRight
+            PaddingTop: =APP_INPUT_CONTROLS.Radio.PaddingTop
+            PressedColor: =APP_INPUT_CONTROLS.Radio.PressedColor
+            PressedFill: =APP_INPUT_CONTROLS.Radio.PressedFill
+            RadioBackgroundFill: =APP_INPUT_CONTROLS.Radio.RadioBackgroundFill
+            RadioBorderColor: =APP_INPUT_CONTROLS.Radio.RadioBorderColor
+            RadioSelectionFill: =APP_INPUT_CONTROLS.Radio.RadioSelectionFill
+            RadioSize: =APP_INPUT_CONTROLS.Radio.RadioSize
+            Size: =APP_INPUT_CONTROLS.Radio.Size
+            Strikethrough: =APP_INPUT_CONTROLS.Radio.Strikethrough
+            Underline: =APP_INPUT_CONTROLS.Radio.Underline
+            Width: =351
+            X: =50
+            Y: =107
+            ZIndex: =4
+
+        txt_Title As text:
+            Align: =APP_INPUT_CONTROLS.Textbox.Align
+            BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
+            BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
+            BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
+            Clear: =APP_INPUT_CONTROLS.Textbox.Clear
+            Color: =APP_INPUT_CONTROLS.Textbox.Color
+            Default: =
+            DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
+            DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
+            DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
+            EnableSpellCheck: =true
+            Fill: =APP_INPUT_CONTROLS.Textbox.Fill
+            FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
+            FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
+            Font: =APP_INPUT_CONTROLS.Textbox.Font
+            FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
+            Height: =25
+            HintText: ="Enter a short but descriptive title..."
+            HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
+            HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
+            HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+            Italic: =APP_INPUT_CONTROLS.Textbox.Italic
+            LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
+            PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
+            PaddingLeft: =APP_INPUT_CONTROLS.Textbox.PaddingLeft
+            PaddingRight: =APP_INPUT_CONTROLS.Textbox.PaddingRight
+            PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
+            PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
+            PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
+            PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
+            RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            Size: =APP_INPUT_CONTROLS.Textbox.Size
+            Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
+            Underline: =APP_INPUT_CONTROLS.Textbox.Underline
+            Width: =Parent.Width - 2*Self.X
+            X: =50
+            Y: =200
+            ZIndex: =5
+
+        lbl_Heading1_3 As label:
+            Align: =Align.Center
+            BorderColor: =APP_LABELS.H1.BorderColor
+            BorderStyle: =APP_LABELS.H1.BorderStyle
+            BorderThickness: =APP_LABELS.H1.BorderThickness
+            Color: =APP_LABELS.H1.Color
+            DisabledBorderColor: =APP_LABELS.H1.DisabledBorderColor
+            DisabledColor: =APP_LABELS.H1.DisabledColor
+            DisabledFill: =APP_LABELS.H1.DisabledFill
+            DisplayMode: =DisplayMode.View
+            Fill: =APP_LABELS.H1.Fill
+            FocusedBorderColor: =APP_LABELS.H1.FocusedBorderColor
+            FocusedBorderThickness: =APP_LABELS.H1.FocusedBorderThickness
+            Font: =APP_LABELS.H1.Font
+            FontWeight: =APP_LABELS.H1.FontWeight
+            HoverBorderColor: =APP_LABELS.H1.HoverBorderColor
+            HoverColor: =APP_LABELS.H1.HoverColor
+            HoverFill: =APP_LABELS.H1.HoverFill
+            Italic: =APP_LABELS.H1.Italic
+            LineHeight: =APP_LABELS.H1.LineHeight
+            Overflow: =APP_LABELS.H1.Overflow
+            PaddingBottom: =APP_LABELS.H1.PaddingBottom
+            PaddingLeft: =APP_LABELS.H1.PaddingLeft
+            PaddingRight: =APP_LABELS.H1.PaddingRight
+            PaddingTop: =APP_LABELS.H1.PaddingTop
+            PressedBorderColor: =APP_LABELS.H1.PressedBorderColor
+            PressedColor: =APP_LABELS.H1.PressedColor
+            PressedFill: =APP_LABELS.H1.PressedFill
+            Size: =APP_LABELS.H1.Size
+            Strikethrough: =APP_LABELS.H1.Strikethrough
+            Text: ="Submit Feedback"
+            Underline: =APP_LABELS.H1.Underline
+            VerticalAlign: =APP_LABELS.H1.VerticalAlign
+            Width: =Parent.Width
+            Wrap: =APP_LABELS.H1.Wrap
+            Y: =40
+            ZIndex: =6
+
+        txt_Description As text:
+            Align: =APP_INPUT_CONTROLS.Textbox.Align
+            BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
+            BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
+            BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
+            Clear: =APP_INPUT_CONTROLS.Textbox.Clear
+            Color: =APP_INPUT_CONTROLS.Textbox.Color
+            Default: =
+            DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
+            DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
+            DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
+            EnableSpellCheck: =true
+            Fill: =APP_INPUT_CONTROLS.Textbox.Fill
+            FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
+            FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
+            Font: =APP_INPUT_CONTROLS.Textbox.Font
+            FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
+            Height: =150
+            HintText: |-
+                ="Enter a detailed description." 
+                & Char(10) & Char(10) & 
+                Switch(rad_Type.Selected.Value,
+                    "Bug", "Ensure there is enough information for developer to reproduce the bug.",
+                    "Request", "Explain how beneficial/important the feature would be; this will help prioritisation."
+                )
+            HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
+            HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
+            HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+            Italic: =APP_INPUT_CONTROLS.Textbox.Italic
+            LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
+            Mode: =TextMode.MultiLine
+            PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
+            PaddingLeft: =APP_INPUT_CONTROLS.Textbox.PaddingLeft
+            PaddingRight: =APP_INPUT_CONTROLS.Textbox.PaddingRight
+            PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
+            PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
+            PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
+            PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
+            RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            Size: =APP_INPUT_CONTROLS.Textbox.Size
+            Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
+            Underline: =APP_INPUT_CONTROLS.Textbox.Underline
+            Width: =Parent.Width - 2*Self.X
+            X: =50
+            Y: =250
+            ZIndex: =7
+
+        txt_AppName As text:
+            Align: =APP_INPUT_CONTROLS.Textbox.Align
+            BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
+            BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
+            BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
+            Clear: =APP_INPUT_CONTROLS.Textbox.Clear
+            Color: =APP_INPUT_CONTROLS.Textbox.Color
+            Default: =Sidebar_v1__.AppTitle
+            DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
+            DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
+            DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
+            EnableSpellCheck: =true
+            Fill: =APP_INPUT_CONTROLS.Textbox.Fill
+            FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
+            FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
+            Font: =APP_INPUT_CONTROLS.Textbox.Font
+            FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
+            Height: =25
+            HintText: ="Which app..."
+            HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
+            HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
+            HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+            Italic: =APP_INPUT_CONTROLS.Textbox.Italic
+            LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
+            PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
+            PaddingLeft: =APP_INPUT_CONTROLS.Textbox.PaddingLeft
+            PaddingRight: =APP_INPUT_CONTROLS.Textbox.PaddingRight
+            PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
+            PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
+            PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
+            PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
+            RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+            Size: =APP_INPUT_CONTROLS.Textbox.Size
+            Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
+            Underline: =APP_INPUT_CONTROLS.Textbox.Underline
+            Width: =(Parent.Width - 2*Self.X) / 2
+            X: =50
+            Y: =150
+            ZIndex: =8
+

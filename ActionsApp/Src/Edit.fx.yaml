@@ -1181,8 +1181,10 @@ Edit As screen:
         ZIndex: =2
 
     Label3_1 As label:
+        Height: =24
         Text: =">>" & g_TheAction.ID & "<<"
-        X: =100
+        Width: =100
+        Y: =20
         ZIndex: =3
 
     Toast_v2___1 As Toast_v2__:

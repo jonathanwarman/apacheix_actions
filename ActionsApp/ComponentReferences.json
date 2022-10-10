@@ -1,7 +1,7 @@
 [
   {
     "HasLibraryLogicalName": false,
-    "InstanceCount": 1,
+    "InstanceCount": 0,
     "LibraryId": "092938b8-6150-4fff-ac1f-b64ae98f6d43",
     "LibraryLogicalName": "",
     "LibraryVersion": "2022-07-12T11:46:33Z",
@@ -38,5 +38,25 @@
     "OriginalComponentDefinitionTemplateId": "56609cee47d1436189c0d02f22f45bfa",
     "RefusedSourceLastTimeSaved": "0001-01-01T00:00:00",
     "SourceLastTimeSaved": "2022-07-21T18:56:45.326+00:00"
+  },
+  {
+    "HasLibraryLogicalName": false,
+    "InstanceCount": 1,
+    "LibraryId": "40731e8e-0f90-41b7-92f7-c401ead1b113",
+    "LibraryLogicalName": "",
+    "LibraryVersion": "2022-08-22T08:40:13Z",
+    "OriginalComponentDefinitionTemplateId": "1ed57c61ccac4ed8b914d06383636e4d",
+    "RefusedSourceLastTimeSaved": "0001-01-01T00:00:00",
+    "SourceLastTimeSaved": "2022-08-22T08:40:16.36+00:00"
+  },
+  {
+    "HasLibraryLogicalName": false,
+    "InstanceCount": 1,
+    "LibraryId": "40731e8e-0f90-41b7-92f7-c401ead1b113",
+    "LibraryLogicalName": "",
+    "LibraryVersion": "2022-08-22T08:40:13Z",
+    "OriginalComponentDefinitionTemplateId": "b3bc2d9eae06495ba24bfb6632d64eb7",
+    "RefusedSourceLastTimeSaved": "0001-01-01T00:00:00",
+    "SourceLastTimeSaved": "2022-08-22T08:40:16.36+00:00"
   }
 ]

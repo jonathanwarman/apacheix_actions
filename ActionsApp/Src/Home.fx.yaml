@@ -1,43 +1,12 @@
 Home As screen:
     OnVisible: =
 
-    dev_NavigateLoading_2 As button:
-        Height: =20
-        OnSelect: =Navigate(Loading)
-        RadiusBottomLeft: =5
-        RadiusBottomRight: =5
-        RadiusTopLeft: =5
-        RadiusTopRight: =5
-        Size: =8
-        Text: ="Navigate Loading"
-        Width: =206
-        X: =20
-        Y: =748
-        ZIndex: =1
-
-    dev_StartLoading_2 As button:
-        Height: =20
-        OnSelect: |
-            =Set(g_LoadingComplete, false);
-            Reset(LoadingSpinner_v1___1);
-            Navigate(Loading);
-        RadiusBottomLeft: =5
-        RadiusBottomRight: =5
-        RadiusTopLeft: =5
-        RadiusTopRight: =5
-        Size: =8
-        Text: ="Start Loading"
-        Width: =206
-        X: =269
-        Y: =748
-        ZIndex: =2
-
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
-        Width: =Parent.Width - Self.X
-        X: =20
+        Width: =1316
+        X: =50
         Y: =100
-        ZIndex: =3
+        ZIndex: =1
 
         Gallery1 As gallery.variableTemplateHeightGallery:
             Height: =Parent.Height - Self.Y
@@ -1579,20 +1548,13 @@ Home As screen:
         VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
         Width: =100
         X: =App.Width - Self.Width - 20
-        Y: =37
-        ZIndex: =5
-
-    Label1 As label:
-        Text: |-
-            ="Logged In as: " & USER.Name & Char(10) & "v21"
-        Width: =344
-        X: =40
-        ZIndex: =6
+        Y: =72
+        ZIndex: =2
 
     Dialogs_2 As groupContainer.manualLayoutContainer:
         Height: =If(IsBlank(g_VisibleDialog), 0, Parent.Height)
         Width: =Parent.Width
-        ZIndex: =7
+        ZIndex: =3
 
         rect_DialogBackdrop_2 As rectangle:
             Fill: =RGBA(80, 80, 80, 0.8)
@@ -1952,6 +1914,38 @@ Home As screen:
                 Y: =262
                 ZIndex: =10
 
+    Sidebar_v1___1 As Sidebar_v1__:
+        AboutScreen: =About
+        AppRelease: =APP_RELEASE
+        AppTitle: =APP_TITLE
+        DynamicWidth: =If(g_ShowMenu || g_ShowSubmitFeedbackDialog, App.Width, Sidebar_v1___1.Style.Width.Collapsed)
+        Height: =708
+        Menu: =APP_SIDEBAR.Menu
+        MenuActions: |-
+            =// See the guidance in the Menu property on how to set this up. 
+            
+            Switch(Number,
+                1, Notify("Hello")
+            )
+        OnReset: |-
+            =Set(APP_COLORS, Sidebar_v1___1.Style.Colors);
+            Set(APP_BUTTONS,Sidebar_v1___1.Style.Buttons);
+            Set(APP_INPUT_CONTROLS, Sidebar_v1___1.Style.Controls);
+            Set(APP_LABELS, Sidebar_v1___1.Style.Labels);
+        Style: =APP_SIDEBAR.Style
+        Width: =Sidebar_v1___1.DynamicWidth
+        Y: =60
+        ZIndex: =4
+
+    Header_v2___1 As Header_v2__:
+        AppRelease: =APP_RELEASE
+        AppTitle: =APP_TITLE
+        AppURL: =APP_URL
+        DynamicHeight: =If(g_ShowBetaBar, Header_v2___1.Style.Height.ExpandedHeader, Header_v2___1.Style.Height.HeaderOnly)
+        Fill: =Header_v2___1.Style.Fill
+        OnReset: =Set(g_ShowBetaBar, Header_v2___1.AppRelease.Type = "Beta")
+        ZIndex: =5
+
     Image1_7 As image:
         Height: =40
         Image: |
@@ -2000,5 +1994,15 @@ Home As screen:
         Tooltip: =USER.Name
         Visible: =!IsBlank(Image1_7.Image)
         Width: =40
-        ZIndex: =8
+        X: =535
+        Y: =5
+        ZIndex: =6
+
+    Label1 As label:
+        Text: |-
+            ="Logged In as: " & USER.Name & Char(10) & "v21"
+        Width: =344
+        X: =575
+        Y: =5
+        ZIndex: =7
 
