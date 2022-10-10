@@ -394,8 +394,8 @@ Edit As screen:
                         If(tmp_NewAction,
                             If(drop_EditOwner.Selected.ID = USER.ID,
                                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                    Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
-                                    RequestedOwner: Blank()
+                                    Owner: tmp_CurrentUser // A new action owner is always set to the creator.
+                                    //RequestedOwner: Blank()
                                 }));
                             , // else
                                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
@@ -766,7 +766,7 @@ Edit As screen:
                 =
                 // Note shouldn't need a guard against g_TheAction being Blank as the button will only be shown after a record has been created.
                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                    RequestedOwner: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() }
+                    RequestedOwner: Blank() // { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() }
                 }));
                 
                 If(IsEmpty(Errors(Actions)),
@@ -1185,57 +1185,6 @@ Edit As screen:
         Text: =">>" & g_TheAction.ID & "<<"
         X: =100
         ZIndex: =3
-
-    TextInput2 As text:
-        Default: =""
-        Height: =77
-        Mode: =TextMode.MultiLine
-        Size: =10
-        Width: =280
-        X: =16
-        Y: =84
-        ZIndex: =4
-
-    Button1 As button:
-        Height: =21
-        OnSelect: |
-            =Set(newPost, { Statement: TextInput2.Text, PostedBy: USER.Name, PostedOn: Now()});
-            Collect(allPosts, newPost);
-            Set(myJSON, JSON(allPosts));
-        Size: =10
-        Text: ="Post"
-        Width: =76
-        X: =220
-        Y: =172
-        ZIndex: =5
-
-    TextInput2_1 As text:
-        Default: =myJSON
-        Height: =170
-        Mode: =TextMode.MultiLine
-        Size: =10
-        Width: =280
-        X: =16
-        Y: =222
-        ZIndex: =6
-
-    Button1_1 As button:
-        Height: =21
-        OnSelect: |-
-            =Clear(importedPosts);
-            ForAll(Table(ParseJSON(myJSON)),
-                Collect(importedPosts, {
-                    Statement: Text(ThisRecord.Value.Statement),
-                    PostedBy: Text(ThisRecord.Value.PostedBy),
-                    PostedOn: Text(ThisRecord.Value.PostedOn)
-                })
-            )
-        Size: =10
-        Text: ="Import"
-        Width: =76
-        X: =220
-        Y: =419
-        ZIndex: =7
 
     Toast_v2___1 As Toast_v2__:
         Message: =g_Toast

@@ -135,8 +135,8 @@ Home As screen:
                             // Close the action.
                             Patch(Actions, ThisItem, { 
                                 Status: "Open",
-                                ClosedOn: Blank(),
-                                ClosedBy: Blank()
+                                ClosedOn: Blank()
+                                //ClosedBy: Blank()
                             } );
                         
                             If(!IsBlank(ThisItem.RequestedCloser) || !IsBlank(ThisItem.Notify),
