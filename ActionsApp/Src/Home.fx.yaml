@@ -617,7 +617,7 @@ Home As screen:
 
                 grp_LatestPost As groupContainer.manualLayoutContainer:
                     Height: =Parent.Height
-                    Width: =333
+                    Width: =228
                     X: =img_Closer.X + img_Closer.Width + 20
                     ZIndex: =15
 
@@ -644,9 +644,11 @@ Home As screen:
                                 Set(g_ShowQuickPost, ThisItem.ID);
                             , // else
                             
-                                If(IsBlank(ThisItem.History),
-                                    Patch(Actions, ThisItem, { History: JSON(Table({ Statement: txt_NewPost.Text }))}),
-                                    Patch(Actions, ThisItem, { History: Mid(ThisItem.History, 0, Len(ThisItem.History)-1) & "," & JSON({ Statement: txt_NewPost.Text }) & "]" })
+                                With({tmp_NewPost: { Statement: txt_NewPost.Text, PostedBy: USER.Name, PostedOn: Now() }},
+                                    If(IsBlank(ThisItem.Progress),
+                                        Patch(Actions, ThisItem, { Progress: JSON(Table(tmp_NewPost))}),
+                                        Patch(Actions, ThisItem, { Progress: Mid(ThisItem.Progress, 1, Len(ThisItem.Progress)-1) & "," & JSON(tmp_NewPost) & "]" })
+                                    )
                                 );
                                 Set(g_ShowQuickPost, Blank());
                             )
@@ -694,10 +696,10 @@ Home As screen:
                         Size: =APP_LABELS.PrimaryText.Size - 3
                         Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
                         Text: |-
-                            =If(IsBlank(ThisItem.History), "-", Last(ForAll(Table(ParseJSON(ThisItem.History)), {
+                            =If(IsBlank(ThisItem.Progress), "-", Last(ForAll(Table(ParseJSON(ThisItem.Progress)), {
                                     Statement: Text(ThisRecord.Value.Statement),
                                     PostedBy: Text(ThisRecord.Value.PostedBy),
-                                    PostedOn: Text(ThisRecord.Value.PostedOn)
+                                    PostedOn: DateValue(ThisRecord.Value.PostedOn)
                                 }
                             )).Statement)
                             
@@ -711,6 +713,7 @@ Home As screen:
                             )*/
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =VerticalAlign.Top
+                        Visible: =!txt_NewPost.Visible
                         Width: =Parent.Width - btn_QuickPostSend.Width
                         Wrap: =APP_LABELS.PrimaryText.Wrap
                         ZIndex: =2

@@ -41,6 +41,7 @@
       "NotifyOnCompletion": "Notify",
       "Owner": "Owner",
       "Owner#Id": "Owner Id",
+      "Progress": "Progress",
       "Project": "Project",
       "Project#Id": "Project Id",
       "RequestedCloser": "RequestedCloser",
