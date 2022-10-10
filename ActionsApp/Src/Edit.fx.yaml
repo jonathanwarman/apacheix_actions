@@ -230,11 +230,11 @@ Edit As screen:
                 =// Note this is the same as the re-open button in the editor window.
                 If(g_TheAction.Status <> "Open",
                     // Close the action.
-                    Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                    /*Set(g_TheAction, Patch(Actions, g_TheAction, { 
                         Status: "Open",
                         ClosedOn: Blank(),
                         ClosedBy: Blank()
-                    }));
+                    }));*/
                 
                     If(!IsBlank(g_TheAction.RequestedCloser) || !IsBlank(g_TheAction.Notify),
                         With({Email: EmailFn.Builder({
@@ -387,15 +387,15 @@ Edit As screen:
                         Importance: rad_EditImportance.Selected.Value
                         //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
                     }));
-                        
+                    
                     If(IsEmpty(Errors(Actions)),
                 
                         // New action
                         If(tmp_NewAction,
                             If(drop_EditOwner.Selected.ID = USER.ID,
                                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                    Owner: tmp_CurrentUser // A new action owner is always set to the creator.
-                                    //RequestedOwner: Blank()
+                                    Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
+                                    RequestedOwner: Blank()
                                 }));
                             , // else
                                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
@@ -765,9 +765,9 @@ Edit As screen:
             OnSelect: |
                 =
                 // Note shouldn't need a guard against g_TheAction being Blank as the button will only be shown after a record has been created.
-                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                /*Set(g_TheAction, Patch(Actions, g_TheAction, { 
                     RequestedOwner: Blank() // { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() }
-                }));
+                }));*/
                 
                 If(IsEmpty(Errors(Actions)),
                     Set(g_EditActionSendEmail, "RevertRequestedOwner"); 
@@ -1061,7 +1061,8 @@ Edit As screen:
             HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
             Italic: =APP_BUTTONS.LittleDanger.Italic
             OnSelect: |-
-                =//RemoveIf(Actions, ID = g_TheAction.ID);
+                =RemoveIf(Actions, ID = g_TheAction.ID);
+                Set(g_TheAction, Blank());
                 Select(btn_EditCancel);
             PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
             PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft

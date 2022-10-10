@@ -77156,19 +77156,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_4.AccessibleLabel"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.txt_NewPost.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_4.AccessibleLabel",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.txt_NewPost.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_4"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.txt_NewPost"
               }
             }
           ],
@@ -77186,19 +77186,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_4.TabIndex"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.btn_QuickPostSend.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_4.TabIndex",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.btn_QuickPostSend.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_4"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.btn_QuickPostSend"
               }
             }
           ],
@@ -77216,19 +77216,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_5.AccessibleLabel"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.btn_QuickPostSend.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_5.AccessibleLabel",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.btn_QuickPostSend.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_5"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_LatestPost.btn_QuickPostSend"
               }
             }
           ],
@@ -77246,19 +77246,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_5.TabIndex"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.img_Closer.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_5.TabIndex",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.img_Closer.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_Owner.Image1_5"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.img_Closer"
               }
             }
           ],
@@ -77276,19 +77276,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.img_Closer.AccessibleLabel"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.img_Closer.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.img_Closer.AccessibleLabel",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.img_Closer.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.img_Closer"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.img_Closer"
               }
             }
           ],
@@ -77306,19 +77306,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.img_Closer.TabIndex"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_5.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.img_Closer.TabIndex",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_5.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.img_Closer"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_5"
               }
             }
           ],
@@ -77396,19 +77396,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.TabIndex"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_4.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.TabIndex",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_4.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_4"
               }
             }
           ],
@@ -77426,19 +77426,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.txt_NewPost.AccessibleLabel"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_4.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.txt_NewPost.AccessibleLabel",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_4.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.txt_NewPost"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_4"
               }
             }
           ],
@@ -77456,19 +77456,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.AccessibleLabel"
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_5.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend.AccessibleLabel",
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_5.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Home",
-                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_LatestPost.btn_QuickPostSend"
+                "type": "Home.grp_MainGallary.Gallery1.Container6.grp_OtherInfo.grp_Owner.Image1_5"
               }
             }
           ],
