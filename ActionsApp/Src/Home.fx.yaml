@@ -3,7 +3,7 @@ Home As screen:
 
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
-        Width: =1316
+        Width: =Parent.Width - Self.X
         X: =50
         Y: =100
         ZIndex: =1
@@ -1919,7 +1919,7 @@ Home As screen:
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
         DynamicWidth: =If(g_ShowMenu || g_ShowSubmitFeedbackDialog, App.Width, Sidebar_v1___1.Style.Width.Collapsed)
-        Height: =708
+        Height: =Parent.Height - Self.Y
         Menu: =APP_SIDEBAR.Menu
         MenuActions: |-
             =// See the guidance in the Menu property on how to set this up. 
@@ -2000,7 +2000,7 @@ Home As screen:
 
     Label1 As label:
         Text: |-
-            ="Logged In as: " & USER.Name & Char(10) & "v21"
+            ="Logged In as: " & USER.Name & Char(10) & "v1"
         Width: =344
         X: =575
         Y: =5
