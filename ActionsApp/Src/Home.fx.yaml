@@ -51,7 +51,7 @@ Home As screen:
 
             Container6 As groupContainer.manualLayoutContainer:
                 Fill: =APP_COLORS.LightGray
-                Height: =lbl_ActionText.Height + If(lbl_ActionDetail.Visible, lbl_ActionDetail.Height)
+                Height: =Max(lbl_ActionText.Height + If(lbl_ActionDetail.Visible, lbl_ActionDetail.Height), grp_OtherInfo.Y + grp_OtherInfo.Height)
                 Width: =Parent.TemplateWidth - 15 // 15px for scrollbar.
                 ZIndex: =1
 
@@ -233,7 +233,9 @@ Home As screen:
                     HoverColor: =Color.White
                     HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
                     Italic: =APP_BUTTONS.Primary.Italic
-                    OnSelect: =Set(g_ExpandedAction, ThisItem);
+                    OnSelect: |-
+                        =Set(g_ExpandedAction, ThisItem);
+                        Set(g_ShowQuickPost, Blank());
                     PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                     PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
                     PaddingRight: =APP_BUTTONS.Primary.PaddingRight
@@ -256,10 +258,11 @@ Home As screen:
                     ZIndex: =10
 
                 grp_OtherInfo As groupContainer.manualLayoutContainer:
-                    Height: =Parent.Height
-                    Visible: =Not(grp_OtherActionsAcceptOwnership.Visible || grp_OtherActionsConfirmClosure.Visible)
+                    Height: =30
+                    Visible: =g_ExpandedAction.ID = ThisItem.ID || Not(grp_OtherActionsAcceptOwnership.Visible || grp_OtherActionsConfirmClosure.Visible)
                     Width: =Parent.Width - Self.X
                     X: =img_Importance.X + img_Importance.Width
+                    Y: =If(g_ExpandedAction.ID = ThisItem.ID && (grp_OtherActionsAcceptOwnership.Visible || grp_OtherActionsConfirmClosure.Visible), 30, 0)
                     ZIndex: =17
 
                     grp_Owner As groupContainer.manualLayoutContainer:
@@ -705,9 +708,9 @@ Home As screen:
                                     Patch(Actions, ThisItem, { 
                                         Status: "Closed",
                                         Target: Blank(),
-                                        RequestedOwner: Blank(),
+                                        RequestedOwner: BLANK_RECORD,
                                         ClosedOn: Today(),
-                                        ClosedBy: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name }        
+                                        ClosedBy: USER_RECORD        
                                     } );
                             
                                     If(!IsBlank(ThisItem.Notify),
@@ -731,11 +734,11 @@ Home As screen:
                             // Note this is the same as the re-open button in the editor window.
                             If(ThisItem.Status <> "Open",
                                 // Close the action.
-                                /*Patch(Actions, ThisItem, { 
+                                Patch(Actions, ThisItem, { 
                                     Status: "Open",
                                     ClosedOn: Blank(),
-                                    //ClosedBy: Blank()
-                                } );*/
+                                    ClosedBy: BLANK_RECORD
+                                } );
                             
                                 If(!IsBlank(ThisItem.RequestedCloser) || !IsBlank(ThisItem.Notify),
                                     With({Email: EmailFn.Builder({
@@ -769,7 +772,7 @@ Home As screen:
                         ZIndex: =5
 
                 grp_OtherActionsAcceptOwnership As groupContainer.manualLayoutContainer:
-                    Height: =Parent.Height
+                    Height: =30
                     Visible: =ThisItem.RequestedOwner.Id = USER.ID
                     Width: =Parent.Width - Self.X
                     X: =img_Importance.X + img_Importance.Width
@@ -896,7 +899,7 @@ Home As screen:
                         ZIndex: =3
 
                 grp_OtherActionsConfirmClosure As groupContainer.manualLayoutContainer:
-                    Height: =Parent.Height
+                    Height: =30
                     Visible: =ThisItem.Status = "Pending Closure" && ThisItem.RequestedCloser.Id = USER.ID
                     Width: =Parent.Width - Self.X
                     X: =img_Importance.X + img_Importance.Width
@@ -921,6 +924,22 @@ Home As screen:
                         HoverColor: =APP_BUTTONS.BigDanger.HoverColor
                         HoverFill: =APP_BUTTONS.BigDanger.HoverFill
                         Italic: =APP_BUTTONS.BigDanger.Italic
+                        OnSelect: |-
+                            =// Close the action.
+                            Patch(Actions, g_TheAction, { 
+                                Status: "Open",
+                                RequestedCloser: BLANK_RECORD
+                            });
+                            
+                            With({Email: EmailFn.Builder({
+                                To: LookUp(People, ID = g_TheAction.Owner.Id, Email) & g_TheAction.Notify,
+                                Subject: "ACTION CLOSURE REJECTED: " & g_TheAction.Title,
+                                Header: "",
+                                Content: "", // So and so does not agree this action can be closed. Liaise with them to agree closure criteria.
+                                MinWidth: 550
+                            })},
+                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                            );
                         PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
                         PaddingRight: =APP_BUTTONS.BigDanger.PaddingRight
@@ -940,7 +959,7 @@ Home As screen:
                         Width: =80
                         X: =190
                         Y: =3
-                        ZIndex: =1
+                        ZIndex: =2
 
                     btn_ConfirmClosure As button:
                         Align: =APP_BUTTONS.Success.Align
@@ -961,6 +980,23 @@ Home As screen:
                         HoverColor: =APP_BUTTONS.Success.HoverColor
                         HoverFill: =APP_BUTTONS.Success.HoverFill
                         Italic: =APP_BUTTONS.Success.Italic
+                        OnSelect: |
+                            =// Close the action.
+                            Patch(Actions, g_TheAction, { 
+                                Status: "Closed",
+                                ClosedOn: Today(),
+                                ClosedBy: USER_RECORD
+                            });
+                            
+                            With({Email: EmailFn.Builder({
+                                To: LookUp(People, ID = g_TheAction.Owner.Id, Email) & g_TheAction.Notify,
+                                Subject: "ACTION CLOSED: " & g_TheAction.Title,
+                                Header: "",
+                                Content: "", // So and so has confirmed this action as closed.
+                                MinWidth: 550
+                            })},
+                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                            );
                         PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
                         PaddingRight: =APP_BUTTONS.Success.PaddingRight
@@ -980,7 +1016,7 @@ Home As screen:
                         Width: =80
                         X: =100
                         Y: =3
-                        ZIndex: =2
+                        ZIndex: =3
 
                     lbl_PrimaryText_9 As label:
                         Align: =APP_LABELS.PrimaryText.Align
@@ -1020,7 +1056,7 @@ Home As screen:
                         VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
                         Width: =90
                         Wrap: =APP_LABELS.PrimaryText.Wrap
-                        ZIndex: =3
+                        ZIndex: =4
 
         slide_Slider_2 As slider:
             BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor
@@ -1426,39 +1462,6 @@ Home As screen:
                 Width: =15
                 X: =th_7.X + th_7.Width -Self.Width
                 ZIndex: =10
-
-    HtmlText1 As htmlViewer:
-        Fill: =RGBA(255, 255, 255, 1)
-        Height: =246
-        HtmlText: |-
-            ="
-            <h3>Low priority actions</h3>
-            <li>Owner can close.
-            <li>No escalation notifications.
-            <li>No closure evidence.
-            <li>Owner can change target.
-            
-            <h3>Normal priority actions</h3>
-            <li>Owner can close
-            <li>Weekly reminder notifications.
-            <li>Optional nominated closer.
-            <li>No closure evidence needed. Optional after the fact if necessary.
-            
-            <h3>Important actions</h3>
-            <li>Nominated closer requested to close
-            <li>Owner required to provide closure evidence.
-            <li>Only nominated closer can modify target date.
-            <li>Daily reminder and escalation notifications.
-            
-            <p><b>Test Cases</b><br>
-            Importance and RequestedCloser are only changeable it's a new action or closer is blank, and after it's set only by the action's creator, the current closer, or the super users etc. 
-            
-            "
-        Size: =7
-        Width: =431
-        X: =915
-        Y: =478
-        ZIndex: =4
 
     btn_HomeAddAction As button:
         Align: =APP_BUTTONS.Primary.Align

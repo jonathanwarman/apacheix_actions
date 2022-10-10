@@ -13,6 +13,252 @@ Edit As screen:
             Height: =Parent.Height
             Width: =Parent.Width
 
+        btn_ReOpen As button:
+            Align: =APP_BUTTONS.LittleDanger.Align
+            BorderColor: =APP_BUTTONS.LittleDanger.BorderColor
+            BorderStyle: =APP_BUTTONS.LittleDanger.BorderStyle
+            BorderThickness: =APP_BUTTONS.LittleDanger.BorderThickness
+            Color: =APP_BUTTONS.LittleDanger.Color
+            DisabledBorderColor: =APP_BUTTONS.LittleDanger.DisabledBorderColor
+            DisabledColor: =APP_BUTTONS.LittleDanger.DisabledColor
+            DisabledFill: =APP_BUTTONS.LittleDanger.DisabledFill
+            Fill: =APP_BUTTONS.LittleDanger.Fill
+            FocusedBorderColor: =APP_BUTTONS.LittleDanger.FocusedBorderColor
+            FocusedBorderThickness: =APP_BUTTONS.LittleDanger.FocusedBorderThickness
+            Font: =APP_BUTTONS.LittleDanger.Font
+            FontWeight: =APP_BUTTONS.LittleDanger.FontWeight
+            Height: =25
+            HoverBorderColor: =APP_BUTTONS.LittleDanger.HoverBorderColor
+            HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
+            HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
+            Italic: =APP_BUTTONS.LittleDanger.Italic
+            OnSelect: |+
+                =// Note this is the same as the re-open button in the editor window.
+                If(g_TheAction.Status <> "Open",
+                    // Close the action.
+                    Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                        Status: "Open",
+                        ClosedOn: Blank(),
+                        ClosedBy: BLANK_RECORD
+                    }));
+                
+                    If(!IsBlank(g_TheAction.RequestedCloser) || !IsBlank(g_TheAction.Notify),
+                        With({Email: EmailFn.Builder({
+                            To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email) &";" & g_TheAction.Notify,
+                            Subject: "ACTION RE-OPENED: " & g_TheAction.Title,
+                            Header: "",
+                            Content: "",
+                            MinWidth: 550
+                        })},
+                            Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                        );
+                    );
+                )
+                
+                
+            PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
+            PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
+            PaddingRight: =APP_BUTTONS.LittleDanger.PaddingRight
+            PaddingTop: =APP_BUTTONS.LittleDanger.PaddingTop
+            PressedBorderColor: =APP_BUTTONS.LittleDanger.PressedBorderColor
+            PressedColor: =APP_BUTTONS.LittleDanger.PressedColor
+            PressedFill: =APP_BUTTONS.LittleDanger.PressedFill
+            RadiusBottomLeft: =APP_BUTTONS.LittleDanger.RadiusBottomLeft
+            RadiusBottomRight: =APP_BUTTONS.LittleDanger.RadiusBottomRight
+            RadiusTopLeft: =APP_BUTTONS.LittleDanger.RadiusTopLeft
+            RadiusTopRight: =APP_BUTTONS.LittleDanger.RadiusTopright
+            Size: =APP_BUTTONS.LittleDanger.Size
+            Strikethrough: =APP_BUTTONS.LittleDanger.Strikethrough
+            Text: ="Re-Open"
+            Underline: =APP_BUTTONS.LittleDanger.Underline
+            VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
+            Visible: =!IsBlank(g_TheAction) && g_TheAction.Status <> "Open"
+            Width: =100
+            X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
+            Y: =575
+            ZIndex: =2
+
+        btn_EditCancel As button:
+            Align: =APP_BUTTONS.Secondary.Align
+            BorderColor: =APP_BUTTONS.Secondary.BorderColor
+            BorderStyle: =APP_BUTTONS.Secondary.BorderStyle
+            BorderThickness: =APP_BUTTONS.Secondary.BorderThickness
+            Color: =APP_BUTTONS.Secondary.Color
+            DisabledBorderColor: =APP_BUTTONS.Secondary.DisabledBorderColor
+            DisabledColor: =APP_BUTTONS.Secondary.DisabledColor
+            DisabledFill: =APP_BUTTONS.Secondary.DisabledFill
+            Fill: =APP_BUTTONS.Secondary.Fill
+            FocusedBorderColor: =APP_BUTTONS.Secondary.FocusedBorderColor
+            FocusedBorderThickness: =APP_BUTTONS.Secondary.FocusedBorderThickness
+            Font: =APP_BUTTONS.Secondary.Font
+            FontWeight: =APP_BUTTONS.Secondary.FontWeight
+            Height: =25
+            HoverBorderColor: =APP_BUTTONS.Secondary.HoverBorderColor
+            HoverColor: =APP_BUTTONS.Secondary.HoverColor
+            HoverFill: =APP_BUTTONS.Secondary.HoverFill
+            Italic: =APP_BUTTONS.Secondary.Italic
+            OnSelect: |-
+                =// Note this is called by the Add/Update button. 
+                Reset(txt_EditActionText);
+                Reset(txt_EditActionDetail);
+                Reset(rad_EditImportance);
+                Reset(drop_EditOwner);
+                Reset(txt_ExternalOwners);
+                Reset(drop_EditCloser);
+                Reset(date_EditTarget);
+                
+                Navigate(Home);
+            PaddingBottom: =APP_BUTTONS.Secondary.PaddingBottom
+            PaddingLeft: =APP_BUTTONS.Secondary.PaddingLeft
+            PaddingRight: =APP_BUTTONS.Secondary.PaddingRight
+            PaddingTop: =APP_BUTTONS.Secondary.PaddingTop
+            PressedBorderColor: =APP_BUTTONS.Secondary.PressedBorderColor
+            PressedColor: =APP_BUTTONS.Secondary.PressedColor
+            PressedFill: =APP_BUTTONS.Secondary.PressedFill
+            RadiusBottomLeft: =APP_BUTTONS.Secondary.RadiusBottomLeft
+            RadiusBottomRight: =APP_BUTTONS.Secondary.RadiusBottomRight
+            RadiusTopLeft: =APP_BUTTONS.Secondary.RadiusTopLeft
+            RadiusTopRight: =APP_BUTTONS.Secondary.RadiusTopright
+            Size: =APP_BUTTONS.Secondary.Size
+            Strikethrough: =APP_BUTTONS.Secondary.Strikethrough
+            Text: ="Cancel"
+            Underline: =APP_BUTTONS.Secondary.Underline
+            VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
+            Width: =100
+            X: =EditScreenCardMargin
+            Y: =575
+            ZIndex: =3
+
+        btn_EditUpdate As button:
+            Align: =APP_BUTTONS.Primary.Align
+            BorderColor: =APP_BUTTONS.Primary.BorderColor
+            BorderStyle: =APP_BUTTONS.Primary.BorderStyle
+            BorderThickness: =APP_BUTTONS.Primary.BorderThickness
+            Color: =APP_BUTTONS.Primary.Color
+            DisabledBorderColor: =APP_BUTTONS.Primary.DisabledBorderColor
+            DisabledColor: =APP_BUTTONS.Primary.DisabledColor
+            DisabledFill: =APP_BUTTONS.Primary.DisabledFill
+            DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =APP_BUTTONS.Primary.Fill
+            FocusedBorderColor: =APP_BUTTONS.Primary.FocusedBorderColor
+            FocusedBorderThickness: =APP_BUTTONS.Primary.FocusedBorderThickness
+            Font: =APP_BUTTONS.Primary.Font
+            FontWeight: =APP_BUTTONS.Primary.FontWeight
+            Height: =25
+            HoverBorderColor: =APP_BUTTONS.Primary.HoverBorderColor
+            HoverColor: =APP_BUTTONS.Primary.HoverColor
+            HoverFill: =APP_BUTTONS.Primary.HoverFill
+            Italic: =APP_BUTTONS.Primary.Italic
+            OnSelect: |
+                =
+                // Data input validation
+                If(IsBlank(txt_EditActionText.Text), 
+                    Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() }),
+                
+                If(rad_EditImportance.Selected.Value = "Significant" && (IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1),
+                    Set(g_Toast, { Text: "Significant actions must have a nominated Closer.", Type: TOAST_TYPE.Error, Timestamp: Now() });
+                
+                , // Else
+                
+                    /*
+                    // Look for an existing context.
+                    UpdateContext({ varContext: LookUp('Action Contexts', Title = varContextTitle && Project.Id = varContextProject.ID && Date = varContextDate) } );
+                
+                    // New context, so create it.
+                    If(IsBlank(varContext), 
+                        UpdateContext({ varContext: Patch('Action Contexts', Defaults('Action Contexts'), {
+                            Title: If(IsBlank(varContextTitle),"None",varContextTitle),
+                            Project: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContextProject.ID, Value: varContextProject.'Name (Title)' },
+                            Date: varContextDate
+                        })})
+                    );
+                    */
+                
+                    // Temp variables to make setting Owner and Closer easier.
+                    With({         
+                        tmp_NewAction: IsBlank(g_TheAction),
+                        tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.Name },
+                        tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.Title }
+                    },
+                 
+                    
+                    Set(g_TheAction, Patch(Actions, If(tmp_NewAction, Defaults(Actions), g_TheAction), { 
+                        Title: txt_EditActionText.Text,
+                        Detail: txt_EditActionDetail.HtmlText,
+                        Status: "Open",
+                        Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),
+                        RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, Blank(), tmp_Closer),
+                        Importance: rad_EditImportance.Selected.Value
+                        //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
+                    }));
+                    
+                    If(IsEmpty(Errors(Actions)),
+                
+                        // New action
+                        If(tmp_NewAction,
+                            If(drop_EditOwner.Selected.ID = USER.ID,
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                    Owner: USER_RECORD, // A new action owner is always set to the creator.
+                                    RequestedOwner: BLANK_RECORD
+                                }));
+                            , // else
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                    Owner: USER_RECORD, // A new action owner is always set to the creator.
+                                    RequestedOwner: tmp_OwnerDropdown
+                                }));
+                                Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
+                            );
+                
+                        , // Else existing action
+                            
+                            // If the action is being taken by the current user, just set the owner.
+                            If(drop_EditOwner.Selected.ID = USER.ID,
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                    Owner: USER_RECORD
+                                }));
+                            , // else
+                                If(g_TheAction.Owner.Id <> drop_EditOwner.Selected.ID,
+                                    Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                        RequestedOwner: tmp_OwnerDropdown
+                                    }));
+                                    Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
+                                )
+                            );
+                        );
+                    );
+                        
+                    If(IsEmpty(Errors(Actions)),
+                        Set(varToast, { Text: "Saved!", Type: "Success", Timestamp: Now() });
+                        Select(btn_EditCancel);
+                
+                    , // Else
+                        Set(varToast, { Text: Concat(Errors(Actions), Column & ": " & Message), Type: "Error", Timestamp: Now() });
+                    );
+                
+                    ); // end with
+                )); // end if
+            PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+            PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+            PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+            PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+            PressedBorderColor: =APP_BUTTONS.Primary.PressedBorderColor
+            PressedColor: =APP_BUTTONS.Primary.PressedColor
+            PressedFill: =APP_BUTTONS.Primary.PressedFill
+            RadiusBottomLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+            RadiusBottomRight: =APP_BUTTONS.Primary.RadiusBottomRight
+            RadiusTopLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+            RadiusTopRight: =APP_BUTTONS.Primary.RadiusTopright
+            Size: =APP_BUTTONS.Primary.Size
+            Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+            Text: ="Done"
+            Underline: =APP_BUTTONS.Primary.Underline
+            VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
+            Visible: =!btn_ReOpen.Visible
+            Width: =100
+            X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
+            Y: =575
+            ZIndex: =4
+
         date_EditTarget As datepicker:
             BorderColor: =APP_INPUT_CONTROLS.DatePicker.BorderColor
             BorderStyle: =APP_INPUT_CONTROLS.DatePicker.BorderStyle
@@ -41,7 +287,7 @@ Edit As screen:
             Width: =160
             X: =EditScreenCardMargin
             Y: =514
-            ZIndex: =2
+            ZIndex: =5
 
         txt_EditActionDetail As richTextEditor:
             BorderColor: =If(And(!IsBlank(g_TheAction), g_TheAction.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
@@ -52,7 +298,7 @@ Edit As screen:
             Width: =Parent.Width - 2*Self.X
             X: =EditScreenCardMargin
             Y: =212
-            ZIndex: =3
+            ZIndex: =6
 
         txt_EditActionText As text:
             Align: =APP_INPUT_CONTROLS.Textbox.Align
@@ -97,7 +343,7 @@ Edit As screen:
             Width: =Parent.Width - 2*Self.X - 80 // Minus 80 for Delete Action button
             X: =EditScreenCardMargin
             Y: =69
-            ZIndex: =4
+            ZIndex: =7
 
         drop_EditOwner As dropdown:
             AllowEmptySelection: =true
@@ -152,7 +398,7 @@ Edit As screen:
             Width: =200
             X: =EditScreenCardMargin
             Y: =415
-            ZIndex: =5
+            ZIndex: =8
 
         rad_EditImportance As radio:
             Align: =APP_INPUT_CONTROLS.Radio.Align
@@ -205,254 +451,6 @@ Edit As screen:
             Width: =327
             X: =100 + (Parent.Width / 100 * 5) // 5% margins 
             Y: =152
-            ZIndex: =6
-
-        btn_ReOpen As button:
-            Align: =APP_BUTTONS.LittleDanger.Align
-            BorderColor: =APP_BUTTONS.LittleDanger.BorderColor
-            BorderStyle: =APP_BUTTONS.LittleDanger.BorderStyle
-            BorderThickness: =APP_BUTTONS.LittleDanger.BorderThickness
-            Color: =APP_BUTTONS.LittleDanger.Color
-            DisabledBorderColor: =APP_BUTTONS.LittleDanger.DisabledBorderColor
-            DisabledColor: =APP_BUTTONS.LittleDanger.DisabledColor
-            DisabledFill: =APP_BUTTONS.LittleDanger.DisabledFill
-            Fill: =APP_BUTTONS.LittleDanger.Fill
-            FocusedBorderColor: =APP_BUTTONS.LittleDanger.FocusedBorderColor
-            FocusedBorderThickness: =APP_BUTTONS.LittleDanger.FocusedBorderThickness
-            Font: =APP_BUTTONS.LittleDanger.Font
-            FontWeight: =APP_BUTTONS.LittleDanger.FontWeight
-            Height: =25
-            HoverBorderColor: =APP_BUTTONS.LittleDanger.HoverBorderColor
-            HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
-            HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
-            Italic: =APP_BUTTONS.LittleDanger.Italic
-            OnSelect: |+
-                =// Note this is the same as the re-open button in the editor window.
-                If(g_TheAction.Status <> "Open",
-                    // Close the action.
-                    /*Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                        Status: "Open",
-                        ClosedOn: Blank(),
-                        ClosedBy: Blank()
-                    }));*/
-                
-                    If(!IsBlank(g_TheAction.RequestedCloser) || !IsBlank(g_TheAction.Notify),
-                        With({Email: EmailFn.Builder({
-                            To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email) &";" & g_TheAction.Notify,
-                            Subject: "ACTION RE-OPENED: " & g_TheAction.Title,
-                            Header: "",
-                            Content: "",
-                            MinWidth: 550
-                        })},
-                            Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                        );
-                    );
-                )
-                
-                
-            PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
-            PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
-            PaddingRight: =APP_BUTTONS.LittleDanger.PaddingRight
-            PaddingTop: =APP_BUTTONS.LittleDanger.PaddingTop
-            PressedBorderColor: =APP_BUTTONS.LittleDanger.PressedBorderColor
-            PressedColor: =APP_BUTTONS.LittleDanger.PressedColor
-            PressedFill: =APP_BUTTONS.LittleDanger.PressedFill
-            RadiusBottomLeft: =APP_BUTTONS.LittleDanger.RadiusBottomLeft
-            RadiusBottomRight: =APP_BUTTONS.LittleDanger.RadiusBottomRight
-            RadiusTopLeft: =APP_BUTTONS.LittleDanger.RadiusTopLeft
-            RadiusTopRight: =APP_BUTTONS.LittleDanger.RadiusTopright
-            Size: =APP_BUTTONS.LittleDanger.Size
-            Strikethrough: =APP_BUTTONS.LittleDanger.Strikethrough
-            Text: ="Re-Open"
-            Underline: =APP_BUTTONS.LittleDanger.Underline
-            VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
-            Visible: =!IsBlank(g_TheAction) && g_TheAction.Status <> "Open"
-            Width: =100
-            X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
-            Y: =575
-            ZIndex: =7
-
-        btn_EditCancel As button:
-            Align: =APP_BUTTONS.Secondary.Align
-            BorderColor: =APP_BUTTONS.Secondary.BorderColor
-            BorderStyle: =APP_BUTTONS.Secondary.BorderStyle
-            BorderThickness: =APP_BUTTONS.Secondary.BorderThickness
-            Color: =APP_BUTTONS.Secondary.Color
-            DisabledBorderColor: =APP_BUTTONS.Secondary.DisabledBorderColor
-            DisabledColor: =APP_BUTTONS.Secondary.DisabledColor
-            DisabledFill: =APP_BUTTONS.Secondary.DisabledFill
-            Fill: =APP_BUTTONS.Secondary.Fill
-            FocusedBorderColor: =APP_BUTTONS.Secondary.FocusedBorderColor
-            FocusedBorderThickness: =APP_BUTTONS.Secondary.FocusedBorderThickness
-            Font: =APP_BUTTONS.Secondary.Font
-            FontWeight: =APP_BUTTONS.Secondary.FontWeight
-            Height: =25
-            HoverBorderColor: =APP_BUTTONS.Secondary.HoverBorderColor
-            HoverColor: =APP_BUTTONS.Secondary.HoverColor
-            HoverFill: =APP_BUTTONS.Secondary.HoverFill
-            Italic: =APP_BUTTONS.Secondary.Italic
-            OnSelect: |-
-                =// Note this is called by the Add/Update button. 
-                Reset(txt_EditActionText);
-                Reset(txt_EditActionDetail);
-                Reset(rad_EditImportance);
-                Reset(drop_EditOwner);
-                Reset(txt_ExternalOwners);
-                Reset(drop_EditCloser);
-                Reset(date_EditTarget);
-                
-                Navigate(Home);
-            PaddingBottom: =APP_BUTTONS.Secondary.PaddingBottom
-            PaddingLeft: =APP_BUTTONS.Secondary.PaddingLeft
-            PaddingRight: =APP_BUTTONS.Secondary.PaddingRight
-            PaddingTop: =APP_BUTTONS.Secondary.PaddingTop
-            PressedBorderColor: =APP_BUTTONS.Secondary.PressedBorderColor
-            PressedColor: =APP_BUTTONS.Secondary.PressedColor
-            PressedFill: =APP_BUTTONS.Secondary.PressedFill
-            RadiusBottomLeft: =APP_BUTTONS.Secondary.RadiusBottomLeft
-            RadiusBottomRight: =APP_BUTTONS.Secondary.RadiusBottomRight
-            RadiusTopLeft: =APP_BUTTONS.Secondary.RadiusTopLeft
-            RadiusTopRight: =APP_BUTTONS.Secondary.RadiusTopright
-            Size: =APP_BUTTONS.Secondary.Size
-            Strikethrough: =APP_BUTTONS.Secondary.Strikethrough
-            Text: ="Cancel"
-            Underline: =APP_BUTTONS.Secondary.Underline
-            VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
-            Width: =100
-            X: =EditScreenCardMargin
-            Y: =575
-            ZIndex: =8
-
-        btn_EditUpdate As button:
-            Align: =APP_BUTTONS.Primary.Align
-            BorderColor: =APP_BUTTONS.Primary.BorderColor
-            BorderStyle: =APP_BUTTONS.Primary.BorderStyle
-            BorderThickness: =APP_BUTTONS.Primary.BorderThickness
-            Color: =APP_BUTTONS.Primary.Color
-            DisabledBorderColor: =APP_BUTTONS.Primary.DisabledBorderColor
-            DisabledColor: =APP_BUTTONS.Primary.DisabledColor
-            DisabledFill: =APP_BUTTONS.Primary.DisabledFill
-            DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
-            Fill: =APP_BUTTONS.Primary.Fill
-            FocusedBorderColor: =APP_BUTTONS.Primary.FocusedBorderColor
-            FocusedBorderThickness: =APP_BUTTONS.Primary.FocusedBorderThickness
-            Font: =APP_BUTTONS.Primary.Font
-            FontWeight: =APP_BUTTONS.Primary.FontWeight
-            Height: =25
-            HoverBorderColor: =APP_BUTTONS.Primary.HoverBorderColor
-            HoverColor: =APP_BUTTONS.Primary.HoverColor
-            HoverFill: =APP_BUTTONS.Primary.HoverFill
-            Italic: =APP_BUTTONS.Primary.Italic
-            OnSelect: |
-                =
-                // Data input validation
-                If(IsBlank(txt_EditActionText.Text), 
-                    Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() }),
-                
-                If(rad_EditImportance.Selected.Value = "Significant" && (IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1),
-                    Set(g_Toast, { Text: "Significant actions must have a nominated Closer.", Type: TOAST_TYPE.Error, Timestamp: Now() });
-                
-                , // Else
-                
-                    /*
-                    // Look for an existing context.
-                    UpdateContext({ varContext: LookUp('Action Contexts', Title = varContextTitle && Project.Id = varContextProject.ID && Date = varContextDate) } );
-                
-                    // New context, so create it.
-                    If(IsBlank(varContext), 
-                        UpdateContext({ varContext: Patch('Action Contexts', Defaults('Action Contexts'), {
-                            Title: If(IsBlank(varContextTitle),"None",varContextTitle),
-                            Project: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContextProject.ID, Value: varContextProject.'Name (Title)' },
-                            Date: varContextDate
-                        })})
-                    );
-                    */
-                
-                    // Temp variables to make setting Owner and Closer easier.
-                    With({         
-                        tmp_NewAction: IsBlank(g_TheAction),
-                        //tmp_Blank: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() },
-                        tmp_CurrentUser: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name },
-                        tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.Name },
-                        tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.Title }
-                    },
-                 
-                    
-                    Set(g_TheAction, Patch(Actions, If(tmp_NewAction, Defaults(Actions), g_TheAction), { 
-                        Title: txt_EditActionText.Text,
-                        Detail: txt_EditActionDetail.HtmlText,
-                        Status: "Open",
-                        Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),
-                        RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, Blank(), tmp_Closer),
-                        Importance: rad_EditImportance.Selected.Value
-                        //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
-                    }));
-                    
-                    If(IsEmpty(Errors(Actions)),
-                
-                        // New action
-                        If(tmp_NewAction,
-                            If(drop_EditOwner.Selected.ID = USER.ID,
-                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                    Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
-                                    RequestedOwner: Blank()
-                                }));
-                            , // else
-                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                    Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
-                                    RequestedOwner: tmp_OwnerDropdown
-                                }));
-                                Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
-                            );
-                
-                        , // Else existing action
-                            
-                            // If the action is being taken by the current user, just set the owner.
-                            If(drop_EditOwner.Selected.ID = USER.ID,
-                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                    Owner: tmp_CurrentUser
-                                }));
-                            , // else
-                                If(g_TheAction.Owner.Id <> drop_EditOwner.Selected.ID,
-                                    Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                        RequestedOwner: tmp_OwnerDropdown
-                                    }));
-                                    Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
-                                )
-                            );
-                        );
-                    );
-                        
-                    If(IsEmpty(Errors(Actions)),
-                        Set(varToast, { Text: "Saved!", Type: "Success", Timestamp: Now() });
-                        Select(btn_EditCancel);
-                
-                    , // Else
-                        Set(varToast, { Text: Concat(Errors(Actions), Column & ": " & Message), Type: "Error", Timestamp: Now() });
-                    );
-                
-                    ); // end with
-                )); // end if
-            PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
-            PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
-            PaddingRight: =APP_BUTTONS.Primary.PaddingRight
-            PaddingTop: =APP_BUTTONS.Primary.PaddingTop
-            PressedBorderColor: =APP_BUTTONS.Primary.PressedBorderColor
-            PressedColor: =APP_BUTTONS.Primary.PressedColor
-            PressedFill: =APP_BUTTONS.Primary.PressedFill
-            RadiusBottomLeft: =APP_BUTTONS.Primary.RadiusTopLeft
-            RadiusBottomRight: =APP_BUTTONS.Primary.RadiusBottomRight
-            RadiusTopLeft: =APP_BUTTONS.Primary.RadiusTopLeft
-            RadiusTopRight: =APP_BUTTONS.Primary.RadiusTopright
-            Size: =APP_BUTTONS.Primary.Size
-            Strikethrough: =APP_BUTTONS.Primary.Strikethrough
-            Text: ="Done"
-            Underline: =APP_BUTTONS.Primary.Underline
-            VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
-            Visible: =!btn_ReOpen.Visible
-            Width: =100
-            X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
-            Y: =575
             ZIndex: =9
 
         lbl_SecondaryText_3 As label:
@@ -699,7 +697,7 @@ Edit As screen:
             Wrap: =APP_LABELS.SecondaryText.Wrap
             X: =EditScreenCardMargin
             Y: =448
-            ZIndex: =19
+            ZIndex: =15
 
         lbl_PrimaryText_3 As label:
             Align: =APP_LABELS.PrimaryText.Align
@@ -741,7 +739,7 @@ Edit As screen:
             Wrap: =APP_LABELS.PrimaryText.Wrap
             X: =EditScreenCardMargin
             Y: =464
-            ZIndex: =22
+            ZIndex: =16
 
         btn_CancelRequestedOwner As button:
             Align: =APP_BUTTONS.LittleDanger.Align
@@ -765,9 +763,9 @@ Edit As screen:
             OnSelect: |
                 =
                 // Note shouldn't need a guard against g_TheAction being Blank as the button will only be shown after a record has been created.
-                /*Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                    RequestedOwner: Blank() // { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() }
-                }));*/
+                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                    RequestedOwner: BLANK_RECORD
+                }));
                 
                 If(IsEmpty(Errors(Actions)),
                     Set(g_EditActionSendEmail, "RevertRequestedOwner"); 
@@ -797,14 +795,14 @@ Edit As screen:
             Width: =70
             X: =drop_EditOwner.X + drop_EditOwner.Width + 15
             Y: =400
-            ZIndex: =23
+            ZIndex: =17
 
         grp_Closer As groupContainer.manualLayoutContainer:
             Height: =46
             Width: =241
             X: =Parent.Width -Self.Width -EditScreenCardMargin
             Y: =448
-            ZIndex: =24
+            ZIndex: =18
 
             drop_EditCloser As dropdown:
                 AllowEmptySelection: =true
@@ -955,7 +953,7 @@ Edit As screen:
             Width: =241
             X: =Parent.Width -Self.Width -EditScreenCardMargin
             Y: =395
-            ZIndex: =27
+            ZIndex: =19
 
             lbl_SecondaryText_11 As label:
                 Align: =APP_LABELS.SecondaryText.Align
@@ -1083,14 +1081,14 @@ Edit As screen:
             Width: =70
             X: =Parent.Width -Self.Width - EditScreenCardMargin
             Y: =69
-            ZIndex: =28
+            ZIndex: =20
 
         grp_Progress As groupContainer.manualLayoutContainer:
             Height: =50
             Width: =332
             X: =294
             Y: =500
-            ZIndex: =31
+            ZIndex: =21
 
             Icon3_3 As icon.EmojiSmile:
                 BorderColor: =APP_BUTTONS.Icon.BorderColor

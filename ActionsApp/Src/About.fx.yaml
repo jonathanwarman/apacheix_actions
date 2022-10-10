@@ -1,0 +1,35 @@
+About As screen:
+
+    HtmlText1 As htmlViewer:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =246
+        HtmlText: |-
+            ="
+            <h3>Low priority actions</h3>
+            <li>Owner can close.
+            <li>No escalation notifications.
+            <li>No closure evidence.
+            <li>Owner can change target.
+            
+            <h3>Normal priority actions</h3>
+            <li>Owner can close
+            <li>Weekly reminder notifications.
+            <li>Optional nominated closer.
+            <li>No closure evidence needed. Optional after the fact if necessary.
+            
+            <h3>Important actions</h3>
+            <li>Nominated closer requested to close
+            <li>Owner required to provide closure evidence.
+            <li>Only nominated closer can modify target date.
+            <li>Daily reminder and escalation notifications.
+            
+            <p><b>Test Cases</b><br>
+            Importance and RequestedCloser are only changeable it's a new action or closer is blank, and after it's set only by the action's creator, the current closer, or the super users etc. 
+            
+            "
+        Size: =7
+        Width: =431
+        X: =915
+        Y: =478
+        ZIndex: =1
+
