@@ -23,6 +23,18 @@ App As appinfo:
             LookUp(People, Email = User().Email),
             LookUp(People, ID = Param("TestUserId"))
         );
+        
+        USER2 = With({ tmp_UserRecord: LookUp(People, If(IsBlank(Param("TestUserId")), Email = User().Email, ID = Param("TestUserId"))) },
+            { 
+                ID: tmp_UserRecord.ID, 
+                Name: tmp_UserRecord.Name, 
+                Email: tmp_UserRecord.Email, 
+                Image: If(!IsBlank(tmp_UserRecord.Email) && !IsEmpty(Office365Users.SearchUserV2({searchTerm:tmp_UserRecord.Email}).value) && Office365Users.UserPhotoMetadata(tmp_UserRecord.Email).HasPhoto, 
+                    Office365Users.UserPhotoV2(tmp_UserRecord.Email)
+                )
+            }
+        );
+        
         USER_RECORD = { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name };
         
         BLANK_RECORD =  { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() };

@@ -1927,11 +1927,6 @@ Home As screen:
             Switch(Number,
                 1, Notify("Hello")
             )
-        OnReset: |-
-            =Set(APP_COLORS, Sidebar_v1___1.Style.Colors);
-            Set(APP_BUTTONS,Sidebar_v1___1.Style.Buttons);
-            Set(APP_INPUT_CONTROLS, Sidebar_v1___1.Style.Controls);
-            Set(APP_LABELS, Sidebar_v1___1.Style.Labels);
         Style: =APP_SIDEBAR.Style
         Visible: =If(App.Width < 400, false, true)
         Width: =Sidebar_v1___1.DynamicWidth
@@ -1944,14 +1939,15 @@ Home As screen:
         AppURL: =APP_URL
         DynamicHeight: =If(g_ShowBetaBar, Header_v2___1.Style.Height.ExpandedHeader, Header_v2___1.Style.Height.HeaderOnly)
         Fill: =Header_v2___1.Style.Fill
-        OnReset: =Set(g_ShowBetaBar, Header_v2___1.AppRelease.Type = "Beta")
+        Style: =APP_HEADER
+        User: =USER2
         ZIndex: =5
 
     Image1_7 As image:
         Height: =40
         Image: |
             =
-            With({tmp_Owner: USER},
+            With({tmp_Owner: USER2},
                 If(!IsBlank(tmp_Owner.Email) && !IsEmpty(Office365Users.SearchUserV2({searchTerm:tmp_Owner.Email}).value) && Office365Users.UserPhotoMetadata(tmp_Owner.Email).HasPhoto, 
                     Office365Users.UserPhotoV2(tmp_Owner.Email)
                 , // else
@@ -2001,7 +1997,7 @@ Home As screen:
 
     Label1 As label:
         Text: |-
-            ="Logged In as: " & USER.Name & Char(10) & "v4"
+            ="Logged In as: " & USER.Name & Char(10) & "v4" & USER2.Name
         Width: =344
         X: =575
         Y: =5
