@@ -4,7 +4,7 @@ Home As screen:
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
         Width: =Parent.Width - Self.X
-        X: =50
+        X: =If(App.Width < 400, 0, 50)
         Y: =100
         ZIndex: =1
 
@@ -1933,6 +1933,7 @@ Home As screen:
             Set(APP_INPUT_CONTROLS, Sidebar_v1___1.Style.Controls);
             Set(APP_LABELS, Sidebar_v1___1.Style.Labels);
         Style: =APP_SIDEBAR.Style
+        Visible: =If(App.Width < 400, false, true)
         Width: =Sidebar_v1___1.DynamicWidth
         Y: =60
         ZIndex: =4
@@ -2000,7 +2001,7 @@ Home As screen:
 
     Label1 As label:
         Text: |-
-            ="Logged In as: " & USER.Name & Char(10) & "v3"
+            ="Logged In as: " & USER.Name & Char(10) & "v4"
         Width: =344
         X: =575
         Y: =5
