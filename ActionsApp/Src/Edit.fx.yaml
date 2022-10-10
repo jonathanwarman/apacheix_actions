@@ -1,7 +1,6 @@
 Edit As screen:
     OnVisible: |-
         =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee", ID <> g_TheAction.Owner.Id), "ID", "Title"));
-        Set(g_CurrentAction, g_TheAction);
 
     EditPanel As groupContainer.manualLayoutContainer:
         Height: =631
@@ -368,36 +367,35 @@ Edit As screen:
                 
                     // Temp variables to make setting Owner and Closer easier.
                     With({         
-                        tmp_ActionRecord: If(IsBlank(g_TheAction), Defaults(Actions), g_TheAction),
-                        tmp_Blank: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() },
+                        tmp_NewAction: IsBlank(g_TheAction),
+                        //tmp_Blank: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() },
                         tmp_CurrentUser: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name },
                         tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.Name },
                         tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.Title }
                     },
                  
                     
-                    Set(g_TheAction, Patch(Actions, tmp_ActionRecord, { 
+                    Set(g_TheAction, Patch(Actions, If(tmp_NewAction, Defaults(Actions), g_TheAction), { 
                         Title: txt_EditActionText.Text,
                         Detail: txt_EditActionDetail.HtmlText,
                         Status: "Open",
                         Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),
-                        RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, tmp_Blank, tmp_Closer),
+                        RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, Blank(), tmp_Closer),
                         Importance: rad_EditImportance.Selected.Value
                         //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
                     }));
                         
-                
                     If(IsEmpty(Errors(Actions)),
                 
                         // New action
-                        If(IsBlank(g_TheAction),
+                        If(tmp_NewAction,
                             If(drop_EditOwner.Selected.ID = USER.ID,
-                                Set(g_TheAction, Patch(Actions, Defaults(Actions), { 
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
                                     Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
-                                    RequestedOwner: tmp_Blank
+                                    RequestedOwner: Blank()
                                 }));
                             , // else
-                                Set(g_TheAction, Patch(Actions, Defaults(Actions), { 
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
                                     Owner: tmp_CurrentUser, // A new action owner is always set to the creator.
                                     RequestedOwner: tmp_OwnerDropdown
                                 }));
@@ -1105,18 +1103,96 @@ Edit As screen:
         Width: =100
         ZIndex: =3
 
-    Label3 As label:
-        Text: =">>" & g_CurrentAction.ID & "<<"
-        X: =235
-        ZIndex: =4
-
     Label3_1 As label:
         Text: =">>" & g_TheAction.ID & "<<"
         X: =100
         ZIndex: =5
 
-    Label3_2 As label:
-        Text: =">>" & IsBlank(g_CurrentAction) & "<<"
-        X: =337
+    TextInput2 As text:
+        Default: =""
+        Height: =77
+        Mode: =TextMode.MultiLine
+        Size: =10
+        Width: =280
+        X: =16
+        Y: =84
         ZIndex: =6
+
+    Button1 As button:
+        Height: =21
+        OnSelect: |
+            =Set(newPost, { Statement: TextInput2.Text, PostedBy: USER.Name, PostedOn: Now()});
+            Collect(allPosts, newPost);
+            Set(myJSON, JSON(allPosts));
+        Size: =10
+        Text: ="Post"
+        Width: =76
+        X: =220
+        Y: =172
+        ZIndex: =7
+
+    TextInput2_1 As text:
+        Default: =myJSON
+        Height: =170
+        Mode: =TextMode.MultiLine
+        Size: =10
+        Width: =280
+        X: =16
+        Y: =222
+        ZIndex: =8
+
+    Gallery2 As gallery.galleryVertical:
+        Height: =202
+        Items: =importedPosts
+        Layout: =Layout.Vertical
+        TemplateSize: =40
+        Width: =334
+        X: =16
+        Y: =468
+        ZIndex: =9
+
+        Label3 As label:
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: =ThisItem.Statement
+            VerticalAlign: =VerticalAlign.Top
+            Width: =180
+            ZIndex: =1
+
+        Label3_2 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: =ThisItem.PostedBy
+            Width: =142
+            X: =180
+            ZIndex: =2
+
+        Label3_3 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: =ThisItem.PostedOn
+            Width: =143
+            X: =180
+            Y: =20
+            ZIndex: =3
+
+    Button1_1 As button:
+        Height: =21
+        OnSelect: |-
+            =Clear(importedPosts);
+            ForAll(Table(ParseJSON(myJSON)),
+                Collect(importedPosts, {
+                    Statement: Text(ThisRecord.Value.Statement),
+                    PostedBy: Text(ThisRecord.Value.PostedBy),
+                    PostedOn: Text(ThisRecord.Value.PostedOn)
+                })
+            )
+        Size: =10
+        Text: ="Import"
+        Width: =76
+        X: =220
+        Y: =419
+        ZIndex: =10
 
