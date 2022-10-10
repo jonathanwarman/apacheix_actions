@@ -24,18 +24,6 @@ Home As screen:
                 Width: =Parent.TemplateWidth - 15 // 15px for scrollbar.
                 ZIndex: =1
 
-                debug As label:
-                    Fill: =RGBA(255, 255, 214, 1)
-                    Height: =Parent.Height
-                    Size: =6
-                    Text: |-
-                        =//ThisItem.RequestedCloser.Value
-                        (g_TheAction.ID <> ThisItem.ID) & "+" & (g_TheAction.ID = ThisItem.ID)
-                    VerticalAlign: =VerticalAlign.Top
-                    Width: =10
-                    X: =Parent.Width -Self.Width
-                    ZIndex: =1
-
                 img_Importance As image:
                     Height: =27
                     Image: |-
@@ -92,7 +80,7 @@ Home As screen:
                     Underline: =APP_LABELS.PrimaryText.Underline
                     VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
                     Width: |
-                        =If(App.Width < 500, 300, slide_Slider_2.Value)
+                        =Max(100, slide_Slider_2.Value)
                     Wrap: =tog_WrapActionText.Value
                     ZIndex: =4
 
@@ -1946,7 +1934,7 @@ Home As screen:
     Label1 As label:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
-        Text: ="v5"
+        Text: ="v6"
         Width: =100
         X: =336
         Y: =5
