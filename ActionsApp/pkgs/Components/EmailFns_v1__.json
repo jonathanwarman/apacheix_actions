@@ -61,7 +61,7 @@
         "Name": "HtmlText2",
         "Parent": "EmailFns_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 143,
+        "PublishOrderIndex": 144,
         "Rules": [
           {
             "Category": "Data",
@@ -281,7 +281,7 @@
         "Name": "Label2_1",
         "Parent": "EmailFns_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 144,
+        "PublishOrderIndex": 145,
         "Rules": [
           {
             "Category": "Data",

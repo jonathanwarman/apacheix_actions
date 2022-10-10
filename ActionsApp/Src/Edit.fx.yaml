@@ -347,8 +347,11 @@ Edit As screen:
                 =
                 // Data input validation
                 If(IsBlank(txt_EditActionText.Text), 
-                    Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() });
-                    
+                    Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() }),
+                
+                If(rad_EditImportance.Selected.Value = "Significant" && (IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1),
+                    Set(g_Toast, { Text: "Significant actions must have a nominated Closer.", Type: TOAST_TYPE.Error, Timestamp: Now() });
+                
                 , // Else
                 
                     /*
@@ -429,7 +432,7 @@ Edit As screen:
                     );
                 
                     ); // end with
-                ); // end if
+                )); // end if
             PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
             PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
             PaddingRight: =APP_BUTTONS.Primary.PaddingRight
@@ -1162,12 +1165,6 @@ Edit As screen:
                 Wrap: =APP_LABELS.PrimaryText.Wrap
                 ZIndex: =2
 
-    Toast_v2___1 As Toast_v2__:
-        Message: =g_Toast
-        Width: =Parent.Width
-        Y: =Self.DynamicY
-        ZIndex: =2
-
     fn_EditActionSendEmails As button:
         Height: =20
         OnSelect: |
@@ -1182,12 +1179,12 @@ Edit As screen:
         Size: =10
         Text: ="Send Emails"
         Width: =100
-        ZIndex: =3
+        ZIndex: =2
 
     Label3_1 As label:
         Text: =">>" & g_TheAction.ID & "<<"
         X: =100
-        ZIndex: =5
+        ZIndex: =3
 
     TextInput2 As text:
         Default: =""
@@ -1197,7 +1194,7 @@ Edit As screen:
         Width: =280
         X: =16
         Y: =84
-        ZIndex: =6
+        ZIndex: =4
 
     Button1 As button:
         Height: =21
@@ -1210,7 +1207,7 @@ Edit As screen:
         Width: =76
         X: =220
         Y: =172
-        ZIndex: =7
+        ZIndex: =5
 
     TextInput2_1 As text:
         Default: =myJSON
@@ -1220,7 +1217,7 @@ Edit As screen:
         Width: =280
         X: =16
         Y: =222
-        ZIndex: =8
+        ZIndex: =6
 
     Button1_1 As button:
         Height: =21
@@ -1238,5 +1235,11 @@ Edit As screen:
         Width: =76
         X: =220
         Y: =419
-        ZIndex: =10
+        ZIndex: =7
+
+    Toast_v2___1 As Toast_v2__:
+        Message: =g_Toast
+        Width: =Parent.Width
+        Y: =Self.DynamicY
+        ZIndex: =8
 

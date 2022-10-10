@@ -19,7 +19,10 @@ App As appinfo:
             IsSuperUser: First(Split(Lower(User().Email), "@")).Result in ["jonathan.warman", "andrew.page", "jeff.moreton", "john.marsh", "andy.north", "mike.gruber"]
         };
         
-        USER = LookUp(People, Email = User().Email);
+         USER = If(IsBlank(Param("TestUserId")),
+            LookUp(People, Email = User().Email),
+            LookUp(People, ID = Param("TestUserId"))
+         );
         
         // Use one of the Toast components and get the Toast types. This ensures the toasts types are always up-to-date.
         // From Toast_v2...
