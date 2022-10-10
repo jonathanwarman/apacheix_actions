@@ -798,15 +798,15 @@ Home As screen:
                         HoverFill: =APP_BUTTONS.BigDanger.HoverFill
                         Italic: =APP_BUTTONS.BigDanger.Italic
                         OnSelect: |-
-                            =With({tmp_OriginalRequestedOwner: g_TheAction.RequestedOwner},
+                            =With({tmp_OriginalRequestedOwner: ThisItem.RequestedOwner},
                                 
-                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                Patch(Actions, ThisItem, { 
                                     RequestedOwner: BLANK_RECORD
-                                }));
+                                });
                             
                                 With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalRequestedOwner.Id, Email) & g_TheAction.Notify,
-                                    Subject: "ACTION TRANSFER REJECTED: " & g_TheAction.Title,
+                                    To: LookUp(People, ID = tmp_OriginalRequestedOwner.Id, Email) & ThisItem.Notify,
+                                    Subject: "ACTION TRANSFER REJECTED: " & ThisItem.Title,
                                     Header: "",
                                     Content: "", // The requested person would not take ownership of the action. Liaise with the person to agree responsibility for this action.
                                     MinWidth: 550
@@ -855,16 +855,16 @@ Home As screen:
                         HoverFill: =APP_BUTTONS.Success.HoverFill
                         Italic: =APP_BUTTONS.Success.Italic
                         OnSelect: |-
-                            =With({tmp_OriginalOwner: g_TheAction.Owner},
+                            =With({tmp_OriginalOwner: ThisItem.Owner},
                                 
-                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                Patch(Actions, ThisItem, { 
                                     Owner: USER_RECORD,
                                     RequestedOwner: BLANK_RECORD
-                                }));
+                                });
                             
                                 With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalOwner.Id, Email) & g_TheAction.Notify,
-                                    Subject: "ACTION TRANSFERED: " & g_TheAction.Title,
+                                    To: LookUp(People, ID = tmp_OriginalOwner.Id, Email) & ThisItem.Notify,
+                                    Subject: "ACTION TRANSFERED: " & ThisItem.Title,
                                     Header: "",
                                     Content: "", // You are no longer the owner
                                     MinWidth: 550
@@ -939,6 +939,46 @@ Home As screen:
                     Width: =Parent.Width - Self.X
                     X: =img_Importance.X + img_Importance.Width
                     ZIndex: =19
+
+                    lbl_PrimaryText_10 As label:
+                        Align: =APP_LABELS.PrimaryText.Align
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        Height: =Parent.Height
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size - 4
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: |-
+                            ="Evidence: " & ThisItem.ClosureEvidence
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                        Width: =300
+                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        X: =280
+                        ZIndex: =1
 
                     btn_RejectClosure As button:
                         Align: =APP_BUTTONS.BigDanger.Align
