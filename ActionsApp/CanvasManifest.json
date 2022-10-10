@@ -111,6 +111,7 @@
   "ScreenOrder": [
     "Home",
     "Edit",
+    "ProgressHistory",
     "Loading",
     "Screen2"
   ]

@@ -1081,6 +1081,87 @@ Edit As screen:
             Y: =69
             ZIndex: =28
 
+        grp_Progress As groupContainer.manualLayoutContainer:
+            Height: =50
+            Width: =332
+            X: =294
+            Y: =500
+            ZIndex: =31
+
+            Icon3_3 As icon.EmojiSmile:
+                BorderColor: =APP_BUTTONS.Icon.BorderColor
+                BorderStyle: =APP_BUTTONS.Icon.BorderStyle
+                BorderThickness: =APP_BUTTONS.Icon.BorderThickness
+                Color: =APP_BUTTONS.Icon.Color
+                DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
+                DisabledColor: =APP_BUTTONS.Icon.DisabledColor
+                DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+                Fill: =APP_BUTTONS.Icon.Fill
+                FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
+                FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
+                Height: =39
+                HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
+                HoverColor: =APP_BUTTONS.Icon.HoverColor
+                HoverFill: =APP_BUTTONS.Icon.HoverFill
+                Icon: =Icon.Post
+                OnSelect: =Navigate(ProgressHistory);
+                PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
+                PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
+                PaddingRight: =APP_BUTTONS.Icon.PaddingRight
+                PaddingTop: =APP_BUTTONS.Icon.PaddingTop
+                PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
+                PressedColor: =APP_BUTTONS.Icon.PressedColor
+                PressedFill: =APP_BUTTONS.Icon.PressedFill
+                Width: =39
+                X: =Parent.Width - Self.Width
+                Y: =1
+                ZIndex: =1
+
+            lbl_PrimaryText_7 As label:
+                Align: =APP_LABELS.PrimaryText.Align
+                BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                Color: |
+                    =APP_LABELS.PrimaryText.Color
+                DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.PrimaryText.Fill
+                FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                Font: =APP_LABELS.PrimaryText.Font
+                FontWeight: =APP_LABELS.PrimaryText.FontWeight
+                Height: =Parent.Height
+                HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                Italic: =APP_LABELS.PrimaryText.Italic
+                LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                Overflow: =APP_LABELS.PrimaryText.Overflow
+                PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                Size: =APP_LABELS.PrimaryText.Size - 3
+                Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                Text: |-
+                    =If(IsBlank(g_TheAction.Progress), "-", Last(ForAll(Table(ParseJSON(g_TheAction.Progress)), {
+                            Statement: Text(ThisRecord.Value.Statement),
+                            PostedBy: Text(ThisRecord.Value.PostedBy),
+                            PostedOn: DateValue(ThisRecord.Value.PostedOn)
+                        }
+                    )).Statement)
+                Underline: =APP_LABELS.PrimaryText.Underline
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.Width - Icon3_3.Width
+                Wrap: =APP_LABELS.PrimaryText.Wrap
+                ZIndex: =2
+
     Toast_v2___1 As Toast_v2__:
         Message: =g_Toast
         Width: =Parent.Width
@@ -1140,43 +1221,6 @@ Edit As screen:
         X: =16
         Y: =222
         ZIndex: =8
-
-    Gallery2 As gallery.galleryVertical:
-        Height: =202
-        Items: =importedPosts
-        Layout: =Layout.Vertical
-        TemplateSize: =40
-        Width: =334
-        X: =16
-        Y: =468
-        ZIndex: =9
-
-        Label3 As label:
-            OnSelect: =Select(Parent)
-            Size: =8
-            Text: =ThisItem.Statement
-            VerticalAlign: =VerticalAlign.Top
-            Width: =180
-            ZIndex: =1
-
-        Label3_2 As label:
-            Height: =20
-            OnSelect: =Select(Parent)
-            Size: =8
-            Text: =ThisItem.PostedBy
-            Width: =142
-            X: =180
-            ZIndex: =2
-
-        Label3_3 As label:
-            Height: =20
-            OnSelect: =Select(Parent)
-            Size: =8
-            Text: =ThisItem.PostedOn
-            Width: =143
-            X: =180
-            Y: =20
-            ZIndex: =3
 
     Button1_1 As button:
         Height: =21
