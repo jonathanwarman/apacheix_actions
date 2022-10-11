@@ -57,7 +57,9 @@ Edit As screen:
                 Width: =Parent.Width
 
             Container10 As groupContainer.verticalAutoLayoutContainer:
-                Height: =460
+                Height: =Parent.Height - 2*Self.Y + 15
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutGap: =5
                 LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
                 LayoutMode: =LayoutMode.Auto
                 LayoutOverflowY: =LayoutOverflow.Scroll
@@ -65,15 +67,17 @@ Edit As screen:
                 PaddingRight: =10
                 Width: =Parent.Width - 2*Self.X
                 X: =EditScreenCardMargin
-                Y: =60
+                Y: =EditScreenCardMargin
                 ZIndex: =10
 
                 grp_ActionText As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Start
                     FillPortions: =0
                     Height: =85
                     LayoutMinHeight: =100
                     LayoutMinWidth: =250
-                    Width: =Parent.Width
+                    PaddingRight: =20
+                    Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
                     Y: =40
                     ZIndex: =1
@@ -207,12 +211,14 @@ Edit As screen:
                         ZIndex: =3
 
                 grp_Importance As groupContainer.horizontalAutoLayoutContainer:
-                    Height: =25
+                    AlignInContainer: =AlignInContainer.Start
+                    Height: =30
                     LayoutGap: =5
                     LayoutMinHeight: =30
                     LayoutMinWidth: =250
                     LayoutMode: =LayoutMode.Auto
                     LayoutWrap: =true
+                    PaddingTop: =5
                     Width: =Parent.Width - 2*Self.X
                     X: =EditScreenCardMargin
                     Y: =grp_ActionText.Y + grp_ActionText.Height + 10
@@ -316,6 +322,7 @@ Edit As screen:
 
                 lbl_SecondaryText_5 As label:
                     Align: =APP_LABELS.SecondaryText.Align
+                    AlignInContainer: =AlignInContainer.Start
                     BorderColor: =APP_LABELS.SecondaryText.BorderColor
                     BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
                     BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
@@ -356,22 +363,25 @@ Edit As screen:
                     ZIndex: =3
 
                 txt_EditActionDetail As richTextEditor:
+                    AlignInContainer: =AlignInContainer.Start
                     BorderColor: =If(And(!IsBlank(g_TheAction), g_TheAction.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
                     Default: =g_TheAction.Detail
                     DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
-                    Height: =160
+                    Height: =170
                     Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
-                    Width: =Parent.Width
+                    Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
                     Y: =20
                     ZIndex: =4
 
                 grp_Owner2 As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Start
                     Fill: =RGBA(255, 255, 255, 1)
                     FillPortions: =0
-                    Height: =100
+                    Height: =110
                     LayoutMinHeight: =100
                     LayoutMinWidth: =Parent.Width/2
+                    PaddingTop: =10
                     Width: =(Parent.Width/2) - 20
                     X: =84
                     Y: =317
@@ -608,10 +618,12 @@ Edit As screen:
                         ZIndex: =5
 
                 grp_ExternalOwner As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Start
                     FillPortions: =0
                     Height: =100
                     LayoutMinHeight: =100
                     LayoutMinWidth: =Parent.Width/2
+                    PaddingTop: =10
                     Width: =(Parent.Width/2) - 20
                     X: =Parent.Width -Self.Width -EditScreenCardMargin
                     Y: =395
@@ -848,7 +860,9 @@ Edit As screen:
                         ZIndex: =5
 
                 grp_Target As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Start
                     FillPortions: =0
+                    Height: =65
                     LayoutMinHeight: =45
                     LayoutMinWidth: =Parent.Width/2
                     Width: =(Parent.Width/2) - 20
@@ -923,8 +937,9 @@ Edit As screen:
                         ZIndex: =2
 
                 grp_LatestProgress As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Start
                     FillPortions: =0
-                    Height: =46
+                    Height: =65
                     LayoutMinHeight: =65
                     LayoutMinWidth: =Parent.Width/2
                     Width: =(Parent.Width/2) - 20
@@ -1047,12 +1062,15 @@ Edit As screen:
                         ZIndex: =3
 
                 Container4 As groupContainer.horizontalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    Height: =40
                     LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
-                    LayoutMinHeight: =30
+                    LayoutMinHeight: =40
                     LayoutMinWidth: =250
                     LayoutMode: =LayoutMode.Auto
                     PaddingLeft: =10
                     PaddingRight: =10
+                    PaddingTop: =5
                     ZIndex: =9
 
                     btn_ReOpen As button:
@@ -1310,10 +1328,4 @@ Edit As screen:
         Style: =APP_HEADER
         User: =USER
         ZIndex: =10
-
-    Rectangle2 As rectangle:
-        Width: =97
-        X: =140
-        Y: =300
-        ZIndex: =11
 
