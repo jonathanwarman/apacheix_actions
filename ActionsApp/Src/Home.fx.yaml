@@ -1934,7 +1934,7 @@ Home As screen:
     Label1 As label:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
-        Text: ="v6"
+        Text: ="v7"
         Width: =100
         X: =336
         Y: =5
