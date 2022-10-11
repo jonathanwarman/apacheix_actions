@@ -196,7 +196,7 @@ Edit As screen:
                     LayoutMinHeight: =100
                     LayoutMinWidth: =250
                     PaddingRight: =20
-                    Width: =Parent.Width - 20
+                    Width: =Parent.Width - 10
                     X: =EditScreenCardMargin
                     Y: =40
                     ZIndex: =2
