@@ -41,7 +41,7 @@ Edit As screen:
         EditPanel As groupContainer.manualLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
             FillPortions: =0
-            Height: =650
+            Height: =660
             LayoutMinHeight: =631
             LayoutMinWidth: =250
             Width: =EditScreenCardWidth
@@ -50,7 +50,7 @@ Edit As screen:
 
             ShadowRectangle_v2___1 As ShadowRectangle_v2__:
                 Height: =Parent.Height
-                Visible: =true
+                Visible: =!ScreenSmall
                 Width: =Parent.Width
 
             Container10 As groupContainer.verticalAutoLayoutContainer:
@@ -336,7 +336,7 @@ Edit As screen:
 
                 grp_Importance As groupContainer.manualLayoutContainer:
                     FillPortions: =0
-                    LayoutMinHeight: =If(Self.Width < rad_EditImportance.X + rad_EditImportance.Width, 70, 30)
+                    LayoutMinHeight: =If(Self.Width < rad_EditImportance.X + rad_EditImportance.Width, 70, 25)
                     LayoutMinWidth: =250
                     Width: =Parent.Width - 20
                     ZIndex: =3
@@ -479,7 +479,7 @@ Edit As screen:
                     BorderColor: =If(And(!IsBlank(g_TheAction), g_TheAction.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
                     Default: =g_TheAction.Detail
                     DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
-                    Height: =If(ScreenSmall, 250, 150)
+                    Height: =If(ScreenSmall, 250, 160)
                     Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
                     Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
