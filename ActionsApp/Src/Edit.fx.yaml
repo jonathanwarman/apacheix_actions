@@ -45,7 +45,7 @@ Edit As screen:
         EditPanel As groupContainer.manualLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
             FillPortions: =0
-            Height: =631
+            Height: =650
             LayoutMinHeight: =631
             LayoutMinWidth: =250
             Width: =EditScreenCardWidth
