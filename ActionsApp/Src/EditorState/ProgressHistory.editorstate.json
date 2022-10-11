@@ -316,7 +316,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_ProgressHistoryCancel",
-      "ParentIndex": 11,
+      "ParentIndex": 10,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -847,7 +847,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_ProgressHistoryDone",
-      "ParentIndex": 10,
+      "ParentIndex": 11,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
