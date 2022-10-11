@@ -641,7 +641,7 @@
         "NameMapSourceSchema": "?"
       }
     ],
-    "LastModifiedTimestamp": "638010359107242535",
+    "LastModifiedTimestamp": "638010687329290891",
     "Name": "EmailFns_v1__",
     "Rules": [
       {
@@ -1144,7 +1144,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638010359107242535",
+  "LastModifiedTimestamp": "638010687329290891",
   "Name": "0797ce7b40814da9b60d9b533fbb8cab",
   "OverridableProperties": {},
   "SourceLibraryId": "91396fc8-87cd-4813-9d10-c107048cee51",
