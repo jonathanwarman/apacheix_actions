@@ -1,6 +1,8 @@
 Edit As screen:
     OnVisible: |-
-        =ClearCollect(g_ListOfClosers, {ID:-1, Title:"(None)"}, ShowColumns(Filter(People, IsReal, Relationship = "Apache iX Employee", ID <> g_TheAction.Owner.Id), "ID", "Title"));
+        =ClearCollect(g_ClosersDropdown, {ID:-1, FullName:"(None)"}, ShowColumns(Filter(g_Employees, ID <> g_TheAction.Owner.Id), "ID", "FullName"));
+        ClearCollect(g_ProjectsDropdown, {ID:-1, Title:"(None)"}, ShowColumns(g_Projects, "ID", "Title"));
+        SetFocus(txt_EditActionText);
 
     fn_EditActionSendEmails As button:
         Height: =20
@@ -60,22 +62,151 @@ Edit As screen:
                 LayoutOverflowY: =LayoutOverflow.Scroll
                 LayoutWrap: =true
                 PaddingRight: =10
-                Width: =Parent.Width - 2*Self.X
+                Width: =Parent.Width - (2*Self.X)
                 X: =If(ScreenSmall, 0, EditScreenCardMargin)
                 Y: =EditScreenCardMargin
                 ZIndex: =10
 
+                Container5 As groupContainer.manualLayoutContainer:
+                    FillPortions: =0
+                    LayoutMinHeight: =60
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    drop_Standard_3 As dropdown:
+                        BorderColor: =APP_INPUT_CONTROLS.Dropdown.BorderColor
+                        BorderStyle: =APP_INPUT_CONTROLS.Dropdown.BorderStyle
+                        BorderThickness: =APP_INPUT_CONTROLS.Dropdown.BorderThickness
+                        ChevronBackground: =APP_INPUT_CONTROLS.Dropdown.ChevronBackground
+                        ChevronDisabledBackground: =APP_INPUT_CONTROLS.Dropdown.ChevronDisabledBackground
+                        ChevronDisabledFill: =APP_INPUT_CONTROLS.Dropdown.ChevronDisabledFill
+                        ChevronFill: =APP_INPUT_CONTROLS.Dropdown.ChevronFill
+                        ChevronHoverBackground: =APP_INPUT_CONTROLS.Dropdown.ChevronHoverBackground
+                        ChevronHoverFill: =APP_INPUT_CONTROLS.Dropdown.ChevronHoverFill
+                        Color: =APP_INPUT_CONTROLS.Dropdown.Color
+                        Default: =First(g_ProjectsDropdown).Title
+                        DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
+                        DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
+                        DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
+                        Fill: =APP_INPUT_CONTROLS.Dropdown.Fill
+                        FocusedBorderColor: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderColor
+                        FocusedBorderThickness: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderThickness
+                        Font: =APP_INPUT_CONTROLS.Dropdown.Font
+                        FontWeight: =APP_INPUT_CONTROLS.Dropdown.FontWeight
+                        Height: =25
+                        HoverBorderColor: =APP_INPUT_CONTROLS.Dropdown.HoverBorderColor
+                        HoverColor: =APP_INPUT_CONTROLS.Dropdown.HoverColor
+                        HoverFill: =APP_INPUT_CONTROLS.Dropdown.HoverFill
+                        Italic: =APP_INPUT_CONTROLS.Dropdown.Italic
+                        Items: =g_ProjectsDropdown
+                        OnChange: =Set(g_CurrentContext, Self.Selected)
+                        PaddingBottom: =APP_INPUT_CONTROLS.Dropdown.PaddingBottom
+                        PaddingLeft: =APP_INPUT_CONTROLS.Dropdown.PaddingLeft
+                        PaddingRight: =APP_INPUT_CONTROLS.Dropdown.PaddingRight
+                        PaddingTop: =APP_INPUT_CONTROLS.Dropdown.PaddingTop
+                        PressedBorderColor: =APP_INPUT_CONTROLS.Dropdown.PressedBorderColor
+                        PressedColor: =APP_INPUT_CONTROLS.Dropdown.PressedColor
+                        PressedFill: =APP_INPUT_CONTROLS.Dropdown.PressedFill
+                        SelectionColor: =APP_INPUT_CONTROLS.Dropdown.SelectionColor
+                        SelectionFill: =APP_INPUT_CONTROLS.Dropdown.SelectionFill
+                        Size: =APP_INPUT_CONTROLS.Dropdown.Size
+                        Strikethrough: =APP_INPUT_CONTROLS.Dropdown.Strikethrough
+                        Underline: =APP_INPUT_CONTROLS.Dropdown.Underline
+                        Width: =Min(300, Parent.Width - Self.X)
+                        X: =55
+                        Y: =25
+                        ZIndex: =2
+
+                    lbl_SecondaryText_19 As label:
+                        Align: =APP_LABELS.SecondaryText.Align
+                        BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                        BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                        Color: =APP_LABELS.SecondaryText.Color
+                        DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.SecondaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.SecondaryText.Font
+                        FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                        HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                        Italic: =APP_LABELS.SecondaryText.Italic
+                        LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                        Overflow: =APP_LABELS.SecondaryText.Overflow
+                        PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                        PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                        Size: =APP_LABELS.SecondaryText.Size - 2
+                        Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                        Text: |-
+                            ="Project:"
+                        Underline: =APP_LABELS.SecondaryText.Underline
+                        VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                        Width: =179
+                        Wrap: =APP_LABELS.SecondaryText.Wrap
+                        Y: =28
+                        ZIndex: =3
+
+                    lbl_Heading2_3 As label:
+                        Align: =APP_LABELS.H2.Align
+                        BorderColor: =APP_LABELS.H2.BorderColor
+                        BorderStyle: =APP_LABELS.H2.BorderStyle
+                        BorderThickness: =APP_LABELS.H2.BorderThickness
+                        Color: =APP_LABELS.H2.Color
+                        DisabledBorderColor: =APP_LABELS.H2.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.H2.DisabledColor
+                        DisabledFill: =APP_LABELS.H2.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.H2.Fill
+                        FocusedBorderColor: =APP_LABELS.H2.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.H2.FocusedBorderThickness
+                        Font: =APP_LABELS.H2.Font
+                        FontWeight: =APP_LABELS.H2.FontWeight
+                        Height: =25
+                        HoverBorderColor: =APP_LABELS.H2.HoverBorderColor
+                        HoverColor: =APP_LABELS.H2.HoverColor
+                        HoverFill: =APP_LABELS.H2.HoverFill
+                        Italic: =APP_LABELS.H2.Italic
+                        LineHeight: =APP_LABELS.H2.LineHeight
+                        Overflow: =APP_LABELS.H2.Overflow
+                        PaddingBottom: =APP_LABELS.H2.PaddingBottom
+                        PaddingLeft: =APP_LABELS.H2.PaddingLeft
+                        PaddingRight: =APP_LABELS.H2.PaddingRight
+                        PaddingTop: =APP_LABELS.H2.PaddingTop
+                        PressedBorderColor: =APP_LABELS.H2.PressedBorderColor
+                        PressedColor: =APP_LABELS.H2.PressedColor
+                        PressedFill: =APP_LABELS.H2.PressedFill
+                        Size: =APP_LABELS.H2.Size
+                        Strikethrough: =APP_LABELS.H2.Strikethrough
+                        Text: ="Context"
+                        Underline: =APP_LABELS.H2.Underline
+                        VerticalAlign: =APP_LABELS.H2.VerticalAlign
+                        Width: =277
+                        Wrap: =APP_LABELS.H2.Wrap
+                        ZIndex: =5
+
                 grp_ActionText As groupContainer.manualLayoutContainer:
                     AlignInContainer: =AlignInContainer.Start
                     FillPortions: =0
-                    Height: =90
+                    Height: =95
                     LayoutMinHeight: =100
                     LayoutMinWidth: =250
                     PaddingRight: =20
                     Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
                     Y: =40
-                    ZIndex: =1
+                    ZIndex: =2
 
                     txt_EditActionText As text:
                         Align: =APP_INPUT_CONTROLS.Textbox.Align
@@ -119,47 +250,8 @@ Edit As screen:
                         Underline: =APP_INPUT_CONTROLS.Textbox.Underline
                         Width: =Parent.Width - 2*Self.X - btn_DeleteAction.Width - 10
                         X: =1
-                        Y: =20
+                        Y: =25
                         ZIndex: =1
-
-                    lbl_SecondaryText_3 As label:
-                        Align: =APP_LABELS.SecondaryText.Align
-                        BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                        BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                        BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                        Color: =APP_LABELS.SecondaryText.Color
-                        DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                        DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                        DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                        DisplayMode: =DisplayMode.View
-                        Fill: =APP_LABELS.SecondaryText.Fill
-                        FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                        FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                        Font: =APP_LABELS.SecondaryText.Font
-                        FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                        Height: =20
-                        HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                        HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                        HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                        Italic: =APP_LABELS.SecondaryText.Italic
-                        LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                        Overflow: =APP_LABELS.SecondaryText.Overflow
-                        PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-                        PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
-                        PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
-                        PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                        PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                        PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                        PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                        Size: =APP_LABELS.SecondaryText.Size - 2
-                        Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                        Text: |-
-                            ="Action Text:"
-                        Underline: =APP_LABELS.SecondaryText.Underline
-                        VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                        Width: =179
-                        Wrap: =APP_LABELS.SecondaryText.Wrap
-                        ZIndex: =2
 
                     btn_DeleteAction As button:
                         Align: =APP_BUTTONS.LittleDanger.Align
@@ -200,15 +292,54 @@ Edit As screen:
                         VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
                         Width: =If(ScreenSmall, 50, 70)
                         X: =Parent.Width -Self.Width - 1
-                        Y: =20
+                        Y: =25
                         ZIndex: =3
+
+                    lbl_Heading2_4 As label:
+                        Align: =APP_LABELS.H2.Align
+                        BorderColor: =APP_LABELS.H2.BorderColor
+                        BorderStyle: =APP_LABELS.H2.BorderStyle
+                        BorderThickness: =APP_LABELS.H2.BorderThickness
+                        Color: =APP_LABELS.H2.Color
+                        DisabledBorderColor: =APP_LABELS.H2.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.H2.DisabledColor
+                        DisabledFill: =APP_LABELS.H2.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.H2.Fill
+                        FocusedBorderColor: =APP_LABELS.H2.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.H2.FocusedBorderThickness
+                        Font: =APP_LABELS.H2.Font
+                        FontWeight: =APP_LABELS.H2.FontWeight
+                        Height: =25
+                        HoverBorderColor: =APP_LABELS.H2.HoverBorderColor
+                        HoverColor: =APP_LABELS.H2.HoverColor
+                        HoverFill: =APP_LABELS.H2.HoverFill
+                        Italic: =APP_LABELS.H2.Italic
+                        LineHeight: =APP_LABELS.H2.LineHeight
+                        Overflow: =APP_LABELS.H2.Overflow
+                        PaddingBottom: =APP_LABELS.H2.PaddingBottom
+                        PaddingLeft: =APP_LABELS.H2.PaddingLeft
+                        PaddingRight: =APP_LABELS.H2.PaddingRight
+                        PaddingTop: =APP_LABELS.H2.PaddingTop
+                        PressedBorderColor: =APP_LABELS.H2.PressedBorderColor
+                        PressedColor: =APP_LABELS.H2.PressedColor
+                        PressedFill: =APP_LABELS.H2.PressedFill
+                        Size: =APP_LABELS.H2.Size
+                        Strikethrough: =APP_LABELS.H2.Strikethrough
+                        Text: ="Action"
+                        Underline: =APP_LABELS.H2.Underline
+                        VerticalAlign: =APP_LABELS.H2.VerticalAlign
+                        Width: =277
+                        Wrap: =APP_LABELS.H2.Wrap
+                        X: =1
+                        ZIndex: =4
 
                 grp_Importance As groupContainer.manualLayoutContainer:
                     FillPortions: =0
-                    LayoutMinHeight: =If(Self.Width < rad_EditImportance.X + rad_EditImportance.Width, 70, 35)
+                    LayoutMinHeight: =If(Self.Width < rad_EditImportance.X + rad_EditImportance.Width, 70, 30)
                     LayoutMinWidth: =250
                     Width: =Parent.Width - 20
-                    ZIndex: =2
+                    ZIndex: =3
 
                     lbl_SecondaryText_4 As label:
                         Align: =APP_LABELS.SecondaryText.Align
@@ -348,7 +479,7 @@ Edit As screen:
                     BorderColor: =If(And(!IsBlank(g_TheAction), g_TheAction.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
                     Default: =g_TheAction.Detail
                     DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
-                    Height: =If(ScreenSmall, 250, 180)
+                    Height: =If(ScreenSmall, 250, 150)
                     Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
                     Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
@@ -543,7 +674,7 @@ Edit As screen:
                         HoverColor: =APP_INPUT_CONTROLS.Dropdown.HoverColor
                         HoverFill: =APP_INPUT_CONTROLS.Dropdown.HoverFill
                         Italic: =APP_INPUT_CONTROLS.Dropdown.Italic
-                        Items: =Filter(People, IsReal, Relationship = "Apache iX Employee")
+                        Items: =ShowColumns(g_Employees, "ID", "FullName")
                         OnChange: =SetFocus(txt_ExternalOwners);
                         PaddingBottom: =APP_INPUT_CONTROLS.Dropdown.PaddingBottom
                         PaddingLeft: =APP_INPUT_CONTROLS.Dropdown.PaddingLeft
@@ -655,7 +786,7 @@ Edit As screen:
                         HoverColor: =APP_INPUT_CONTROLS.Dropdown.HoverColor
                         HoverFill: =APP_INPUT_CONTROLS.Dropdown.HoverFill
                         Italic: =APP_INPUT_CONTROLS.Dropdown.Italic
-                        Items: =g_ListOfClosers
+                        Items: =g_ClosersDropdown
                         PaddingBottom: =APP_INPUT_CONTROLS.Dropdown.PaddingBottom
                         PaddingLeft: =APP_INPUT_CONTROLS.Dropdown.PaddingLeft
                         PaddingRight: =APP_INPUT_CONTROLS.Dropdown.PaddingRight
@@ -1156,8 +1287,8 @@ Edit As screen:
                                 // Temp variables to make setting Owner and Closer easier.
                                 With({         
                                     tmp_NewAction: IsBlank(g_TheAction),
-                                    tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.Name },
-                                    tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.Title }
+                                    tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.FullName },
+                                    tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.FullName }
                                 },
                              
                                 

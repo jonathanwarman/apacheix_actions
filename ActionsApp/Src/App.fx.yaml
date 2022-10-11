@@ -19,14 +19,9 @@ App As appinfo:
             IsSuperUser: First(Split(Lower(User().Email), "@")).Result in ["jonathan.warman", "andrew.page", "jeff.moreton", "john.marsh", "andy.north", "mike.gruber"]
         };
         
-        /*USER2 = If(IsBlank(Param("TestUserId")),
-            LookUp(People, Email = User().Email),
-            LookUp(People, ID = Param("TestUserId"))
-        );*/
-        
         USER = With({ tmp_UserRecord: If(IsBlank(Param("TestUserId")), 
-            LookUp(People, Email = User().Email), 
-            LookUp(People, ID = Param("TestUserId"))) },
+            LookUp(Filter(People, IsReal, Relationship = "Apache iX Employee"), Email = User().Email), 
+            LookUp(Filter(People, IsReal, Relationship = "Apache iX Employee"), ID = Param("TestUserId"))) },
             { 
                 ID: tmp_UserRecord.ID, 
                 Name: tmp_UserRecord.Name, 
@@ -38,7 +33,6 @@ App As appinfo:
         );
         
         USER_RECORD = { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name };
-        
         BLANK_RECORD =  { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() };
         
         // Use one of the Toast components and get the Toast types. This ensures the toasts types are always up-to-date.
