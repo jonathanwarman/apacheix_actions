@@ -730,8 +730,8 @@ App As appinfo:
             Menu: {
                 HomeScreen: Home,
                 Items: Table(
-                    { Number: 1, Text: "Checklist Editor", Image: SampleImage, Tooltip: Blank(), Disabled: false, DisabledTooltip: "You lack permissions!", SeparatorBefore: true },
-                    { Number: 2, Text: "Status Dashboard", Image: SampleImage, Tooltip: Blank(), Disabled: false, DisabledTooltip: "You lack permissions!", SeparatorBefore: false }
+                    //{ Number: 1, Text: "Checklist Editor", Image: SampleImage, Tooltip: Blank(), Disabled: false, DisabledTooltip: "You lack permissions!", SeparatorBefore: true },
+                    //{ Number: 2, Text: "Status Dashboard", Image: SampleImage, Tooltip: Blank(), Disabled: false, DisabledTooltip: "You lack permissions!", SeparatorBefore: false }
                 )
             }
         };

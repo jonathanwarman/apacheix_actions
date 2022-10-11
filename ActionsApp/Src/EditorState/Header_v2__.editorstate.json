@@ -993,7 +993,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "icon_Help",
-      "ParentIndex": 2,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1289,7 +1289,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "icon_Settings",
-      "ParentIndex": 1,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2923,7 +2923,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "txt_TitleAndReleaseType",
-      "ParentIndex": 3,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
