@@ -21,7 +21,7 @@ Edit As screen:
 
     Label3_1 As label:
         Height: =24
-        Text: =">>" & g_TheAction.ID & "<<"
+        Text: =">>" & g_TheAction.ID & "<<" & Parent.Size
         Width: =100
         Y: =60
         ZIndex: =3
@@ -119,7 +119,7 @@ Edit As screen:
                         RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
                         RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
                         RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-                        Size: =If(ScreenSize = Small, 12, 16)
+                        Size: =If(ScreenSmall, 12, 16)
                         Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
                         Underline: =APP_INPUT_CONTROLS.Textbox.Underline
                         Width: =Parent.Width - 2*Self.X - 80 // Minus 80 for Delete Action button
@@ -206,7 +206,7 @@ Edit As screen:
                         Text: ="Delete Action"
                         Underline: =APP_BUTTONS.LittleDanger.Underline
                         VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
-                        Width: =If(ScreenSize = Small, 50, 70)
+                        Width: =If(ScreenSmall, 50, 70)
                         X: =Parent.Width -Self.Width - 1
                         Y: =20
                         ZIndex: =3
@@ -522,7 +522,7 @@ Edit As screen:
                         Underline: =APP_BUTTONS.LittleDanger.Underline
                         VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
                         Visible: =!IsBlank(g_TheAction.RequestedOwner)
-                        Width: =If(ScreenSize = Small, 50, 70)
+                        Width: =If(ScreenSmall, 50, 70)
                         X: =Parent.Width - Self.Width -1
                         Y: =20
                         ZIndex: =3
@@ -769,7 +769,7 @@ Edit As screen:
                             =Switch(rad_EditImportance.Selected.Value,
                                 "Significant", "",
                                 "Normal", "(Optional)",
-                                "Low", If(ScreenSize = Small, "(N/A)", "(N/A for low importance)")
+                                "Low", If(ScreenSmall, "(N/A)", "(N/A for low importance)")
                             )
                         Underline: =APP_LABELS.SecondaryText.Underline
                         VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign

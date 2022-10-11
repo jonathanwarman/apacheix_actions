@@ -744,8 +744,9 @@ App As appinfo:
         
         
         /***** APP SPECIFIC *****/
+        ScreenSmall = App.Width < 400;
         EditScreenCardWidth = If(App.Width > 680, 660, App.Width - 20);
-        EditScreenCardMargin = If(ScreenSize = Small, 15, 30);
+        EditScreenCardMargin = If(ScreenSmall, 20, 30);
         
         
     SizeBreakpoints: =[400, 900, 1200]
