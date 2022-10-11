@@ -297,7 +297,7 @@
       "{\r\n    To: \"jonathan.warman@apacheix.co.uk\", \r\n    Subject: \"Test Email\", \r\n    Header: \"Contextual header\",\r\n    Content: \"\r\n        <p>Put your email content here.\r\n    \",\r\n    MinWidth: 550\r\n}"
     ]
   },
-  "HeaderLastSavedDateTimeUTC": "10/11/2022 17:11:46",
+  "HeaderLastSavedDateTimeUTC": "10/11/2022 17:14:04",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {
     "9901563c-93f2-4716-b0c3-eff3116c8fdd": "\"/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/63817a258eb74e5eb0a06e57ff801f6c\"",
@@ -406,8 +406,8 @@
     "btn_Primary_1": 225,
     "btn_Primary_2": 133,
     "btn_Primary_4": 127,
-    "btn_ProgressHistoryCancel": 124,
-    "btn_ProgressHistoryDone": 123,
+    "btn_ProgressHistoryCancel": 123,
+    "btn_ProgressHistoryDone": 124,
     "btn_QuickPostSend": 47,
     "btn_RejectClosure": 58,
     "btn_RejectOwnership": 53,
