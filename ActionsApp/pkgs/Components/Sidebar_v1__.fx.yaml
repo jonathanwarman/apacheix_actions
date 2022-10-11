@@ -648,9 +648,9 @@ Sidebar_v1__ As CanvasComponent:
     dialog_SubmitFeedback As groupContainer.manualLayoutContainer:
         Height: =500
         Visible: =g_ShowSubmitFeedbackDialog
-        Width: =If(ScreenSize = Small, Parent.Width, 500)
+        Width: =If(App.Width > 400, Parent.Width, 500)
         X: =App.Width/2 - Self.Width/2
-        Y: =If(ScreenSize <> Small, 0, Parent.Height/2 - Self.Height/2)
+        Y: =If(App.Width > 400, 0, Parent.Height/2 - Self.Height/2)
         ZIndex: =3
 
         shadowBox As image:
@@ -744,7 +744,7 @@ Sidebar_v1__ As CanvasComponent:
             Underline: =APP_BUTTONS.Secondary.Underline
             VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
             Width: =100
-            X: =If(ScreenSize = Small, 30, 60)
+            X: =If(App.Width > 400, 30, 60)
             Y: =Parent.Height - Self.Height - 40
             ZIndex: =2
 
@@ -797,7 +797,7 @@ Sidebar_v1__ As CanvasComponent:
             Underline: =APP_BUTTONS.Primary.Underline
             VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
             Width: =100
-            X: =Parent.Width - Self.Width - If(ScreenSize = Small, 30, 60)
+            X: =Parent.Width - Self.Width - If(App.Width > 400, 30, 60)
             Y: =Parent.Height - Self.Height - 40
             ZIndex: =3
 
@@ -837,7 +837,7 @@ Sidebar_v1__ As CanvasComponent:
             Strikethrough: =APP_INPUT_CONTROLS.Radio.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Radio.Underline
             Width: =351
-            X: =If(ScreenSize = Small, 25, 50)
+            X: =If(App.Width > 400, 25, 50)
             Y: =107
             ZIndex: =4
 
@@ -880,7 +880,7 @@ Sidebar_v1__ As CanvasComponent:
             Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Textbox.Underline
             Width: =Parent.Width - 2*Self.X
-            X: =If(ScreenSize = Small, 25, 50)
+            X: =If(App.Width > 400, 25, 50)
             Y: =200
             ZIndex: =5
 
@@ -968,7 +968,7 @@ Sidebar_v1__ As CanvasComponent:
             Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Textbox.Underline
             Width: =Parent.Width - 2*Self.X
-            X: =If(ScreenSize = Small, 25, 50)
+            X: =If(App.Width > 400, 25, 50)
             Y: =250
             ZIndex: =7
 
@@ -1011,7 +1011,7 @@ Sidebar_v1__ As CanvasComponent:
             Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
             Underline: =APP_INPUT_CONTROLS.Textbox.Underline
             Width: =(Parent.Width - 2*Self.X) / 2
-            X: =If(ScreenSize = Small, 25, 50)
+            X: =If(App.Width > 400, 25, 50)
             Y: =150
             ZIndex: =8
 
