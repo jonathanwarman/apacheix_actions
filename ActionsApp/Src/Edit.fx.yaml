@@ -74,7 +74,7 @@ Edit As screen:
                     Width: =Parent.Width
                     ZIndex: =1
 
-                    drop_Standard_3 As dropdown:
+                    drop_EditContextProject As dropdown:
                         BorderColor: =APP_INPUT_CONTROLS.Dropdown.BorderColor
                         BorderStyle: =APP_INPUT_CONTROLS.Dropdown.BorderStyle
                         BorderThickness: =APP_INPUT_CONTROLS.Dropdown.BorderThickness
@@ -85,7 +85,7 @@ Edit As screen:
                         ChevronHoverBackground: =APP_INPUT_CONTROLS.Dropdown.ChevronHoverBackground
                         ChevronHoverFill: =APP_INPUT_CONTROLS.Dropdown.ChevronHoverFill
                         Color: =APP_INPUT_CONTROLS.Dropdown.Color
-                        Default: =First(g_ProjectsDropdown).Title
+                        Default: =If(IsBlank(g_TheAction.Project), First(g_ProjectsDropdown).Title, g_TheAction.Project.Value)
                         DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
                         DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
                         DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
@@ -113,9 +113,9 @@ Edit As screen:
                         Size: =APP_INPUT_CONTROLS.Dropdown.Size
                         Strikethrough: =APP_INPUT_CONTROLS.Dropdown.Strikethrough
                         Underline: =APP_INPUT_CONTROLS.Dropdown.Underline
-                        Width: =Min(300, Parent.Width - Self.X)
+                        Width: =Min(350, Parent.Width - Self.X)
                         X: =55
-                        Y: =25
+                        Y: =30
                         ZIndex: =2
 
                     lbl_SecondaryText_19 As label:
@@ -155,7 +155,7 @@ Edit As screen:
                         VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
                         Width: =179
                         Wrap: =APP_LABELS.SecondaryText.Wrap
-                        Y: =28
+                        Y: =30
                         ZIndex: =3
 
                     lbl_Heading2_3 As label:
@@ -1288,7 +1288,8 @@ Edit As screen:
                                 With({         
                                     tmp_NewAction: IsBlank(g_TheAction),
                                     tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.FullName },
-                                    tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.FullName }
+                                    tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.FullName },
+                                    tmp_Project: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditContextProject.Selected.ID, Value: drop_EditContextProject.Selected.Title }
                                 },
                              
                                 
@@ -1296,9 +1297,10 @@ Edit As screen:
                                     Title: txt_EditActionText.Text,
                                     Detail: txt_EditActionDetail.HtmlText,
                                     Status: "Open",
+                                    Importance: rad_EditImportance.Selected.Value,
                                     Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),
-                                    RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, Blank(), tmp_Closer),
-                                    Importance: rad_EditImportance.Selected.Value
+                                    RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, BLANK_RECORD, tmp_Closer),
+                                    Project: If(drop_EditContextProject.Selected.ID = -1, BLANK_RECORD, tmp_Project)       
                                     //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
                                 }));
                                 

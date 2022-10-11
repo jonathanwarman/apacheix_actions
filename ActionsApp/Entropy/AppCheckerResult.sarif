@@ -78796,19 +78796,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container5.drop_Standard_3.AccessibleLabel"
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container5.drop_EditContextProject.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container5.drop_Standard_3.AccessibleLabel",
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container5.drop_EditContextProject.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container5.drop_Standard_3"
+                "type": "Edit.Container2.EditPanel.Container10.Container5.drop_EditContextProject"
               }
             }
           ],
