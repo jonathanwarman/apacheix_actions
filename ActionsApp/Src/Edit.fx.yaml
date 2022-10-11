@@ -18,15 +18,8 @@ Edit As screen:
         Size: =10
         Text: ="Send Emails"
         Width: =100
-        Y: =84
+        Y: =Parent.Height + 10
         ZIndex: =1
-
-    Label3_1 As label:
-        Height: =24
-        Text: =">>" & g_TheAction.ID & "<<" & Parent.Size
-        Width: =100
-        Y: =60
-        ZIndex: =2
 
     Container2 As groupContainer.verticalAutoLayoutContainer:
         Height: =Parent.Height - Self.Y
@@ -35,7 +28,7 @@ Edit As screen:
         LayoutMode: =LayoutMode.Auto
         LayoutOverflowY: =LayoutOverflow.Scroll
         Width: =Parent.Width
-        Y: =70
+        Y: =60
         ZIndex: =3
 
         EditPanel As groupContainer.manualLayoutContainer:
@@ -481,7 +474,7 @@ Edit As screen:
                     DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
                     Height: =If(ScreenSmall, 250, 160)
                     Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
-                    Width: =Parent.Width - 20
+                    Width: =Parent.Width
                     X: =EditScreenCardMargin
                     Y: =20
                     ZIndex: =5
@@ -494,7 +487,7 @@ Edit As screen:
                     LayoutMinHeight: =100
                     LayoutMinWidth: =Parent.Width/2
                     PaddingTop: =10
-                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 10
                     X: =84
                     Y: =317
                     ZIndex: =6
@@ -738,7 +731,7 @@ Edit As screen:
                     LayoutMinHeight: =100
                     LayoutMinWidth: =Parent.Width/2
                     PaddingTop: =10
-                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 10
                     X: =Parent.Width -Self.Width -EditScreenCardMargin
                     Y: =395
                     ZIndex: =7
@@ -979,7 +972,7 @@ Edit As screen:
                     Height: =65
                     LayoutMinHeight: =45
                     LayoutMinWidth: =Parent.Width/2
-                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) -10
                     ZIndex: =8
 
                     date_EditTarget As datepicker:
@@ -1057,7 +1050,7 @@ Edit As screen:
                     Height: =65
                     LayoutMinHeight: =65
                     LayoutMinWidth: =Parent.Width/2
-                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) -5
                     X: =Parent.Width -Self.Width -EditScreenCardMargin
                     Y: =448
                     ZIndex: =9

@@ -40,7 +40,7 @@ Home As screen:
                     PaddingTop: =5
                     Width: =44
                     X: =lbl_ActionText.X + lbl_ActionText.Width
-                    ZIndex: =3
+                    ZIndex: =1
 
                 lbl_ActionText As label:
                     Align: =APP_LABELS.PrimaryText.Align
@@ -84,7 +84,7 @@ Home As screen:
                     Width: |
                         =Max(100, slide_Slider_2.Value)
                     Wrap: =tog_WrapActionText.Value
-                    ZIndex: =4
+                    ZIndex: =2
 
                 lbl_ActionDetail As htmlViewer:
                     AutoHeight: =true
@@ -95,7 +95,7 @@ Home As screen:
                     Visible: =g_ExpandedAction.ID = ThisItem.ID
                     Width: =lbl_ActionText.Width
                     Y: =lbl_ActionText.Height
-                    ZIndex: =5
+                    ZIndex: =3
 
                 btn_EditAction As button:
                     Align: =Align.Right
@@ -141,7 +141,7 @@ Home As screen:
                     VerticalAlign: =VerticalAlign.Top
                     Visible: =g_ExpandedAction.ID = ThisItem.ID
                     Width: =lbl_ActionText.Width -20
-                    ZIndex: =8
+                    ZIndex: =4
 
                 btn_CollapseAction As icon.EmojiSmile:
                     AutoDisableOnSelect: =false
@@ -172,7 +172,7 @@ Home As screen:
                     Visible: =g_ExpandedAction.ID = ThisItem.ID
                     Width: =20
                     X: =lbl_ActionText.Width -Self.Width
-                    ZIndex: =9
+                    ZIndex: =5
 
                 btn_ExpandAction As button:
                     Align: =Align.Right
@@ -216,7 +216,368 @@ Home As screen:
                     VerticalAlign: =VerticalAlign.Top
                     Visible: =g_ExpandedAction.ID <> ThisItem.ID
                     Width: =lbl_ActionText.Width
-                    ZIndex: =10
+                    ZIndex: =6
+
+                grp_OtherActionsAcceptOwnership As groupContainer.manualLayoutContainer:
+                    Height: =30
+                    Visible: =ThisItem.RequestedOwner.Id = USER.ID
+                    Width: =Parent.Width - Self.X
+                    X: =img_Importance.X + img_Importance.Width
+                    ZIndex: =7
+
+                    btn_RejectOwnership As button:
+                        Align: =APP_BUTTONS.BigDanger.Align
+                        BorderColor: =APP_BUTTONS.BigDanger.BorderColor
+                        BorderStyle: =APP_BUTTONS.BigDanger.BorderStyle
+                        BorderThickness: =APP_BUTTONS.BigDanger.BorderThickness
+                        Color: =APP_BUTTONS.BigDanger.Color
+                        DisabledBorderColor: =APP_BUTTONS.BigDanger.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.BigDanger.DisabledColor
+                        DisabledFill: =APP_BUTTONS.BigDanger.DisabledFill
+                        Fill: =APP_BUTTONS.BigDanger.Fill
+                        FocusedBorderColor: =APP_BUTTONS.BigDanger.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.BigDanger.FocusedBorderThickness
+                        Font: =APP_BUTTONS.BigDanger.Font
+                        FontWeight: =APP_BUTTONS.BigDanger.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_BUTTONS.BigDanger.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.BigDanger.HoverColor
+                        HoverFill: =APP_BUTTONS.BigDanger.HoverFill
+                        Italic: =APP_BUTTONS.BigDanger.Italic
+                        OnSelect: |-
+                            =With({tmp_OriginalRequestedOwner: ThisItem.RequestedOwner},
+                                
+                                Patch(Actions, ThisItem, { 
+                                    RequestedOwner: BLANK_RECORD
+                                });
+                            
+                                With({Email: EmailFn.Builder({
+                                    To: LookUp(People, ID = tmp_OriginalRequestedOwner.Id, Email) & ThisItem.Notify,
+                                    Subject: "ACTION TRANSFER REJECTED: " & ThisItem.Title,
+                                    Header: "",
+                                    Content: "", // The requested person would not take ownership of the action. Liaise with the person to agree responsibility for this action.
+                                    MinWidth: 550
+                                })},
+                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                );
+                            );
+                        PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.BigDanger.PaddingRight
+                        PaddingTop: =APP_BUTTONS.BigDanger.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.BigDanger.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.BigDanger.PressedColor
+                        PressedFill: =APP_BUTTONS.BigDanger.PressedFill
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Size: =APP_BUTTONS.BigDanger.Size - 2
+                        Strikethrough: =APP_BUTTONS.BigDanger.Strikethrough
+                        Text: ="Reject"
+                        Underline: =APP_BUTTONS.BigDanger.Underline
+                        VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
+                        Width: =80
+                        X: =220
+                        Y: =3
+                        ZIndex: =1
+
+                    btn_AcceptOwnership As button:
+                        Align: =APP_BUTTONS.Success.Align
+                        BorderColor: =APP_BUTTONS.Success.BorderColor
+                        BorderStyle: =APP_BUTTONS.Success.BorderStyle
+                        BorderThickness: =APP_BUTTONS.Success.BorderThickness
+                        Color: =APP_BUTTONS.Success.Color
+                        DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.Success.DisabledColor
+                        DisabledFill: =APP_BUTTONS.Success.DisabledFill
+                        Fill: =APP_BUTTONS.Success.Fill
+                        FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
+                        Font: =APP_BUTTONS.Success.Font
+                        FontWeight: =APP_BUTTONS.Success.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_BUTTONS.Success.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.Success.HoverColor
+                        HoverFill: =APP_BUTTONS.Success.HoverFill
+                        Italic: =APP_BUTTONS.Success.Italic
+                        OnSelect: |-
+                            =With({tmp_OriginalOwner: ThisItem.Owner},
+                                
+                                Patch(Actions, ThisItem, { 
+                                    Owner: USER_RECORD,
+                                    RequestedOwner: BLANK_RECORD
+                                });
+                            
+                                With({Email: EmailFn.Builder({
+                                    To: LookUp(People, ID = tmp_OriginalOwner.Id, Email) & ThisItem.Notify,
+                                    Subject: "ACTION TRANSFERED: " & ThisItem.Title,
+                                    Header: "",
+                                    Content: "", // You are no longer the owner
+                                    MinWidth: 550
+                                })},
+                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                );
+                            );
+                        PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.Success.PaddingRight
+                        PaddingTop: =APP_BUTTONS.Success.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.Success.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.Success.PressedColor
+                        PressedFill: =APP_BUTTONS.Success.PressedFill
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Size: =APP_BUTTONS.Success.Size - 2
+                        Strikethrough: =APP_BUTTONS.Success.Strikethrough
+                        Text: ="Accept"
+                        Underline: =APP_BUTTONS.Success.Underline
+                        VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
+                        Width: =80
+                        X: =130
+                        Y: =3
+                        ZIndex: =2
+
+                    lbl_PrimaryText_8 As label:
+                        Align: =APP_LABELS.PrimaryText.Align
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        FontWeight: =FontWeight.Bold
+                        Height: =20
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size - 4
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: |-
+                            ="Ownership tranfer requested:"
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                        Width: =130
+                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        ZIndex: =3
+
+                grp_OtherActionsConfirmClosure As groupContainer.manualLayoutContainer:
+                    Height: =30
+                    Visible: =ThisItem.Status = "Pending Closure" && ThisItem.RequestedCloser.Id = USER.ID
+                    Width: =Parent.Width - Self.X
+                    X: =img_Importance.X + img_Importance.Width
+                    ZIndex: =8
+
+                    lbl_PrimaryText_10 As label:
+                        Align: =APP_LABELS.PrimaryText.Align
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        Height: =Parent.Height
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size - 4
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: |-
+                            ="Evidence: " & ThisItem.ClosureEvidence
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =300
+                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        X: =280
+                        ZIndex: =1
+
+                    btn_RejectClosure As button:
+                        Align: =APP_BUTTONS.BigDanger.Align
+                        BorderColor: =APP_BUTTONS.BigDanger.BorderColor
+                        BorderStyle: =APP_BUTTONS.BigDanger.BorderStyle
+                        BorderThickness: =APP_BUTTONS.BigDanger.BorderThickness
+                        Color: =APP_BUTTONS.BigDanger.Color
+                        DisabledBorderColor: =APP_BUTTONS.BigDanger.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.BigDanger.DisabledColor
+                        DisabledFill: =APP_BUTTONS.BigDanger.DisabledFill
+                        Fill: =APP_BUTTONS.BigDanger.Fill
+                        FocusedBorderColor: =APP_BUTTONS.BigDanger.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.BigDanger.FocusedBorderThickness
+                        Font: =APP_BUTTONS.BigDanger.Font
+                        FontWeight: =APP_BUTTONS.BigDanger.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_BUTTONS.BigDanger.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.BigDanger.HoverColor
+                        HoverFill: =APP_BUTTONS.BigDanger.HoverFill
+                        Italic: =APP_BUTTONS.BigDanger.Italic
+                        OnSelect: |-
+                            =// Close the action.
+                            Patch(Actions, ThisItem, { 
+                                Status: "Open"
+                            });
+                            
+                            With({Email: EmailFn.Builder({
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                Subject: "ACTION CLOSURE REJECTED: " & ThisItem.Title,
+                                Header: "",
+                                Content: "", // So and so does not agree this action can be closed. Liaise with them to agree closure criteria.
+                                MinWidth: 550
+                            })},
+                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                            );
+                        PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.BigDanger.PaddingRight
+                        PaddingTop: =APP_BUTTONS.BigDanger.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.BigDanger.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.BigDanger.PressedColor
+                        PressedFill: =APP_BUTTONS.BigDanger.PressedFill
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Size: =APP_BUTTONS.BigDanger.Size - 2
+                        Strikethrough: =APP_BUTTONS.BigDanger.Strikethrough
+                        Text: ="Reject"
+                        Underline: =APP_BUTTONS.BigDanger.Underline
+                        VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
+                        Width: =80
+                        X: =190
+                        Y: =3
+                        ZIndex: =2
+
+                    btn_ConfirmClosure As button:
+                        Align: =APP_BUTTONS.Success.Align
+                        BorderColor: =APP_BUTTONS.Success.BorderColor
+                        BorderStyle: =APP_BUTTONS.Success.BorderStyle
+                        BorderThickness: =APP_BUTTONS.Success.BorderThickness
+                        Color: =APP_BUTTONS.Success.Color
+                        DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.Success.DisabledColor
+                        DisabledFill: =APP_BUTTONS.Success.DisabledFill
+                        Fill: =APP_BUTTONS.Success.Fill
+                        FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
+                        Font: =APP_BUTTONS.Success.Font
+                        FontWeight: =APP_BUTTONS.Success.FontWeight
+                        Height: =20
+                        HoverBorderColor: =APP_BUTTONS.Success.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.Success.HoverColor
+                        HoverFill: =APP_BUTTONS.Success.HoverFill
+                        Italic: =APP_BUTTONS.Success.Italic
+                        OnSelect: |
+                            =// Close the action.
+                            Patch(Actions, ThisItem, { 
+                                Status: "Closed",
+                                ClosedOn: Today(),
+                                ClosedBy: USER_RECORD
+                            });
+                            
+                            With({Email: EmailFn.Builder({
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                Subject: "ACTION CLOSED: " & ThisItem.Title,
+                                Header: "",
+                                Content: "", // So and so has confirmed this action as closed.
+                                MinWidth: 550
+                            })},
+                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                            );
+                        PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.Success.PaddingRight
+                        PaddingTop: =APP_BUTTONS.Success.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.Success.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.Success.PressedColor
+                        PressedFill: =APP_BUTTONS.Success.PressedFill
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Size: =APP_BUTTONS.Success.Size - 2
+                        Strikethrough: =APP_BUTTONS.Success.Strikethrough
+                        Text: ="Confirm"
+                        Underline: =APP_BUTTONS.Success.Underline
+                        VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
+                        Width: =80
+                        X: =100
+                        Y: =3
+                        ZIndex: =3
+
+                    lbl_PrimaryText_9 As label:
+                        Align: =APP_LABELS.PrimaryText.Align
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        FontWeight: =FontWeight.Bold
+                        Height: =20
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size - 4
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: |-
+                            ="Closure requested:"
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                        Width: =90
+                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        ZIndex: =4
 
                 grp_OtherInfo As groupContainer.manualLayoutContainer:
                     Height: =30
@@ -224,7 +585,7 @@ Home As screen:
                     Width: =Parent.Width - Self.X
                     X: =img_Importance.X + img_Importance.Width
                     Y: =If(g_ExpandedAction.ID = ThisItem.ID && (grp_OtherActionsAcceptOwnership.Visible || grp_OtherActionsConfirmClosure.Visible), 30, 0)
-                    ZIndex: =17
+                    ZIndex: =9
 
                     grp_Owner As groupContainer.manualLayoutContainer:
                         Height: =Parent.Height
@@ -731,367 +1092,6 @@ Home As screen:
                         Width: =80
                         Y: =-2
                         ZIndex: =5
-
-                grp_OtherActionsAcceptOwnership As groupContainer.manualLayoutContainer:
-                    Height: =30
-                    Visible: =ThisItem.RequestedOwner.Id = USER.ID
-                    Width: =Parent.Width - Self.X
-                    X: =img_Importance.X + img_Importance.Width
-                    ZIndex: =18
-
-                    btn_RejectOwnership As button:
-                        Align: =APP_BUTTONS.BigDanger.Align
-                        BorderColor: =APP_BUTTONS.BigDanger.BorderColor
-                        BorderStyle: =APP_BUTTONS.BigDanger.BorderStyle
-                        BorderThickness: =APP_BUTTONS.BigDanger.BorderThickness
-                        Color: =APP_BUTTONS.BigDanger.Color
-                        DisabledBorderColor: =APP_BUTTONS.BigDanger.DisabledBorderColor
-                        DisabledColor: =APP_BUTTONS.BigDanger.DisabledColor
-                        DisabledFill: =APP_BUTTONS.BigDanger.DisabledFill
-                        Fill: =APP_BUTTONS.BigDanger.Fill
-                        FocusedBorderColor: =APP_BUTTONS.BigDanger.FocusedBorderColor
-                        FocusedBorderThickness: =APP_BUTTONS.BigDanger.FocusedBorderThickness
-                        Font: =APP_BUTTONS.BigDanger.Font
-                        FontWeight: =APP_BUTTONS.BigDanger.FontWeight
-                        Height: =20
-                        HoverBorderColor: =APP_BUTTONS.BigDanger.HoverBorderColor
-                        HoverColor: =APP_BUTTONS.BigDanger.HoverColor
-                        HoverFill: =APP_BUTTONS.BigDanger.HoverFill
-                        Italic: =APP_BUTTONS.BigDanger.Italic
-                        OnSelect: |-
-                            =With({tmp_OriginalRequestedOwner: ThisItem.RequestedOwner},
-                                
-                                Patch(Actions, ThisItem, { 
-                                    RequestedOwner: BLANK_RECORD
-                                });
-                            
-                                With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalRequestedOwner.Id, Email) & ThisItem.Notify,
-                                    Subject: "ACTION TRANSFER REJECTED: " & ThisItem.Title,
-                                    Header: "",
-                                    Content: "", // The requested person would not take ownership of the action. Liaise with the person to agree responsibility for this action.
-                                    MinWidth: 550
-                                })},
-                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                                );
-                            );
-                        PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
-                        PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
-                        PaddingRight: =APP_BUTTONS.BigDanger.PaddingRight
-                        PaddingTop: =APP_BUTTONS.BigDanger.PaddingTop
-                        PressedBorderColor: =APP_BUTTONS.BigDanger.PressedBorderColor
-                        PressedColor: =APP_BUTTONS.BigDanger.PressedColor
-                        PressedFill: =APP_BUTTONS.BigDanger.PressedFill
-                        RadiusBottomLeft: =5
-                        RadiusBottomRight: =5
-                        RadiusTopLeft: =5
-                        RadiusTopRight: =5
-                        Size: =APP_BUTTONS.BigDanger.Size - 2
-                        Strikethrough: =APP_BUTTONS.BigDanger.Strikethrough
-                        Text: ="Reject"
-                        Underline: =APP_BUTTONS.BigDanger.Underline
-                        VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
-                        Width: =80
-                        X: =220
-                        Y: =3
-                        ZIndex: =1
-
-                    btn_AcceptOwnership As button:
-                        Align: =APP_BUTTONS.Success.Align
-                        BorderColor: =APP_BUTTONS.Success.BorderColor
-                        BorderStyle: =APP_BUTTONS.Success.BorderStyle
-                        BorderThickness: =APP_BUTTONS.Success.BorderThickness
-                        Color: =APP_BUTTONS.Success.Color
-                        DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
-                        DisabledColor: =APP_BUTTONS.Success.DisabledColor
-                        DisabledFill: =APP_BUTTONS.Success.DisabledFill
-                        Fill: =APP_BUTTONS.Success.Fill
-                        FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
-                        FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
-                        Font: =APP_BUTTONS.Success.Font
-                        FontWeight: =APP_BUTTONS.Success.FontWeight
-                        Height: =20
-                        HoverBorderColor: =APP_BUTTONS.Success.HoverBorderColor
-                        HoverColor: =APP_BUTTONS.Success.HoverColor
-                        HoverFill: =APP_BUTTONS.Success.HoverFill
-                        Italic: =APP_BUTTONS.Success.Italic
-                        OnSelect: |-
-                            =With({tmp_OriginalOwner: ThisItem.Owner},
-                                
-                                Patch(Actions, ThisItem, { 
-                                    Owner: USER_RECORD,
-                                    RequestedOwner: BLANK_RECORD
-                                });
-                            
-                                With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalOwner.Id, Email) & ThisItem.Notify,
-                                    Subject: "ACTION TRANSFERED: " & ThisItem.Title,
-                                    Header: "",
-                                    Content: "", // You are no longer the owner
-                                    MinWidth: 550
-                                })},
-                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                                );
-                            );
-                        PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
-                        PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
-                        PaddingRight: =APP_BUTTONS.Success.PaddingRight
-                        PaddingTop: =APP_BUTTONS.Success.PaddingTop
-                        PressedBorderColor: =APP_BUTTONS.Success.PressedBorderColor
-                        PressedColor: =APP_BUTTONS.Success.PressedColor
-                        PressedFill: =APP_BUTTONS.Success.PressedFill
-                        RadiusBottomLeft: =5
-                        RadiusBottomRight: =5
-                        RadiusTopLeft: =5
-                        RadiusTopRight: =5
-                        Size: =APP_BUTTONS.Success.Size - 2
-                        Strikethrough: =APP_BUTTONS.Success.Strikethrough
-                        Text: ="Accept"
-                        Underline: =APP_BUTTONS.Success.Underline
-                        VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
-                        Width: =80
-                        X: =130
-                        Y: =3
-                        ZIndex: =2
-
-                    lbl_PrimaryText_8 As label:
-                        Align: =APP_LABELS.PrimaryText.Align
-                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
-                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
-                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
-                        Color: |
-                            =APP_LABELS.PrimaryText.Color
-                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
-                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
-                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
-                        DisplayMode: =DisplayMode.View
-                        Fill: =APP_LABELS.PrimaryText.Fill
-                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
-                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
-                        Font: =APP_LABELS.PrimaryText.Font
-                        FontWeight: =FontWeight.Bold
-                        Height: =20
-                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
-                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
-                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
-                        Italic: =APP_LABELS.PrimaryText.Italic
-                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
-                        Overflow: =APP_LABELS.PrimaryText.Overflow
-                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
-                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
-                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
-                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
-                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
-                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
-                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
-                        Size: =APP_LABELS.PrimaryText.Size - 4
-                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
-                        Text: |-
-                            ="Ownership tranfer requested:"
-                        Underline: =APP_LABELS.PrimaryText.Underline
-                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                        Width: =130
-                        Wrap: =APP_LABELS.PrimaryText.Wrap
-                        ZIndex: =3
-
-                grp_OtherActionsConfirmClosure As groupContainer.manualLayoutContainer:
-                    Height: =30
-                    Visible: =ThisItem.Status = "Pending Closure" && ThisItem.RequestedCloser.Id = USER.ID
-                    Width: =Parent.Width - Self.X
-                    X: =img_Importance.X + img_Importance.Width
-                    ZIndex: =19
-
-                    lbl_PrimaryText_10 As label:
-                        Align: =APP_LABELS.PrimaryText.Align
-                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
-                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
-                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
-                        Color: |
-                            =APP_LABELS.PrimaryText.Color
-                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
-                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
-                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
-                        DisplayMode: =DisplayMode.View
-                        Fill: =APP_LABELS.PrimaryText.Fill
-                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
-                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
-                        Font: =APP_LABELS.PrimaryText.Font
-                        Height: =Parent.Height
-                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
-                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
-                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
-                        Italic: =APP_LABELS.PrimaryText.Italic
-                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
-                        Overflow: =APP_LABELS.PrimaryText.Overflow
-                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
-                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
-                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
-                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
-                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
-                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
-                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
-                        Size: =APP_LABELS.PrimaryText.Size - 4
-                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
-                        Text: |-
-                            ="Evidence: " & ThisItem.ClosureEvidence
-                        Underline: =APP_LABELS.PrimaryText.Underline
-                        VerticalAlign: =VerticalAlign.Top
-                        Width: =300
-                        Wrap: =APP_LABELS.PrimaryText.Wrap
-                        X: =280
-                        ZIndex: =1
-
-                    btn_RejectClosure As button:
-                        Align: =APP_BUTTONS.BigDanger.Align
-                        BorderColor: =APP_BUTTONS.BigDanger.BorderColor
-                        BorderStyle: =APP_BUTTONS.BigDanger.BorderStyle
-                        BorderThickness: =APP_BUTTONS.BigDanger.BorderThickness
-                        Color: =APP_BUTTONS.BigDanger.Color
-                        DisabledBorderColor: =APP_BUTTONS.BigDanger.DisabledBorderColor
-                        DisabledColor: =APP_BUTTONS.BigDanger.DisabledColor
-                        DisabledFill: =APP_BUTTONS.BigDanger.DisabledFill
-                        Fill: =APP_BUTTONS.BigDanger.Fill
-                        FocusedBorderColor: =APP_BUTTONS.BigDanger.FocusedBorderColor
-                        FocusedBorderThickness: =APP_BUTTONS.BigDanger.FocusedBorderThickness
-                        Font: =APP_BUTTONS.BigDanger.Font
-                        FontWeight: =APP_BUTTONS.BigDanger.FontWeight
-                        Height: =20
-                        HoverBorderColor: =APP_BUTTONS.BigDanger.HoverBorderColor
-                        HoverColor: =APP_BUTTONS.BigDanger.HoverColor
-                        HoverFill: =APP_BUTTONS.BigDanger.HoverFill
-                        Italic: =APP_BUTTONS.BigDanger.Italic
-                        OnSelect: |-
-                            =// Close the action.
-                            Patch(Actions, ThisItem, { 
-                                Status: "Open"
-                            });
-                            
-                            With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
-                                Subject: "ACTION CLOSURE REJECTED: " & ThisItem.Title,
-                                Header: "",
-                                Content: "", // So and so does not agree this action can be closed. Liaise with them to agree closure criteria.
-                                MinWidth: 550
-                            })},
-                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                            );
-                        PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
-                        PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
-                        PaddingRight: =APP_BUTTONS.BigDanger.PaddingRight
-                        PaddingTop: =APP_BUTTONS.BigDanger.PaddingTop
-                        PressedBorderColor: =APP_BUTTONS.BigDanger.PressedBorderColor
-                        PressedColor: =APP_BUTTONS.BigDanger.PressedColor
-                        PressedFill: =APP_BUTTONS.BigDanger.PressedFill
-                        RadiusBottomLeft: =5
-                        RadiusBottomRight: =5
-                        RadiusTopLeft: =5
-                        RadiusTopRight: =5
-                        Size: =APP_BUTTONS.BigDanger.Size - 2
-                        Strikethrough: =APP_BUTTONS.BigDanger.Strikethrough
-                        Text: ="Reject"
-                        Underline: =APP_BUTTONS.BigDanger.Underline
-                        VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
-                        Width: =80
-                        X: =190
-                        Y: =3
-                        ZIndex: =2
-
-                    btn_ConfirmClosure As button:
-                        Align: =APP_BUTTONS.Success.Align
-                        BorderColor: =APP_BUTTONS.Success.BorderColor
-                        BorderStyle: =APP_BUTTONS.Success.BorderStyle
-                        BorderThickness: =APP_BUTTONS.Success.BorderThickness
-                        Color: =APP_BUTTONS.Success.Color
-                        DisabledBorderColor: =APP_BUTTONS.Success.DisabledBorderColor
-                        DisabledColor: =APP_BUTTONS.Success.DisabledColor
-                        DisabledFill: =APP_BUTTONS.Success.DisabledFill
-                        Fill: =APP_BUTTONS.Success.Fill
-                        FocusedBorderColor: =APP_BUTTONS.Success.FocusedBorderColor
-                        FocusedBorderThickness: =APP_BUTTONS.Success.FocusedBorderThickness
-                        Font: =APP_BUTTONS.Success.Font
-                        FontWeight: =APP_BUTTONS.Success.FontWeight
-                        Height: =20
-                        HoverBorderColor: =APP_BUTTONS.Success.HoverBorderColor
-                        HoverColor: =APP_BUTTONS.Success.HoverColor
-                        HoverFill: =APP_BUTTONS.Success.HoverFill
-                        Italic: =APP_BUTTONS.Success.Italic
-                        OnSelect: |
-                            =// Close the action.
-                            Patch(Actions, ThisItem, { 
-                                Status: "Closed",
-                                ClosedOn: Today(),
-                                ClosedBy: USER_RECORD
-                            });
-                            
-                            With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
-                                Subject: "ACTION CLOSED: " & ThisItem.Title,
-                                Header: "",
-                                Content: "", // So and so has confirmed this action as closed.
-                                MinWidth: 550
-                            })},
-                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                            );
-                        PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
-                        PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
-                        PaddingRight: =APP_BUTTONS.Success.PaddingRight
-                        PaddingTop: =APP_BUTTONS.Success.PaddingTop
-                        PressedBorderColor: =APP_BUTTONS.Success.PressedBorderColor
-                        PressedColor: =APP_BUTTONS.Success.PressedColor
-                        PressedFill: =APP_BUTTONS.Success.PressedFill
-                        RadiusBottomLeft: =5
-                        RadiusBottomRight: =5
-                        RadiusTopLeft: =5
-                        RadiusTopRight: =5
-                        Size: =APP_BUTTONS.Success.Size - 2
-                        Strikethrough: =APP_BUTTONS.Success.Strikethrough
-                        Text: ="Confirm"
-                        Underline: =APP_BUTTONS.Success.Underline
-                        VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
-                        Width: =80
-                        X: =100
-                        Y: =3
-                        ZIndex: =3
-
-                    lbl_PrimaryText_9 As label:
-                        Align: =APP_LABELS.PrimaryText.Align
-                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
-                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
-                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
-                        Color: |
-                            =APP_LABELS.PrimaryText.Color
-                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
-                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
-                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
-                        DisplayMode: =DisplayMode.View
-                        Fill: =APP_LABELS.PrimaryText.Fill
-                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
-                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
-                        Font: =APP_LABELS.PrimaryText.Font
-                        FontWeight: =FontWeight.Bold
-                        Height: =20
-                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
-                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
-                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
-                        Italic: =APP_LABELS.PrimaryText.Italic
-                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
-                        Overflow: =APP_LABELS.PrimaryText.Overflow
-                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
-                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
-                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
-                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
-                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
-                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
-                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
-                        Size: =APP_LABELS.PrimaryText.Size - 4
-                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
-                        Text: |-
-                            ="Closure requested:"
-                        Underline: =APP_LABELS.PrimaryText.Underline
-                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                        Width: =90
-                        Wrap: =APP_LABELS.PrimaryText.Wrap
-                        ZIndex: =4
 
         slide_Slider_2 As slider:
             BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor
@@ -1935,7 +1935,7 @@ Home As screen:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
         PaddingTop: =0
-        Text: ="v13"
+        Text: ="v14"
         Width: =100
         X: =109
         ZIndex: =7
