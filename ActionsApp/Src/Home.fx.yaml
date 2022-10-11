@@ -4,7 +4,7 @@ Home As screen:
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
         Width: =Parent.Width - Self.X
-        X: =If(App.Width < 400, 0, 50)
+        X: =If(ScreenSmall, 0, 50)
         Y: =100
         ZIndex: =1
 
@@ -1329,7 +1329,7 @@ Home As screen:
                 BorderStyle: =APP_INPUT_CONTROLS.Toggle.BorderStyle
                 BorderThickness: =APP_INPUT_CONTROLS.Toggle.BorderThickness
                 Color: =APP_INPUT_CONTROLS.Toggle.Color
-                Default: =If(App.Width > 400, true, false)
+                Default: =If(ScreenSmall, true, false)
                 DisabledBorderColor: =APP_INPUT_CONTROLS.Toggle.DisabledBorderColor
                 DisabledColor: =APP_INPUT_CONTROLS.Toggle.DisabledColor
                 FalseFill: |+
@@ -1916,7 +1916,7 @@ Home As screen:
                 1, Notify("Hello")
             )
         Style: =APP_SIDEBAR.Style
-        Visible: =If(App.Width < 400, false, true)
+        Visible: =If(ScreenSmall, false, true)
         Width: =Sidebar_v1___1.DynamicWidth
         Y: =60
         ZIndex: =4
