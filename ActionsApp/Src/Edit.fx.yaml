@@ -65,7 +65,7 @@ Edit As screen:
                 LayoutOverflowY: =LayoutOverflow.Scroll
                 LayoutWrap: =true
                 PaddingRight: =10
-                Width: =Parent.Width - 2*Self.X
+                Width: =521
                 X: =EditScreenCardMargin
                 Y: =EditScreenCardMargin
                 ZIndex: =10
@@ -122,7 +122,7 @@ Edit As screen:
                         Size: =If(ScreenSmall, 12, 16)
                         Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
                         Underline: =APP_INPUT_CONTROLS.Textbox.Underline
-                        Width: =Parent.Width - 2*Self.X - 80 // Minus 80 for Delete Action button
+                        Width: =Parent.Width - 2*Self.X - btn_DeleteAction.Width - 10
                         X: =1
                         Y: =20
                         ZIndex: =1
@@ -368,7 +368,7 @@ Edit As screen:
                     BorderColor: =If(And(!IsBlank(g_TheAction), g_TheAction.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
                     Default: =g_TheAction.Detail
                     DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
-                    Height: =170
+                    Height: =200
                     Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
                     Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
@@ -522,7 +522,7 @@ Edit As screen:
                         Underline: =APP_BUTTONS.LittleDanger.Underline
                         VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
                         Visible: =!IsBlank(g_TheAction.RequestedOwner)
-                        Width: =If(ScreenSmall, 50, 70)
+                        Width: =If(ScreenSmall, 45, 70)
                         X: =Parent.Width - Self.Width -1
                         Y: =20
                         ZIndex: =3
@@ -1077,71 +1077,6 @@ Edit As screen:
                     PaddingTop: =5
                     ZIndex: =9
 
-                    btn_ReOpen As button:
-                        Align: =APP_BUTTONS.LittleDanger.Align
-                        BorderColor: =APP_BUTTONS.LittleDanger.BorderColor
-                        BorderStyle: =APP_BUTTONS.LittleDanger.BorderStyle
-                        BorderThickness: =APP_BUTTONS.LittleDanger.BorderThickness
-                        Color: =APP_BUTTONS.LittleDanger.Color
-                        DisabledBorderColor: =APP_BUTTONS.LittleDanger.DisabledBorderColor
-                        DisabledColor: =APP_BUTTONS.LittleDanger.DisabledColor
-                        DisabledFill: =APP_BUTTONS.LittleDanger.DisabledFill
-                        Fill: =APP_BUTTONS.LittleDanger.Fill
-                        FocusedBorderColor: =APP_BUTTONS.LittleDanger.FocusedBorderColor
-                        FocusedBorderThickness: =APP_BUTTONS.LittleDanger.FocusedBorderThickness
-                        Font: =APP_BUTTONS.LittleDanger.Font
-                        FontWeight: =APP_BUTTONS.LittleDanger.FontWeight
-                        Height: =25
-                        HoverBorderColor: =APP_BUTTONS.LittleDanger.HoverBorderColor
-                        HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
-                        HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
-                        Italic: =APP_BUTTONS.LittleDanger.Italic
-                        OnSelect: |+
-                            =// Note this is the same as the re-open button in the editor window.
-                            If(g_TheAction.Status <> "Open",
-                                // Close the action.
-                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                    Status: "Open",
-                                    ClosedOn: Blank(),
-                                    ClosedBy: BLANK_RECORD
-                                }));
-                            
-                                If(!IsBlank(g_TheAction.RequestedCloser) || !IsBlank(g_TheAction.Notify),
-                                    With({Email: EmailFn.Builder({
-                                        To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email) &";" & g_TheAction.Notify,
-                                        Subject: "ACTION RE-OPENED: " & g_TheAction.Title,
-                                        Header: "",
-                                        Content: "",
-                                        MinWidth: 550
-                                    })},
-                                        Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                                    );
-                                );
-                            )
-                            
-                            
-                        PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
-                        PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
-                        PaddingRight: =APP_BUTTONS.LittleDanger.PaddingRight
-                        PaddingTop: =APP_BUTTONS.LittleDanger.PaddingTop
-                        PressedBorderColor: =APP_BUTTONS.LittleDanger.PressedBorderColor
-                        PressedColor: =APP_BUTTONS.LittleDanger.PressedColor
-                        PressedFill: =APP_BUTTONS.LittleDanger.PressedFill
-                        RadiusBottomLeft: =APP_BUTTONS.LittleDanger.RadiusBottomLeft
-                        RadiusBottomRight: =APP_BUTTONS.LittleDanger.RadiusBottomRight
-                        RadiusTopLeft: =APP_BUTTONS.LittleDanger.RadiusTopLeft
-                        RadiusTopRight: =APP_BUTTONS.LittleDanger.RadiusTopright
-                        Size: =APP_BUTTONS.LittleDanger.Size
-                        Strikethrough: =APP_BUTTONS.LittleDanger.Strikethrough
-                        Text: ="Re-Open"
-                        Underline: =APP_BUTTONS.LittleDanger.Underline
-                        VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
-                        Visible: =!IsBlank(g_TheAction) && g_TheAction.Status <> "Open"
-                        Width: =100
-                        X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
-                        Y: =575
-                        ZIndex: =1
-
                     btn_EditCancel As button:
                         Align: =APP_BUTTONS.Secondary.Align
                         BorderColor: =APP_BUTTONS.Secondary.BorderColor
@@ -1191,7 +1126,7 @@ Edit As screen:
                         Width: =100
                         X: =EditScreenCardMargin
                         Y: =575
-                        ZIndex: =2
+                        ZIndex: =1
 
                     btn_EditUpdate As button:
                         Align: =APP_BUTTONS.Primary.Align
@@ -1318,6 +1253,71 @@ Edit As screen:
                         Underline: =APP_BUTTONS.Primary.Underline
                         VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
                         Visible: =!btn_ReOpen.Visible
+                        Width: =100
+                        X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
+                        Y: =575
+                        ZIndex: =2
+
+                    btn_ReOpen As button:
+                        Align: =APP_BUTTONS.LittleDanger.Align
+                        BorderColor: =APP_BUTTONS.LittleDanger.BorderColor
+                        BorderStyle: =APP_BUTTONS.LittleDanger.BorderStyle
+                        BorderThickness: =APP_BUTTONS.LittleDanger.BorderThickness
+                        Color: =APP_BUTTONS.LittleDanger.Color
+                        DisabledBorderColor: =APP_BUTTONS.LittleDanger.DisabledBorderColor
+                        DisabledColor: =APP_BUTTONS.LittleDanger.DisabledColor
+                        DisabledFill: =APP_BUTTONS.LittleDanger.DisabledFill
+                        Fill: =APP_BUTTONS.LittleDanger.Fill
+                        FocusedBorderColor: =APP_BUTTONS.LittleDanger.FocusedBorderColor
+                        FocusedBorderThickness: =APP_BUTTONS.LittleDanger.FocusedBorderThickness
+                        Font: =APP_BUTTONS.LittleDanger.Font
+                        FontWeight: =APP_BUTTONS.LittleDanger.FontWeight
+                        Height: =25
+                        HoverBorderColor: =APP_BUTTONS.LittleDanger.HoverBorderColor
+                        HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
+                        HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
+                        Italic: =APP_BUTTONS.LittleDanger.Italic
+                        OnSelect: |+
+                            =// Note this is the same as the re-open button in the editor window.
+                            If(g_TheAction.Status <> "Open",
+                                // Close the action.
+                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                    Status: "Open",
+                                    ClosedOn: Blank(),
+                                    ClosedBy: BLANK_RECORD
+                                }));
+                            
+                                If(!IsBlank(g_TheAction.RequestedCloser) || !IsBlank(g_TheAction.Notify),
+                                    With({Email: EmailFn.Builder({
+                                        To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email) &";" & g_TheAction.Notify,
+                                        Subject: "ACTION RE-OPENED: " & g_TheAction.Title,
+                                        Header: "",
+                                        Content: "",
+                                        MinWidth: 550
+                                    })},
+                                        Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                    );
+                                );
+                            )
+                            
+                            
+                        PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
+                        PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
+                        PaddingRight: =APP_BUTTONS.LittleDanger.PaddingRight
+                        PaddingTop: =APP_BUTTONS.LittleDanger.PaddingTop
+                        PressedBorderColor: =APP_BUTTONS.LittleDanger.PressedBorderColor
+                        PressedColor: =APP_BUTTONS.LittleDanger.PressedColor
+                        PressedFill: =APP_BUTTONS.LittleDanger.PressedFill
+                        RadiusBottomLeft: =APP_BUTTONS.LittleDanger.RadiusBottomLeft
+                        RadiusBottomRight: =APP_BUTTONS.LittleDanger.RadiusBottomRight
+                        RadiusTopLeft: =APP_BUTTONS.LittleDanger.RadiusTopLeft
+                        RadiusTopRight: =APP_BUTTONS.LittleDanger.RadiusTopright
+                        Size: =APP_BUTTONS.LittleDanger.Size
+                        Strikethrough: =APP_BUTTONS.LittleDanger.Strikethrough
+                        Text: ="Re-Open"
+                        Underline: =APP_BUTTONS.LittleDanger.Underline
+                        VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
+                        Visible: =!IsBlank(g_TheAction) && g_TheAction.Status <> "Open"
                         Width: =100
                         X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
                         Y: =575
