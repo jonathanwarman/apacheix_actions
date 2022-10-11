@@ -17,20 +17,14 @@ Edit As screen:
         Text: ="Send Emails"
         Width: =100
         Y: =84
-        ZIndex: =2
+        ZIndex: =1
 
     Label3_1 As label:
         Height: =24
         Text: =">>" & g_TheAction.ID & "<<" & Parent.Size
         Width: =100
         Y: =60
-        ZIndex: =3
-
-    Toast_v2___1 As Toast_v2__:
-        Message: =g_Toast
-        Width: =Parent.Width
-        Y: =Self.DynamicY
-        ZIndex: =8
+        ZIndex: =2
 
     Container2 As groupContainer.verticalAutoLayoutContainer:
         Height: =Parent.Height - Self.Y
@@ -40,7 +34,7 @@ Edit As screen:
         LayoutOverflowY: =LayoutOverflow.Scroll
         Width: =Parent.Width
         Y: =70
-        ZIndex: =9
+        ZIndex: =3
 
         EditPanel As groupContainer.manualLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
@@ -54,6 +48,7 @@ Edit As screen:
 
             ShadowRectangle_v2___1 As ShadowRectangle_v2__:
                 Height: =Parent.Height
+                Visible: =true
                 Width: =Parent.Width
 
             Container10 As groupContainer.verticalAutoLayoutContainer:
@@ -66,7 +61,7 @@ Edit As screen:
                 LayoutWrap: =true
                 PaddingRight: =10
                 Width: =Parent.Width - 2*Self.X
-                X: =EditScreenCardMargin
+                X: =If(ScreenSmall, 0, EditScreenCardMargin)
                 Y: =EditScreenCardMargin
                 ZIndex: =10
 
@@ -186,10 +181,7 @@ Edit As screen:
                         HoverColor: =APP_BUTTONS.LittleDanger.HoverColor
                         HoverFill: =APP_BUTTONS.LittleDanger.HoverFill
                         Italic: =APP_BUTTONS.LittleDanger.Italic
-                        OnSelect: |-
-                            =RemoveIf(Actions, ID = g_TheAction.ID);
-                            Set(g_TheAction, Blank());
-                            Select(btn_EditCancel);
+                        OnSelect: =Set(g_VisibleDialog, "DeleteAction");
                         PaddingBottom: =APP_BUTTONS.LittleDanger.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.LittleDanger.PaddingLeft
                         PaddingRight: =APP_BUTTONS.LittleDanger.PaddingRight
@@ -356,7 +348,7 @@ Edit As screen:
                     BorderColor: =If(And(!IsBlank(g_TheAction), g_TheAction.Detail <> Self.HtmlText), Color.Red, APP_INPUT_CONTROLS.Textbox.BorderColor)
                     Default: =g_TheAction.Detail
                     DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
-                    Height: =200
+                    Height: =If(ScreenSmall, 250, 180)
                     Size: =APP_INPUT_CONTROLS.RichTextEditor.Size
                     Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
@@ -1315,9 +1307,71 @@ Edit As screen:
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
         AppURL: =APP_URL
-        DynamicHeight: =If(g_ShowBetaBar, Header_v2___2.Style.Height.ExpandedHeader, Header_v2___2.Style.Height.HeaderOnly)
         Fill: =Header_v2___2.Style.Fill
         Style: =APP_HEADER
         User: =USER
-        ZIndex: =10
+        ZIndex: =4
+
+    Toast_v2___1 As Toast_v2__:
+        Message: =g_Toast
+        Width: =Parent.Width
+        Y: =Self.DynamicY
+        ZIndex: =5
+
+    Dialogs_3 As groupContainer.manualLayoutContainer:
+        Height: =If(IsBlank(g_VisibleDialog), 0, Parent.Height)
+        Width: =Parent.Width
+        ZIndex: =7
+
+        rect_DialogBackdrop_3 As rectangle:
+            Fill: =RGBA(80, 80, 80, 0.8)
+            Height: =Parent.Height
+            Visible: =g_VisibleDialog <> Blank()
+            Width: =Parent.Width
+            ZIndex: =1
+
+        BasicDialog_v1___1 As BasicDialog_v1__:
+            Button1OnSelect: =Set(g_VisibleDialog, Blank());
+            Button2OnSelect: |-
+                =RemoveIf(Actions, ID = g_TheAction.ID);
+                Set(g_TheAction, Blank());
+                Select(btn_EditCancel);
+                Set(g_VisibleDialog, Blank());
+            Button3OnSelect: =false
+            Height: =350
+            Style: |-
+                ={
+                    MessageTitle: "Delete action?",
+                    MessageContent: "<center>Deleting the action is permanent. There is no undo!</center>",
+                    Icon: {
+                        Icon: Icon.Warning,
+                        Color: Color.Orange,
+                        Size: 80
+                    },
+                    DialogShadow: { OffsetX: 0, OffsetY: 0, Color: "#000000", Blur: 5, Opacity: 0.5},
+                    DialogBox: {Fill: "#FFFFFF", Opacity: 1, BorderThickness: 0, BorderColor: "#000000", Radius: 10},
+                    Buttons: {
+                        One: { 
+                            Style: APP_BUTTONS.Secondary,
+                            Visible: true,
+                            Text: "Cancel",
+                            Width: 80 },
+                        Two: {
+                            Style: APP_BUTTONS.BigDanger,            
+                            Visible: true,
+                            Text: "Delete Action",
+                            Width: 120 },
+                        Three: {
+                            Style: Blank(),            
+                            Visible: false,
+                            Text: "",
+                            Width: 100 },
+                        Height: 30
+                    }
+                }
+            Visible: =g_VisibleDialog = "DeleteAction"
+            Width: =400
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =100
+            ZIndex: =2
 

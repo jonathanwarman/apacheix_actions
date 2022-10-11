@@ -1,5 +1,173 @@
 {
   "ControlStates": {
+    "BasicDialog_v1___1": {
+      "AllowAccessToGlobals": true,
+      "ControlPropertyState": [
+        "Fill",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "Height",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "640",
+          "InvariantPropertyName": "Width",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "0",
+          "InvariantPropertyName": "X",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "0",
+          "InvariantPropertyName": "Y",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        "ZIndex",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "{\r\n    MessageTitle: \"My first dialog\",\r\n    MessageContent: \"Show your <b><font color=blue>HTML</font></b> text here.\",\r\n    Icon: {\r\n        Icon: Icon.CheckBadge,\r\n        Color: Color.Green,\r\n        Size: 80\r\n    },\r\n    DialogShadow: { OffsetX: 0, OffsetY: 0, Color: \"#000000\", Blur: 5, Opacity: 0.5},\r\n    DialogBox: {Fill: \"#FFFFFF\", Opacity: 1, BorderThickness: 0, BorderColor: \"#000000\", Radius: 10},\r\n    Buttons: {\r\n        One: { \r\n            Style: {\r\n                // This is a hard coded version of the original primary button. This style can be replaced with the Apps APP_BUTTONS.Primary or .Secondary or .Danger etc as required.\r\n                Color: Color.White,\r\n                Fill: ColorValue(\"#0275d8FF\"),\r\n                BorderColor: ColorValue(\"#0275d8FF\"),\r\n                BorderStyle: Solid, BorderThickness: 1, \r\n\r\n                HoverColor: Color.White,\r\n                HoverFill: ColorFade(ColorValue(\"#0275d8FF\"), -20%),\r\n                HoverBorderColor: ColorFade(ColorValue(\"#0275d8FF\"),-20%),\r\n\r\n                FocusedBorderThickness: 2, \r\n                FocusedBorderColor: ColorValue(\"#0275d8FF\"),\r\n                \r\n                PressedColor: Color.White,\r\n                PressedFill: ColorFade(ColorValue(\"#0275d8FF\"), -20%),\r\n                PressedBorderColor: Color.White,\r\n                \r\n                DisabledFill: RGBA(244, 244, 244, 1),\r\n                DisabledColor: ColorValue(\"#BEBEBEFF\"),\r\n                DisabledBorderColor: ColorValue(\"#BEBEBEFF\"),\r\n                \r\n                Font: Font.'Open Sans',\r\n                Size: 10,\r\n                FontWeight: FontWeight.Semibold, Italic: false, Underline: false, Strikethrough: false, \r\n                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,\r\n\r\n                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,\r\n                RadiusTopLeft: 10, RadiusTopright: 10, RadiusBottomLeft: 10, RadiusBottomRight: 10\r\n            },\r\n            Visible: true,\r\n            Text: \"Ok\",\r\n            Width: 80 },\r\n        Two: {\r\n            Style: {\r\n                // This is a hard coded version of the original primary button. This style can be replaced with the Apps APP_BUTTONS.Primary or .Secondary or .Danger etc as required.\r\n                Color: Color.White,\r\n                Fill: ColorValue(\"#0275d8FF\"),\r\n                BorderColor: ColorValue(\"#0275d8FF\"),\r\n                BorderStyle: Solid, BorderThickness: 1, \r\n\r\n                HoverColor: Color.White,\r\n                HoverFill: ColorFade(ColorValue(\"#0275d8FF\"), -20%),\r\n                HoverBorderColor: ColorFade(ColorValue(\"#0275d8FF\"),-20%),\r\n\r\n                FocusedBorderThickness: 2, \r\n                FocusedBorderColor: ColorValue(\"#0275d8FF\"),\r\n                \r\n                PressedColor: Color.White,\r\n                PressedFill: ColorFade(ColorValue(\"#0275d8FF\"), -20%),\r\n                PressedBorderColor: Color.White,\r\n                \r\n                DisabledFill: RGBA(244, 244, 244, 1),\r\n                DisabledColor: ColorValue(\"#BEBEBEFF\"),\r\n                DisabledBorderColor: ColorValue(\"#BEBEBEFF\"),\r\n                \r\n                Font: Font.'Open Sans',\r\n                Size: 10,\r\n                FontWeight: FontWeight.Semibold, Italic: false, Underline: false, Strikethrough: false, \r\n                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,\r\n\r\n                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,\r\n                RadiusTopLeft: 10, RadiusTopright: 10, RadiusBottomLeft: 10, RadiusBottomRight: 10\r\n            },            \r\n            Visible: true,\r\n            Text: \"Not Ok\",\r\n            Width: 120 },\r\n        Three: {\r\n            Style: {\r\n                // This is a hard coded version of the original primary button. This style can be replaced with the Apps APP_BUTTONS.Primary or .Secondary or .Danger etc as required.\r\n                Color: Color.White,\r\n                Fill: ColorValue(\"#0275d8FF\"),\r\n                BorderColor: ColorValue(\"#0275d8FF\"),\r\n                BorderStyle: Solid, BorderThickness: 1, \r\n\r\n                HoverColor: Color.White,\r\n                HoverFill: ColorFade(ColorValue(\"#0275d8FF\"), -20%),\r\n                HoverBorderColor: ColorFade(ColorValue(\"#0275d8FF\"),-20%),\r\n\r\n                FocusedBorderThickness: 2, \r\n                FocusedBorderColor: ColorValue(\"#0275d8FF\"),\r\n                \r\n                PressedColor: Color.White,\r\n                PressedFill: ColorFade(ColorValue(\"#0275d8FF\"), -20%),\r\n                PressedBorderColor: Color.White,\r\n                \r\n                DisabledFill: RGBA(244, 244, 244, 1),\r\n                DisabledColor: ColorValue(\"#BEBEBEFF\"),\r\n                DisabledBorderColor: ColorValue(\"#BEBEBEFF\"),\r\n                \r\n                Font: Font.'Open Sans',\r\n                Size: 10,\r\n                FontWeight: FontWeight.Semibold, Italic: false, Underline: false, Strikethrough: false, \r\n                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,\r\n\r\n                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,\r\n                RadiusTopLeft: 10, RadiusTopright: 10, RadiusBottomLeft: 10, RadiusBottomRight: 10\r\n            },            \r\n            Visible: true,\r\n            Text: \"Cancel\",\r\n            Width: 100 },\r\n        Height: 40\r\n    }\r\n}",
+          "InvariantPropertyName": "Style",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "false",
+          "InvariantPropertyName": "Button1OnSelect",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "true",
+          "InvariantPropertyName": "Button2OnSelect",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "true",
+          "InvariantPropertyName": "Button3OnSelect",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "OnReset",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "true",
+          "InvariantPropertyName": "Visible",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        }
+      ],
+      "HasDynamicProperties": false,
+      "IsAutoGenerated": false,
+      "IsComponentDefinition": false,
+      "IsDataControl": false,
+      "IsFromScreenLayout": false,
+      "IsGroupControl": false,
+      "IsLocked": false,
+      "LayoutName": "",
+      "Metadata": {
+        "AllowAccessToGlobals": false,
+        "AllowCustomization": true,
+        "Description": ""
+      },
+      "MetaDataIDKey": "",
+      "Name": "BasicDialog_v1___1",
+      "ParentIndex": 1,
+      "PersistMetaDataIDKey": false,
+      "Properties": [
+        {
+          "Category": "Data",
+          "PropertyName": "Style",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Width",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "ZIndex",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Y",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "X",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Height",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Fill",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Visible",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Behavior",
+          "PropertyName": "Button1OnSelect",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Behavior",
+          "PropertyName": "Button2OnSelect",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Behavior",
+          "PropertyName": "Button3OnSelect",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Behavior",
+          "PropertyName": "OnReset",
+          "RuleProviderType": "System"
+        }
+      ],
+      "StyleName": "",
+      "Type": "ControlInfo"
+    },
     "btn_CancelRequestedOwner": {
       "AllowAccessToGlobals": true,
       "ControlPropertyState": [
@@ -3139,7 +3307,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Container2",
-      "ParentIndex": 3,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3939,6 +4107,163 @@
         }
       ],
       "StyleName": "defaultDatePickerStyle",
+      "Type": "ControlInfo"
+    },
+    "Dialogs_3": {
+      "AllowAccessToGlobals": true,
+      "ControlPropertyState": [
+        "BorderColor",
+        "BorderStyle",
+        "Fill",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "X",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "Y",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "500",
+          "InvariantPropertyName": "Width",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "200",
+          "InvariantPropertyName": "Height",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        "DisplayMode",
+        "LayoutMode",
+        "LayoutDirection",
+        "LayoutAlignItems",
+        "LayoutJustifyContent",
+        "LayoutGap",
+        "LayoutOverflowX",
+        "LayoutOverflowY",
+        "LayoutWrap",
+        "ZIndex",
+        "Visible"
+      ],
+      "HasDynamicProperties": false,
+      "IsAutoGenerated": false,
+      "IsComponentDefinition": false,
+      "IsDataControl": false,
+      "IsFromScreenLayout": false,
+      "IsGroupControl": false,
+      "IsLocked": false,
+      "LayoutName": "",
+      "MetaDataIDKey": "",
+      "Name": "Dialogs_3",
+      "ParentIndex": 2,
+      "PersistMetaDataIDKey": false,
+      "Properties": [
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutWrap",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutGap",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "ZIndex",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutOverflowY",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutOverflowX",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutJustifyContent",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutAlignItems",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutDirection",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "LayoutMode",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "DisplayMode",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Width",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Height",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "BorderStyle",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Y",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "X",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "BorderColor",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Fill",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Visible",
+          "RuleProviderType": "Unknown"
+        }
+      ],
+      "StyleName": "",
       "Type": "ControlInfo"
     },
     "drop_EditCloser": {
@@ -5550,7 +5875,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "fn_EditActionSendEmails",
-      "ParentIndex": 4,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -7624,7 +7949,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Label3_1",
-      "ParentIndex": 2,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -14733,6 +15058,171 @@
       "StyleName": "defaultRadioStyle",
       "Type": "ControlInfo"
     },
+    "rect_DialogBackdrop_3": {
+      "AllowAccessToGlobals": true,
+      "ControlPropertyState": [
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "RGBA(56, 96, 178, 1)",
+          "InvariantPropertyName": "Fill",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        "DisabledFill",
+        "PressedFill",
+        "HoverFill",
+        "BorderColor",
+        "BorderStyle",
+        "FocusedBorderColor",
+        "DisplayMode",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "X",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "Y",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "150",
+          "InvariantPropertyName": "Width",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "100",
+          "InvariantPropertyName": "Height",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        "ZIndex",
+        "BorderThickness",
+        "FocusedBorderThickness",
+        "OnSelect",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "true",
+          "InvariantPropertyName": "Visible",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        }
+      ],
+      "HasDynamicProperties": false,
+      "IsAutoGenerated": false,
+      "IsComponentDefinition": false,
+      "IsDataControl": false,
+      "IsFromScreenLayout": false,
+      "IsGroupControl": false,
+      "IsLocked": false,
+      "LayoutName": "",
+      "MetaDataIDKey": "",
+      "Name": "rect_DialogBackdrop_3",
+      "ParentIndex": 0,
+      "PersistMetaDataIDKey": false,
+      "Properties": [
+        {
+          "Category": "Design",
+          "PropertyName": "FocusedBorderColor",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "FocusedBorderThickness",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Visible",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "DisabledFill",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Fill",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "BorderColor",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "HoverFill",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "BorderStyle",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "DisplayMode",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "X",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Y",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Width",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Height",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "ZIndex",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "BorderThickness",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "PressedFill",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Behavior",
+          "PropertyName": "OnSelect",
+          "RuleProviderType": "Unknown"
+        }
+      ],
+      "StyleName": "defaultRectangleStyle",
+      "Type": "ControlInfo"
+    },
     "ShadowRectangle_v2___1": {
       "AllowAccessToGlobals": true,
       "ControlPropertyState": [
@@ -14756,7 +15246,8 @@
         "X",
         "Y",
         "ZIndex",
-        "Style"
+        "Style",
+        "Visible"
       ],
       "HasDynamicProperties": false,
       "IsAutoGenerated": false,
@@ -14809,6 +15300,11 @@
         {
           "Category": "Design",
           "PropertyName": "ZIndex",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Visible",
           "RuleProviderType": "Unknown"
         }
       ],
