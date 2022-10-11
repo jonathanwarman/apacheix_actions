@@ -65,7 +65,7 @@ Edit As screen:
                 LayoutOverflowY: =LayoutOverflow.Scroll
                 LayoutWrap: =true
                 PaddingRight: =10
-                Width: =521
+                Width: =Parent.Width - 2*Self.X
                 X: =EditScreenCardMargin
                 Y: =EditScreenCardMargin
                 ZIndex: =10
@@ -211,18 +211,11 @@ Edit As screen:
                         Y: =20
                         ZIndex: =3
 
-                grp_Importance As groupContainer.horizontalAutoLayoutContainer:
-                    AlignInContainer: =AlignInContainer.Start
-                    Height: =30
-                    LayoutGap: =5
-                    LayoutMinHeight: =30
+                grp_Importance As groupContainer.manualLayoutContainer:
+                    FillPortions: =0
+                    LayoutMinHeight: =If(Self.Width < rad_EditImportance.X + rad_EditImportance.Width, 70, 35)
                     LayoutMinWidth: =250
-                    LayoutMode: =LayoutMode.Auto
-                    LayoutWrap: =true
-                    PaddingTop: =5
-                    Width: =Parent.Width - 2*Self.X
-                    X: =EditScreenCardMargin
-                    Y: =grp_ActionText.Y + grp_ActionText.Height + 10
+                    Width: =Parent.Width - 20
                     ZIndex: =2
 
                     lbl_SecondaryText_4 As label:
@@ -262,8 +255,6 @@ Edit As screen:
                         VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
                         Width: =72
                         Wrap: =APP_LABELS.SecondaryText.Wrap
-                        X: =EditScreenCardMargin
-                        Y: =152
                         ZIndex: =1
 
                     rad_EditImportance As radio:
@@ -290,18 +281,16 @@ Edit As screen:
                                 )
                             )
                         Fill: =APP_INPUT_CONTROLS.Radio.Fill
-                        FillPortions: =1
                         FocusedBorderColor: =APP_INPUT_CONTROLS.Radio.FocusedBorderColor
                         FocusedBorderThickness: =APP_INPUT_CONTROLS.Radio.FocusedBorderThickness
                         Font: =APP_INPUT_CONTROLS.Radio.Font
                         FontWeight: =APP_INPUT_CONTROLS.Radio.FontWeight
-                        Height: =25
+                        Height: =Parent.Height
                         HoverColor: =APP_INPUT_CONTROLS.Radio.HoverColor
                         HoverFill: =APP_INPUT_CONTROLS.Radio.HoverFill
                         Italic: =APP_INPUT_CONTROLS.Radio.Italic
                         Items: =["Significant", "Normal", "Low"]
-                        Layout: =Layout.Horizontal
-                        LayoutMinWidth: =100
+                        Layout: =If(Parent.Width < 400, Layout.Vertical, Layout.Horizontal)
                         LineHeight: =1.5
                         PaddingBottom: =APP_INPUT_CONTROLS.Radio.PaddingBottom
                         PaddingLeft: =APP_INPUT_CONTROLS.Radio.PaddingLeft
@@ -316,9 +305,8 @@ Edit As screen:
                         Size: =APP_INPUT_CONTROLS.Radio.Size
                         Strikethrough: =APP_INPUT_CONTROLS.Radio.Strikethrough
                         Underline: =APP_INPUT_CONTROLS.Radio.Underline
-                        Width: =344
-                        X: =100 + (Parent.Width / 100 * 5) // 5% margins 
-                        Y: =152
+                        Width: =310
+                        X: =72
                         ZIndex: =2
 
                 lbl_SecondaryText_5 As label:
@@ -361,7 +349,7 @@ Edit As screen:
                     Wrap: =APP_LABELS.SecondaryText.Wrap
                     X: =EditScreenCardMargin
                     Y: =192
-                    ZIndex: =3
+                    ZIndex: =4
 
                 txt_EditActionDetail As richTextEditor:
                     AlignInContainer: =AlignInContainer.Start
@@ -373,20 +361,20 @@ Edit As screen:
                     Width: =Parent.Width - 20
                     X: =EditScreenCardMargin
                     Y: =20
-                    ZIndex: =4
+                    ZIndex: =5
 
                 grp_Owner2 As groupContainer.manualLayoutContainer:
                     AlignInContainer: =AlignInContainer.Start
                     Fill: =RGBA(255, 255, 255, 1)
                     FillPortions: =0
-                    Height: =110
+                    Height: =If(lbl_PrimaryText_3.Visible, 110, 50)
                     LayoutMinHeight: =100
                     LayoutMinWidth: =Parent.Width/2
                     PaddingTop: =10
-                    Width: =(Parent.Width/2) - 20
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
                     X: =84
                     Y: =317
-                    ZIndex: =5
+                    ZIndex: =6
 
                     lbl_PrimaryText_3 As label:
                         Align: =APP_LABELS.PrimaryText.Align
@@ -627,10 +615,10 @@ Edit As screen:
                     LayoutMinHeight: =100
                     LayoutMinWidth: =Parent.Width/2
                     PaddingTop: =10
-                    Width: =(Parent.Width/2) - 20
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
                     X: =Parent.Width -Self.Width -EditScreenCardMargin
                     Y: =395
-                    ZIndex: =6
+                    ZIndex: =7
 
                     drop_EditCloser As dropdown:
                         AllowEmptySelection: =true
@@ -868,8 +856,8 @@ Edit As screen:
                     Height: =65
                     LayoutMinHeight: =45
                     LayoutMinWidth: =Parent.Width/2
-                    Width: =(Parent.Width/2) - 20
-                    ZIndex: =7
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
+                    ZIndex: =8
 
                     date_EditTarget As datepicker:
                         BorderColor: =APP_INPUT_CONTROLS.DatePicker.BorderColor
@@ -946,10 +934,10 @@ Edit As screen:
                     Height: =65
                     LayoutMinHeight: =65
                     LayoutMinWidth: =Parent.Width/2
-                    Width: =(Parent.Width/2) - 20
+                    Width: =If(Parent.Width < 400, Parent.Width, (Parent.Width/2)) - 20
                     X: =Parent.Width -Self.Width -EditScreenCardMargin
                     Y: =448
-                    ZIndex: =8
+                    ZIndex: =9
 
                     Icon3_3 As icon.EmojiSmile:
                         BorderColor: =APP_BUTTONS.Icon.BorderColor
@@ -1075,7 +1063,7 @@ Edit As screen:
                     PaddingLeft: =10
                     PaddingRight: =10
                     PaddingTop: =5
-                    ZIndex: =9
+                    ZIndex: =10
 
                     btn_EditCancel As button:
                         Align: =APP_BUTTONS.Secondary.Align
