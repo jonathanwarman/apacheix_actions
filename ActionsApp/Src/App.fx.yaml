@@ -748,5 +748,6 @@ App As appinfo:
         EditScreenCardMargin = If(ScreenSize = Small, 15, 30);
         
         
+    SizeBreakpoints: =[400, 900, 1200]
     StartScreen: =Home
 
