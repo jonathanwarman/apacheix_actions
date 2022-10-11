@@ -73,7 +73,7 @@ Edit As screen:
                 grp_ActionText As groupContainer.manualLayoutContainer:
                     AlignInContainer: =AlignInContainer.Start
                     FillPortions: =0
-                    Height: =85
+                    Height: =90
                     LayoutMinHeight: =100
                     LayoutMinWidth: =250
                     PaddingRight: =20
@@ -123,6 +123,7 @@ Edit As screen:
                         Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
                         Underline: =APP_INPUT_CONTROLS.Textbox.Underline
                         Width: =Parent.Width - 2*Self.X - 80 // Minus 80 for Delete Action button
+                        X: =1
                         Y: =20
                         ZIndex: =1
 
@@ -206,7 +207,7 @@ Edit As screen:
                         Underline: =APP_BUTTONS.LittleDanger.Underline
                         VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
                         Width: =If(ScreenSize = Small, 50, 70)
-                        X: =Parent.Width -Self.Width
+                        X: =Parent.Width -Self.Width - 1
                         Y: =20
                         ZIndex: =3
 
@@ -423,8 +424,9 @@ Edit As screen:
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
                         Visible: =!IsBlank(g_TheAction.RequestedOwner)
-                        Width: =Parent.Width
-                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        Width: =Parent.Width - 2
+                        Wrap: =false
+                        X: =1
                         Y: =75
                         ZIndex: =1
 
@@ -521,7 +523,7 @@ Edit As screen:
                         VerticalAlign: =APP_BUTTONS.LittleDanger.VerticalAlign
                         Visible: =!IsBlank(g_TheAction.RequestedOwner)
                         Width: =If(ScreenSize = Small, 50, 70)
-                        X: =Parent.Width - Self.Width
+                        X: =Parent.Width - Self.Width -1
                         Y: =20
                         ZIndex: =3
 
@@ -576,6 +578,7 @@ Edit As screen:
                         Strikethrough: =APP_INPUT_CONTROLS.Dropdown.Strikethrough
                         Underline: =APP_INPUT_CONTROLS.Dropdown.Underline
                         Width: =Parent.Width - btn_CancelRequestedOwner.Width - 10
+                        X: =1
                         Y: =20
                         ZIndex: =4
 
@@ -894,6 +897,7 @@ Edit As screen:
                         PaddingTop: =APP_INPUT_CONTROLS.DatePicker.PaddingTop
                         Size: =APP_INPUT_CONTROLS.DatePicker.Size
                         Width: =160
+                        X: =1
                         Y: =20
                         ZIndex: =1
 
