@@ -745,7 +745,7 @@ App As appinfo:
         
         /***** APP SPECIFIC *****/
         EditScreenCardWidth = If(App.Width > 680, 660, App.Width - 20);
-        EditScreenCardMargin = EditScreenCardWidth / 100 * 5; // 5% margins
+        EditScreenCardMargin = If(ScreenSize = Small, 15, 30);
         
         
     StartScreen: =Home
