@@ -1,0 +1,748 @@
+App As appinfo:
+    BackEnabled: =false
+    Formulas: |+
+        =APP_TITLE = "Actions (Gen2)";
+        APP_RELEASE = { Type: "Dev", Release: 0, Fix: 0 };
+        
+        APP_URL = "https://apps.powerapps.com/play/" & 
+            If(APP_RELEASE.Type = "Dev",               "",
+               APP_RELEASE.Type = "Alpha",             "",
+               APP_RELEASE.Type in ["Beta","Prod"],    ""
+            ) & "&hidenavbar=true";
+        
+        RESPONDER_APP_URL = "https://apps.powerapps.com/play/" &
+            If(APP_RELEASE.Type in ["Dev", "Alpha"],"2f6491f6-7ddd-413e-b233-738e9a580a63?tenantId=00d7b6a8-b13f-4935-9a8e-954dfc10f607",  
+               APP_RELEASE.Type in ["Beta", "Prod"],"1a63b6cc-4e16-4d1b-aab9-4c395d037b20?tenantId=587b57e8-8dd1-4070-8462-209615860687"
+            ) & "&hidenavbar=true";
+        
+        APP_PERMISSIONS = {
+            IsSuperUser: First(Split(Lower(User().Email), "@")).Result in ["jonathan.warman", "andrew.page", "jeff.moreton", "john.marsh", "andy.north", "mike.gruber"]
+        };
+        
+        USER = With({ tmp_UserRecord: If(IsBlank(Param("TestUserId")), 
+            LookUp(Filter(People, IsReal, Relationship = "Apache iX Employee"), Email = User().Email), 
+            LookUp(Filter(People, IsReal, Relationship = "Apache iX Employee"), ID = Param("TestUserId"))) },
+            { 
+                ID: tmp_UserRecord.ID, 
+                Name: tmp_UserRecord.Name, 
+                Email: tmp_UserRecord.Email, 
+                Image: If(!IsBlank(tmp_UserRecord.Email) && !IsEmpty(Office365Users.SearchUserV2({searchTerm:tmp_UserRecord.Email}).value) && Office365Users.UserPhotoMetadata(tmp_UserRecord.Email).HasPhoto, 
+                    Office365Users.UserPhotoV2(tmp_UserRecord.Email)
+                )
+            }
+        );
+        
+        USER_RECORD = { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: USER.ID, Value: USER.Name };
+        BLANK_RECORD =  { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: -1, Value: Blank() };
+        
+        // Use one of the Toast components and get the Toast types. This ensures the toasts types are always up-to-date.
+        // From Toast_v2...
+        TOAST_TYPE = { 
+            Info: 0,
+            Success: 1, 
+            Warning: 2, 
+            Error: 3,
+            Stop: 4,
+            Notify: 5
+        };
+        
+        
+        
+        // Hex colors are the primary definition, because they can be used in powerapps color representation and in html components.
+        APP_COLORS_HEX = {
+                AppColor:       "#ff9900FF",
+                AppColorShade:  "#ffd699FF",
+                Action:         "#0275d8FF",        
+                Highlight:      "#8dc1edFF",
+                Hover:          "#8dc1ed66",
+                PrimaryText:    "#303030FF",
+                SecondaryText:  "#A9A9A9FF",
+                Outline:        "#D3D3D3FF",        
+                LightGray:      "#F8F8F8FF",
+                MidGray:        "#BEBEBEFF",
+                DarkGray:       "#696969FF",
+                Success:        "#5cb85cFF",
+                Danger:         "#d9534fFF",
+                Warning:        "#f0ad4eFF",
+                Info:           "#5bc0deFF"
+            };
+        
+        APP_COLORS = {
+            // Standard app colours...
+        
+            AppColor:       ColorValue(APP_COLORS_HEX.AppColor),
+            AppColorShade:  ColorValue(APP_COLORS_HEX.AppColorShade),        
+            Action:         ColorValue(APP_COLORS_HEX.Action),    
+            Highlight:      ColorValue(APP_COLORS_HEX.Highlight),
+            Hover:          ColorValue(APP_COLORS_HEX.Hover),
+            PrimaryText:    ColorValue(APP_COLORS_HEX.PrimaryText),
+            SecondaryText:  ColorValue(APP_COLORS_HEX.SecondaryText),
+            Outline:        ColorValue(APP_COLORS_HEX.Outline),        
+            LightGray:      ColorValue(APP_COLORS_HEX.LightGray),
+            MidGray:        ColorValue(APP_COLORS_HEX.MidGray),
+            DarkGray:       ColorValue(APP_COLORS_HEX.DarkGray),
+            Success:        ColorValue(APP_COLORS_HEX.Success),
+            Danger:         ColorValue(APP_COLORS_HEX.Danger),
+            Warning:        ColorValue(APP_COLORS_HEX.Warning),
+            Info:           ColorValue(APP_COLORS_HEX.Info),
+            Transparent:    RGBA(0,0,0,0)
+        
+            // Create other app specific colours below here...
+        };
+        
+        
+        APP_COMMONS = {
+            Label: {
+            },
+            Button: {
+                Radius:10,
+                Padding: 5,
+                Size: 10,
+                Font: Font.'Open Sans',
+                FontWeight: FontWeight.Semibold,    
+                        
+                BorderThickness: 1,
+                FocusedBorderThickness: 2,
+                BorderColor: Color.Pink,
+                
+                DisabledColor: RGBA(166, 166, 166, 1),
+                DisabledFill: RGBA(244, 244, 244, 1)
+            },
+            Controls: {
+                Font: Font.'Open Sans',
+                Size: 10,
+                Color: APP_COLORS.PrimaryText,
+                FontWeight: FontWeight.Normal,
+            
+                BorderStyle: BorderStyle.Solid,
+                BorderThickness: 1,
+                BorderColor: APP_COLORS.Outline,
+                FocusedBorderColor: APP_COLORS.Action,
+                FocusedBorderThickness: 2,
+                HoverBorderColor: APP_COLORS.Action,
+                PressedBorderColor: APP_COLORS.Action
+            }
+        };
+        
+        APP_LABELS = {
+            H1: {
+                // Not really used in headings.
+                Overflow: Overflow.Hidden, Wrap: true,
+                DisabledColor: RGBA(166, 166, 166, 1), PressedColor: Color.Black, HoverColor: Color.Black,
+                BorderColor: RGBA(0, 18, 107, 1), PressedBorderColor: RGBA(0, 18, 107, 1), HoverBorderColor: RGBA(0, 18, 107, 1), DisabledBorderColor: RGBA(56, 56, 56, 1), FocusedBorderColor: RGBA(0, 18, 107, 1),
+                BorderStyle: Solid, BorderThickness: 0, FocusedBorderThickness: 0,
+                Fill: RGBA(0, 0, 0, 0), DisabledFill: RGBA(0, 0, 0, 0), PressedFill: RGBA(0, 0, 0, 0), HoverFill: RGBA(0, 0, 0, 0),
+                LineHeight: 1.2,
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,
+        
+                // Main properties for labels.
+                Color: APP_COLORS.PrimaryText,
+                Font: Font.'Open Sans',
+                FontWeight: FontWeight.Bold,      
+                Size: 18,
+                Italic: false, Underline: false, Strikethrough: false,
+                Align: Align.Left, VerticalAlign: VerticalAlign.Middle
+            },
+            H2: {
+                // Main properties for labels.
+                Color: APP_COLORS.PrimaryText,
+                Font: Font.'Open Sans',
+                FontWeight: FontWeight.Semibold,      
+                Size: 14,
+                Italic: false, Underline: false, Strikethrough: false,
+                Align: Align.Left, VerticalAlign: VerticalAlign.Middle,
+        
+                // Not really used in headings.
+                Overflow: Overflow.Hidden, Wrap: true,
+                DisabledColor: RGBA(166, 166, 166, 1), PressedColor: Color.Black, HoverColor: Color.Black,
+                BorderColor: RGBA(0, 18, 107, 1), PressedBorderColor: RGBA(0, 18, 107, 1), HoverBorderColor: RGBA(0, 18, 107, 1), DisabledBorderColor: RGBA(56, 56, 56, 1), FocusedBorderColor: RGBA(0, 18, 107, 1),
+                BorderStyle: Solid, BorderThickness: 0, FocusedBorderThickness: 0,
+                Fill: RGBA(0, 0, 0, 0), DisabledFill: RGBA(0, 0, 0, 0), PressedFill: RGBA(0, 0, 0, 0), HoverFill: RGBA(0, 0, 0, 0),
+                LineHeight: 1.2,
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5
+            },
+            H3: {
+                // Main properties for labels.
+                Color: APP_COLORS.SecondaryText,
+                Font: Font.'Open Sans',
+                FontWeight: FontWeight.Semibold,
+                Size: 12,
+                Italic: false, Underline: false, Strikethrough: false,
+                Align: Align.Left, VerticalAlign: VerticalAlign.Middle,
+         
+                // Not really used in headings.
+                Overflow: Overflow.Hidden, Wrap: true,
+                DisabledColor: RGBA(166, 166, 166, 1), PressedColor: Color.Black, HoverColor: Color.Black,
+                BorderColor: RGBA(0, 18, 107, 1), PressedBorderColor: RGBA(0, 18, 107, 1), HoverBorderColor: RGBA(0, 18, 107, 1), DisabledBorderColor: RGBA(56, 56, 56, 1), FocusedBorderColor: RGBA(0, 18, 107, 1),
+                BorderStyle: Solid, BorderThickness: 0, FocusedBorderThickness: 0,
+                Fill: RGBA(0, 0, 0, 0), DisabledFill: RGBA(0, 0, 0, 0), PressedFill: RGBA(0, 0, 0, 0), HoverFill: RGBA(0, 0, 0, 0),
+                LineHeight: 1.2,
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5        
+            },    
+            PrimaryText: {
+                // Main properties for labels.
+                Color: APP_COLORS.PrimaryText,
+                Font: Font.'Open Sans',
+                FontWeight: FontWeight.Normal,      
+                Size: 10,
+                Italic: false, Underline: false, Strikethrough: false,
+                Align: Align.Left, VerticalAlign: VerticalAlign.Middle,
+                
+                // Not really used in headings.
+                Overflow: Overflow.Hidden, Wrap: true,
+                DisabledColor: RGBA(166, 166, 166, 1), PressedColor: Color.Black, HoverColor: Color.Black,
+                BorderColor: RGBA(0, 18, 107, 1), PressedBorderColor: RGBA(0, 18, 107, 1), HoverBorderColor: RGBA(0, 18, 107, 1), DisabledBorderColor: RGBA(56, 56, 56, 1), FocusedBorderColor: RGBA(0, 18, 107, 1),
+                BorderStyle: Solid, BorderThickness: 0, FocusedBorderThickness: 0,
+                Fill: RGBA(0, 0, 0, 0), DisabledFill: RGBA(0, 0, 0, 0), PressedFill: RGBA(0, 0, 0, 0), HoverFill: RGBA(0, 0, 0, 0),
+                LineHeight: 1.2,
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5
+            },
+            SecondaryText: {
+                // Main properties for labels.
+                Color: APP_COLORS.SecondaryText,
+                Font: Font.'Open Sans',
+                FontWeight: FontWeight.Normal,      
+                Size: 10,
+                Italic: false, Underline: false, Strikethrough: false,
+                Align: Align.Left, VerticalAlign: VerticalAlign.Middle,
+        
+                // Not really used in headings.
+                Overflow: Overflow.Hidden, Wrap: true,
+                DisabledColor: RGBA(166, 166, 166, 1), PressedColor: Color.Black, HoverColor: Color.Black,
+                BorderColor: RGBA(0, 18, 107, 1), PressedBorderColor: RGBA(0, 18, 107, 1), HoverBorderColor: RGBA(0, 18, 107, 1), DisabledBorderColor: RGBA(56, 56, 56, 1), FocusedBorderColor: RGBA(0, 18, 107, 1),
+                BorderStyle: Solid, BorderThickness: 0, FocusedBorderThickness: 0,
+                Fill: RGBA(0, 0, 0, 0), DisabledFill: RGBA(0, 0, 0, 0), PressedFill: RGBA(0, 0, 0, 0), HoverFill: RGBA(0, 0, 0, 0),
+                LineHeight: 1.2,
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5   
+            }
+        };
+        
+        APP_BUTTONS = {
+            Primary: {
+                Color: Color.White,
+                Fill: APP_COLORS.Action,
+                BorderColor: APP_COLORS.Action,
+                BorderStyle: Solid, BorderThickness: 1, 
+        
+                HoverColor: Color.White,
+                HoverFill: ColorFade(APP_COLORS.Action, -20%),
+                HoverBorderColor: ColorFade(APP_COLORS.Action,-20%),
+        
+                FocusedBorderThickness: 2, 
+                FocusedBorderColor: APP_COLORS.Action,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Action, -20%),
+                PressedBorderColor: Color.White,
+                
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.MidGray,
+                
+                Font: APP_COMMONS.Button.Font, 
+                Size: APP_COMMONS.Button.Size,
+                FontWeight: APP_COMMONS.Button.FontWeight, Italic: false, Underline: false, Strikethrough: false, 
+                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
+                RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius
+            },
+            Secondary: {
+                Color: APP_COLORS.Action,
+                Fill: Color.White,
+                BorderColor: APP_COLORS.Action,
+                BorderStyle: Solid, BorderThickness: 1, 
+        
+                HoverColor: Color.White,
+                HoverFill: ColorFade(APP_COLORS.Action, -20%),
+                HoverBorderColor: ColorFade(APP_COLORS.Action,-20%),
+        
+                FocusedBorderThickness: 2, 
+                FocusedBorderColor: APP_COLORS.Action,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Action, -20%),
+                PressedBorderColor: Color.White,
+                
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.MidGray,
+                
+                Font: APP_COMMONS.Button.Font, 
+                Size: APP_COMMONS.Button.Size,
+                FontWeight: APP_COMMONS.Button.FontWeight, Italic: false, Underline: false, Strikethrough: false, 
+                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
+                RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius
+            },
+            Tertiary: {
+                Color: APP_COLORS.MidGray,
+                Fill: Color.White,
+                BorderColor: APP_COLORS.MidGray,
+                BorderStyle: Solid, BorderThickness: 1, 
+        
+                HoverColor: APP_COLORS.Action,
+                HoverFill: Color.White,
+                HoverBorderColor: APP_COLORS.Action,
+        
+                FocusedBorderThickness: 2, 
+                FocusedBorderColor: APP_COLORS.Action,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Action, -20%),
+                PressedBorderColor: Color.White,
+                
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.MidGray,
+                
+                Font: APP_COMMONS.Button.Font, 
+                Size: APP_COMMONS.Button.Size,
+                FontWeight: FontWeight.Normal, Italic: false, Underline: false, Strikethrough: false, 
+                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
+                RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius
+            },
+            Success: {
+                Color: Color.White,
+                Fill: APP_COLORS.Success,
+                BorderColor: APP_COLORS.Success,
+                BorderStyle: Solid, BorderThickness: 1, 
+        
+                HoverColor: Color.White,
+                HoverFill: ColorFade(APP_COLORS.Success, -20%),
+                HoverBorderColor: ColorFade(APP_COLORS.Success,-20%),
+        
+                FocusedBorderThickness: 2, 
+                FocusedBorderColor: APP_COLORS.Success,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Success, -20%),
+                PressedBorderColor: Color.White,
+                
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.MidGray,
+                
+                Font: APP_COMMONS.Button.Font, 
+                Size: APP_COMMONS.Button.Size,
+                FontWeight: APP_COMMONS.Button.FontWeight, Italic: false, Underline: false, Strikethrough: false, 
+                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
+                RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius
+            },
+            BigDanger: {
+                Color: Color.White,
+                Fill: APP_COLORS.Danger,
+                BorderColor: APP_COLORS.Danger,
+                BorderStyle: Solid, BorderThickness: 1, 
+        
+                HoverColor: Color.White,
+                HoverFill: ColorFade(APP_COLORS.Danger, -20%),
+                HoverBorderColor: ColorFade(APP_COLORS.Danger,-20%),
+        
+                FocusedBorderThickness: 2, 
+                FocusedBorderColor: APP_COLORS.Danger,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Danger, -20%),
+                PressedBorderColor: Color.White,
+                
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.MidGray,
+                
+                Font: APP_COMMONS.Button.Font, 
+                Size: APP_COMMONS.Button.Size,
+                FontWeight: APP_COMMONS.Button.FontWeight, Italic: false, Underline: false, Strikethrough: false, 
+                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
+                RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius
+            },
+            LittleDanger: {
+                Color: APP_COLORS.Danger,
+                Fill: Color.White,
+                BorderColor: APP_COLORS.Danger,
+                BorderStyle: Solid, BorderThickness: 1, 
+        
+                HoverColor: Color.White,
+                HoverFill: ColorFade(APP_COLORS.Danger, -20%),
+                HoverBorderColor: ColorFade(APP_COLORS.Danger,-20%),
+        
+                FocusedBorderThickness: 2, 
+                FocusedBorderColor: APP_COLORS.Danger,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Danger, -20%),
+                PressedBorderColor: Color.White,
+                
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.MidGray,
+                
+                Font: APP_COMMONS.Button.Font, 
+                Size: APP_COMMONS.Button.Size,
+                FontWeight: APP_COMMONS.Button.FontWeight, Italic: false, Underline: false, Strikethrough: false, 
+                Align: Align.Center, VerticalAlign: VerticalAlign.Middle,
+        
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding,
+                RadiusTopLeft: APP_COMMONS.Button.Radius, RadiusTopright: APP_COMMONS.Button.Radius, RadiusBottomLeft: APP_COMMONS.Button.Radius, RadiusBottomRight: APP_COMMONS.Button.Radius   
+            },
+            Icon: {
+                Color: APP_COLORS.Action,
+                Fill: APP_COLORS.Transparent,
+                BorderColor: APP_COLORS.Transparent,
+                BorderStyle: None, BorderThickness: 0, 
+        
+                HoverColor: APP_COLORS.Action,
+                HoverFill: APP_COLORS.Hover,
+                HoverBorderColor: APP_COLORS.Transparent,
+        
+                FocusedBorderThickness: 0, 
+                FocusedBorderColor: APP_COLORS.Transparent,
+                
+                PressedColor: Color.White,
+                PressedFill: ColorFade(APP_COLORS.Hover, 30%),
+                PressedBorderColor: APP_COLORS.Transparent,
+                
+                DisabledFill: APP_COLORS.Transparent,
+                DisabledColor: APP_COLORS.MidGray,
+                DisabledBorderColor: APP_COLORS.Transparent,
+                
+                PaddingTop: APP_COMMONS.Button.Padding, PaddingRight: APP_COMMONS.Button.Padding, PaddingBottom: APP_COMMONS.Button.Padding, PaddingLeft: APP_COMMONS.Button.Padding
+            }       
+        };
+        
+        APP_INPUT_CONTROLS = {
+           Textbox: {
+                BorderStyle: APP_COMMONS.Controls.BorderStyle,
+                BorderThickness: APP_COMMONS.Controls.BorderThickness,
+                BorderColor: APP_COMMONS.Controls.BorderColor,
+                FocusedBorderColor: APP_COMMONS.Controls.FocusedBorderColor,
+                FocusedBorderThickness: APP_COMMONS.Controls.FocusedBorderThickness,
+                HoverBorderColor: APP_COMMONS.Controls.HoverBorderColor,
+                PressedBorderColor: APP_COMMONS.Controls.PressedBorderColor,
+                BorderRadius: 0,
+        
+                Font: APP_COMMONS.Controls.Font,
+                Size: APP_COMMONS.Controls.Size,
+                Color: APP_COMMONS.Controls.Color,
+                FontWeight: APP_COMMONS.Controls.FontWeight,
+                Italic: false, Underline: false, Strikethrough: false,
+        
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 12,
+        
+                Fill: Color.White,
+                HoverFill: APP_COLORS.Hover,
+                PressedFill: RGBA(0, 0, 0, 0),
+        
+                HoverColor: Color.Black,
+                PressedColor: Color.White,
+        
+                Clear: false,
+                LineHeight: 1.2,
+                Align: Align.Left,
+                
+                DisabledColor: RGBA(166, 166, 166, 1),
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledBorderColor: RGBA(166, 166, 166, 1)
+            },
+            RichTextEditor: {
+                BorderColor: APP_COMMONS.Controls.BorderColor,
+                Size: APP_COMMONS.Controls.Size
+            },    
+        
+            DatePicker: {
+                BorderStyle: APP_COMMONS.Controls.BorderStyle,
+                BorderThickness: APP_COMMONS.Controls.BorderThickness,
+                BorderColor: APP_COMMONS.Controls.BorderColor,
+                FocusedBorderColor: APP_COMMONS.Controls.FocusedBorderColor,
+                FocusedBorderThickness: APP_COMMONS.Controls.FocusedBorderThickness,
+        
+                Font: APP_COMMONS.Controls.Font,
+                Size: APP_COMMONS.Controls.Size,
+                Color: APP_COMMONS.Controls.Color,
+                FontWeight: APP_COMMONS.Controls.FontWeight,
+                Italic: false,
+        
+                PaddingTop: 0, PaddingRight: 0, PaddingBottom: 0, PaddingLeft: 12,
+        
+                IconFill: Color.White,
+                IconBackground: APP_COLORS.Action,        
+                
+                Fill: Color.White,
+                
+                DisabledColor: RGBA(166, 166, 166, 1),
+                DisabledFill: RGBA(244, 244, 244, 1),
+                DisabledBorderColor: RGBA(166, 166, 166, 1),
+        
+                IsEditable: false
+            },
+            Dropdown: {
+                BorderStyle: APP_COMMONS.Controls.BorderStyle,
+                BorderThickness: APP_COMMONS.Controls.BorderThickness,
+                BorderColor: APP_COMMONS.Controls.BorderColor,
+                FocusedBorderColor: APP_COMMONS.Controls.FocusedBorderColor,
+                FocusedBorderThickness: APP_COMMONS.Controls.FocusedBorderThickness,
+                HoverBorderColor: APP_COMMONS.Controls.HoverBorderColor,
+                PressedBorderColor: APP_COMMONS.Controls.PressedBorderColor,
+        
+                Font: APP_COMMONS.Controls.Font,
+                Size: APP_COMMONS.Controls.Size,
+                Color: APP_COMMONS.Controls.Color,
+                FontWeight: APP_COMMONS.Controls.FontWeight,
+                Italic: false, Underline: false, Strikethrough: false,        
+        
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,
+        
+                HoverColor: Color.Black,
+                PressedColor: Color.White,
+        
+                Fill: Color.White,
+                HoverFill: APP_COLORS.Hover,
+                PressedFill: RGBA(0, 0, 0, 0),
+        
+        
+                ChevronFill: Color.White,
+                ChevronBackground: APP_COLORS.Action,
+                ChevronHoverFill: Color.White,       
+                ChevronHoverBackground: ColorFade(APP_COLORS.Action, -20%), 
+        
+                SelectionColor: Color.White,
+                SelectionFill: APP_COLORS.Action,                  
+        
+                DisabledColor: RGBA(166, 166, 166, 1),
+                DisabledBorderColor: RGBA(166, 166, 166, 1),
+                ChevronDisabledFill: RGBA(244, 244, 244, 1),
+                ChevronDisabledBackground: RGBA(166, 166, 166, 1),
+                DisabledFill: RGBA(244, 244, 244, 1)
+            },
+            ComboBox: {
+                BorderStyle: APP_COMMONS.Controls.BorderStyle,
+                BorderThickness: APP_COMMONS.Controls.BorderThickness,
+                BorderColor: APP_COMMONS.Controls.BorderColor,
+                FocusedBorderColor: APP_COMMONS.Controls.FocusedBorderColor,
+                FocusedBorderThickness: APP_COMMONS.Controls.FocusedBorderThickness,
+                HoverBorderColor: APP_COMMONS.Controls.HoverBorderColor,
+                PressedBorderColor: APP_COMMONS.Controls.PressedBorderColor,
+                
+                Font: APP_COMMONS.Controls.Font,
+                Size: APP_COMMONS.Controls.Size,
+                Color: APP_COMMONS.Controls.Color,        
+                FontWeight: APP_COMMONS.Controls.FontWeight,
+                Italic: false, Underline: false, Strikethrough: false,
+        
+                PaddingTop: 5, PaddingRight: 5, PaddingBottom: 5, PaddingLeft: 5,
+                
+                ChevronFill: Color.White,
+                ChevronBackground: APP_COLORS.Action,
+                ChevronHoverFill: Color.White,       
+                ChevronHoverBackground: ColorFade(APP_COLORS.Action, -20%), 
+        
+                Fill: Color.White,
+                HoverFill: APP_COLORS.Hover,
+                PressedFill: RGBA(0, 0, 0, 0),
+        
+                HoverColor: Color.Black,
+                PressedColor: Color.White,        
+        
+                SelectionColor: Color.White,
+                SelectionFill: APP_COLORS.Action,
+                
+                SelectionTagFill: Color.White, // APP_COLORS.Hover,
+                SelectionTagColor: Color.Black,
+        
+                DisabledColor: RGBA(166, 166, 166, 1),
+                DisabledBorderColor: RGBA(166, 166, 166, 1),
+                ChevronDisabledFill: RGBA(244, 244, 244, 1),
+                ChevronDisabledBackground: RGBA(166, 166, 166, 1),
+                DisabledFill: RGBA(244, 244, 244, 1)
+            },
+            Toggle: {
+                BorderStyle: None,
+                BorderThickness: 0,
+                BorderColor: Color.Black,
+                HoverBorderColor: APP_COMMONS.Controls.HoverBorderColor,
+                FocusedBorderColor: APP_COMMONS.Controls.FocusedBorderColor,
+                FocusedBorderThickness: APP_COMMONS.Controls.FocusedBorderThickness,
+                PressedBorderColor: APP_COMMONS.Controls.PressedBorderColor,
+        
+                Font: APP_COMMONS.Controls.Font,
+                Size: APP_COMMONS.Controls.Size,
+                Color: APP_COMMONS.Controls.Color,
+                FontWeight: APP_COMMONS.Controls.FontWeight,
+                Italic: false, Underline: false, Strikethrough: false,
+        
+                HandleFill: Color.White,
+                TrueFill: APP_COLORS.Action,
+                FalseFill: APP_COLORS.MidGray,
+                TrueHoverFill: ColorFade(APP_COLORS.Action, 15%),
+                FalseHoverFill: ColorFade(APP_COLORS.MidGray, 15%),
+                
+                ShowLabel: true,
+                LabelPaddingLeft: 5, LabelPaddingRight: 5,
+                TextPosition: TextPosition.Right,
+        
+                DisabledBorderColor: RGBA(56, 56, 56, 1),
+                DisabledColor: RGBA(186, 186, 186, 1)
+            },
+            Radio: {
+                BorderStyle: None,
+                BorderThickness: 0,
+                BorderColor: Color.Black,
+                FocusedBorderColor: APP_COMMONS.Controls.FocusedBorderColor,
+                FocusedBorderThickness: APP_COMMONS.Controls.FocusedBorderThickness,
+                
+                Font: APP_COMMONS.Controls.Font,
+                Size: APP_COMMONS.Controls.Size,
+                Color: APP_COMMONS.Controls.Color,
+                FontWeight: APP_COMMONS.Controls.FontWeight,
+                Italic: false, Underline: false, Strikethrough: false,
+        
+                PaddingTop: 2, PaddingRight: 0, PaddingBottom: 0, PaddingLeft: 0,
+                Align: Align.Left,
+                LineHeight: 1.8,
+                
+                Fill: Color.White,
+                HoverFill: APP_COLORS.Hover,
+                PressedFill: RGBA(0, 0, 0, 0),
+        
+                HoverColor: Color.Black,
+                PressedColor: Color.White,     
+        
+                RadioSize: 20,
+                RadioBorderColor: APP_COMMONS.Controls.BorderColor,
+                RadioBackgroundFill: Color.White,
+                RadioSelectionFill: APP_COLORS.Action,
+                
+                DisabledColor: RGBA(186, 186, 186, 1),
+                DisabledFill: RGBA(0, 0, 0, 0),
+                DisabledBorderColor: RGBA(166, 166, 166, 1)          
+            },
+            Checkbox: {
+                BorderStyle: None,
+                BorderThickness: 0,
+                BorderColor: Color.Black,
+                FocusedBorderColor: APP_COMMONS.Controls.FocusedBorderColor,
+                FocusedBorderThickness: APP_COMMONS.Controls.FocusedBorderThickness,
+                PressedBorderColor: APP_COMMONS.Controls.PressedBorderColor,
+        
+                HoverBorderColor: ColorFade(APP_COMMONS.Controls.BorderColor, 30%),
+        
+                Font: APP_COMMONS.Controls.Font,
+                Size: APP_COMMONS.Controls.Size,
+                Color: APP_COMMONS.Controls.Color, 
+                FontWeight: APP_COMMONS.Controls.FontWeight,
+                Italic: false, Underline: false, Strikethrough: false,
+        
+                PaddingTop: 0, PaddingRight: 0, PaddingBottom: 0, PaddingLeft: 0, 
+                VerticalAlign: VerticalAlign.Middle,
+        
+                CheckboxSize: 25,
+                CheckmarkFill: APP_COLORS.Action,
+                CheckboxBackgroundFill: Color.White,
+                CheckboxBorderColor: APP_COMMONS.Controls.BorderColor,
+        
+                Fill: Color.White,
+                HoverFill: APP_COLORS.Hover,
+                PressedFill: RGBA(0, 0, 0, 0),
+        
+                HoverColor: Color.Black,
+                PressedColor: Color.White,    
+        
+                FillPortions: 0,
+        
+                DisabledBorderColor: RGBA(166, 166, 166, 1),
+                DisabledColor: RGBA(186, 186, 186, 1),
+                DisabledFill: RGBA(0, 0, 0, 0)
+            },
+            Slider: {
+                BorderStyle: BorderStyle.None, BorderThickness: 0, BorderColor: Color.Black, HoverBorderColor: Color.Black, PressedBorderColor: Color.Black, DisabledBorderColor: Color.Black,
+        
+                FocusedBorderThickness: 1, 
+                FocusedBorderColor: APP_COLORS.Outline,
+        
+                ValueFill: APP_COLORS.Action,
+                
+                RailFill: APP_COLORS.MidGray,
+                RailThickness: 2,
+                RailHoverFill: APP_COLORS.MidGray,
+        
+                HandleSize: 15,
+                HandleFill: Color.White,
+                HandleHoverFill: Color.White,
+                HandleActiveFill: Color.White,
+        
+                ValueHoverFill: APP_COLORS.Action,
+                ShowValue: true
+            },
+            Icon: {
+        
+            }
+        };
+        
+        APP_HEADER = {
+            Color: Color.White,
+            Fill: Color.DarkCyan,
+            Logo: {
+                Image: 'Apache Logo - Feather',
+                Height: 60, Width: 50,
+                PaddingTop: 3, PaddingRight: 3, PaddingBottom: 3, PaddingLeft: 3
+            },
+            Height: { 
+                HeaderOnly: 60,
+                ExpandedHeader: 60
+            }
+        };
+        
+        APP_SIDEBAR = {
+            Style: {
+                Width: {
+                    Collapsed: 50,
+                    Expanded: 300
+                },        
+                Fill: Color.DarkGray,
+                MenuItem: {
+                    Color: Color.White, 
+                    HoverFill: Color.Gray,
+                    FontSize: 14,
+                    IconSize: 50,
+                    IconPadding: 10
+                },
+                Separator: {
+                    VerticalPadding: 5,
+                    Thickness: 2,
+                    Color: Color.Gray
+                },
+        
+                Colors: APP_COLORS,
+                Buttons: APP_BUTTONS,
+                Labels: APP_LABELS,
+                Controls: APP_INPUT_CONTROLS,
+                // For the Submit Feedback dialog box.
+                DialogShadow: { OffsetX: 0, OffsetY: 0, Color: "#000000", Blur: 5, Opacity: 0.5},
+                DialogBox: {Fill: "#FFFFFF", Opacity: 1, BorderThickness: 0, BorderColor: "#000000", Radius: 10}
+            },
+            Menu: {
+                HomeScreen: Home,
+                Items: Table(
+                    //{ Number: 1, Text: "Checklist Editor", Image: SampleImage, Tooltip: Blank(), Disabled: false, DisabledTooltip: "You lack permissions!", SeparatorBefore: true },
+                    //{ Number: 2, Text: "Status Dashboard", Image: SampleImage, Tooltip: Blank(), Disabled: false, DisabledTooltip: "You lack permissions!", SeparatorBefore: false }
+                )
+            }
+        };
+        
+        
+        /***** APP SPECIFIC *****/
+        ScreenSmall = App.Width < 400;
+        EditScreenCardWidth = If(App.Width > 680, 660, App.Width - 20);
+        EditScreenCardMargin = If(ScreenSmall, 20, 30);
+        
+        
+    SizeBreakpoints: =[400, 900, 1200]
+    StartScreen: =Home
+

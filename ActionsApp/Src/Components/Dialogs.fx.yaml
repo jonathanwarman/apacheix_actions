@@ -1,0 +1,88 @@
+Dialogs As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Dialogs_1 As groupContainer.manualLayoutContainer:
+        Height: =If(IsBlank(g_VisibleDialog), 0, Parent.Height)
+        Width: =Parent.Width
+        Y: =20
+        ZIndex: =1
+
+        rect_DialogBackdrop_1 As rectangle:
+            Fill: =RGBA(80, 80, 80, 0.8)
+            Height: =Parent.Height
+            OnSelect: |-
+                =Switch(g_VisibleDialog,
+                    "ScreenX_MyFirstDialog", Select(btn_DialogCancel_1)
+                )
+            Visible: =g_VisibleDialog <> Blank()
+            Width: =Parent.Width
+            ZIndex: =1
+
+        dialog_AskSomething_1 As groupContainer.manualLayoutContainer:
+            Height: =453
+            Visible: |-
+                =g_VisibleDialog = "ScreenX_CustomDialog"
+                // or this for multi-purpose dialogs:
+                // g_VisibleDialog in ["ScreenX_MyDataAdd","ScreenX_MyDataUpdate"]
+            Width: =520
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =Parent.Height/2 - Self.Height/2
+            ZIndex: =2
+
+            lbl_DialogTitle_1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =80
+                Size: =16
+                Text: ="My First Dialog"
+                Width: =Parent.Width
+                ZIndex: =3
+
+            btn_DialogCancel_1 As button:
+                Align: =APP_BUTTONS.Secondary.Align
+                BorderColor: =APP_BUTTONS.Secondary.BorderColor
+                BorderStyle: =APP_BUTTONS.Secondary.BorderStyle
+                BorderThickness: =APP_BUTTONS.Secondary.BorderThickness
+                Color: =APP_BUTTONS.Secondary.Color
+                DisabledBorderColor: =APP_BUTTONS.Secondary.DisabledBorderColor
+                DisabledColor: =APP_BUTTONS.Secondary.DisabledColor
+                DisabledFill: =APP_BUTTONS.Secondary.DisabledFill
+                Fill: =APP_BUTTONS.Secondary.Fill
+                FocusedBorderColor: =APP_BUTTONS.Secondary.FocusedBorderColor
+                FocusedBorderThickness: =APP_BUTTONS.Secondary.FocusedBorderThickness
+                Font: =APP_BUTTONS.Secondary.Font
+                FontWeight: =APP_BUTTONS.Secondary.FontWeight
+                Height: =25
+                HoverBorderColor: =APP_BUTTONS.Secondary.HoverBorderColor
+                HoverColor: =APP_BUTTONS.Secondary.HoverColor
+                HoverFill: =APP_BUTTONS.Secondary.HoverFill
+                Italic: =APP_BUTTONS.Secondary.Italic
+                OnSelect: |-
+                    =Set(g_Toast_Dialog, {Text: "Cancelling...", Type: TOAST_TYPE.Warning, Timestamp: Now()});
+                    Set(g_VisibleDialog, Blank());
+                PaddingBottom: =APP_BUTTONS.Secondary.PaddingBottom
+                PaddingLeft: =APP_BUTTONS.Secondary.PaddingLeft
+                PaddingRight: =APP_BUTTONS.Secondary.PaddingRight
+                PaddingTop: =APP_BUTTONS.Secondary.PaddingTop
+                PressedBorderColor: =APP_BUTTONS.Secondary.PressedBorderColor
+                PressedColor: =APP_BUTTONS.Secondary.PressedColor
+                PressedFill: =APP_BUTTONS.Secondary.PressedFill
+                RadiusBottomLeft: =APP_BUTTONS.Secondary.RadiusBottomLeft
+                RadiusBottomRight: =APP_BUTTONS.Secondary.RadiusBottomRight
+                RadiusTopLeft: =APP_BUTTONS.Secondary.RadiusTopLeft
+                RadiusTopRight: =APP_BUTTONS.Secondary.RadiusTopright
+                Size: =APP_BUTTONS.Secondary.Size
+                Strikethrough: =APP_BUTTONS.Secondary.Strikethrough
+                Text: ="Close"
+                Underline: =APP_BUTTONS.Secondary.Underline
+                VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
+                Width: =100
+                X: =210
+                Y: =382
+                ZIndex: =4
+

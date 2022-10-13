@@ -1,0 +1,57 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": true,
+  "ComponentManifest": {
+    "AllowAccessToGlobals": false,
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "LoadingSpinner_v1__",
+    "TemplateGuid": "712ff2a93a474f9b85e9644ca20c4c06"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [
+    {
+      "Category": 0,
+      "DisplayName": "LoadingComplete",
+      "Hidden": false,
+      "Name": "LoadingComplete",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"_MinPrimitive\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 2,
+      "DisplayName": "OnFinishedLoading",
+      "Hidden": false,
+      "Name": "OnFinishedLoading",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"_MinPrimitive\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Image",
+      "Hidden": false,
+      "Name": "Image",
+      "PropertyDataTypeKey": "Image",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Image\",\"EnumString\":\"\",\"Type\":[]}}"
+    }
+  ],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": true,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "638011050589144370",
+  "Name": "712ff2a93a474f9b85e9644ca20c4c06",
+  "OverridableProperties": {},
+  "SourceLibraryId": "092938b8-6150-4fff-ac1f-b64ae98f6d43",
+  "SourceLibraryLogicalName": "",
+  "TemplateOriginalName": "ec984d6bfee449b3a34980f5fb538606",
+  "Version": "637927770193078814"
+}

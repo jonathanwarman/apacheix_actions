@@ -1,0 +1,51 @@
+LoadingSpinner_v1__ As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Image: |-
+        ="https://aka.ms/preloadergif"
+    LoadingComplete: =true
+    OnFinishedLoading: =true
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Container1 As groupContainer.verticalAutoLayoutContainer:
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutJustifyContent: =LayoutJustifyContent.Center
+        LayoutMode: =LayoutMode.Auto
+        Width: =200
+        X: =Parent.Width/2 - Self.Width/2
+        Y: =Parent.Height/2 - Self.Height/2
+        ZIndex: =1
+
+        Image1 As image:
+            Height: =50
+            Image: =LoadingSpinner_v1__.Image
+            LayoutMinHeight: =320
+            LayoutMinWidth: =320
+            Width: =50
+            ZIndex: =1
+
+        Label2 As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 134, 208, 1)
+            Height: =50
+            LayoutMinHeight: =70
+            LayoutMinWidth: =560
+            Size: =16
+            Text: ="Loading"
+            Width: =Parent.Width
+            ZIndex: =2
+
+    Timer1 As timer:
+        Duration: =1000
+        Height: =70
+        OnTimerEnd: =LoadingSpinner_v1__.OnFinishedLoading()
+        Start: =LoadingSpinner_v1__.LoadingComplete
+        Width: =218
+        X: =40
+        Y: =-Self.Height - 10
+        ZIndex: =2
+

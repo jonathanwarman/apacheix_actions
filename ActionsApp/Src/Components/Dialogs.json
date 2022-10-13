@@ -1,0 +1,27 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": false,
+  "ComponentManifest": {
+    "AllowAccessToGlobals": false,
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "Dialogs",
+    "TemplateGuid": "11534f0b235c4c829c75bbec5207973e"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": false,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "638011050589142880",
+  "Name": "11534f0b235c4c829c75bbec5207973e",
+  "OverridableProperties": {},
+  "TemplateOriginalName": "b0c6bbf910db44fe9ea60618b7ba9bc5",
+  "Version": "637926407241847586"
+}

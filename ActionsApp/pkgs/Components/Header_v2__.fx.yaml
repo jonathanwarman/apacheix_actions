@@ -1,0 +1,230 @@
+Header_v2__ As CanvasComponent:
+    AppRelease: |-
+        ={Type: "Dev", Version: 1, Fix: 0}
+    AppTitle: ="My first app"
+    AppURL: ="Text"
+    DynamicHeight: =If(g_ShowBetaBar, Header_v2__.Style.Height.ExpandedHeader, Header_v2__.Style.Height.HeaderOnly)
+    Fill: =Header_v2__.Style.Fill
+    Height: =Self.DynamicHeight
+    OnReset: =Set(g_ShowBetaBar, Header_v2__.AppRelease.Type = "Beta")
+    Screens: |-
+        ={
+            // The App Logo is clickable and will navigate to the home screen (or any screen). Setting this parameter to ActiveScreen will disable the icon.
+            HomeScreen: App.ActiveScreen,
+        
+            // The Settings and Help icons will only show if you provide a screen other than the ActiveScreen.
+            SettingsScreen: App.ActiveScreen,
+            HelpScreen: App.ActiveScreen
+        }
+    ShowUser: =true
+    Style: |-
+        ={
+            Fill: Color.DarkCyan,
+            Logo: {
+                Image: 'Apache Logo - Feather',
+                Height: 50,
+                Width: 50, // Keep this the same as the sidebar's collapsed width.
+                PaddingTop: 3,
+                PaddingRight: 3,
+                PaddingBottom: 3,
+                PaddingLeft: 3
+            },
+            Title: {
+                Color: Color.White,
+                Size: 12,
+                Indent: 0
+            },
+            Height: { 
+                HeaderOnly: 60,
+                ExpandedHeader: 60
+            }
+        }
+    User: |-
+        ={ Id: -1, Name: User().FullName, Email: User().Email, Image: User().Image }
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Container1_1 As groupContainer.horizontalAutoLayoutContainer:
+        Height: =60
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =5
+
+        img_AppLogo As image:
+            Height: =Header_v2__.Style.Logo.Height
+            Image: =Header_v2__.Style.Logo.Image
+            LayoutMinHeight: =320
+            LayoutMinWidth: =320
+            OnSelect: =If(!IsBlank(Header_v2__.Screens.HomeScreen),Navigate(Header_v2__.Screens.HomeScreen))
+            PaddingBottom: =Header_v2__.Style.Logo.PaddingBottom
+            PaddingLeft: =Header_v2__.Style.Logo.PaddingLeft
+            PaddingRight: =Header_v2__.Style.Logo.PaddingRight
+            PaddingTop: =Header_v2__.Style.Logo.PaddingTop
+            Visible: =!IsBlank(Header_v2__.Style.Logo.Image)
+            Width: |
+                =Header_v2__.Style.Logo.Width
+            ZIndex: =1
+
+        txt_TitleAndReleaseType As htmlViewer:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =Header_v2__.Style.Fill
+            FillPortions: =1
+            Font: =Font.'Segoe UI'
+            Height: =Parent.Height
+            HtmlText: |-
+                =Header_v2__.AppTitle & "&nbsp;" &
+                If(Header_v2__.AppRelease.Type <> "Stable", "
+                    <div style='
+                        background-color: " & Switch(Header_v2__.AppRelease.Type,
+                            "Dev", "Black",
+                            "Alpha", "Purple",
+                            "Beta", "DarkOrange",
+                            "Red" // This indicates a developer error in that the rerlease type has not been set properly.
+                        ) & ";
+                        border: none;
+                        color: white;" & 
+                        If(App.Width > 400, "width: 80px;") & "
+                        height:20px;
+                        padding-top: 1px;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        vertical-align: top;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 12px;
+                        font-weight: bold;
+                        font-variant: small-caps;
+                        border-radius:5px;
+                        
+                    '>" & 
+                        Header_v2__.AppRelease.Type & "
+                    </div>
+                    "
+                )
+            LayoutMinHeight: =70
+            PaddingTop: =12
+            Size: =18
+            Width: =560
+            X: =51
+            ZIndex: =3
+
+        icon_Settings As icon.Settings:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =60
+            Icon: =Icon.Settings
+            OnSelect: =Navigate(Header_v2__.Screens.SettingsScreen)
+            PaddingBottom: =15
+            PaddingTop: =15
+            Visible: =Header_v2__.Screens.SettingsScreen <> App.ActiveScreen
+            Width: =50
+            X: =1025
+            ZIndex: =4
+
+        icon_Help As icon.Help:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =60
+            Icon: =Icon.Help
+            OnSelect: =Navigate(Header_v2__.Screens.HelpScreen)
+            PaddingBottom: =15
+            PaddingTop: =15
+            Visible: =Header_v2__.Screens.HelpScreen <> App.ActiveScreen
+            Width: =50
+            X: =985
+            ZIndex: =5
+
+        img_User As image:
+            Height: =Parent.Height - 20
+            Image: =Header_v2__.User.Image
+            LayoutMinHeight: =320
+            LayoutMinWidth: =320
+            RadiusBottomLeft: =100
+            RadiusBottomRight: =100
+            RadiusTopLeft: =100
+            RadiusTopRight: =100
+            Tooltip: |-
+                ="Logged in as: " & Char(10) & Header_v2__.User.Name & Char(10) & Header_v2__.User.Email
+            Visible: =Header_v2__.ShowUser
+            Width: =Parent.Height -20
+            ZIndex: =6
+
+        FlexiblePadding_1 As rectangle:
+            BorderStyle: =BorderStyle.None
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height
+            Width: =10
+            ZIndex: =7
+
+        btn_HideNavBar As image:
+            AlignInContainer: =AlignInContainer.Start
+            Height: =Self.Width
+            HoverFill: =RGBA(0,0,0,0.2)
+            Image: |-
+                ="data:image/svg+xml," & 
+                 EncodeUrl(
+                    "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' viewBox='-10 0 2068 2048'>
+                  <g transform='matrix(1 0 0 -1 0 2048),rotate(0,1034,1024)'>
+                   <path fill='#DDDDDD'
+                d='M2048 2048v-819h-205v469l-1493 -1493h469v-205h-819v819h205v-469l1493 1493h-469v205h819z' />
+                  </g>
+                
+                </svg>"
+                )
+            LayoutMinHeight: =320
+            LayoutMinWidth: =320
+            OnSelect: |-
+                =Launch(Header_v2__.AppURL,
+                    { hidenavbar: true }, 
+                    // Generally when in Dev, we're in the app builder, and may be in its preview mode. We don't want to replace that window, so the target is a new window.
+                    If(Header_v2__.AppRelease.Type = "Dev", 
+                        LaunchTarget.New, 
+                        LaunchTarget.Replace
+                    )
+                );
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            RadiusBottomLeft: =10
+            RadiusTopLeft: =
+            Tooltip: ="Expand screen" & Char(10) & "(Removes the standard purple Microsoft bar)"
+            Visible: =App.Width > 400
+            Width: =25
+            ZIndex: =8
+
+    Label2_2 As label:
+        Color: =RGBA(255, 255, 0, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =12
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        Size: =6
+        Text: =App.Width & " x " & App.Height
+        VerticalAlign: =VerticalAlign.Top
+        Visible: =Header_v2__.AppRelease.Type = "Dev"
+        Width: =100
+        X: =55
+        ZIndex: =6
+
+    Label2_3 As label:
+        Align: =Align.Right
+        Color: =RGBA(255, 255, 0, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =Parent.Height
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        Size: =12
+        Text: =If(Lower(Header_v2__.User.Email) <> Lower(User().Email), "[Test User]")
+        Visible: =Header_v2__.AppRelease.Type = "Dev"
+        Width: =100
+        X: =Parent.Width - Self.Width - 80
+        ZIndex: =7
+

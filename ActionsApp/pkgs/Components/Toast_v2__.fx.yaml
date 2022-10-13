@@ -1,0 +1,288 @@
+Toast_v2__ As CanvasComponent:
+    DebugOutput: |+
+        ="Ticker: " & Ticker_2.Value & "<br>" & 
+        "Phase: " & varPhase & "<br>" & 
+        "TimerShow: " & (TimerShow_2.Value/TimerShow_2.Duration) & "<br>" 
+        & "-" & Text(TimerHold_2.Value, "0000") & "-" & Text(TimerHide_2.Value, "0000") & "<br>" & 
+        //varMessage.Text & "<br>" & 
+        Toast_v2__.DynamicY
+        
+    DynamicY: |-
+        =//If(IsBlank(varDynamicY),-Self.Height,varDynamicY)
+        Switch(varPhase,
+            0, -Self.Height,
+            1, -Self.Height + (Self.Height * (TimerShow_2.Value/TimerShow_2.Duration)),
+            2, 0,
+            3, -Self.Height + (Self.Height * ((TimerHide_2.Duration - TimerHide_2.Value)/TimerHide_2.Duration)),
+            -Self.Height
+        )
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =200
+    Message: |-
+        ={Text: "Your messages <b>displayed</b> here!", Type: Toast_v2__.Type.Success, Timestamp: Now()}
+    OnReset: =
+    Style: |-
+        ={
+            Colors: {
+                Info: "#17a2b8", 
+                InfoBackground: "#d1ecf1",
+                Success: "#28a745",
+                SuccessBackground: "#d4edda",
+                Warning: "#ffc107", 
+                WarningBackground: "#fff3cd", 
+                Error: "#dc3545", 
+                ErrorBackground: "#f8d7da", 
+                Stop: "#dc3545", 
+                StopBackground: "#f8d7da", 
+                Notify: "#17a2b8", 
+                NotifyBackground: "#d1ecf1"
+            },
+            Font: {Font: Font.'Open Sans', Size: 11 },
+            Box: {Fill: "NotUsed", Opacity: 1, BorderThickness: 0, BorderColor: "#000000", Radius: 10},
+            Shadow: {OffsetX: 0, OffsetY: 0, Color: "#000000", Blur: 5, Opacity: 0.5}    
+        }
+    Type: |-
+        ={ 
+            Info: 0,
+            Success: 1, 
+            Warning: 2, 
+            Error: 3,
+            Stop: 4,
+            Notify: 5
+        }
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =9
+
+    TimerHide_2 As timer:
+        Duration: =2000
+        OnTimerEnd: |-
+            =Set(varPhase, 0);
+            Reset(Self);
+        Reset: =true
+        Size: =10
+        Start: =varPhase = 3
+        Text: =Self.Value
+        Visible: =false
+        Width: =50
+        X: =150
+        ZIndex: =1
+
+    TimerHold_2 As timer:
+        Duration: =3000
+        OnTimerEnd: |-
+            =Set(varPhase, 3);
+            Reset(Self);
+        Reset: =true
+        Size: =10
+        Start: =varPhase = 2
+        Text: =Self.Value
+        Visible: =false
+        Width: =50
+        X: =100
+        ZIndex: =2
+
+    TimerShow_2 As timer:
+        Duration: =250
+        OnTimerEnd: |+
+            =Set(varPhase, 2);
+            Reset(Self);
+            
+        Size: =10
+        Start: =varPhase = 1
+        Text: =Self.Value
+        Visible: =false
+        Width: =50
+        X: =50
+        ZIndex: =3
+
+    Ticker_2 As timer:
+        AutoStart: =true
+        Duration: =Toast_v2__.Height
+        OnTimerEnd: |
+            =// Notify("TICK", Information, 1000);
+            If(!IsBlank(Toast_v2__.Message.Text) && (varMessage.Text & Int(varMessage.Timestamp)) <> (Toast_v2__.Message.Text & Int(Toast_v2__.Message.Timestamp)),
+                //Set(varVisible, true);
+                Set(varMessage, Toast_v2__.Message);
+                Set(varPhase, 0); 
+                Reset(TimerShow_2);
+                Reset(TimerHold_2);
+                Reset(TimerHide_2);
+                Set(varPhase, 1);
+            );
+            
+            /*
+            If(varVisible && Now() > DateAdd(varMessage.Timestamp,4,Seconds),
+                //Set(varVisible,false);
+                Set(varDynamicY, - Toast.Height);
+            );*/
+        Repeat: =true
+        Reset: =true
+        Size: =10
+        Start: =//varDynamicMoverTrigger
+        Text: =Self.Value
+        Visible: =false
+        Width: =50
+        ZIndex: =4
+
+    Container1_3 As groupContainer.manualLayoutContainer:
+        Height: =2*HtmlText2_3.Y + HtmlText2_3.Height
+        Width: =Min(Parent.Width - 20, 500)
+        X: =Parent.Width/2 - Self.Width/2
+        ZIndex: =5
+
+        shadowRectangle_3 As image:
+            Height: =Parent.Height
+            Image: |-
+                =With({
+                    Shadow: Toast_v2__.Style.Shadow,  
+                    Box: Toast_v2__.Style.Box,
+                    MarginLeft: Max(Toast_v2__.Style.Shadow.Blur * 3 - Toast_v2__.Style.Shadow.OffsetX, 0),
+                    MarginRight: Max(Toast_v2__.Style.Shadow.Blur * 3 + Toast_v2__.Style.Shadow.OffsetX, 0),
+                    MarginTop: Max(Toast_v2__.Style.Shadow.Blur * 3 - Toast_v2__.Style.Shadow.OffsetY,0),
+                    MarginBottom: Max(Toast_v2__.Style.Shadow.Blur * 3 + Toast_v2__.Style.Shadow.OffsetY, 0)
+                }, 
+                    
+                    "data:image/svg+xml," & EncodeUrl(
+                    "<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+                <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+                <svg version='1.1'
+                    xmlns='http://www.w3.org/2000/svg'
+                    xmlns:xlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYMid meet' viewBox='0 0 " & Parent.Width & " " & Parent.Height & "' width='" & Parent.Width & "' height='" & Parent.Height & "'>
+                    <g>
+                        <g>
+                            <filter id='shadow' x='-20%' y='-20%' width='200%' height='200%' filterUnits='userSpaceOnUse' primitiveUnits='userSpaceOnUse'>
+                                <feFlood></feFlood>
+                                <feComposite in2='SourceAlpha' operator='in'></feComposite>
+                                <feGaussianBlur stdDeviation='" & Shadow.Blur & "'></feGaussianBlur>
+                                <feOffset dx='" & Shadow.OffsetX & "' dy='" & Shadow.OffsetY & "' result='afterOffset'></feOffset>
+                                <feFlood flood-color='" & Shadow.Color & "' flood-opacity='" & Substitute(Text(Shadow.Opacity), ",", ".") & "'></feFlood>
+                                <feComposite in2='afterOffset' operator='in'></feComposite>
+                                <feMorphology operator='dilate' radius='1'></feMorphology>
+                                <feComposite in2='SourceAlpha' operator='out'></feComposite>
+                            </filter>
+                        </g>        
+                        <rect 
+                            id='boxForFill' 
+                            x='" & MarginLeft & "' 
+                            y='" & MarginTop & "' 
+                            width='" & Parent.Width - MarginLeft - MarginRight & "' 
+                            height='" & Parent.Height - MarginTop - MarginBottom & "' 
+                            fill='" & Switch(Toast_v2__.Message.Type,    
+                                Toast_v2__.Type.Info, Toast_v2__.Style.Colors.InfoBackground,
+                                Toast_v2__.Type.Success, Toast_v2__.Style.Colors.SuccessBackground, 
+                                Toast_v2__.Type.Warning, Toast_v2__.Style.Colors.WarningBackground, 
+                                Toast_v2__.Type.Error, Toast_v2__.Style.Colors.ErrorBackground,
+                                Toast_v2__.Type.Stop, Toast_v2__.Style.Colors.StopBackground,
+                                Toast_v2__.Type.Notify, Toast_v2__.Style.Colors.NotifyBackground
+                            ) & "' 
+                            stroke='" & Box.BorderColor & "' stroke-width='" & Box.BorderThickness & "'
+                            fill-opacity='" & Substitute(Text(Box.Opacity), ",", ".") & "'
+                            rx='" & Box.Radius & "'
+                        />
+                        <rect 
+                            id='boxForShadow' 
+                            x='" & MarginLeft & "' 
+                            y='" & MarginTop & "' 
+                            width='" & Parent.Width - MarginLeft - MarginRight & "' 
+                            height='" & Parent.Height - MarginTop - MarginBottom & "' 
+                            rx='" & Box.Radius & "'
+                            filter='url(#shadow)'/>
+                    </g>
+                </svg>"
+                ))
+            Width: =Parent.Width
+            ZIndex: =2
+
+        Icon1_3 As icon.Add:
+            Color: =Color.Gray
+            Height: =25
+            HoverColor: =Color.Black // ColorFade(Self.Color, 20%)
+            Icon: =Icon.Cancel
+            OnSelect: |
+                =Set(varPhase, 0); 
+                Reset(TimerShow_2);
+                Reset(TimerHold_2);
+                Reset(TimerHide_2);
+            Visible: =false
+            Width: =25
+            X: =Parent.Width - Self.Width - 10
+            Y: =Parent.Height/2 - Self.Height/2
+            ZIndex: =3
+
+        HtmlText2_3 As htmlViewer:
+            AutoHeight: =true
+            Color: |
+                =ColorValue(
+                    Switch(Toast_v2__.Message.Type,    
+                        Toast_v2__.Type.Info, Toast_v2__.Style.Colors.Info,
+                        Toast_v2__.Type.Success, Toast_v2__.Style.Colors.Success, 
+                        Toast_v2__.Type.Warning, Toast_v2__.Style.Colors.Warning, 
+                        Toast_v2__.Type.Error, Toast_v2__.Style.Colors.Error,
+                        Toast_v2__.Type.Stop, Toast_v2__.Style.Colors.Stop,
+                        Toast_v2__.Type.Notify, Toast_v2__.Style.Colors.Notify
+                    )   
+                )
+            Height: =0
+            HtmlText: ="<center>" & varMessage.Text & "</center>"
+            Width: =Parent.Width - Self.X - 50
+            X: =60
+            Y: =30
+            ZIndex: =4
+
+        Icon5_2 As icon.Add:
+            Color: =HtmlText2_3.Color
+            DisplayMode: =DisplayMode.View
+            Height: =50
+            Icon: |-
+                =Switch(Toast_v2__.Message.Type,    
+                
+                    Toast_v2__.Type.Info, Icon.Information,
+                    Toast_v2__.Type.Success, Icon.CheckBadge, 
+                    Toast_v2__.Type.Warning, Icon.Warning, 
+                    Toast_v2__.Type.Error, Icon.Error,
+                    Toast_v2__.Type.Stop, Icon.Blocked,
+                    Toast_v2__.Type.Notify, Icon.Bell
+                )
+            PaddingTop: =2
+            Width: |
+                =30
+            X: =25
+            Y: =Parent.Height/2 - Self.Height/2
+            ZIndex: =5
+
+        Button2 As button:
+            BorderColor: =RGBA(0,0,0,0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =0
+            Color: =RGBA(0,0,0,0)
+            DisabledBorderColor: =RGBA(0,0,0,0)
+            DisabledColor: =RGBA(0,0,0,0)
+            DisabledFill: =RGBA(0,0,0,0)
+            Fill: =RGBA(0,0,0,0)
+            FocusedBorderColor: =RGBA(0,0,0,0)
+            FocusedBorderThickness: =0
+            Height: =shadowRectangle_3.Height - (2*3*Toast_v2__.Style.Shadow.Blur)
+            HoverBorderColor: =RGBA(0,0,0,0)
+            HoverColor: =RGBA(0,0,0,0)
+            HoverFill: =RGBA(0,0,0,0)
+            OnSelect: |-
+                =Set(varPhase, 0); 
+                Reset(TimerShow_2);
+                Reset(TimerHold_2);
+                Reset(TimerHide_2);
+            PressedBorderColor: =RGBA(0,0,0,0)
+            PressedColor: =RGBA(0,0,0,0)
+            PressedFill: =RGBA(0,0,0,0)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =24
+            Text: =""
+            Width: =Parent.Width - (2*3*Toast_v2__.Style.Shadow.Blur)
+            X: =(3*Toast_v2__.Style.Shadow.Blur)
+            Y: =(3*Toast_v2__.Style.Shadow.Blur)
+            ZIndex: =6
+
