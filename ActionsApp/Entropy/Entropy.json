@@ -296,9 +296,10 @@
       "{\r\n    To: \"jonathan.warman@apacheix.co.uk\", \r\n    Subject: \"Test Email\", \r\n    Header: \"Contextual header\",\r\n    Content: \"\r\n        <p>Put your email content here.\r\n    \",\r\n    MinWidth: 550\r\n}"
     ]
   },
-  "HeaderLastSavedDateTimeUTC": "10/17/2022 11:46:53",
+  "HeaderLastSavedDateTimeUTC": "10/17/2022 11:47:43",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {
+    "9901563c-93f2-4716-b0c3-eff3116c8fdd": "\"/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/74200e2f3979408e8100f0c00a1c924b\"",
     "d332acba-c37a-4f9a-a6f0-4e1e9d31ac50": "\"/providers/microsoft.powerapps/apis/shared_office365/connections/shared-office365-306ba992-8400-41d1-931b-5e89-656399eb\"",
     "e7c7eaf6-ea68-474a-9b4b-881e341ac0a1": "\"/providers/microsoft.powerapps/apis/shared_office365users/connections/shared-office365user-dd37c2b0-7376-4ce2-b274-ff0b-d07fc301\""
   },
@@ -334,15 +335,18 @@
     "d5916f6b45d8489d8f1d43c18d89253e": 7
   },
   "OrderDataSource": {
+    "Actions": 6,
     "ComboBoxSample": 4,
     "CustomGallerySample": 5,
     "DropDownSample": 3,
-    "g_ClosersDropdown": 6,
-    "g_Employees": 7,
-    "g_Projects": 8,
-    "g_ProjectsDropdown": 9,
+    "g_ClosersDropdown": 9,
+    "g_Employees": 10,
+    "g_Projects": 11,
+    "g_ProjectsDropdown": 12,
     "Office365Outlook": 0,
     "Office365Users": 1,
+    "People": 7,
+    "Projects": 8,
     "RadioSample": 2
   },
   "OrderGroupControls": {},
@@ -673,7 +677,7 @@
       "toggleSwitch": 3
     },
     "DeserializationLoadTime": 6.2044106,
-    "ErrorCount": 2585
+    "ErrorCount": 2183
   },
   "WasLocalDatabaseReferencesEmpty": true
 }
