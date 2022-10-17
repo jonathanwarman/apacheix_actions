@@ -1,0 +1,120 @@
+Filtering As screen:
+
+    Header_v2___3 As Header_v2__:
+        AppRelease: =APP_RELEASE
+        AppTitle: =APP_TITLE
+        AppURL: =APP_URL
+        Fill: =Header_v2___3.Style.Fill
+        Style: =APP_HEADER
+        User: =USER
+
+    FilterPanel As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height - Self.Y
+        Width: =EditScreenCardWidth
+        X: =Parent.Width/2 - Self.Width/2
+        Y: =60
+        ZIndex: =2
+
+        ShadowRectangle_v2___4 As ShadowRectangle_v2__:
+            Height: =Parent.Height
+            Visible: =!ScreenSmall
+            Width: =Parent.Width
+
+        Container10_1 As groupContainer.verticalAutoLayoutContainer:
+            Height: =Parent.Height - 2*Self.Y + 15
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutGap: =5
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            LayoutWrap: =true
+            PaddingRight: =10
+            Width: =Parent.Width - (2*Self.X)
+            X: =If(ScreenSmall, 0, EditScreenCardMargin)
+            Y: =EditScreenCardMargin
+            ZIndex: =10
+
+            lbl_SecondaryText_21 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                AlignInContainer: =AlignInContainer.Start
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =20
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: |-
+                    ="Action Detail:"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =Parent.Width
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =EditScreenCardMargin
+                Y: =192
+                ZIndex: =4
+
+            btn_FilterDone As button:
+                Align: =APP_BUTTONS.Primary.Align
+                BorderColor: =APP_BUTTONS.Primary.BorderColor
+                BorderStyle: =APP_BUTTONS.Primary.BorderStyle
+                BorderThickness: =APP_BUTTONS.Primary.BorderThickness
+                Color: =APP_BUTTONS.Primary.Color
+                DisabledBorderColor: =APP_BUTTONS.Primary.DisabledBorderColor
+                DisabledColor: =APP_BUTTONS.Primary.DisabledColor
+                DisabledFill: =APP_BUTTONS.Primary.DisabledFill
+                DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =APP_BUTTONS.Primary.Fill
+                FocusedBorderColor: =APP_BUTTONS.Primary.FocusedBorderColor
+                FocusedBorderThickness: =APP_BUTTONS.Primary.FocusedBorderThickness
+                Font: =APP_BUTTONS.Primary.Font
+                FontWeight: =APP_BUTTONS.Primary.FontWeight
+                Height: =25
+                HoverBorderColor: =APP_BUTTONS.Primary.HoverBorderColor
+                HoverColor: =APP_BUTTONS.Primary.HoverColor
+                HoverFill: =APP_BUTTONS.Primary.HoverFill
+                Italic: =APP_BUTTONS.Primary.Italic
+                OnSelect: =
+                PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+                PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+                PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+                PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+                PressedBorderColor: =APP_BUTTONS.Primary.PressedBorderColor
+                PressedColor: =APP_BUTTONS.Primary.PressedColor
+                PressedFill: =APP_BUTTONS.Primary.PressedFill
+                RadiusBottomLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+                RadiusBottomRight: =APP_BUTTONS.Primary.RadiusBottomRight
+                RadiusTopLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+                RadiusTopRight: =APP_BUTTONS.Primary.RadiusTopright
+                Size: =APP_BUTTONS.Primary.Size
+                Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+                Text: ="Done"
+                Underline: =APP_BUTTONS.Primary.Underline
+                VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
+                Width: =100
+                X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
+                Y: =575
+                ZIndex: =11
+

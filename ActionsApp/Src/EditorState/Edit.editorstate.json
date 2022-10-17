@@ -1633,7 +1633,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_EditCancel",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2216,7 +2216,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_EditUpdate",
-      "ParentIndex": 1,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2792,7 +2792,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_ReOpen",
-      "ParentIndex": 2,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3307,7 +3307,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Container2",
-      "ParentIndex": 4,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -4351,7 +4351,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Dialogs_3",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -6629,7 +6629,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "fn_EditActionSendEmails",
-      "ParentIndex": 1,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -8204,7 +8204,7 @@
       },
       "MetaDataIDKey": "",
       "Name": "Header_v2___2",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
