@@ -79982,700 +79982,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 20,
-                  "charOffset": 1,
-                  "snippet": {
-                    "text": "IsBlank(g_TheAction)"
-                  }
-                }
-              },
-              "properties": {
-                "member": "Visible",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "IsBlank"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidArgs-Func",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 11,
-                  "charOffset": 9,
-                  "snippet": {
-                    "text": "g_TheAction"
-                  }
-                }
-              },
-              "properties": {
-                "member": "Visible",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrBadType",
-          "ruleIndex": 5
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 7,
-                  "charOffset": 36,
-                  "snippet": {
-                    "text": ".Status"
-                  }
-                }
-              },
-              "properties": {
-                "member": "Visible",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 44,
-                  "snippet": {
-                    "text": "<>"
-                  }
-                }
-              },
-              "properties": {
-                "member": "Visible",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "Error",
-              "Text"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrIncompatibleTypesForEquality-Left-Right",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 7,
-                  "charOffset": 84,
-                  "snippet": {
-                    "text": ".Status"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 92,
-                  "snippet": {
-                    "text": "<>"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "Error",
-              "Text"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrIncompatibleTypesForEquality-Left-Right",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 123,
-                  "charOffset": 151,
-                  "snippet": {
-                    "text": "Patch(Actions, g_TheAction, { \r\n        Status: \"Open\",\r\n        ClosedOn: Blank(),\r\n        ClosedBy: BLANK_RECORD\r\n    })"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "Patch"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidArgs-Func",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 11,
-                  "charOffset": 166,
-                  "snippet": {
-                    "text": "g_TheAction"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "Record",
-              "Error"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrBadType-ExpectedType-ProvidedType",
-          "ruleIndex": 7
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 16,
-                  "charOffset": 307,
-                  "snippet": {
-                    "text": ".RequestedCloser"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 36,
-                  "charOffset": 288,
-                  "snippet": {
-                    "text": "IsBlank(g_TheAction.RequestedCloser)"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "IsBlank"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidArgs-Func",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 7,
-                  "charOffset": 348,
-                  "snippet": {
-                    "text": ".Notify"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 27,
-                  "charOffset": 329,
-                  "snippet": {
-                    "text": "IsBlank(g_TheAction.Notify)"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "IsBlank"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidArgs-Func",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 16,
-                  "charOffset": 446,
-                  "snippet": {
-                    "text": ".RequestedCloser"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 3,
-                  "charOffset": 462,
-                  "snippet": {
-                    "text": ".Id"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 1,
-                  "charOffset": 433,
-                  "snippet": {
-                    "text": "="
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "Number",
-              "Error"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrIncompatibleTypesForEquality-Left-Right",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 7,
-                  "charOffset": 492,
-                  "snippet": {
-                    "text": ".Notify"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 6,
-                  "charOffset": 557,
-                  "snippet": {
-                    "text": ".Title"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrInvalidDot",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 141,
-                  "charOffset": 134,
-                  "snippet": {
-                    "text": "Set(g_TheAction, Patch(Actions, g_TheAction, { \r\n        Status: \"Open\",\r\n        ClosedOn: Blank(),\r\n        ClosedBy: BLANK_RECORD\r\n    }))"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Edit",
-                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "High"
-          },
-          "ruleId": "app-ErrIncompatibleCtxtVariableTypes",
-          "ruleIndex": 3
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.DisplayMode"
                 }
               ],
@@ -81592,6 +80898,700 @@
                 "member": "OnSelect",
                 "module": "Edit",
                 "type": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleCtxtVariableTypes",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 20,
+                  "charOffset": 1,
+                  "snippet": {
+                    "text": "IsBlank(g_TheAction)"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Visible",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "IsBlank"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidArgs-Func",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 11,
+                  "charOffset": 9,
+                  "snippet": {
+                    "text": "g_TheAction"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Visible",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrBadType",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 7,
+                  "charOffset": 36,
+                  "snippet": {
+                    "text": ".Status"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Visible",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.Visible",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 44,
+                  "snippet": {
+                    "text": "<>"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Visible",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Error",
+              "Text"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleTypesForEquality-Left-Right",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 7,
+                  "charOffset": 84,
+                  "snippet": {
+                    "text": ".Status"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 92,
+                  "snippet": {
+                    "text": "<>"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Error",
+              "Text"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleTypesForEquality-Left-Right",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 123,
+                  "charOffset": 151,
+                  "snippet": {
+                    "text": "Patch(Actions, g_TheAction, { \r\n        Status: \"Open\",\r\n        ClosedOn: Blank(),\r\n        ClosedBy: BLANK_RECORD\r\n    })"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Patch"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidArgs-Func",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 11,
+                  "charOffset": 166,
+                  "snippet": {
+                    "text": "g_TheAction"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Record",
+              "Error"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrBadType-ExpectedType-ProvidedType",
+          "ruleIndex": 7
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 16,
+                  "charOffset": 307,
+                  "snippet": {
+                    "text": ".RequestedCloser"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 36,
+                  "charOffset": 288,
+                  "snippet": {
+                    "text": "IsBlank(g_TheAction.RequestedCloser)"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "IsBlank"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidArgs-Func",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 7,
+                  "charOffset": 348,
+                  "snippet": {
+                    "text": ".Notify"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 27,
+                  "charOffset": 329,
+                  "snippet": {
+                    "text": "IsBlank(g_TheAction.Notify)"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "IsBlank"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidArgs-Func",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 16,
+                  "charOffset": 446,
+                  "snippet": {
+                    "text": ".RequestedCloser"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 3,
+                  "charOffset": 462,
+                  "snippet": {
+                    "text": ".Id"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 1,
+                  "charOffset": 433,
+                  "snippet": {
+                    "text": "="
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "Number",
+              "Error"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleTypesForEquality-Left-Right",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 7,
+                  "charOffset": 492,
+                  "snippet": {
+                    "text": ".Notify"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 6,
+                  "charOffset": 557,
+                  "snippet": {
+                    "text": ".Title"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 141,
+                  "charOffset": 134,
+                  "snippet": {
+                    "text": "Set(g_TheAction, Patch(Actions, g_TheAction, { \r\n        Status: \"Open\",\r\n        ClosedOn: Blank(),\r\n        ClosedBy: BLANK_RECORD\r\n    }))"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_ReOpen"
               }
             }
           ],
@@ -82913,6 +82913,274 @@
           },
           "ruleId": "app-ErrInvalidArgs-Func",
           "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Items"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Items",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 220,
+                  "charOffset": 0,
+                  "snippet": {
+                    "text": "ForAll(Table(ParseJSON(g_TheAction.Progress)), {\r\n        Statement: Text(ThisRecord.Value.Statement),\r\n        PostedBy: Text(ThisRecord.Value.PostedBy),\r\n        PostedOn: DateValue(ThisRecord.Value.PostedOn)\r\n    }\r\n)"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Items",
+                "module": "ProgressHistory",
+                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrTypeError",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3.Text"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3.Text",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 8,
+                  "charOffset": 0,
+                  "snippet": {
+                    "text": "ThisItem"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Text",
+                "module": "ProgressHistory",
+                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "ThisItem"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidName",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3.Text"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3.Text",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 10,
+                  "charOffset": 8,
+                  "snippet": {
+                    "text": ".Statement"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Text",
+                "module": "ProgressHistory",
+                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_2.Text"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_2.Text",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 8,
+                  "charOffset": 0,
+                  "snippet": {
+                    "text": "ThisItem"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Text",
+                "module": "ProgressHistory",
+                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_2"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "ThisItem"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidName",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_2.Text"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_2.Text",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 9,
+                  "charOffset": 8,
+                  "snippet": {
+                    "text": ".PostedBy"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Text",
+                "module": "ProgressHistory",
+                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_3.Text"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_3.Text",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 8,
+                  "charOffset": 0,
+                  "snippet": {
+                    "text": "ThisItem"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Text",
+                "module": "ProgressHistory",
+                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_3"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "ThisItem"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidName",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_3.Text"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_3.Text",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 9,
+                  "charOffset": 8,
+                  "snippet": {
+                    "text": ".PostedOn"
+                  }
+                }
+              },
+              "properties": {
+                "member": "Text",
+                "module": "ProgressHistory",
+                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2.Label3_3"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrInvalidDot",
+          "ruleIndex": 2
         },
         {
           "locations": [

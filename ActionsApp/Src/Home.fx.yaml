@@ -85,13 +85,13 @@ Home As screen:
                         ) &&
                         (
                             Switch(rad_FilterOwner.Selected.Value,
-                                "Mine", Owner.Id = USER.ID,
-                                "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
+                                "Mine", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
+                                "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID || RequestedCloser.Id = USER.ID),
                                 "All", true                        
                             )
                         )
                     )
-                , "Importance", Ascending)
+                , "Importance", Descending)
                     
             Layout: =Layout.Vertical
             LoadingSpinner: =LoadingSpinner.Controls
