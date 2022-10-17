@@ -1,7 +1,7 @@
 Home As screen:
     OnVisible: |-
         =ClearCollect(g_Employees, Sort(RenameColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "Title", "FullName"), "FullName", Ascending));
-        ClearCollect(g_Projects, Sort(Projects, Title, Ascending));
+        ClearCollect(g_Projects, Sort(Projects, 'Name (Title)', Ascending));
 
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
@@ -1908,6 +1908,7 @@ Home As screen:
         AboutScreen: =About
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
+        DynamicWidth: =If(g_ShowMenu || g_ShowSubmitFeedbackDialog, App.Width, Sidebar_v1___1.Style.Width.Collapsed)
         Height: =Parent.Height - Self.Y
         Menu: =APP_SIDEBAR.Menu
         MenuActions: |-
@@ -1926,6 +1927,7 @@ Home As screen:
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
         AppURL: =APP_URL
+        DynamicHeight: =If(g_ShowBetaBar, Header_v2___1.Style.Height.ExpandedHeader, Header_v2___1.Style.Height.HeaderOnly)
         Fill: =Header_v2___1.Style.Fill
         Style: =APP_HEADER
         User: =USER

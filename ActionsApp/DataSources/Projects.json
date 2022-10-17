@@ -37,8 +37,6 @@
       "ID": "ID",
       "Modified": "Modified",
       "PMPQRequired": "PQMPRequired",
-      "ProjectManager": "ProjectManager",
-      "ProjectManager#Id": "ProjectManager Id",
       "ReviewDue": "ReviewDue",
       "ReviewFrequency": "ReviewFrequency",
       "Start": "Start",
