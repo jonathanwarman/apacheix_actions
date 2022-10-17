@@ -1956,6 +1956,7 @@ Home As screen:
         HoverColor: =APP_BUTTONS.Icon.HoverColor
         HoverFill: =APP_BUTTONS.Icon.HoverFill
         Icon: =Icon.Filter
+        OnSelect: =Navigate(Filtering)
         PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
         PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
         PaddingRight: =APP_BUTTONS.Icon.PaddingRight
@@ -1964,7 +1965,7 @@ Home As screen:
         PressedColor: =APP_BUTTONS.Icon.PressedColor
         PressedFill: =APP_BUTTONS.Icon.PressedFill
         Tooltip: ="Filtering & Sorting"
-        Width: =39
+        Width: =30
         X: =btn_HomeAddAction.X - Self.Width - 20
         Y: =72
         ZIndex: =8

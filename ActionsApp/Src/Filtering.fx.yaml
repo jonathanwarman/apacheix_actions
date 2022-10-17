@@ -96,7 +96,7 @@ Filtering As screen:
                 HoverColor: =APP_BUTTONS.Primary.HoverColor
                 HoverFill: =APP_BUTTONS.Primary.HoverFill
                 Italic: =APP_BUTTONS.Primary.Italic
-                OnSelect: =
+                OnSelect: =Navigate(Home)
                 PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                 PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
                 PaddingRight: =APP_BUTTONS.Primary.PaddingRight
