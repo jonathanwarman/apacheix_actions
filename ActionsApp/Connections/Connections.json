@@ -1,26 +1,4 @@
 {
-  "9901563c-93f2-4716-b0c3-eff3116c8fdd": {
-    "connectionParameters": {
-      "sku": "Enterprise"
-    },
-    "connectionRef": {
-      "apiTier": "Standard",
-      "displayName": "SharePoint",
-      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1591/1.0.1591.2961/sharepointonline/icon.png",
-      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
-      "parameterHints": {},
-      "parameterHintsV2": {}
-    },
-    "datasets": {
-      "https://apacheixdev.sharepoint.com/sites/PowerPlatformDevelopmentTEST": {
-        "dataSources": {}
-      }
-    },
-    "dataSources": [],
-    "dependencies": {},
-    "dependents": [],
-    "id": "9901563c-93f2-4716-b0c3-eff3116c8fdd"
-  },
   "d332acba-c37a-4f9a-a6f0-4e1e9d31ac50": {
     "connectionParameters": {
       "sku": "Enterprise"
