@@ -296,7 +296,7 @@
       "{\r\n    To: \"jonathan.warman@apacheix.co.uk\", \r\n    Subject: \"Test Email\", \r\n    Header: \"Contextual header\",\r\n    Content: \"\r\n        <p>Put your email content here.\r\n    \",\r\n    MinWidth: 550\r\n}"
     ]
   },
-  "HeaderLastSavedDateTimeUTC": "10/17/2022 11:30:51",
+  "HeaderLastSavedDateTimeUTC": "10/17/2022 13:59:13",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {
     "9901563c-93f2-4716-b0c3-eff3116c8fdd": "\"/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/63817a258eb74e5eb0a06e57ff801f6c\"",
@@ -677,7 +677,7 @@
       "toggleSwitch": 3
     },
     "DeserializationLoadTime": 6.01301,
-    "ErrorCount": 2136
+    "ErrorCount": 1994
   },
   "WasLocalDatabaseReferencesEmpty": true
 }
