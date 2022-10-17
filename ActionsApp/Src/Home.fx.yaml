@@ -1935,8 +1935,8 @@ Home As screen:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
         PaddingTop: =0
-        Text: ="v14 NEWTEST"
-        Width: =100
+        Text: ="v14 NEWTEST2"
+        Width: =300
         X: =109
         ZIndex: =7
 
