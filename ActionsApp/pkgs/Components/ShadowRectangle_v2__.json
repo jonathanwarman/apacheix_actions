@@ -86,7 +86,7 @@
         "Name": "Image1_1",
         "Parent": "ShadowRectangle_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 156,
+        "PublishOrderIndex": 158,
         "Rules": [
           {
             "Category": "Data",
@@ -303,7 +303,7 @@
       "ZIndex",
       "Style"
     ],
-    "LastModifiedTimestamp": "638016039804615715",
+    "LastModifiedTimestamp": "638016041378163667",
     "Name": "ShadowRectangle_v2__",
     "Rules": [
       {
@@ -378,7 +378,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638016039804615715",
+  "LastModifiedTimestamp": "638016041378163667",
   "Name": "d5916f6b45d8489d8f1d43c18d89253e",
   "OverridableProperties": {},
   "SourceLibraryId": "5dddea66-a68d-4ff2-81f8-47de6d1c55aa",

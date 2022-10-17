@@ -924,12 +924,13 @@ Home As screen:
                             Size: =APP_LABELS.PrimaryText.Size - 3
                             Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
                             Text: |-
-                                =If(IsBlank(ThisItem.Progress), "-", Last(ForAll(Table(ParseJSON(ThisItem.Progress)), {
+                                =/*If(IsBlank(ThisItem.Progress), "-", Last(ForAll(Table(ParseJSON(ThisItem.Progress)), {
                                         Statement: Text(ThisRecord.Value.Statement),
                                         PostedBy: Text(ThisRecord.Value.PostedBy),
                                         PostedOn: DateValue(ThisRecord.Value.PostedOn)
                                     }
-                                )).Statement)
+                                )).Statement)*/
+                                ThisItem.Progress
                                 
                                 /*
                                 ForAll(Table(ParseJSON(myJSON)),

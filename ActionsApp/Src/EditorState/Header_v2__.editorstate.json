@@ -189,7 +189,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_HideNavBar",
-      "ParentIndex": 4,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -615,7 +615,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "FlexiblePadding_1",
-      "ParentIndex": 3,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -993,7 +993,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "icon_Help",
-      "ParentIndex": 1,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1289,7 +1289,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "icon_Settings",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1594,7 +1594,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "img_AppLogo",
-      "ParentIndex": 5,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2923,7 +2923,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "txt_TitleAndReleaseType",
-      "ParentIndex": 2,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
