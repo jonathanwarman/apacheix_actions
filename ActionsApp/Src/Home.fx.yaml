@@ -2,6 +2,31 @@ Home As screen:
     OnVisible: |-
         =ClearCollect(g_Employees, Sort(RenameColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "Title", "FullName"), "FullName", Ascending));
         ClearCollect(g_Projects, Sort(Projects, 'Name (Title)', Ascending));
+        ClearCollect(g_ProjectsDropdown, {ID:-1, Title:"(None)"}, ShowColumns(g_Projects, "ID", "Title"));
+        
+        ClearCollect(g_FilteredActions, 
+            With({tmp_FilteredActions: 
+                Filter(Actions, 
+                        // Filters based on the selected group type checkbox valueand the current status of the project.
+                        (
+                        (chk_FilterOpen.Value && Status in ["Open", "Pending Closure"]) ||
+                        (chk_FilterClosed.Value && Status = "Closed")
+                        )
+                    )
+            },
+        
+                Switch(rad_FilterSortBy.Selected.Value, 
+                    "Action", SortByColumns(tmp_FilteredActions, "Title", Ascending),
+                    "Importance", SortByColumns(tmp_FilteredActions, "Importance", Ascending),
+                    "Onwer", 
+                        SortByColumns(
+                            // Create derived column for owner's name since you can't sort by a lookup column.
+                            AddColumns(tmp_FilteredActions, "Owner String", Owner.Value),
+                            "Owner String", Ascending
+                        )
+                )
+            )
+        );
 
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
@@ -12,9 +37,9 @@ Home As screen:
 
         Gallery1 As gallery.variableTemplateHeightGallery:
             Height: =Parent.Height - Self.Y
-            Items: =Actions
+            Items: =g_FilteredActions
             Layout: =Layout.Vertical
-            LoadingSpinner: =LoadingSpinner.Data
+            LoadingSpinner: =LoadingSpinner.Controls
             TemplateSize: =50
             Width: =Parent.Width
             Y: =slide_Slider_2.Y + slide_Slider_2.Height

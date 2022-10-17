@@ -144,7 +144,7 @@
         "Name": "Ticker_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 190,
+        "PublishOrderIndex": 203,
         "Rules": [
           {
             "Category": "Data",
@@ -504,7 +504,7 @@
         "Name": "TimerShow_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 191,
+        "PublishOrderIndex": 204,
         "Rules": [
           {
             "Category": "Data",
@@ -836,7 +836,7 @@
         "Name": "TimerHold_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 192,
+        "PublishOrderIndex": 205,
         "Rules": [
           {
             "Category": "Data",
@@ -1174,7 +1174,7 @@
         "Name": "TimerHide_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 193,
+        "PublishOrderIndex": 206,
         "Rules": [
           {
             "Category": "Data",
@@ -1469,7 +1469,7 @@
             "Name": "shadowRectangle_3",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 195,
+            "PublishOrderIndex": 208,
             "Rules": [
               {
                 "Category": "Data",
@@ -1761,7 +1761,7 @@
             "Name": "Icon5_2",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 196,
+            "PublishOrderIndex": 209,
             "Rules": [
               {
                 "Category": "Design",
@@ -2166,7 +2166,7 @@
             "Name": "Button2",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 197,
+            "PublishOrderIndex": 210,
             "Rules": [
               {
                 "Category": "Data",
@@ -2507,7 +2507,7 @@
             "Name": "Icon1_3",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 198,
+            "PublishOrderIndex": 211,
             "Rules": [
               {
                 "Category": "Design",
@@ -2770,7 +2770,7 @@
             "Name": "HtmlText2_3",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 199,
+            "PublishOrderIndex": 212,
             "Rules": [
               {
                 "Category": "Data",
@@ -2971,7 +2971,7 @@
         "Name": "Container1_3",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 194,
+        "PublishOrderIndex": 207,
         "Rules": [
           {
             "Category": "Design",
@@ -3162,7 +3162,7 @@
         "NameMapSourceSchema": "?"
       }
     ],
-    "LastModifiedTimestamp": "638016242315294380",
+    "LastModifiedTimestamp": "638016308979875034",
     "Name": "Toast_v2__",
     "Rules": [
       {
@@ -3303,7 +3303,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638016242315294380",
+  "LastModifiedTimestamp": "638016308979875034",
   "Name": "c558d601e60f4fd8acbd25a85897c997",
   "OverridableProperties": {},
   "SourceLibraryId": "3461638a-59c4-4914-9f7c-36d01cf550b9",

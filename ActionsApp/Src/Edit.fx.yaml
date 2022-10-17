@@ -1,7 +1,7 @@
 Edit As screen:
     OnVisible: |-
         =ClearCollect(g_ClosersDropdown, {ID:-1, FullName:"(None)"}, ShowColumns(Filter(g_Employees, ID <> g_TheAction.Owner.Id), "ID", "FullName"));
-        ClearCollect(g_ProjectsDropdown, {ID:-1, Title:"(None)"}, ShowColumns(g_Projects, "ID", "Title"));
+        
         SetFocus(txt_EditActionText);
 
     fn_EditActionSendEmails As button:

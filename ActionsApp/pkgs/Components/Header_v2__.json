@@ -168,7 +168,7 @@
             "Name": "img_AppLogo",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 240,
+            "PublishOrderIndex": 253,
             "Rules": [
               {
                 "Category": "Data",
@@ -525,7 +525,7 @@
             "Name": "icon_Settings",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 241,
+            "PublishOrderIndex": 254,
             "Rules": [
               {
                 "Category": "Design",
@@ -863,7 +863,7 @@
             "Name": "icon_Help",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 242,
+            "PublishOrderIndex": 255,
             "Rules": [
               {
                 "Category": "Design",
@@ -1205,7 +1205,7 @@
             "Name": "txt_TitleAndReleaseType",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 243,
+            "PublishOrderIndex": 256,
             "Rules": [
               {
                 "Category": "Data",
@@ -1455,7 +1455,7 @@
             "Name": "FlexiblePadding_1",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 244,
+            "PublishOrderIndex": 257,
             "Rules": [
               {
                 "Category": "Design",
@@ -1761,7 +1761,7 @@
             "Name": "btn_HideNavBar",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 245,
+            "PublishOrderIndex": 258,
             "Rules": [
               {
                 "Category": "Data",
@@ -2133,7 +2133,7 @@
             "Name": "img_User",
             "Parent": "Container1_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 246,
+            "PublishOrderIndex": 259,
             "Rules": [
               {
                 "Category": "Data",
@@ -2393,7 +2393,7 @@
         "Name": "Container1_1",
         "Parent": "Header_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 239,
+        "PublishOrderIndex": 252,
         "Rules": [
           {
             "Category": "Design",
@@ -2669,7 +2669,7 @@
         "Name": "Label2_2",
         "Parent": "Header_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 247,
+        "PublishOrderIndex": 260,
         "Rules": [
           {
             "Category": "Data",
@@ -3084,7 +3084,7 @@
         "Name": "Label2_3",
         "Parent": "Header_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 248,
+        "PublishOrderIndex": 261,
         "Rules": [
           {
             "Category": "Data",
@@ -3410,7 +3410,7 @@
       },
       "User"
     ],
-    "LastModifiedTimestamp": "638016242315328812",
+    "LastModifiedTimestamp": "638016308979912363",
     "Name": "Header_v2__",
     "Rules": [
       {
@@ -3596,7 +3596,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638016242315328812",
+  "LastModifiedTimestamp": "638016308979912363",
   "Name": "1436021f2a1844dd9fb542822805a33a",
   "OverridableProperties": {},
   "SourceLibraryId": "40731e8e-0f90-41b7-92f7-c401ead1b113",

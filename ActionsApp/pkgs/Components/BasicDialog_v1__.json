@@ -101,7 +101,7 @@
         "Name": "shadowRectangle",
         "Parent": "BasicDialog_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 228,
+        "PublishOrderIndex": 241,
         "Rules": [
           {
             "Category": "Data",
@@ -428,7 +428,7 @@
             "Name": "Icon1_1",
             "Parent": "Container1_2",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 230,
+            "PublishOrderIndex": 243,
             "Rules": [
               {
                 "Category": "Design",
@@ -719,7 +719,7 @@
             "Name": "Label2_4",
             "Parent": "Container1_2",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 231,
+            "PublishOrderIndex": 244,
             "Rules": [
               {
                 "Category": "Data",
@@ -1077,7 +1077,7 @@
             "Name": "HtmlText2_1",
             "Parent": "Container1_2",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 232,
+            "PublishOrderIndex": 245,
             "Rules": [
               {
                 "Category": "Data",
@@ -1246,7 +1246,7 @@
         "Name": "Container1_2",
         "Parent": "BasicDialog_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 229,
+        "PublishOrderIndex": 242,
         "Rules": [
           {
             "Category": "Design",
@@ -1745,7 +1745,7 @@
             "Name": "btn_1",
             "Parent": "Container2_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 234,
+            "PublishOrderIndex": 247,
             "Rules": [
               {
                 "Category": "Data",
@@ -2391,7 +2391,7 @@
             "Name": "btn_2",
             "Parent": "Container2_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 235,
+            "PublishOrderIndex": 248,
             "Rules": [
               {
                 "Category": "Data",
@@ -3037,7 +3037,7 @@
             "Name": "btn_3",
             "Parent": "Container2_1",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 236,
+            "PublishOrderIndex": 249,
             "Rules": [
               {
                 "Category": "Data",
@@ -3383,7 +3383,7 @@
         "Name": "Container2_1",
         "Parent": "BasicDialog_v1__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 233,
+        "PublishOrderIndex": 246,
         "Rules": [
           {
             "Category": "Design",
@@ -3566,7 +3566,7 @@
         "NameMapSourceSchema": "?"
       }
     ],
-    "LastModifiedTimestamp": "638016242315300058",
+    "LastModifiedTimestamp": "638016308979885613",
     "Name": "BasicDialog_v1__",
     "Rules": [
       {
@@ -3692,7 +3692,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638016242315300058",
+  "LastModifiedTimestamp": "638016308979885613",
   "Name": "a23616c0e21f4b419995f1d248fdad4c",
   "OverridableProperties": {},
   "SourceLibraryId": "62626d21-802e-4938-b5d5-1868c23cf664",
