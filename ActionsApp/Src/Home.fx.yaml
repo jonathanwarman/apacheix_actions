@@ -52,14 +52,14 @@ Home As screen:
                             (
                             (chk_FilterOpen.Value && Status in ["Open", "Pending Closure"]) ||
                             (chk_FilterClosed.Value && Status = "Closed")
-                            ) /*&&
+                            ) &&
                             (
                                 Switch(rad_FilterOwner.Selected.Value,
                                     "Mine", Owner.Id = USER.ID,
                                     "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
                                     "All", true                        
                                 )
-                            )*//*
+                            )
                         )
                 },
                 
