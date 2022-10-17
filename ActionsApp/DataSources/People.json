@@ -30,12 +30,11 @@
       "Editor": "Modified By",
       "Editor#Claims": "Modified By Claims",
       "Email": "Email",
-      "field_1": "Email2",
-      "field_4": "Relationship",
       "ID": "ID",
       "IsActiveDirectory": "IsActiveDirectory",
       "IsReal": "IsReal",
       "Modified": "Modified",
+      "Relationship": "Relationship",
       "Title": "Title"
     },
     "DatasetName": "https://apacheixdev.sharepoint.com/sites/PowerPlatformDevelopmentTEST",

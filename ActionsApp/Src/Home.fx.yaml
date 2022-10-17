@@ -1,7 +1,7 @@
 Home As screen:
     OnVisible: |-
         =ClearCollect(g_Employees, Sort(RenameColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "Title", "FullName"), "FullName", Ascending));
-        ClearCollect(g_Projects, Sort(Projects, Title, Ascending));
+        ClearCollect(g_Projects, Sort(Projects, 'Name (Title)', Ascending));
 
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
@@ -1935,8 +1935,8 @@ Home As screen:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
         PaddingTop: =0
-        Text: ="v14"
-        Width: =100
+        Text: ="v15"
+        Width: =300
         X: =109
         ZIndex: =7
 

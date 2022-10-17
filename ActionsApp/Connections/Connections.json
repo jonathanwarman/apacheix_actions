@@ -18,7 +18,7 @@
             "tableName": "5a9f794d-c663-4fa5-9859-4a437ccde392"
           },
           "People": {
-            "tableName": "f4667fd7-de01-449e-b4b6-8b387f1d2f15"
+            "tableName": "77c0b1a5-69d0-493d-be8c-0c8b07825f93"
           },
           "Projects": {
             "tableName": "f0ca4540-a97d-444a-aa82-aef990d6cf46"
@@ -27,9 +27,9 @@
       }
     },
     "dataSources": [
-      "People",
       "Actions",
-      "Projects"
+      "Projects",
+      "People"
     ],
     "dependencies": {},
     "dependents": [],
