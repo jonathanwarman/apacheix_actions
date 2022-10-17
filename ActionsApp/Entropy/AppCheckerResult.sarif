@@ -84524,19 +84524,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "BasicDialog_v1__.APP_COLORS"
+                  "fullyQualifiedName": "Sidebar_v1__.APP_COLORS"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "BasicDialog_v1__.APP_COLORS",
+                  "fullyQualifiedName": "Sidebar_v1__.APP_COLORS",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "APP_COLORS",
-                "module": "BasicDialog_v1__",
-                "type": "BasicDialog_v1__"
+                "module": "Sidebar_v1__",
+                "type": "Sidebar_v1__"
               }
             }
           ],
@@ -84554,19 +84554,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Sidebar_v1__.APP_COLORS"
+                  "fullyQualifiedName": "BasicDialog_v1__.APP_COLORS"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Sidebar_v1__.APP_COLORS",
+                  "fullyQualifiedName": "BasicDialog_v1__.APP_COLORS",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "APP_COLORS",
-                "module": "Sidebar_v1__",
-                "type": "Sidebar_v1__"
+                "module": "BasicDialog_v1__",
+                "type": "BasicDialog_v1__"
               }
             }
           ],
