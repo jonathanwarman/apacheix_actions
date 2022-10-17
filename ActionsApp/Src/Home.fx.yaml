@@ -4,6 +4,7 @@ Home As screen:
         ClearCollect(g_Projects, Sort(Projects, 'Name (Title)', Ascending));
         ClearCollect(g_ProjectsDropdown, {ID:-1, Title:"(None)"}, ShowColumns(g_Projects, "ID", "Title"));
         
+        /*
         ClearCollect(g_FilteredActions, 
             With({tmp_FilteredActions: 
                 Filter(Actions, 
@@ -18,7 +19,7 @@ Home As screen:
                                 "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
                                 "All", true                        
                             )
-                        )*/
+                        )*//*
                     )
             },
         
@@ -33,7 +34,7 @@ Home As screen:
                         )
                 )
             )
-        );
+        );*/
 
     grp_MainGallary As groupContainer.manualLayoutContainer:
         Height: =Parent.Height - Self.Y
