@@ -469,7 +469,6 @@ Filtering As screen:
             DisabledBorderColor: =APP_BUTTONS.Primary.DisabledBorderColor
             DisabledColor: =APP_BUTTONS.Primary.DisabledColor
             DisabledFill: =APP_BUTTONS.Primary.DisabledFill
-            DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
             Fill: =APP_BUTTONS.Primary.Fill
             FocusedBorderColor: =APP_BUTTONS.Primary.FocusedBorderColor
             FocusedBorderThickness: =APP_BUTTONS.Primary.FocusedBorderThickness
