@@ -11,7 +11,14 @@ Home As screen:
                         (
                         (chk_FilterOpen.Value && Status in ["Open", "Pending Closure"]) ||
                         (chk_FilterClosed.Value && Status = "Closed")
-                        )
+                        ) /*&&
+                        (
+                            Switch(rad_FilterOwner.Selected.Value,
+                                "Mine", Owner.Id = USER.ID,
+                                "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
+                                "All", true                        
+                            )
+                        )*/
                     )
             },
         
@@ -37,7 +44,36 @@ Home As screen:
 
         Gallery1 As gallery.variableTemplateHeightGallery:
             Height: =Parent.Height - Self.Y
-            Items: =g_FilteredActions
+            Items: |-
+                =/*With({tmp_FilteredActions: 
+                    Filter(Actions, 
+                            // Filters based on the selected group type checkbox valueand the current status of the project.
+                            (
+                            (chk_FilterOpen.Value && Status in ["Open", "Pending Closure"]) ||
+                            (chk_FilterClosed.Value && Status = "Closed")
+                            ) /*&&
+                            (
+                                Switch(rad_FilterOwner.Selected.Value,
+                                    "Mine", Owner.Id = USER.ID,
+                                    "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
+                                    "All", true                        
+                                )
+                            )*//*
+                        )
+                },
+                
+                    Switch(rad_FilterSortBy.Selected.Value, 
+                        "Action", SortByColumns(tmp_FilteredActions, "Title", Ascending),
+                        "Importance", SortByColumns(tmp_FilteredActions, "Importance", Ascending),
+                        "Onwer", 
+                            SortByColumns(
+                                // Create derived column for owner's name since you can't sort by a lookup column.
+                                AddColumns(tmp_FilteredActions, "Owner String", Owner.Value),
+                                "Owner String", Ascending
+                            )
+                    )
+                )*/
+                Actions
             Layout: =Layout.Vertical
             LoadingSpinner: =LoadingSpinner.Controls
             TemplateSize: =50

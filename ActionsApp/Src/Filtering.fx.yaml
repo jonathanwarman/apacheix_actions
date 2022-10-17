@@ -159,7 +159,7 @@ Filtering As screen:
                     Y: =20
                     ZIndex: =10
 
-            grpLifecycleCheckboxes_1 As groupContainer.manualLayoutContainer:
+            grp_FilterOwner As groupContainer.manualLayoutContainer:
                 Height: =148
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
@@ -200,20 +200,20 @@ Filtering As screen:
                     Size: =APP_LABELS.SecondaryText.Size - 2
                     Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
                     Text: |-
-                        ="Status:"
+                        ="Ownership:"
                     Underline: =APP_LABELS.SecondaryText.Underline
                     VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
                     Width: =Parent.Width
                     Wrap: =APP_LABELS.SecondaryText.Wrap
                     ZIndex: =1
 
-                rad_FilterSortBy_1 As radio:
+                rad_FilterOwner As radio:
                     Align: =APP_INPUT_CONTROLS.Radio.Align
                     BorderColor: =APP_INPUT_CONTROLS.Radio.BorderColor
                     BorderStyle: =APP_INPUT_CONTROLS.Radio.BorderStyle
                     BorderThickness: =APP_INPUT_CONTROLS.Radio.BorderThickness
                     Color: =APP_INPUT_CONTROLS.Radio.Color
-                    Default: ="Importance"
+                    Default: ="Mine"
                     DisabledBorderColor: =APP_INPUT_CONTROLS.Radio.DisabledBorderColor
                     DisabledColor: =APP_INPUT_CONTROLS.Radio.DisabledColor
                     DisabledFill: =APP_INPUT_CONTROLS.Radio.DisabledFill
@@ -245,7 +245,7 @@ Filtering As screen:
                     Y: =20
                     ZIndex: =4
 
-            grpLifecycleCheckboxes_2 As groupContainer.manualLayoutContainer:
+            grp_FilterProject As groupContainer.manualLayoutContainer:
                 Height: =148
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
