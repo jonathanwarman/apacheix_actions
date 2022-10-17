@@ -335,19 +335,16 @@
     "d5916f6b45d8489d8f1d43c18d89253e": 7
   },
   "OrderDataSource": {
-    "Actions": 6,
-    "ComboBoxSample": 4,
-    "CustomGallerySample": 5,
-    "DropDownSample": 3,
-    "g_ClosersDropdown": 10,
-    "g_Employees": 12,
-    "g_Projects": 11,
-    "g_ProjectsDropdown": 9,
     "Office365Outlook": 0,
     "Office365Users": 1,
-    "People": 8,
-    "Projects": 7,
-    "RadioSample": 2
+    "RadioSample": 2,
+    "DropDownSample": 3,
+    "ComboBoxSample": 4,
+    "CustomGallerySample": 5,
+    "g_ClosersDropdown": 6,
+    "g_Employees": 7,
+    "g_Projects": 8,
+    "g_ProjectsDropdown": 9
   },
   "OrderGroupControls": {},
   "OrderPcfTemplate": {},

@@ -13,24 +13,10 @@
     },
     "datasets": {
       "https://apacheixdev.sharepoint.com/sites/PowerPlatformDevelopmentTEST": {
-        "dataSources": {
-          "Actions": {
-            "tableName": "5a9f794d-c663-4fa5-9859-4a437ccde392"
-          },
-          "People": {
-            "tableName": "77c0b1a5-69d0-493d-be8c-0c8b07825f93"
-          },
-          "Projects": {
-            "tableName": "f0ca4540-a97d-444a-aa82-aef990d6cf46"
-          }
-        }
+        "dataSources": {}
       }
     },
-    "dataSources": [
-      "Actions",
-      "Projects",
-      "People"
-    ],
+    "dataSources": [],
     "dependencies": {},
     "dependents": [],
     "id": "9901563c-93f2-4716-b0c3-eff3116c8fdd"
