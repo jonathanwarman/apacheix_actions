@@ -18,7 +18,7 @@
             "tableName": "5a9f794d-c663-4fa5-9859-4a437ccde392"
           },
           "People": {
-            "tableName": "f4667fd7-de01-449e-b4b6-8b387f1d2f15"
+            "tableName": "f0ca4540-a97d-444a-aa82-aef990d6cf46"
           },
           "Projects": {
             "tableName": "f0ca4540-a97d-444a-aa82-aef990d6cf46"
@@ -27,7 +27,6 @@
       }
     },
     "dataSources": [
-      "People",
       "Actions",
       "Projects"
     ],
