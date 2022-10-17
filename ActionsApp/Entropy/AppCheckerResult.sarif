@@ -81424,6 +81424,191 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 131,
+                  "charOffset": 3804,
+                  "snippet": {
+                    "text": "Set(g_TheAction, Patch(Actions, g_TheAction, { \r\n                        RequestedOwner: tmp_OwnerDropdown\r\n                    }))"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleCtxtVariableTypes",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 108,
+                  "charOffset": 3578,
+                  "snippet": {
+                    "text": "Set(g_TheAction, Patch(Actions, g_TheAction, { \r\n                    Owner: USER_RECORD\r\n                }))"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleCtxtVariableTypes",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 216,
+                  "charOffset": 3037,
+                  "snippet": {
+                    "text": "Set(g_TheAction, Patch(Actions, g_TheAction, { \r\n                    Owner: USER_RECORD, // A new action owner is always set to the creator.\r\n                    RequestedOwner: tmp_OwnerDropdown\r\n                }))"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleCtxtVariableTypes",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 211,
+                  "charOffset": 2784,
+                  "snippet": {
+                    "text": "Set(g_TheAction, Patch(Actions, g_TheAction, { \r\n                    Owner: USER_RECORD, // A new action owner is always set to the creator.\r\n                    RequestedOwner: BLANK_RECORD\r\n                }))"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleCtxtVariableTypes",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 787,
+                  "charOffset": 1832,
+                  "snippet": {
+                    "text": "Set(g_TheAction, Patch(Actions, If(tmp_NewAction, Defaults(Actions), g_TheAction), { \r\n        Title: txt_EditActionText.Text,\r\n        Detail: txt_EditActionDetail.HtmlText,\r\n        Status: \"Open\",\r\n        Importance: rad_EditImportance.Selected.Value,\r\n        Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),\r\n        RequestedCloser: If(rad_EditImportance.Selected.Value = \"Low\" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, BLANK_RECORD, tmp_Closer),\r\n        Project: If(drop_EditContextProject.Selected.ID = -1, BLANK_RECORD, tmp_Project)       \r\n        //Context_TEST: { '@odata.type':\"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\", Id: varContext.ID, Value: varContext.Title }\r\n    }))"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Edit",
+                "type": "Edit.Container2.EditPanel.Container10.Container4.btn_EditUpdate"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "High"
+          },
+          "ruleId": "app-ErrIncompatibleCtxtVariableTypes",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "Home.Dialogs_2.dialog_RequestClosure.txt_RequestClosureEvidence.HintText"
                 }
               ],
@@ -86003,19 +86188,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterSortBy.rad_FilterSortBy.AccessibleLabel"
+                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterProject.drop_Standard_3.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterSortBy.rad_FilterSortBy.AccessibleLabel",
+                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterProject.drop_Standard_3.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Filtering",
-                "type": "Filtering.FilterPanel.Container10_1.grp_FilterSortBy.rad_FilterSortBy"
+                "type": "Filtering.FilterPanel.Container10_1.grp_FilterProject.drop_Standard_3"
               }
             }
           ],
@@ -86033,19 +86218,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterProject.drop_Standard_3.AccessibleLabel"
+                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterSortBy.rad_FilterSortBy.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterProject.drop_Standard_3.AccessibleLabel",
+                  "fullyQualifiedName": "Filtering.FilterPanel.Container10_1.grp_FilterSortBy.rad_FilterSortBy.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Filtering",
-                "type": "Filtering.FilterPanel.Container10_1.grp_FilterProject.drop_Standard_3"
+                "type": "Filtering.FilterPanel.Container10_1.grp_FilterSortBy.rad_FilterSortBy"
               }
             }
           ],
@@ -86237,6 +86422,36 @@
           },
           "ruleId": "app-UnusedVariables",
           "ruleIndex": 16
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Items"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Home.grp_MainGallary.Gallery1.Items",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Items",
+                "module": "Home",
+                "type": "Home.grp_MainGallary.Gallery1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 18
         }
       ],
       "tool": {
@@ -86541,6 +86756,23 @@
                 "level": "Medium",
                 "primaryCategory": "performance",
                 "whyFix": "This media file is not referenced by any control formulas so it is not needed. Removing it will improve performance."
+              }
+            },
+            {
+              "id": "app-InefficientDelayLoading",
+              "messageStrings": {
+                "issue": {
+                  "text": "Inefficient delay loading"
+                }
+              },
+              "properties": {
+                "componentType": "app",
+                "howToFix": [
+                  "Use variables, collections, and navigation context to share state across screens instead."
+                ],
+                "level": "Medium",
+                "primaryCategory": "performance",
+                "whyFix": "Controls that reference controls on other screens can slow down app loading and navigation. Doing this may force the app to load the other screens immediately, rather than waiting until the user navigates to that screen."
               }
             }
           ],

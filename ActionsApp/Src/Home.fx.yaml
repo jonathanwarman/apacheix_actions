@@ -45,7 +45,7 @@ Home As screen:
 
         Gallery1 As gallery.variableTemplateHeightGallery:
             Height: =Parent.Height - Self.Y
-            Items: |-
+            Items: |
                 =/*With({tmp_FilteredActions: 
                     Filter(Actions, 
                             // Filters based on the selected group type checkbox valueand the current status of the project.
@@ -66,7 +66,7 @@ Home As screen:
                     Switch(rad_FilterSortBy.Selected.Value, 
                         "Action", SortByColumns(tmp_FilteredActions, "Title", Ascending),
                         "Importance", SortByColumns(tmp_FilteredActions, "Importance", Ascending),
-                        "Onwer", 
+                        "Owner", 
                             SortByColumns(
                                 // Create derived column for owner's name since you can't sort by a lookup column.
                                 AddColumns(tmp_FilteredActions, "Owner String", Owner.Value),
@@ -74,7 +74,18 @@ Home As screen:
                             )
                     )
                 )*/
-                Actions
+                //Actions
+                
+                    Switch(rad_FilterSortBy.Selected.Value, 
+                        "Action", SortByColumns(Actions, "Title", Ascending),
+                        "Importance", SortByColumns(Actions, "Importance", Ascending)
+                        /*"Owner", 
+                            SortByColumns(
+                                // Create derived column for owner's name since you can't sort by a lookup column.
+                                AddColumns(Actions, "Owner String", Owner.Value),
+                                "Owner String", Ascending
+                            )*/
+                    )
             Layout: =Layout.Vertical
             LoadingSpinner: =LoadingSpinner.Controls
             TemplateSize: =50
