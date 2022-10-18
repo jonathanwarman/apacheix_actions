@@ -718,21 +718,25 @@ Home As screen:
                         HoverFill: =APP_BUTTONS.BigDanger.HoverFill
                         Italic: =APP_BUTTONS.BigDanger.Italic
                         OnSelect: |-
-                            =With({tmp_OriginalRequestedOwner: ThisItem.RequestedOwner},
+                            =With({
+                                tmp_CurrentOwnerEmail: LookUp(People, ID = ThisItem.Owner.Id, Email),
+                                tmp_RequestedOwnerName: LookUp(People, ID = ThisItem.RequestedOwner.Id, Name),
+                                tmp_RequestedOwnerEmail: LookUp(People, ID = ThisItem.RequestedOwner.Id, Email)
+                            },
                                 
                                 Patch(Actions, ThisItem, { 
                                     RequestedOwner: BLANK_RECORD
                                 });
                             
                                 With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalRequestedOwner.Id, Email) & ThisItem.Notify,
+                                    To: tmp_CurrentOwnerEmail & ";" & tmp_RequestedOwnerEmail,
                                     Subject: "ACTION TRANSFER REJECTED: " & ThisItem.Title,
-                                    Header: "",
-                                    Content: "", // The requested person would not take ownership of the action. Liaise with the person to agree responsibility for this action.
-                                    MinWidth: 550
-                                })},
-                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                    Header: "ACTION TRANSFER REJECTED",
+                                    Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                        "<p>The requested person (" & tmp_RequestedOwnerName & ") <b>would not</b> take ownership of the action. Please liaise with the person to agree responsibility for this action.",
+                                    MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                                 );
+                                    
                             );
                         PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
@@ -782,15 +786,7 @@ Home As screen:
                                     RequestedOwner: BLANK_RECORD
                                 });
                             
-                                With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalOwner.Id, Email) & ThisItem.Notify,
-                                    Subject: "ACTION TRANSFERED: " & ThisItem.Title,
-                                    Header: "",
-                                    Content: "", // You are no longer the owner
-                                    MinWidth: 550
-                                })},
-                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                                );
+                                // Don't bother with an email. The owner expects the action to be transferred, and they'll get told if the transfer is rejected.
                             );
                         PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
@@ -926,13 +922,12 @@ Home As screen:
                             });
                             
                             With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ";" & ThisItem.Notify,
                                 Subject: "ACTION CLOSURE REJECTED: " & ThisItem.Title,
-                                Header: "",
-                                Content: "", // So and so does not agree this action can be closed. Liaise with them to agree closure criteria.
-                                MinWidth: 550
-                            })},
-                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                Header: "ACTION CLOSURE REJECTED",
+                                Content: "<h2>" & g_TheAction.Title & "</h2>" &    
+                                    "<p>" & USER.Name & " does not agree this action can be closed. Liaise with them to agree closure criteria.</p>",
+                                MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                             );
                         PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
@@ -983,13 +978,12 @@ Home As screen:
                             });
                             
                             With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ";" & ThisItem.Notify,
                                 Subject: "ACTION CLOSED: " & ThisItem.Title,
-                                Header: "",
-                                Content: "", // So and so has confirmed this action as closed.
-                                MinWidth: 550
-                            })},
-                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                Header: "ACTION CLOSED",
+                                Content: "<h2>" & g_TheAction.Title & "</h2>" &    
+                                    "<p>" & USER.Name & " has confirmed this action as closed.</p>",
+                                MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                             );
                         PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
@@ -1512,12 +1506,11 @@ Home As screen:
                                         With({Email: EmailFn.Builder({
                                             To: ThisItem.Notify,
                                             Subject: "ACTION CLOSED: " & ThisItem.Title,
-                                            Header: "",
-                                            Content: "",
-                                            MinWidth: 550
-                                        })},
-                                            Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                                        );
+                                            Header: "ACTION CLOSED",
+                                            Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                "<p>" & USER.Name & " has closed the action.",
+                                            MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                        ); 
                                     );
                                 );
                             )
@@ -1539,11 +1532,10 @@ Home As screen:
                                     With({Email: EmailFn.Builder({
                                         To: LookUp(People, ID = ThisItem.RequestedCloser.Id, Email) &";" & ThisItem.Notify,
                                         Subject: "ACTION RE-OPENED: " & ThisItem.Title,
-                                        Header: "",
-                                        Content: "",
-                                        MinWidth: 550
-                                    })},
-                                        Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                        Header: "ACTION RE-OPENED",
+                                        Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                "<p>" & USER.Name & " has re-opened the action.",
+                                        MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                                     );
                                 );
                             )
@@ -1822,13 +1814,16 @@ Home As screen:
                     If(!IsBlank(g_TheAction.RequestedCloser),
                         With({Email: EmailFn.Builder({
                             To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email),
-                            Subject: "ACTION CLOSED: " & g_TheAction.Title,
-                            Header: "",
-                            Content: "",
-                            MinWidth: 550
-                        })},
-                            Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                        );
+                            Subject: "ACTION CLOSURE REQUEST: " & g_TheAction.Title, 
+                            Header: "ACTION CLOSURE REQUEST",
+                            Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                "<p>You are <b>requested to close</b> this action by " & USER.Name & "." &
+                                "<p>Closure evidence: <i>" & If(IsBlank(g_TheAction.ClosureEvidence), "None", g_TheAction.ClosureEvidence) & "</i>." &
+                                "<p>Choose to confirm or reject closure:" & EmailFn.ButtonRow([
+                                    EmailFn.Button("Confirm", RESPONDER_APP_URL & "&RequestType=ActionConfirmClosure&Id=" & g_TheAction.ID & "&Response=Accept", 120, APP_COLORS_HEX.Success),
+                                    EmailFn.Button("Reject", RESPONDER_APP_URL & "&RequestType=ActionConfirmClosure&Id=" & g_TheAction.ID & "&Response=Reject", 120, APP_COLORS_HEX.Danger )]),
+                            MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                        );    
                     );
                     Select(btn_CancelRequestClosure);
                 PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
