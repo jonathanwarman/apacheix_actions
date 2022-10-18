@@ -353,6 +353,7 @@ Filtering As screen:
                     DisabledBorderColor: =APP_INPUT_CONTROLS.Radio.DisabledBorderColor
                     DisabledColor: =APP_INPUT_CONTROLS.Radio.DisabledColor
                     DisabledFill: =APP_INPUT_CONTROLS.Radio.DisabledFill
+                    DisplayMode: =DisplayMode.Disabled
                     Fill: =APP_INPUT_CONTROLS.Radio.Fill
                     FocusedBorderColor: =APP_INPUT_CONTROLS.Radio.FocusedBorderColor
                     FocusedBorderThickness: =APP_INPUT_CONTROLS.Radio.FocusedBorderThickness
