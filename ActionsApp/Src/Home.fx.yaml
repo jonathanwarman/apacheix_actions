@@ -44,7 +44,7 @@ Home As screen:
         Width: =Parent.Width - Self.X
         X: =If(ScreenSmall, 0, 50)
         Y: =100
-        ZIndex: =2
+        ZIndex: =1
 
         TH As groupContainer.manualLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
@@ -1565,6 +1565,33 @@ Home As screen:
                         Width: =80
                         ZIndex: =5
 
+    slide_Slider_2 As slider:
+        BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor
+        BorderStyle: =APP_INPUT_CONTROLS.Slider.BorderStyle
+        BorderThickness: =APP_INPUT_CONTROLS.Slider.BorderThickness
+        Default: =If(ScreenSmall,  Self.Width/2,  Self.Width/3)
+        DisabledBorderColor: =APP_INPUT_CONTROLS.Slider.DisabledBorderColor
+        FocusedBorderColor: =APP_INPUT_CONTROLS.Slider.FocusedBorderColor
+        FocusedBorderThickness: =APP_INPUT_CONTROLS.Slider.FocusedBorderThickness
+        HandleActiveFill: =APP_INPUT_CONTROLS.Slider.HandleActiveFill
+        HandleFill: =APP_INPUT_CONTROLS.Slider.HandleFill
+        HandleHoverFill: =APP_INPUT_CONTROLS.Slider.HandleHoverFill
+        HandleSize: =13
+        Height: =20
+        HoverBorderColor: =APP_INPUT_CONTROLS.Slider.HoverBorderColor
+        Max: =Self.Width
+        PressedBorderColor: =APP_INPUT_CONTROLS.Slider.PressedBorderColor
+        RailFill: =APP_INPUT_CONTROLS.Slider.RailFill
+        RailHoverFill: =APP_INPUT_CONTROLS.Slider.RailHoverFill
+        RailThickness: =1
+        ShowValue: =APP_INPUT_CONTROLS.Slider.ShowValue
+        ValueFill: =APP_INPUT_CONTROLS.Slider.ValueFill
+        ValueHoverFill: =APP_INPUT_CONTROLS.Slider.ValueHoverFill
+        Width: =Parent.Width - Self.X - 5
+        X: =55
+        Y: =115
+        ZIndex: =2
+
     btn_HomeAddAction As button:
         Align: =APP_BUTTONS.Primary.Align
         BorderColor: =APP_BUTTONS.Primary.BorderColor
@@ -2034,35 +2061,9 @@ Home As screen:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
         PaddingTop: =0
-        Text: ="v22"
+        Size: =11
+        Text: ="v1"
         Width: =300
         X: =109
         ZIndex: =8
-
-    slide_Slider_2 As slider:
-        BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor
-        BorderStyle: =APP_INPUT_CONTROLS.Slider.BorderStyle
-        BorderThickness: =APP_INPUT_CONTROLS.Slider.BorderThickness
-        Default: =If(ScreenSmall,  Self.Width/2,  Self.Width/3)
-        DisabledBorderColor: =APP_INPUT_CONTROLS.Slider.DisabledBorderColor
-        FocusedBorderColor: =APP_INPUT_CONTROLS.Slider.FocusedBorderColor
-        FocusedBorderThickness: =APP_INPUT_CONTROLS.Slider.FocusedBorderThickness
-        HandleActiveFill: =APP_INPUT_CONTROLS.Slider.HandleActiveFill
-        HandleFill: =APP_INPUT_CONTROLS.Slider.HandleFill
-        HandleHoverFill: =APP_INPUT_CONTROLS.Slider.HandleHoverFill
-        HandleSize: =13
-        Height: =20
-        HoverBorderColor: =APP_INPUT_CONTROLS.Slider.HoverBorderColor
-        Max: =Self.Width
-        PressedBorderColor: =APP_INPUT_CONTROLS.Slider.PressedBorderColor
-        RailFill: =APP_INPUT_CONTROLS.Slider.RailFill
-        RailHoverFill: =APP_INPUT_CONTROLS.Slider.RailHoverFill
-        RailThickness: =1
-        ShowValue: =APP_INPUT_CONTROLS.Slider.ShowValue
-        ValueFill: =APP_INPUT_CONTROLS.Slider.ValueFill
-        ValueHoverFill: =APP_INPUT_CONTROLS.Slider.ValueHoverFill
-        Width: =Parent.Width - Self.X - 5
-        X: =55
-        Y: =115
-        ZIndex: =9
 
