@@ -1,12 +1,12 @@
 {
   "ComponentAllowCustomization": true,
-  "ComponentChangedSinceFileImport": false,
+  "ComponentChangedSinceFileImport": true,
   "ComponentManifest": {
     "AllowAccessToGlobals": false,
     "AllowCustomization": true,
     "Description": "",
-    "Name": "Dialogs",
-    "TemplateGuid": "11534f0b235c4c829c75bbec5207973e"
+    "Name": "EmailActionDetails",
+    "TemplateGuid": "aaf21d058bab477681ef3695a5d2b12b"
   },
   "ComponentType": "CanvasComponent",
   "CustomGroupControlTemplateName": "",
@@ -19,9 +19,8 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638016923330261625",
-  "Name": "11534f0b235c4c829c75bbec5207973e",
+  "LastModifiedTimestamp": "638016947861803710",
+  "Name": "aaf21d058bab477681ef3695a5d2b12b",
   "OverridableProperties": {},
-  "TemplateOriginalName": "b0c6bbf910db44fe9ea60618b7ba9bc5",
-  "Version": "637926407241847586"
+  "Version": "638016947644872151"
 }

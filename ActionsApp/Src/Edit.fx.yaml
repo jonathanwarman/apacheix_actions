@@ -1282,7 +1282,9 @@ Edit As screen:
                                     tmp_NewAction: IsBlank(g_TheAction),
                                     tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.FullName },
                                     tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.FullName },
-                                    tmp_Project: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditContextProject.Selected.ID, Value: drop_EditContextProject.Selected.Title }
+                                    tmp_Project: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditContextProject.Selected.ID, Value: drop_EditContextProject.Selected.Title },
+                                    tmp_OldOwnerEmail: LookUp(People, ID = g_TheAction.Owner.Id, Email),
+                                    tmp_RequestedOwnerEmail: LookUp(People, ID = drop_EditOwner.Selected.ID, Email)
                                 },
                              
                                 
@@ -1311,23 +1313,59 @@ Edit As screen:
                                                 Owner: USER_RECORD, // A new action owner is always set to the creator.
                                                 RequestedOwner: tmp_OwnerDropdown
                                             }));
-                                            Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
+                                            
+                                            With({Email: EmailFn.Builder({
+                                                To: tmp_RequestedOwnerEmail,
+                                                Subject: "ACTION ASSIGNED: " & g_TheAction.Title, 
+                                                Header: "ACTION ASSIGNED",
+                                                Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                    "<p>You are <b>requested to accept</b> ownership of this action by " & USER.Name & "." &              
+                                                    "<p>Choose to accept or reject this action:" & EmailFn.ButtonRow([
+                                                        EmailFn.Button("Accept", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Accept", 120, APP_COLORS_HEX.Success),
+                                                        EmailFn.Button("Reject", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Reject", 120, APP_COLORS_HEX.Danger )]),
+                                                MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                            );
                                         );
                             
                                     , // Else existing action
                                         
-                                        // If the action is being taken by the current user, just set the owner.
-                                        If(drop_EditOwner.Selected.ID = USER.ID,
-                                            Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                                Owner: USER_RECORD
-                                            }));
-                                        , // else
-                                            If(g_TheAction.Owner.Id <> drop_EditOwner.Selected.ID,
+                                        // Check the owner has changed.
+                                        If(g_TheAction.Owner.Id <> drop_EditOwner.Selected.ID,
+                            
+                                            // If the action is being taken by the current user, just set the owner.
+                                            If(drop_EditOwner.Selected.ID = USER.ID,
+                                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                                    Owner: USER_RECORD
+                                                }));
+                                                
+                                                With({Email: EmailFn.Builder({
+                                                    To: tmp_OldOwnerEmail & g_TheAction.Notify,
+                                                    Subject: "ACTION RE-ASSIGNED: " & g_TheAction.Title, 
+                                                    Header: "ACTION RE-ASSIGNED",
+                                                    Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                        "<p>" & USER.Name & " has taken ownership of this action.",
+                                                    MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                                );                    
+                                            
+                                            , // else
+                            
                                                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
                                                     RequestedOwner: tmp_OwnerDropdown
                                                 }));
-                                                Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
-                                            )
+                                                
+                                                With({Email: EmailFn.Builder({
+                                                    To: tmp_RequestedOwnerEmail,
+                                                    Subject: "ACTION ASSIGNED: " & g_TheAction.Title, 
+                                                    Header: "ACTION ASSIGNED",
+                                                    Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                        "<p>You are <b>requested to accept</b> ownership of this action by " & USER.Name & "." &
+                                                        "<p><i>Current Owner:</i> " & g_TheAction.Owner.Value & "<p>" &                
+                                                        "<p>Choose to accept or reject this action:" & EmailFn.ButtonRow([
+                                                            EmailFn.Button("Accept", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Accept", 120, APP_COLORS_HEX.Success),
+                                                            EmailFn.Button("Reject", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Reject", 120, APP_COLORS_HEX.Danger )]),
+                                                    MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                                );
+                                            );
                                         );
                                     );
                                 );
@@ -1433,7 +1471,6 @@ Edit As screen:
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
         AppURL: =APP_URL
-        DynamicHeight: =If(g_ShowBetaBar, Header_v2___2.Style.Height.ExpandedHeader, Header_v2___2.Style.Height.HeaderOnly)
         Fill: =Header_v2___2.Style.Fill
         Style: =APP_HEADER
         User: =USER
