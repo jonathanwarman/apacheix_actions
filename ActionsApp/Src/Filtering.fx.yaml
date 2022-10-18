@@ -4,6 +4,7 @@ Filtering As screen:
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
         AppURL: =APP_URL
+        DynamicHeight: =If(g_ShowBetaBar, Header_v2___3.Style.Height.ExpandedHeader, Header_v2___3.Style.Height.HeaderOnly)
         Fill: =Header_v2___3.Style.Fill
         Style: =APP_HEADER
         User: =USER
