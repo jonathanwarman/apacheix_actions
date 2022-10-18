@@ -144,7 +144,7 @@
         "Name": "Ticker_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 204,
+        "PublishOrderIndex": 171,
         "Rules": [
           {
             "Category": "Data",
@@ -504,7 +504,7 @@
         "Name": "TimerShow_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 205,
+        "PublishOrderIndex": 172,
         "Rules": [
           {
             "Category": "Data",
@@ -836,7 +836,7 @@
         "Name": "TimerHold_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 206,
+        "PublishOrderIndex": 173,
         "Rules": [
           {
             "Category": "Data",
@@ -1174,7 +1174,7 @@
         "Name": "TimerHide_2",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 207,
+        "PublishOrderIndex": 174,
         "Rules": [
           {
             "Category": "Data",
@@ -1469,7 +1469,7 @@
             "Name": "shadowRectangle_3",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 209,
+            "PublishOrderIndex": 176,
             "Rules": [
               {
                 "Category": "Data",
@@ -1761,7 +1761,7 @@
             "Name": "Icon5_2",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 210,
+            "PublishOrderIndex": 177,
             "Rules": [
               {
                 "Category": "Design",
@@ -2166,7 +2166,7 @@
             "Name": "Button2",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 211,
+            "PublishOrderIndex": 178,
             "Rules": [
               {
                 "Category": "Data",
@@ -2507,7 +2507,7 @@
             "Name": "Icon1_3",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 212,
+            "PublishOrderIndex": 179,
             "Rules": [
               {
                 "Category": "Design",
@@ -2770,7 +2770,7 @@
             "Name": "HtmlText2_3",
             "Parent": "Container1_3",
             "PersistMetaDataIDKey": false,
-            "PublishOrderIndex": 213,
+            "PublishOrderIndex": 180,
             "Rules": [
               {
                 "Category": "Data",
@@ -2971,7 +2971,7 @@
         "Name": "Container1_3",
         "Parent": "Toast_v2__",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 208,
+        "PublishOrderIndex": 175,
         "Rules": [
           {
             "Category": "Design",
