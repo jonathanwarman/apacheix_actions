@@ -1588,7 +1588,7 @@ Home As screen:
         ValueFill: =APP_INPUT_CONTROLS.Slider.ValueFill
         ValueHoverFill: =APP_INPUT_CONTROLS.Slider.ValueHoverFill
         Width: =Parent.Width - Self.X - 5
-        X: =55
+        X: =If(ScreenSmall, 5, 55)
         Y: =115
         ZIndex: =2
 
@@ -2062,7 +2062,7 @@ Home As screen:
         Height: =26
         PaddingTop: =0
         Size: =11
-        Text: ="v1"
+        Text: ="v2"
         Width: =300
         X: =109
         ZIndex: =8
