@@ -78117,19 +78117,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Home.grp_MainGallery.TH.slide_Slider_2.AccessibleLabel"
+                  "fullyQualifiedName": "Home.slide_Slider_2.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Home.grp_MainGallery.TH.slide_Slider_2.AccessibleLabel",
+                  "fullyQualifiedName": "Home.slide_Slider_2.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Home",
-                "type": "Home.grp_MainGallery.TH.slide_Slider_2"
+                "type": "Home.slide_Slider_2"
               }
             }
           ],
