@@ -2015,9 +2015,8 @@ Home As screen:
                 1, Notify("Hello")
             )
         Style: =APP_SIDEBAR.Style
-        Visible: =true
+        Visible: =If(ScreenSmall, Self.Width > 50, true)
         Width: =Sidebar_v1___1.DynamicWidth
-        X: =If(ScreenSmall, -50, 0)
         Y: =60
         ZIndex: =6
 
@@ -2035,7 +2034,7 @@ Home As screen:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
         PaddingTop: =0
-        Text: ="v21"
+        Text: ="v22"
         Width: =300
         X: =109
         ZIndex: =8
