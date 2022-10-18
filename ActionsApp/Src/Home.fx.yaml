@@ -751,7 +751,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.BigDanger.Underline
                         VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
                         Width: =80
-                        X: =220
+                        X: =180
                         Y: =3
                         ZIndex: =1
 
@@ -895,9 +895,9 @@ Home As screen:
                             ="Evidence: " & ThisItem.ClosureEvidence
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =VerticalAlign.Top
-                        Width: =300
+                        Width: =Parent.Width - Self.X
                         Wrap: =APP_LABELS.PrimaryText.Wrap
-                        X: =280
+                        X: =235
                         ZIndex: =1
 
                     btn_RejectClosure As button:
@@ -951,7 +951,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.BigDanger.Underline
                         VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
                         Width: =80
-                        X: =190
+                        X: =150
                         Y: =3
                         ZIndex: =2
 
@@ -1008,7 +1008,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.Success.Underline
                         VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
                         Width: =80
-                        X: =100
+                        X: =60
                         Y: =3
                         ZIndex: =3
 
@@ -1048,7 +1048,7 @@ Home As screen:
                             ="Closure requested:"
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                        Width: =90
+                        Width: =60
                         Wrap: =APP_LABELS.PrimaryText.Wrap
                         ZIndex: =4
 

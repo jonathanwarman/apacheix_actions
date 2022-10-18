@@ -308,6 +308,7 @@ Filtering As screen:
                     DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
                     DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
                     DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
+                    DisplayMode: =DisplayMode.Disabled
                     Fill: =APP_INPUT_CONTROLS.Dropdown.Fill
                     FocusedBorderColor: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderColor
                     FocusedBorderThickness: =APP_INPUT_CONTROLS.Dropdown.FocusedBorderThickness
