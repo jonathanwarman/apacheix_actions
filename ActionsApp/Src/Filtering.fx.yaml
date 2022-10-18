@@ -451,7 +451,7 @@ Filtering As screen:
             PressedFill: =APP_LABELS.H2.PressedFill
             Size: =APP_LABELS.H2.Size
             Strikethrough: =APP_LABELS.H2.Strikethrough
-            Text: ="Context"
+            Text: ="Filtering & Sorting"
             Underline: =APP_LABELS.H2.Underline
             VerticalAlign: =APP_LABELS.H2.VerticalAlign
             Width: =277
