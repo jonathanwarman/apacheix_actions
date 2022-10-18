@@ -809,7 +809,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.Success.Underline
                         VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
                         Width: =80
-                        X: =130
+                        X: =90
                         Y: =3
                         ZIndex: =2
 
@@ -849,7 +849,7 @@ Home As screen:
                             ="Ownership tranfer requested:"
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                        Width: =130
+                        Width: =90
                         Wrap: =APP_LABELS.PrimaryText.Wrap
                         ZIndex: =3
 
