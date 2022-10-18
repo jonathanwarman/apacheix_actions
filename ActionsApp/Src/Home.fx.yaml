@@ -130,7 +130,6 @@ Home As screen:
                 Text: ="Importance"
                 Underline: =APP_LABELS.SecondaryText.Underline
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
                 Width: =44
                 Wrap: =APP_LABELS.SecondaryText.Wrap
                 X: =th_ActionText.Width
@@ -170,7 +169,6 @@ Home As screen:
                 Text: ="Status"
                 Underline: =APP_LABELS.SecondaryText.Underline
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
                 Width: =80
                 Wrap: =APP_LABELS.SecondaryText.Wrap
                 X: =th_2.X + th_2.Width
@@ -210,7 +208,6 @@ Home As screen:
                 Text: ="Owner"
                 Underline: =APP_LABELS.SecondaryText.Underline
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
                 Width: =If(g_HomeExpandOwner,180, 60)
                 Wrap: =APP_LABELS.SecondaryText.Wrap
                 X: =th_3.X + th_3.Width
@@ -250,7 +247,6 @@ Home As screen:
                 Text: ="Target"
                 Underline: =APP_LABELS.SecondaryText.Underline
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
                 Width: =80
                 Wrap: =APP_LABELS.SecondaryText.Wrap
                 X: =th_4.X + th_4.Width
@@ -288,7 +284,6 @@ Home As screen:
                 Text: ="Closer"
                 Underline: =APP_LABELS.SecondaryText.Underline
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
                 Width: =45
                 Wrap: =APP_LABELS.SecondaryText.Wrap
                 X: =th_5.X + th_5.Width
@@ -325,7 +320,6 @@ Home As screen:
                 Text: ="Latest post"
                 Underline: =APP_LABELS.SecondaryText.Underline
                 VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
                 Width: =If(g_HomeExpandQuickPost,250, 120)
                 Wrap: =APP_LABELS.SecondaryText.Wrap
                 X: =th_6.X + th_6.Width + 5
