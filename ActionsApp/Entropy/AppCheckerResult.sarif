@@ -78527,19 +78527,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.AccessibleLabel"
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.date_ProgressTarget.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.AccessibleLabel",
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.date_ProgressTarget.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
-                "module": "ProgressHistory",
-                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2"
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.date_ProgressTarget"
               }
             }
           ],
@@ -78557,19 +78557,79 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.TabIndex"
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.txt_ProgressNewStatement.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.Gallery2.TabIndex",
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.txt_ProgressNewStatement.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.txt_ProgressNewStatement"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressNameDate.FocusedBorderThickness"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressNameDate.FocusedBorderThickness",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "FocusedBorderThickness",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressNameDate"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-FocusBorderShouldBeVisible",
+          "ruleIndex": 7
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressNameDate.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressNameDate.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
-                "module": "ProgressHistory",
-                "type": "ProgressHistory.ProgressHistoryPanel.Gallery2"
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressNameDate"
               }
             }
           ],
@@ -78581,66 +78641,6 @@
           },
           "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
           "ruleIndex": 8
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.txt_BasicTextEdit_3.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.txt_BasicTextEdit_3.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "ProgressHistory",
-                "type": "ProgressHistory.ProgressHistoryPanel.txt_BasicTextEdit_3"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 6
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.date_EditTarget_1.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "ProgressHistory.ProgressHistoryPanel.date_EditTarget_1.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "ProgressHistory",
-                "type": "ProgressHistory.ProgressHistoryPanel.date_EditTarget_1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 6
         },
         {
           "locations": [
@@ -79030,6 +79030,186 @@
           },
           "ruleId": "acc-AccessibleLabelNeeded",
           "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 8
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.separator.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.separator.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.separator"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.separator.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.separator.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.separator"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 8
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressStatement.FocusedBorderThickness"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressStatement.FocusedBorderThickness",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "FocusedBorderThickness",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressStatement"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-FocusBorderShouldBeVisible",
+          "ruleIndex": 7
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressStatement.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressStatement.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Progress",
+                "type": "Progress.ProgressHistoryPanel.Container11.Gallery3.Container13.lbl_ProgressStatement"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 8
         },
         {
           "locations": [

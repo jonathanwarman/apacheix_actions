@@ -980,7 +980,7 @@ Edit As screen:
                         BorderStyle: =APP_INPUT_CONTROLS.DatePicker.BorderStyle
                         BorderThickness: =APP_INPUT_CONTROLS.DatePicker.BorderThickness
                         Color: =APP_INPUT_CONTROLS.DatePicker.Color
-                        DefaultDate: =Today()-1
+                        DefaultDate: =If(IsBlank(g_TheAction) || IsBlank(g_TheAction.Target), Blank(), g_TheAction.Target)
                         DisabledBorderColor: =APP_INPUT_CONTROLS.DatePicker.DisabledBorderColor
                         DisabledColor: =APP_INPUT_CONTROLS.DatePicker.DisabledColor
                         DisabledFill: =APP_INPUT_CONTROLS.DatePicker.DisabledFill
@@ -993,6 +993,7 @@ Edit As screen:
                         Height: =25
                         IconBackground: =APP_INPUT_CONTROLS.DatePicker.IconBackground
                         IconFill: =APP_INPUT_CONTROLS.DatePicker.IconFill
+                        InputTextPlaceholder: =
                         IsEditable: =APP_INPUT_CONTROLS.DatePicker.IsEditable
                         Italic: =APP_INPUT_CONTROLS.DatePicker.Italic
                         PaddingBottom: =APP_INPUT_CONTROLS.DatePicker.PaddingBottom
@@ -1063,6 +1064,7 @@ Edit As screen:
                         DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
                         DisabledColor: =APP_BUTTONS.Icon.DisabledColor
                         DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+                        DisplayMode: =If(IsBlank(g_TheAction), DisplayMode.Disabled, DisplayMode.Edit)
                         Fill: =APP_BUTTONS.Icon.Fill
                         FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
                         FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
@@ -1071,7 +1073,7 @@ Edit As screen:
                         HoverColor: =APP_BUTTONS.Icon.HoverColor
                         HoverFill: =APP_BUTTONS.Icon.HoverFill
                         Icon: =Icon.Post
-                        OnSelect: =Navigate(ProgressHistory);
+                        OnSelect: =Navigate(Progress);
                         PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
                         PaddingRight: =APP_BUTTONS.Icon.PaddingRight
@@ -1169,7 +1171,7 @@ Edit As screen:
                         Wrap: =APP_LABELS.SecondaryText.Wrap
                         ZIndex: =3
 
-                Container4 As groupContainer.horizontalAutoLayoutContainer:
+                grp_EditButtons As groupContainer.horizontalAutoLayoutContainer:
                     AlignInContainer: =AlignInContainer.SetByContainer
                     Height: =40
                     LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
@@ -1299,7 +1301,7 @@ Edit As screen:
                                     Detail: txt_EditActionDetail.HtmlText,
                                     Status: "Open",
                                     Importance: rad_EditImportance.Selected.Value,
-                                    Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),
+                                    Target: If(IsBlank(date_EditTarget.SelectedDate), Blank(), date_EditTarget.SelectedDate),
                                     RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, BLANK_RECORD, tmp_Closer),
                                     Project: If(drop_EditContextProject.Selected.ID = -1, BLANK_RECORD, tmp_Project)       
                                     //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
