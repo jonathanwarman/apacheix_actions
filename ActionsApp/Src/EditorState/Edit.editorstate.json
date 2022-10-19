@@ -1633,7 +1633,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_EditCancel",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2216,7 +2216,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_EditUpdate",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2792,7 +2792,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "btn_ReOpen",
-      "ParentIndex": 0,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

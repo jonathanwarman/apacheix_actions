@@ -1,6 +1,6 @@
 Edit As screen:
     OnVisible: |-
-        =ClearCollect(g_ClosersDropdown, {ID:-1, FullName:"(None)"}, ShowColumns(Filter(g_Employees, ID <> g_TheAction.Owner.Id), "ID", "FullName"));
+        =ClearCollect(g_ClosersDropdown, {ID:-1, FullName:"(None)"}, ShowColumns(g_Employees, "ID", "FullName"));
         
         SetFocus(txt_EditActionText);
 
@@ -750,7 +750,7 @@ Edit As screen:
                         Color: =APP_INPUT_CONTROLS.Dropdown.Color
                         Default: |-
                             =// This ensures that when changing the importance to Low, the field looks empty regardless of whether g_TheAction still has a closer selected. 
-                            If(rad_EditImportance.Selected.Value = "Low", Blank(), g_TheAction.RequestedCloser.Value)
+                            If(rad_EditImportance.Selected.Value = "Low" || IsBlank(g_TheAction.RequestedCloser), "(None)", g_TheAction.RequestedCloser.Value)
                         DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
                         DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
                         DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
@@ -1210,6 +1210,9 @@ Edit As screen:
                             Reset(drop_EditCloser);
                             Reset(date_EditTarget);
                             
+                            // Note this reset is deliberately not done so that multiple new actions are by default created against the same project. i.e. the context of your current actions is saved.
+                            // Reset(drop_EditContextProject);
+                            
                             Navigate(Home);
                         PaddingBottom: =APP_BUTTONS.Secondary.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Secondary.PaddingLeft
@@ -1259,7 +1262,10 @@ Edit As screen:
                                 Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() }),
                             
                             If(rad_EditImportance.Selected.Value = "Significant" && (IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1),
-                                Set(g_Toast, { Text: "Significant actions must have a nominated Closer.", Type: TOAST_TYPE.Error, Timestamp: Now() });
+                                Set(g_Toast, { Text: "Significant actions must have a nominated Closer.", Type: TOAST_TYPE.Error, Timestamp: Now() }),
+                            
+                            If(drop_EditOwner.Selected.ID = drop_EditCloser.Selected.ID,
+                                Set(g_Toast, { Text: "The Owner cannot be nominated as the Closer. <br><small>An independent Closer is mandatory for Significant actions. Other actions do not require a Closer.</small>", Type: TOAST_TYPE.Error, Timestamp: Now() });
                             
                             , // Else
                             
@@ -1379,7 +1385,7 @@ Edit As screen:
                                 );
                             
                                 ); // end with
-                            )); // end if
+                            ))); // end if
                         PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
                         PaddingRight: =APP_BUTTONS.Primary.PaddingRight
@@ -1435,11 +1441,10 @@ Edit As screen:
                                     With({Email: EmailFn.Builder({
                                         To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email) &";" & g_TheAction.Notify,
                                         Subject: "ACTION RE-OPENED: " & g_TheAction.Title,
-                                        Header: "",
-                                        Content: "",
-                                        MinWidth: 550
-                                    })},
-                                        Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                        Header: "ACTION RE-OPENED",
+                                        Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                 "<p>" & USER.Name & " has re-opened the action.",
+                                        MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                                     );
                                 );
                             )
