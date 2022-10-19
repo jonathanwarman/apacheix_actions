@@ -460,7 +460,7 @@ Home As screen:
                 ZIndex: =11
 
             th_EndBar As rectangle:
-                Fill: =APP_COLORS.Outline
+                Fill: =APP_COLORS.Transparent
                 Height: |
                     =18
                 Width: =1
@@ -512,7 +512,7 @@ Home As screen:
                         ) &&
                         (
                             Switch(rad_FilterOwner.Selected.Value,
-                                "Mine", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
+                                "Mine", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID || (RequestedCloser.Id = USER.ID && Status = "Pending Closure")),
                                 "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID || RequestedCloser.Id = USER.ID),
                                 "All", true                        
                             )
