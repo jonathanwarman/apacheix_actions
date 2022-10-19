@@ -27,7 +27,7 @@ App As appinfo:
                 Name: tmp_UserRecord.Name, 
                 Email: tmp_UserRecord.Email, 
                 Image: If(!IsBlank(tmp_UserRecord.Email) && !IsEmpty(Office365Users.SearchUserV2({searchTerm:tmp_UserRecord.Email}).value) && Office365Users.UserPhotoMetadata(tmp_UserRecord.Email).HasPhoto, 
-                    Office365Users.UserPhotoV2(tmp_UserRecord.Email)
+                    Office365Users.UserPhotoV2(tmp_UserRecord.Email), Blank()
                 )
             }
         );
