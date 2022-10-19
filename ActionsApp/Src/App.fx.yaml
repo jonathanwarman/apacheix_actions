@@ -5,9 +5,9 @@ App As appinfo:
         APP_RELEASE = { Type: "Dev", Release: 0, Fix: 0 };
         
         APP_URL = "https://apps.powerapps.com/play/" & 
-            If(APP_RELEASE.Type = "Dev",               "",
+            If(APP_RELEASE.Type = "Dev",               "https://apps.powerapps.com/play/9077a299-72af-42dd-802c-eb17e9afc183?tenantId=00d7b6a8-b13f-4935-9a8e-954dfc10f607",
                APP_RELEASE.Type = "Alpha",             "",
-               APP_RELEASE.Type in ["Beta","Prod"],    ""
+               APP_RELEASE.Type in ["Beta","Prod"],    "https://apps.powerapps.com/play/866ce6a4-827a-4457-a040-d82924d9a54c?tenantId=587b57e8-8dd1-4070-8462-209615860687"
             ) & "&hidenavbar=true";
         
         RESPONDER_APP_URL = "https://apps.powerapps.com/play/" &
@@ -27,7 +27,7 @@ App As appinfo:
                 Name: tmp_UserRecord.Name, 
                 Email: tmp_UserRecord.Email, 
                 Image: If(!IsBlank(tmp_UserRecord.Email) && !IsEmpty(Office365Users.SearchUserV2({searchTerm:tmp_UserRecord.Email}).value) && Office365Users.UserPhotoMetadata(tmp_UserRecord.Email).HasPhoto, 
-                    Office365Users.UserPhotoV2(tmp_UserRecord.Email)
+                    Office365Users.UserPhotoV2(tmp_UserRecord.Email), Blank()
                 )
             }
         );

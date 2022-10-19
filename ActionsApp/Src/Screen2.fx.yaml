@@ -806,7 +806,7 @@ Screen2 As screen:
         HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
         HoverColor: =APP_BUTTONS.Icon.HoverColor
         HoverFill: =APP_BUTTONS.Icon.HoverFill
-        Icon: =Icon.EmojiSmile
+        Icon: =Icon.Filter
         PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
         PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
         PaddingRight: =APP_BUTTONS.Icon.PaddingRight
