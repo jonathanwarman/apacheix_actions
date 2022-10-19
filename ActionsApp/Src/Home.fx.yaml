@@ -2,28 +2,537 @@ Home As screen:
     OnVisible: |-
         =ClearCollect(g_Employees, Sort(RenameColumns(Filter(People, IsReal, Relationship = "Apache iX Employee"), "Title", "FullName"), "FullName", Ascending));
         ClearCollect(g_Projects, Sort(Projects, 'Name (Title)', Ascending));
+        ClearCollect(g_ProjectsDropdown, {ID:-1, Title:"(None)"}, ShowColumns(g_Projects, "ID", "Title"));
+        
+        /*
+        ClearCollect(g_FilteredActions, 
+            With({tmp_FilteredActions: 
+                Filter(Actions, 
+                        // Filters based on the selected group type checkbox valueand the current status of the project.
+                        (
+                        (chk_FilterOpen.Value && Status in ["Open", "Pending Closure"]) ||
+                        (chk_FilterClosed.Value && Status = "Closed")
+                        ) /*&&
+                        (
+                            Switch(rad_FilterOwner.Selected.Value,
+                                "Mine", Owner.Id = USER.ID,
+                                "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
+                                "All", true                        
+                            )
+                        )*//*
+                    )
+            },
+        
+                Switch(rad_FilterSortBy.Selected.Value, 
+                    "Action", SortByColumns(tmp_FilteredActions, "Title", Ascending),
+                    "Importance", SortByColumns(tmp_FilteredActions, "Importance", Ascending),
+                    "Onwer", 
+                        SortByColumns(
+                            // Create derived column for owner's name since you can't sort by a lookup column.
+                            AddColumns(tmp_FilteredActions, "Owner String", Owner.Value),
+                            "Owner String", Ascending
+                        )
+                )
+            )
+        );*/
 
-    grp_MainGallary As groupContainer.manualLayoutContainer:
+    grp_MainGallery As groupContainer.horizontalAutoLayoutContainer:
         Height: =Parent.Height - Self.Y
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowX: =LayoutOverflow.Scroll
         Width: =Parent.Width - Self.X
         X: =If(ScreenSmall, 0, 50)
         Y: =100
         ZIndex: =1
 
-        Gallery1 As gallery.variableTemplateHeightGallery:
-            Height: =Parent.Height - Self.Y
-            Items: =Actions
-            Layout: =Layout.Vertical
-            LoadingSpinner: =LoadingSpinner.Data
-            TemplateSize: =50
-            Width: =Parent.Width
-            Y: =slide_Slider_2.Y + slide_Slider_2.Height
+        TH As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =33
+            LayoutMinHeight: =100
+            LayoutMinWidth: =th_EndBar.X + 15
+            Width: =Max(th_EndBar.X + 20, App.Width - Parent.X)
+            X: =5
             ZIndex: =1
+
+            th_ActionText As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =24
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Action Text"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =slide_Slider_2.Value
+                Wrap: |
+                    =APP_LABELS.SecondaryText.Wrap
+                ZIndex: =1
+
+            th_2 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =24
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: |
+                    =APP_LABELS.SecondaryText.PaddingBottom + 5
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 4
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Importance"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =44
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =th_ActionText.Width
+                ZIndex: =2
+
+            th_3 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =24
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Status"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =80
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =th_2.X + th_2.Width
+                ZIndex: =3
+
+            th_4 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =24
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size -2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Owner"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =If(g_HomeExpandOwner,180, 60)
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =th_3.X + th_3.Width
+                ZIndex: =4
+
+            th_5 As label:
+                Align: =Align.Center
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =24
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Target"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =80
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =th_4.X + th_4.Width
+                ZIndex: =5
+
+            th_6 As label:
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =24
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Project"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =120
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =th_5.X + th_5.Width
+                ZIndex: =6
+
+            th_7 As label:
+                Align: =Align.Center
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =20
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 4
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Closer"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =45
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =th_6.X + th_6.Width
+                ZIndex: =7
+
+            th_8 As label:
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =20
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 4
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: ="Latest post"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =If(g_HomeExpandQuickPost,250, 120)
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =th_7.X + th_7.Width + 5
+                ZIndex: =8
+
+            tog_WrapActionText As toggleSwitch:
+                BorderColor: =APP_INPUT_CONTROLS.Toggle.BorderColor
+                BorderStyle: =APP_INPUT_CONTROLS.Toggle.BorderStyle
+                BorderThickness: =APP_INPUT_CONTROLS.Toggle.BorderThickness
+                Color: =APP_INPUT_CONTROLS.Toggle.Color
+                Default: =If(ScreenSmall, false, true)
+                DisabledBorderColor: =APP_INPUT_CONTROLS.Toggle.DisabledBorderColor
+                DisabledColor: =APP_INPUT_CONTROLS.Toggle.DisabledColor
+                FalseFill: |+
+                    =APP_INPUT_CONTROLS.Toggle.FalseFill
+                    
+                FalseHoverFill: =APP_INPUT_CONTROLS.Toggle.FalseHoverFill
+                FalseText: ="No wrap"
+                FocusedBorderColor: =APP_INPUT_CONTROLS.Toggle.FocusedBorderColor
+                FocusedBorderThickness: =APP_INPUT_CONTROLS.Toggle.FocusedBorderThickness
+                Font: =APP_INPUT_CONTROLS.Toggle.Font
+                FontWeight: =APP_INPUT_CONTROLS.Toggle.FontWeight
+                HandleFill: =APP_INPUT_CONTROLS.Toggle.HandleFill
+                Height: =13
+                HoverBorderColor: =APP_INPUT_CONTROLS.Toggle.HoverBorderColor
+                Italic: =APP_INPUT_CONTROLS.Toggle.Italic
+                LabelPaddingLeft: =APP_INPUT_CONTROLS.Toggle.LabelPaddingLeft
+                LabelPaddingRight: =APP_INPUT_CONTROLS.Toggle.LabelPaddingRight
+                PressedBorderColor: =APP_INPUT_CONTROLS.Toggle.PressedBorderColor
+                ShowLabel: |
+                    =false
+                Size: |
+                    =8
+                Strikethrough: =APP_INPUT_CONTROLS.Toggle.Strikethrough
+                TextPosition: =TextPosition.Left
+                Tooltip: =If(Self.Value, "Text wrap on", "Text wrap off")
+                TrueFill: =APP_INPUT_CONTROLS.Toggle.TrueFill
+                TrueHoverFill: =APP_INPUT_CONTROLS.Toggle.TrueHoverFill
+                TrueText: ="Wrap"
+                Underline: =APP_INPUT_CONTROLS.Toggle.Underline
+                Width: =25
+                X: =th_ActionText.Width - Self.Width - 4
+                Y: =1
+                ZIndex: =9
+
+            btn_Edit_1 As icon.EmojiSmile:
+                BorderColor: =APP_BUTTONS.Icon.BorderColor
+                BorderStyle: =APP_BUTTONS.Icon.BorderStyle
+                BorderThickness: =APP_BUTTONS.Icon.BorderThickness
+                Color: =APP_BUTTONS.Icon.Color
+                DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
+                DisabledColor: =APP_BUTTONS.Icon.DisabledColor
+                DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+                Fill: =APP_BUTTONS.Icon.Fill
+                FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
+                FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
+                Height: =20
+                HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
+                HoverColor: =APP_BUTTONS.Icon.HoverColor
+                HoverFill: =APP_BUTTONS.Icon.HoverFill
+                Icon: =If(g_HomeExpandOwner, ArrowLeft,ArrowRight)
+                OnSelect: =Set(g_HomeExpandOwner, !g_HomeExpandOwner)
+                PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
+                PaddingLeft: =2
+                PaddingRight: =2
+                PaddingTop: =1
+                PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
+                PressedColor: =APP_BUTTONS.Icon.PressedColor
+                PressedFill: =APP_BUTTONS.Icon.PressedFill
+                Tooltip: =If(g_HomeExpandOwner,"Minimise","Maximise") & " owner"
+                Width: =15
+                X: =th_4.X + th_4.Width -Self.Width
+                ZIndex: =10
+
+            btn_THExpandQuickPost As icon.EmojiSmile:
+                BorderColor: =APP_BUTTONS.Icon.BorderColor
+                BorderStyle: =APP_BUTTONS.Icon.BorderStyle
+                BorderThickness: =APP_BUTTONS.Icon.BorderThickness
+                Color: =APP_BUTTONS.Icon.Color
+                DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
+                DisabledColor: =APP_BUTTONS.Icon.DisabledColor
+                DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+                Fill: =APP_BUTTONS.Icon.Fill
+                FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
+                FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
+                Height: =20
+                HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
+                HoverColor: =APP_BUTTONS.Icon.HoverColor
+                HoverFill: =APP_BUTTONS.Icon.HoverFill
+                Icon: =If(g_HomeExpandQuickPost, ArrowLeft,ArrowRight)
+                OnSelect: =Set(g_HomeExpandQuickPost, !g_HomeExpandQuickPost)
+                PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
+                PaddingLeft: =2
+                PaddingRight: =2
+                PaddingTop: =1
+                PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
+                PressedColor: =APP_BUTTONS.Icon.PressedColor
+                PressedFill: =APP_BUTTONS.Icon.PressedFill
+                Tooltip: =If(g_HomeExpandOwner,"Minimise","Maximise") & " owner"
+                Width: =15
+                X: =th_8.X + th_8.Width -Self.Width
+                ZIndex: =11
+
+            th_EndBar As rectangle:
+                Fill: =APP_COLORS.Transparent
+                Height: |
+                    =18
+                Width: =1
+                X: =btn_THExpandQuickPost.X + btn_THExpandQuickPost.Width + 10
+                Y: =2
+                ZIndex: =12
+
+        Gallery1 As gallery.variableTemplateHeightGallery:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =Parent.Height - Self.Y
+            Items: |-
+                =/*With({tmp_FilteredActions: 
+                    Filter(Actions, 
+                            // Filters based on the selected group type checkbox valueand the current status of the project.
+                            (
+                            (chk_FilterOpen.Value && Status in ["Open", "Pending Closure"]) ||
+                            (chk_FilterClosed.Value && Status = "Closed")
+                            ) &&
+                            (
+                                Switch(rad_FilterOwner.Selected.Value,
+                                    "Mine", Owner.Id = USER.ID,
+                                    "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID),
+                                    "All", true                        
+                                )
+                            )
+                        )
+                },
+                
+                    Switch(rad_FilterSortBy.Selected.Value, 
+                        "Action", SortByColumns(tmp_FilteredActions, "Title", Ascending),
+                        "Importance", SortByColumns(tmp_FilteredActions, "Importance", Ascending),
+                        "Owner", 
+                            SortByColumns(
+                                // Create derived column for owner's name since you can't sort by a lookup column.
+                                AddColumns(tmp_FilteredActions, "Owner String", Owner.Value),
+                                "Owner String", Ascending
+                            )
+                    )
+                )*/
+                //Actions
+                
+                SortByColumns(
+                    Filter(Actions, 
+                        // Filters based on the selected group type checkbox valueand the current status of the project.
+                        (
+                        (chk_FilterOpen.Value && Status in ["Open", "Pending Closure"]) ||
+                        (chk_FilterClosed.Value && Status = "Closed")
+                        ) &&
+                        (
+                            Switch(rad_FilterOwner.Selected.Value,
+                                "Mine", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID || (RequestedCloser.Id = USER.ID && Status = "Pending Closure")),
+                                "Relevant to me", (Owner.Id = USER.ID || RequestedOwner.Id = USER.ID || RequestedCloser.Id = USER.ID),
+                                "All", true                        
+                            )
+                        )
+                    )
+                , "Importance", Descending)
+                    
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Controls
+            TemplateSize: =30
+            Width: =th_EndBar.X + 20
+            Y: =33
+            ZIndex: =2
 
             Container6 As groupContainer.manualLayoutContainer:
                 Fill: =APP_COLORS.LightGray
                 Height: =Max(lbl_ActionText.Height + If(lbl_ActionDetail.Visible, lbl_ActionDetail.Height), grp_OtherInfo.Y + grp_OtherInfo.Height)
-                Width: =Parent.TemplateWidth - If(ScreenSmall, 0 , 15) // 15px for scrollbar.
+                Width: =Parent.Width - If(ScreenSmall, 0 , 15) // 15px for scrollbar.
                 ZIndex: =1
 
                 img_Importance As image:
@@ -221,7 +730,7 @@ Home As screen:
                 grp_OtherActionsAcceptOwnership As groupContainer.manualLayoutContainer:
                     Height: =30
                     Visible: =ThisItem.RequestedOwner.Id = USER.ID
-                    Width: =Parent.Width - Self.X
+                    Width: =grp_OtherInfo.Width
                     X: =img_Importance.X + img_Importance.Width
                     ZIndex: =7
 
@@ -245,21 +754,25 @@ Home As screen:
                         HoverFill: =APP_BUTTONS.BigDanger.HoverFill
                         Italic: =APP_BUTTONS.BigDanger.Italic
                         OnSelect: |-
-                            =With({tmp_OriginalRequestedOwner: ThisItem.RequestedOwner},
+                            =With({
+                                tmp_CurrentOwnerEmail: LookUp(People, ID = ThisItem.Owner.Id, Email),
+                                tmp_RequestedOwnerName: LookUp(People, ID = ThisItem.RequestedOwner.Id, Name),
+                                tmp_RequestedOwnerEmail: LookUp(People, ID = ThisItem.RequestedOwner.Id, Email)
+                            },
                                 
                                 Patch(Actions, ThisItem, { 
                                     RequestedOwner: BLANK_RECORD
                                 });
                             
                                 With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalRequestedOwner.Id, Email) & ThisItem.Notify,
+                                    To: tmp_CurrentOwnerEmail & ";" & tmp_RequestedOwnerEmail,
                                     Subject: "ACTION TRANSFER REJECTED: " & ThisItem.Title,
-                                    Header: "",
-                                    Content: "", // The requested person would not take ownership of the action. Liaise with the person to agree responsibility for this action.
-                                    MinWidth: 550
-                                })},
-                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                    Header: "ACTION TRANSFER REJECTED",
+                                    Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                        "<p>The requested person (" & tmp_RequestedOwnerName & ") <b>would not</b> take ownership of the action. Please liaise with the person to agree responsibility for this action.",
+                                    MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                                 );
+                                    
                             );
                         PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
@@ -278,7 +791,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.BigDanger.Underline
                         VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
                         Width: =80
-                        X: =220
+                        X: =180
                         Y: =3
                         ZIndex: =1
 
@@ -309,15 +822,7 @@ Home As screen:
                                     RequestedOwner: BLANK_RECORD
                                 });
                             
-                                With({Email: EmailFn.Builder({
-                                    To: LookUp(People, ID = tmp_OriginalOwner.Id, Email) & ThisItem.Notify,
-                                    Subject: "ACTION TRANSFERED: " & ThisItem.Title,
-                                    Header: "",
-                                    Content: "", // You are no longer the owner
-                                    MinWidth: 550
-                                })},
-                                    Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                                );
+                                // Don't bother with an email. The owner expects the action to be transferred, and they'll get told if the transfer is rejected.
                             );
                         PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
@@ -336,7 +841,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.Success.Underline
                         VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
                         Width: =80
-                        X: =130
+                        X: =90
                         Y: =3
                         ZIndex: =2
 
@@ -376,14 +881,14 @@ Home As screen:
                             ="Ownership tranfer requested:"
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                        Width: =130
+                        Width: =90
                         Wrap: =APP_LABELS.PrimaryText.Wrap
                         ZIndex: =3
 
                 grp_OtherActionsConfirmClosure As groupContainer.manualLayoutContainer:
                     Height: =30
                     Visible: =ThisItem.Status = "Pending Closure" && ThisItem.RequestedCloser.Id = USER.ID
-                    Width: =Parent.Width - Self.X
+                    Width: =grp_OtherInfo.Width
                     X: =img_Importance.X + img_Importance.Width
                     ZIndex: =8
 
@@ -422,9 +927,9 @@ Home As screen:
                             ="Evidence: " & ThisItem.ClosureEvidence
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =VerticalAlign.Top
-                        Width: =300
+                        Width: =Parent.Width - Self.X
                         Wrap: =APP_LABELS.PrimaryText.Wrap
-                        X: =280
+                        X: =235
                         ZIndex: =1
 
                     btn_RejectClosure As button:
@@ -453,13 +958,12 @@ Home As screen:
                             });
                             
                             With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ";" & ThisItem.Notify,
                                 Subject: "ACTION CLOSURE REJECTED: " & ThisItem.Title,
-                                Header: "",
-                                Content: "", // So and so does not agree this action can be closed. Liaise with them to agree closure criteria.
-                                MinWidth: 550
-                            })},
-                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                Header: "ACTION CLOSURE REJECTED",
+                                Content: "<h2>" & g_TheAction.Title & "</h2>" &    
+                                    "<p>" & USER.Name & " does not agree this action can be closed. Liaise with them to agree closure criteria.</p>",
+                                MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                             );
                         PaddingBottom: =APP_BUTTONS.BigDanger.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.BigDanger.PaddingLeft
@@ -478,7 +982,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.BigDanger.Underline
                         VerticalAlign: =APP_BUTTONS.BigDanger.VerticalAlign
                         Width: =80
-                        X: =190
+                        X: =150
                         Y: =3
                         ZIndex: =2
 
@@ -510,13 +1014,12 @@ Home As screen:
                             });
                             
                             With({Email: EmailFn.Builder({
-                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ThisItem.Notify,
+                                To: LookUp(People, ID = ThisItem.Owner.Id, Email) & ";" & ThisItem.Notify,
                                 Subject: "ACTION CLOSED: " & ThisItem.Title,
-                                Header: "",
-                                Content: "", // So and so has confirmed this action as closed.
-                                MinWidth: 550
-                            })},
-                                Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                Header: "ACTION CLOSED",
+                                Content: "<h2>" & g_TheAction.Title & "</h2>" &    
+                                    "<p>" & USER.Name & " has confirmed this action as closed.</p>",
+                                MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                             );
                         PaddingBottom: =APP_BUTTONS.Success.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Success.PaddingLeft
@@ -535,7 +1038,7 @@ Home As screen:
                         Underline: =APP_BUTTONS.Success.Underline
                         VerticalAlign: =APP_BUTTONS.Success.VerticalAlign
                         Width: =80
-                        X: =100
+                        X: =60
                         Y: =3
                         ZIndex: =3
 
@@ -575,23 +1078,303 @@ Home As screen:
                             ="Closure requested:"
                         Underline: =APP_LABELS.PrimaryText.Underline
                         VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                        Width: =90
+                        Width: =60
                         Wrap: =APP_LABELS.PrimaryText.Wrap
                         ZIndex: =4
 
                 grp_OtherInfo As groupContainer.manualLayoutContainer:
                     Height: =30
                     Visible: =g_ExpandedAction.ID = ThisItem.ID || Not(grp_OtherActionsAcceptOwnership.Visible || grp_OtherActionsConfirmClosure.Visible)
-                    Width: =Parent.Width - Self.X
+                    Width: =grp_LatestPost.X + grp_LatestPost.Width
                     X: =img_Importance.X + img_Importance.Width
                     Y: =If(g_ExpandedAction.ID = ThisItem.ID && (grp_OtherActionsAcceptOwnership.Visible || grp_OtherActionsConfirmClosure.Visible), 30, 0)
                     ZIndex: =9
+
+                    grp_LatestPost As groupContainer.manualLayoutContainer:
+                        Height: =Parent.Height
+                        Width: =If(g_HomeExpandQuickPost,250, 120)
+                        X: =img_Closer.X + img_Closer.Width + 20
+                        ZIndex: =1
+
+                        btn_QuickPostSend As icon.EmojiSmile:
+                            BorderColor: =APP_BUTTONS.Icon.BorderColor
+                            BorderStyle: =APP_BUTTONS.Icon.BorderStyle
+                            BorderThickness: =APP_BUTTONS.Icon.BorderThickness
+                            Color: =APP_BUTTONS.Icon.Color
+                            DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
+                            DisabledColor: =APP_BUTTONS.Icon.DisabledColor
+                            DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+                            Fill: =APP_BUTTONS.Icon.Fill
+                            FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
+                            FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
+                            Height: =30
+                            HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
+                            HoverColor: =APP_BUTTONS.Icon.HoverColor
+                            HoverFill: =APP_BUTTONS.Icon.HoverFill
+                            Icon: =If(g_ShowQuickPost = ThisItem.ID, Icon.Send, Icon.Post)
+                            OnSelect: |-
+                                =//If(g_ShowQuickPost = g_TheAction.ID
+                                
+                                If(g_ShowQuickPost <> ThisItem.ID,
+                                    Set(g_ShowQuickPost, ThisItem.ID);
+                                , // else
+                                
+                                    With({tmp_NewPost: { Statement: txt_NewPost.Text, PostedBy: USER.Name, PostedOn: Now() }},
+                                        If(IsBlank(ThisItem.Progress),
+                                            Patch(Actions, ThisItem, { Progress: JSON(Table(tmp_NewPost))}),
+                                            Patch(Actions, ThisItem, { Progress: Mid(ThisItem.Progress, 1, Len(ThisItem.Progress)-1) & "," & JSON(tmp_NewPost) & "]" })
+                                        )
+                                    );
+                                    Set(g_ShowQuickPost, Blank());
+                                )
+                            PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
+                            PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
+                            PaddingRight: =APP_BUTTONS.Icon.PaddingRight
+                            PaddingTop: =APP_BUTTONS.Icon.PaddingTop
+                            PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
+                            PressedColor: =APP_BUTTONS.Icon.PressedColor
+                            PressedFill: =APP_BUTTONS.Icon.PressedFill
+                            Width: =28
+                            X: =Parent.Width - Self.Width
+                            ZIndex: =1
+
+                        lbl_LatestPost As label:
+                            Align: =APP_LABELS.PrimaryText.Align
+                            BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                            BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                            BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                            Color: |
+                                =APP_LABELS.PrimaryText.Color
+                            DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                            DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                            DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                            DisplayMode: =DisplayMode.View
+                            Fill: =APP_LABELS.PrimaryText.Fill
+                            FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                            FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                            Font: =APP_LABELS.PrimaryText.Font
+                            FontWeight: =APP_LABELS.PrimaryText.FontWeight
+                            Height: =Parent.Height
+                            HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                            HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                            HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                            Italic: =APP_LABELS.PrimaryText.Italic
+                            LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                            Overflow: =APP_LABELS.PrimaryText.Overflow
+                            PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                            PaddingLeft: =2
+                            PaddingRight: =2
+                            PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                            PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                            PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                            PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                            Size: =APP_LABELS.PrimaryText.Size - 3
+                            Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                            Text: |-
+                                =If(IsBlank(ThisItem.Progress), "-", Last(ForAll(Table(ParseJSON(ThisItem.Progress)), {
+                                        Statement: Text(ThisRecord.Value.Statement),
+                                        PostedBy: Text(ThisRecord.Value.PostedBy),
+                                        PostedOn: DateValue(ThisRecord.Value.PostedOn)
+                                    }
+                                )).Statement)
+                                
+                                /*
+                                ForAll(Table(ParseJSON(myJSON)),
+                                    Collect(importedPosts, {
+                                        Statement: Text(ThisRecord.Value.Statement),
+                                        PostedBy: Text(ThisRecord.Value.PostedBy),
+                                        PostedOn: Text(ThisRecord.Value.PostedOn)
+                                    })
+                                )*/
+                            Underline: =APP_LABELS.PrimaryText.Underline
+                            VerticalAlign: =VerticalAlign.Top
+                            Visible: =!txt_NewPost.Visible
+                            Width: =Parent.Width - btn_QuickPostSend.Width
+                            Wrap: =APP_LABELS.PrimaryText.Wrap
+                            ZIndex: =2
+
+                        txt_NewPost As text:
+                            Align: =APP_INPUT_CONTROLS.Textbox.Align
+                            BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
+                            BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
+                            BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
+                            Clear: =APP_INPUT_CONTROLS.Textbox.Clear
+                            Color: =APP_INPUT_CONTROLS.Textbox.Color
+                            Default: =
+                            DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
+                            DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
+                            DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
+                            EnableSpellCheck: =true
+                            Fill: =APP_INPUT_CONTROLS.Textbox.Fill
+                            FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
+                            FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
+                            Font: =APP_INPUT_CONTROLS.Textbox.Font
+                            FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
+                            Height: =Parent.Height - 2
+                            HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
+                            HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
+                            HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+                            Italic: =APP_INPUT_CONTROLS.Textbox.Italic
+                            LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
+                            Mode: =TextMode.MultiLine
+                            PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
+                            PaddingLeft: =2
+                            PaddingRight: =2
+                            PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
+                            PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
+                            PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
+                            PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
+                            RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                            RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                            RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                            RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                            Size: =APP_INPUT_CONTROLS.Textbox.Size - 3
+                            Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
+                            Underline: =APP_INPUT_CONTROLS.Textbox.Underline
+                            Visible: =g_ShowQuickPost = ThisItem.ID
+                            Width: =Parent.Width - btn_QuickPostSend.Width - 1
+                            X: =1
+                            Y: =1
+                            ZIndex: =3
+
+                    img_Closer As image:
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =25
+                        Image: |
+                            =
+                            With({tmp_Closer: LookUp(People, ID = ThisItem.RequestedCloser.Id)},
+                                If(!IsBlank(tmp_Closer.Email) && !IsEmpty(Office365Users.SearchUserV2({searchTerm:tmp_Closer.Email}).value) && Office365Users.UserPhotoMetadata(tmp_Closer.Email).HasPhoto, 
+                                    Office365Users.UserPhotoV2(tmp_Closer.Email)
+                                , // else
+                            
+                                    "data:image/svg+xml;utf8, " & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg'  height='120' width='120'>" 
+                            
+                                    & If(!IsBlank(tmp_Closer), 
+                            
+                                        "<circle cx='63' cy='63' r='63' fill='white' />
+                            
+                                        <path fill='lightgray' d='M61.44,0c8.32,0,16.25,1.66,23.5,4.66l0.11,0.05c7.47,3.11,14.2,7.66,19.83,13.3l0,0c5.66,
+                                            5.65,10.22,12.42,13.34,19.95 c3.01,7.24,4.66,15.18,4.66,23.49c0,8.32-1.66,16.25-4.66,23.5l-0.05,0.11c-3.12,
+                                            7.47-7.66,14.2-13.3,19.83l0,0 c-5.65,5.66-12.42,10.22-19.95,13.34c-7.24,3.01-15.18,4.66-23.49,4.66c-8.31,
+                                            0-16.25-1.66-23.5-4.66l-0.11-0.05 c-7.47-3.11-14.2-7.66-19.83-13.29L18,104.87C12.34,99.21,7.78,92.45,4.66,
+                                            84.94C1.66,77.69,0,69.76,0,61.44s1.66-16.25,4.66-23.5 l0.05-0.11c3.11-7.47,7.66-14.2,13.29-19.83L18.01,18c5.66-5.66,
+                                            12.42-10.22,19.94-13.34C45.19,1.66,53.12,0,61.44,0L61.44,0z M16.99,94.47l0.24-0.14c5.9-3.29,21.26-4.38,
+                                            27.64-8.83c0.47-0.7,0.97-1.72,1.46-2.83c0.73-1.67,1.4-3.5,1.82-4.74 c-1.78-2.1-3.31-4.47-4.77-6.8l-4.83-7.69c-1.76-2.64-2.68-5.04-2.74-7.02c-0.03-0.93,
+                                            0.13-1.77,0.48-2.52 c0.36-0.78,0.91-1.43,1.66-1.93c0.35-0.24,0.74-0.44,1.17-0.59c-0.32-4.17-0.43-9.42-0.23-13.82c0.1-1.04,0.31-2.09,
+                                            0.59-3.13 c1.24-4.41,4.33-7.96,8.16-10.4c2.11-1.35,4.43-2.36,6.84-3.04c1.54-0.44-1.31-5.34,0.28-5.51c7.67-0.79,20.08,
+                                            6.22,25.44,12.01 c2.68,2.9,4.37,6.75,4.73,11.84l-0.3,12.54l0,0c1.34,0.41,2.2,1.26,2.54,2.63c0.39,1.53-0.03,3.67-1.33,
+                                            6.6l0,0 c-0.02,0.05-0.05,0.11-0.08,0.16l-5.51,9.07c-2.02,3.33-4.08,6.68-6.75,9.31C73.75,80,74,80.35,74.24,80.7 c1.09,
+                                            1.6,2.19,3.2,3.6,4.63c0.05,0.05,0.09,0.1,0.12,0.15c6.34,4.48,21.77,5.57,27.69,8.87l0.24,0.14 c6.87-9.22,10.93-20.65,
+                                            10.93-33.03c0-15.29-6.2-29.14-16.22-39.15c-10-10.03-23.85-16.23-39.14-16.23 c-15.29,0-29.14,6.2-39.15,16.22C12.27,32.3,
+                                            6.07,46.15,6.07,61.44C6.07,73.82,10.13,85.25,16.99,94.47L16.99,94.47L16.99,94.47z'/> "
+                                    ) // end if 
+                            
+                                    & "<text text-anchor='middle' x='61' y='76' fill='gray'>"
+                                    & If(IsBlank(tmp_Closer.Name), "-", Concat(Split(tmp_Closer.Name, " "), Left(Result, 1))) 
+                                    & "</text>
+                                    <style><![CDATA[ text { font: bold 42px Arial, sans-serif; } ]]></style>
+                            
+                                    </svg>") // end EncodeURL
+                            
+                                ) // end if
+                            ) //end with
+                        OnSelect: =Parent.Width
+                        RadiusBottomLeft: =Min(Self.Width,Self.Height)/2
+                        RadiusBottomRight: =Min(Self.Width,Self.Height)/2
+                        RadiusTopLeft: =Min(Self.Width,Self.Height)/2
+                        RadiusTopRight: =Min(Self.Width,Self.Height)/2
+                        Tooltip: =ThisItem.RequestedCloser.Value
+                        Visible: =!IsBlank(ThisItem.RequestedCloser)
+                        Width: =25
+                        X: =lbl_Project.X + lbl_Project.Width + 10
+                        Y: =1
+                        ZIndex: =2
+
+                    lbl_Project As label:
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        FontWeight: =APP_LABELS.PrimaryText.FontWeight
+                        Height: =24
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =0 //APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size -2
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: =If(IsBlank(ThisItem.Project), "-", ThisItem.Project.Value)
+                        Tooltip: =If(IsBlank(ThisItem.Project), "-", ThisItem.Project.Value)
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                        Width: =120
+                        Wrap: =false // APP_LABELS.PrimaryText.Wrap
+                        X: =lbl_ActionTarget.X + lbl_ActionTarget.Width
+                        ZIndex: =3
+
+                    lbl_ActionTarget As label:
+                        Align: =Align.Center
+                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                        Color: |
+                            =APP_LABELS.PrimaryText.Color
+                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                        DisplayMode: =DisplayMode.View
+                        Fill: =APP_LABELS.PrimaryText.Fill
+                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                        Font: =APP_LABELS.PrimaryText.Font
+                        FontWeight: =APP_LABELS.PrimaryText.FontWeight
+                        Height: =24
+                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                        Italic: =APP_LABELS.PrimaryText.Italic
+                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                        Overflow: =APP_LABELS.PrimaryText.Overflow
+                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                        Size: =APP_LABELS.PrimaryText.Size -2
+                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                        Text: =If(IsBlank(ThisItem.Target), "-", ThisItem.Target)
+                        Underline: =APP_LABELS.PrimaryText.Underline
+                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                        Width: =80
+                        Wrap: =APP_LABELS.PrimaryText.Wrap
+                        X: =grp_Owner.X + grp_Owner.Width
+                        ZIndex: =4
 
                     grp_Owner As groupContainer.manualLayoutContainer:
                         Height: =Parent.Height
                         Width: =If(g_HomeExpandOwner,180, 60)
                         X: =chk_ActionStatus.X + chk_ActionStatus.Width
-                        ZIndex: =1
+                        ZIndex: =5
 
                         Image1_4 As image:
                             Height: =25
@@ -750,247 +1533,6 @@ Home As screen:
                             Y: =1
                             ZIndex: =4
 
-                    lbl_ActionTarget As label:
-                        Align: =Align.Center
-                        BorderColor: =APP_LABELS.PrimaryText.BorderColor
-                        BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
-                        BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
-                        Color: |
-                            =APP_LABELS.PrimaryText.Color
-                        DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
-                        DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
-                        DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
-                        DisplayMode: =DisplayMode.View
-                        Fill: =APP_LABELS.PrimaryText.Fill
-                        FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
-                        FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
-                        Font: =APP_LABELS.PrimaryText.Font
-                        FontWeight: =APP_LABELS.PrimaryText.FontWeight
-                        Height: =24
-                        HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
-                        HoverColor: =APP_LABELS.PrimaryText.HoverColor
-                        HoverFill: =APP_LABELS.PrimaryText.HoverFill
-                        Italic: =APP_LABELS.PrimaryText.Italic
-                        LineHeight: =APP_LABELS.PrimaryText.LineHeight
-                        Overflow: =APP_LABELS.PrimaryText.Overflow
-                        PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
-                        PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
-                        PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
-                        PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
-                        PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
-                        PressedColor: =APP_LABELS.PrimaryText.PressedColor
-                        PressedFill: =APP_LABELS.PrimaryText.PressedFill
-                        Size: =APP_LABELS.PrimaryText.Size -2
-                        Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
-                        Text: =If(IsBlank(ThisItem.Target), "-", ThisItem.Target)
-                        Underline: =APP_LABELS.PrimaryText.Underline
-                        VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
-                        Width: =80
-                        Wrap: =APP_LABELS.PrimaryText.Wrap
-                        X: =grp_Owner.X + grp_Owner.Width
-                        ZIndex: =2
-
-                    img_Closer As image:
-                        DisplayMode: =DisplayMode.Disabled
-                        Height: =25
-                        Image: |
-                            =
-                            With({tmp_Closer: LookUp(People, ID = ThisItem.RequestedCloser.Id)},
-                                If(!IsBlank(tmp_Closer.Email) && !IsEmpty(Office365Users.SearchUserV2({searchTerm:tmp_Closer.Email}).value) && Office365Users.UserPhotoMetadata(tmp_Closer.Email).HasPhoto, 
-                                    Office365Users.UserPhotoV2(tmp_Closer.Email)
-                                , // else
-                            
-                                    "data:image/svg+xml;utf8, " & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg'  height='120' width='120'>" 
-                            
-                                    & If(!IsBlank(tmp_Closer), 
-                            
-                                        "<circle cx='63' cy='63' r='63' fill='white' />
-                            
-                                        <path fill='lightgray' d='M61.44,0c8.32,0,16.25,1.66,23.5,4.66l0.11,0.05c7.47,3.11,14.2,7.66,19.83,13.3l0,0c5.66,
-                                            5.65,10.22,12.42,13.34,19.95 c3.01,7.24,4.66,15.18,4.66,23.49c0,8.32-1.66,16.25-4.66,23.5l-0.05,0.11c-3.12,
-                                            7.47-7.66,14.2-13.3,19.83l0,0 c-5.65,5.66-12.42,10.22-19.95,13.34c-7.24,3.01-15.18,4.66-23.49,4.66c-8.31,
-                                            0-16.25-1.66-23.5-4.66l-0.11-0.05 c-7.47-3.11-14.2-7.66-19.83-13.29L18,104.87C12.34,99.21,7.78,92.45,4.66,
-                                            84.94C1.66,77.69,0,69.76,0,61.44s1.66-16.25,4.66-23.5 l0.05-0.11c3.11-7.47,7.66-14.2,13.29-19.83L18.01,18c5.66-5.66,
-                                            12.42-10.22,19.94-13.34C45.19,1.66,53.12,0,61.44,0L61.44,0z M16.99,94.47l0.24-0.14c5.9-3.29,21.26-4.38,
-                                            27.64-8.83c0.47-0.7,0.97-1.72,1.46-2.83c0.73-1.67,1.4-3.5,1.82-4.74 c-1.78-2.1-3.31-4.47-4.77-6.8l-4.83-7.69c-1.76-2.64-2.68-5.04-2.74-7.02c-0.03-0.93,
-                                            0.13-1.77,0.48-2.52 c0.36-0.78,0.91-1.43,1.66-1.93c0.35-0.24,0.74-0.44,1.17-0.59c-0.32-4.17-0.43-9.42-0.23-13.82c0.1-1.04,0.31-2.09,
-                                            0.59-3.13 c1.24-4.41,4.33-7.96,8.16-10.4c2.11-1.35,4.43-2.36,6.84-3.04c1.54-0.44-1.31-5.34,0.28-5.51c7.67-0.79,20.08,
-                                            6.22,25.44,12.01 c2.68,2.9,4.37,6.75,4.73,11.84l-0.3,12.54l0,0c1.34,0.41,2.2,1.26,2.54,2.63c0.39,1.53-0.03,3.67-1.33,
-                                            6.6l0,0 c-0.02,0.05-0.05,0.11-0.08,0.16l-5.51,9.07c-2.02,3.33-4.08,6.68-6.75,9.31C73.75,80,74,80.35,74.24,80.7 c1.09,
-                                            1.6,2.19,3.2,3.6,4.63c0.05,0.05,0.09,0.1,0.12,0.15c6.34,4.48,21.77,5.57,27.69,8.87l0.24,0.14 c6.87-9.22,10.93-20.65,
-                                            10.93-33.03c0-15.29-6.2-29.14-16.22-39.15c-10-10.03-23.85-16.23-39.14-16.23 c-15.29,0-29.14,6.2-39.15,16.22C12.27,32.3,
-                                            6.07,46.15,6.07,61.44C6.07,73.82,10.13,85.25,16.99,94.47L16.99,94.47L16.99,94.47z'/> "
-                                    ) // end if 
-                            
-                                    & "<text text-anchor='middle' x='61' y='76' fill='gray'>"
-                                    & If(IsBlank(tmp_Closer.Name), "-", Concat(Split(tmp_Closer.Name, " "), Left(Result, 1))) 
-                                    & "</text>
-                                    <style><![CDATA[ text { font: bold 42px Arial, sans-serif; } ]]></style>
-                            
-                                    </svg>") // end EncodeURL
-                            
-                                ) // end if
-                            ) //end with
-                        OnSelect: =Parent.Width
-                        RadiusBottomLeft: =Min(Self.Width,Self.Height)/2
-                        RadiusBottomRight: =Min(Self.Width,Self.Height)/2
-                        RadiusTopLeft: =Min(Self.Width,Self.Height)/2
-                        RadiusTopRight: =Min(Self.Width,Self.Height)/2
-                        Tooltip: =ThisItem.RequestedCloser.Value
-                        Visible: =!IsBlank(ThisItem.RequestedCloser)
-                        Width: =25
-                        X: =lbl_ActionTarget.X + lbl_ActionTarget.Width + 10
-                        Y: =1
-                        ZIndex: =3
-
-                    grp_LatestPost As groupContainer.manualLayoutContainer:
-                        Height: =Parent.Height
-                        Width: =If(g_HomeExpandQuickPost,250, 120)
-                        X: =img_Closer.X + img_Closer.Width + 20
-                        ZIndex: =4
-
-                        btn_QuickPostSend As icon.EmojiSmile:
-                            BorderColor: =APP_BUTTONS.Icon.BorderColor
-                            BorderStyle: =APP_BUTTONS.Icon.BorderStyle
-                            BorderThickness: =APP_BUTTONS.Icon.BorderThickness
-                            Color: =APP_BUTTONS.Icon.Color
-                            DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
-                            DisabledColor: =APP_BUTTONS.Icon.DisabledColor
-                            DisabledFill: =APP_BUTTONS.Icon.DisabledFill
-                            Fill: =APP_BUTTONS.Icon.Fill
-                            FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
-                            FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
-                            Height: =30
-                            HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
-                            HoverColor: =APP_BUTTONS.Icon.HoverColor
-                            HoverFill: =APP_BUTTONS.Icon.HoverFill
-                            Icon: =If(g_ShowQuickPost = ThisItem.ID, Icon.Send, Icon.Post)
-                            OnSelect: |-
-                                =//If(g_ShowQuickPost = g_TheAction.ID
-                                
-                                If(g_ShowQuickPost <> ThisItem.ID,
-                                    Set(g_ShowQuickPost, ThisItem.ID);
-                                , // else
-                                
-                                    With({tmp_NewPost: { Statement: txt_NewPost.Text, PostedBy: USER.Name, PostedOn: Now() }},
-                                        If(IsBlank(ThisItem.Progress),
-                                            Patch(Actions, ThisItem, { Progress: JSON(Table(tmp_NewPost))}),
-                                            Patch(Actions, ThisItem, { Progress: Mid(ThisItem.Progress, 1, Len(ThisItem.Progress)-1) & "," & JSON(tmp_NewPost) & "]" })
-                                        )
-                                    );
-                                    Set(g_ShowQuickPost, Blank());
-                                )
-                            PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
-                            PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
-                            PaddingRight: =APP_BUTTONS.Icon.PaddingRight
-                            PaddingTop: =APP_BUTTONS.Icon.PaddingTop
-                            PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
-                            PressedColor: =APP_BUTTONS.Icon.PressedColor
-                            PressedFill: =APP_BUTTONS.Icon.PressedFill
-                            Width: =28
-                            X: =Parent.Width - Self.Width
-                            ZIndex: =1
-
-                        lbl_LatestPost As label:
-                            Align: =APP_LABELS.PrimaryText.Align
-                            BorderColor: =APP_LABELS.PrimaryText.BorderColor
-                            BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
-                            BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
-                            Color: |
-                                =APP_LABELS.PrimaryText.Color
-                            DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
-                            DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
-                            DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
-                            DisplayMode: =DisplayMode.View
-                            Fill: =APP_LABELS.PrimaryText.Fill
-                            FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
-                            FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
-                            Font: =APP_LABELS.PrimaryText.Font
-                            FontWeight: =APP_LABELS.PrimaryText.FontWeight
-                            Height: =Parent.Height
-                            HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
-                            HoverColor: =APP_LABELS.PrimaryText.HoverColor
-                            HoverFill: =APP_LABELS.PrimaryText.HoverFill
-                            Italic: =APP_LABELS.PrimaryText.Italic
-                            LineHeight: =APP_LABELS.PrimaryText.LineHeight
-                            Overflow: =APP_LABELS.PrimaryText.Overflow
-                            PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
-                            PaddingLeft: =2
-                            PaddingRight: =2
-                            PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
-                            PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
-                            PressedColor: =APP_LABELS.PrimaryText.PressedColor
-                            PressedFill: =APP_LABELS.PrimaryText.PressedFill
-                            Size: =APP_LABELS.PrimaryText.Size - 3
-                            Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
-                            Text: |-
-                                =/*If(IsBlank(ThisItem.Progress), "-", Last(ForAll(Table(ParseJSON(ThisItem.Progress)), {
-                                        Statement: Text(ThisRecord.Value.Statement),
-                                        PostedBy: Text(ThisRecord.Value.PostedBy),
-                                        PostedOn: DateValue(ThisRecord.Value.PostedOn)
-                                    }
-                                )).Statement)*/
-                                ThisItem.Progress
-                                
-                                /*
-                                ForAll(Table(ParseJSON(myJSON)),
-                                    Collect(importedPosts, {
-                                        Statement: Text(ThisRecord.Value.Statement),
-                                        PostedBy: Text(ThisRecord.Value.PostedBy),
-                                        PostedOn: Text(ThisRecord.Value.PostedOn)
-                                    })
-                                )*/
-                            Underline: =APP_LABELS.PrimaryText.Underline
-                            VerticalAlign: =VerticalAlign.Top
-                            Visible: =!txt_NewPost.Visible
-                            Width: =Parent.Width - btn_QuickPostSend.Width
-                            Wrap: =APP_LABELS.PrimaryText.Wrap
-                            ZIndex: =2
-
-                        txt_NewPost As text:
-                            Align: =APP_INPUT_CONTROLS.Textbox.Align
-                            BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
-                            BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
-                            BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
-                            Clear: =APP_INPUT_CONTROLS.Textbox.Clear
-                            Color: =APP_INPUT_CONTROLS.Textbox.Color
-                            Default: =
-                            DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
-                            DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
-                            DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
-                            EnableSpellCheck: =true
-                            Fill: =APP_INPUT_CONTROLS.Textbox.Fill
-                            FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
-                            FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
-                            Font: =APP_INPUT_CONTROLS.Textbox.Font
-                            FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
-                            Height: =Parent.Height - 2
-                            HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
-                            HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
-                            HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
-                            Italic: =APP_INPUT_CONTROLS.Textbox.Italic
-                            LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
-                            Mode: =TextMode.MultiLine
-                            PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
-                            PaddingLeft: =2
-                            PaddingRight: =2
-                            PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
-                            PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
-                            PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
-                            PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
-                            RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-                            RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-                            RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-                            RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
-                            Size: =APP_INPUT_CONTROLS.Textbox.Size - 3
-                            Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
-                            Underline: =APP_INPUT_CONTROLS.Textbox.Underline
-                            Visible: =g_ShowQuickPost = ThisItem.ID
-                            Width: =Parent.Width - btn_QuickPostSend.Width - 1
-                            X: =1
-                            Y: =1
-                            ZIndex: =3
-
                     chk_ActionStatus As checkbox:
                         BorderColor: =APP_INPUT_CONTROLS.Checkbox.BorderColor
                         BorderStyle: =APP_INPUT_CONTROLS.Checkbox.BorderStyle
@@ -1040,12 +1582,11 @@ Home As screen:
                                         With({Email: EmailFn.Builder({
                                             To: ThisItem.Notify,
                                             Subject: "ACTION CLOSED: " & ThisItem.Title,
-                                            Header: "",
-                                            Content: "",
-                                            MinWidth: 550
-                                        })},
-                                            Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                                        );
+                                            Header: "ACTION CLOSED",
+                                            Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                "<p>" & USER.Name & " has closed the action.",
+                                            MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                        ); 
                                     );
                                 );
                             )
@@ -1067,11 +1608,10 @@ Home As screen:
                                     With({Email: EmailFn.Builder({
                                         To: LookUp(People, ID = ThisItem.RequestedCloser.Id, Email) &";" & ThisItem.Notify,
                                         Subject: "ACTION RE-OPENED: " & ThisItem.Title,
-                                        Header: "",
-                                        Content: "",
-                                        MinWidth: 550
-                                    })},
-                                        Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                        Header: "ACTION RE-OPENED",
+                                        Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                "<p>" & USER.Name & " has re-opened the action.",
+                                        MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                                     );
                                 );
                             )
@@ -1091,413 +1631,34 @@ Home As screen:
                         Underline: =APP_INPUT_CONTROLS.Checkbox.Underline
                         VerticalAlign: =APP_INPUT_CONTROLS.Checkbox.VerticalAlign
                         Width: =80
-                        Y: =-2
-                        ZIndex: =5
+                        ZIndex: =6
 
-        slide_Slider_2 As slider:
-            BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor
-            BorderStyle: =APP_INPUT_CONTROLS.Slider.BorderStyle
-            BorderThickness: =APP_INPUT_CONTROLS.Slider.BorderThickness
-            Default: =If(ScreenSmall,  Self.Width/2,  Self.Width/3)
-            DisabledBorderColor: =APP_INPUT_CONTROLS.Slider.DisabledBorderColor
-            FocusedBorderColor: =APP_INPUT_CONTROLS.Slider.FocusedBorderColor
-            FocusedBorderThickness: =APP_INPUT_CONTROLS.Slider.FocusedBorderThickness
-            HandleActiveFill: =APP_INPUT_CONTROLS.Slider.HandleActiveFill
-            HandleFill: =APP_INPUT_CONTROLS.Slider.HandleFill
-            HandleHoverFill: =APP_INPUT_CONTROLS.Slider.HandleHoverFill
-            HandleSize: =13
-            Height: =20
-            HoverBorderColor: =APP_INPUT_CONTROLS.Slider.HoverBorderColor
-            Max: =Self.Width
-            PressedBorderColor: =APP_INPUT_CONTROLS.Slider.PressedBorderColor
-            RailFill: =APP_INPUT_CONTROLS.Slider.RailFill
-            RailHoverFill: =APP_INPUT_CONTROLS.Slider.RailHoverFill
-            RailThickness: =1
-            ShowValue: =APP_INPUT_CONTROLS.Slider.ShowValue
-            ValueFill: =APP_INPUT_CONTROLS.Slider.ValueFill
-            ValueHoverFill: =APP_INPUT_CONTROLS.Slider.ValueHoverFill
-            Width: =Parent.Width - 10 - 15
-            X: =5
-            Y: =13
-            ZIndex: =2
-
-        TH As groupContainer.manualLayoutContainer:
-            Height: =20
-            Width: =Parent.Width - 10 - 15 // 10 = 2*TemplatePadding, 15 = scrollbar gutter
-            X: =5
-            ZIndex: =3
-
-            th_ActionText As label:
-                Align: =APP_LABELS.SecondaryText.Align
-                BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                Color: =APP_LABELS.SecondaryText.Color
-                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                DisplayMode: =DisplayMode.View
-                Fill: =APP_LABELS.SecondaryText.Fill
-                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                Font: =APP_LABELS.SecondaryText.Font
-                FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                Height: =24
-                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                Italic: =APP_LABELS.SecondaryText.Italic
-                LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                Overflow: =APP_LABELS.SecondaryText.Overflow
-                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
-                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
-                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                Size: =APP_LABELS.SecondaryText.Size
-                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                Text: ="Action Text"
-                Underline: =APP_LABELS.SecondaryText.Underline
-                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Width: =slide_Slider_2.Value
-                Wrap: |
-                    =APP_LABELS.SecondaryText.Wrap
-                ZIndex: =1
-
-            th_2 As label:
-                Align: =APP_LABELS.SecondaryText.Align
-                BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                Color: =APP_LABELS.SecondaryText.Color
-                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                DisplayMode: =DisplayMode.View
-                Fill: =APP_LABELS.SecondaryText.Fill
-                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                Font: =APP_LABELS.SecondaryText.Font
-                FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                Height: =24
-                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                Italic: =APP_LABELS.SecondaryText.Italic
-                LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                Overflow: =APP_LABELS.SecondaryText.Overflow
-                PaddingBottom: |
-                    =APP_LABELS.SecondaryText.PaddingBottom + 5
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                Size: =APP_LABELS.SecondaryText.Size - 4
-                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                Text: ="Importance"
-                Underline: =APP_LABELS.SecondaryText.Underline
-                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
-                Width: =44
-                Wrap: =APP_LABELS.SecondaryText.Wrap
-                X: =th_ActionText.Width
-                ZIndex: =2
-
-            th_3 As label:
-                Align: =APP_LABELS.SecondaryText.Align
-                BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                Color: =APP_LABELS.SecondaryText.Color
-                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                DisplayMode: =DisplayMode.View
-                Fill: =APP_LABELS.SecondaryText.Fill
-                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                Font: =APP_LABELS.SecondaryText.Font
-                FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                Height: =24
-                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                Italic: =APP_LABELS.SecondaryText.Italic
-                LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                Overflow: =APP_LABELS.SecondaryText.Overflow
-                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
-                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
-                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                Size: =APP_LABELS.SecondaryText.Size
-                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                Text: ="Status"
-                Underline: =APP_LABELS.SecondaryText.Underline
-                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
-                Width: =80
-                Wrap: =APP_LABELS.SecondaryText.Wrap
-                X: =th_2.X + th_2.Width
-                ZIndex: =3
-
-            th_4 As label:
-                Align: =APP_LABELS.SecondaryText.Align
-                BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                Color: =APP_LABELS.SecondaryText.Color
-                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                DisplayMode: =DisplayMode.View
-                Fill: =APP_LABELS.SecondaryText.Fill
-                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                Font: =APP_LABELS.SecondaryText.Font
-                FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                Height: =24
-                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                Italic: =APP_LABELS.SecondaryText.Italic
-                LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                Overflow: =APP_LABELS.SecondaryText.Overflow
-                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
-                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
-                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                Size: =APP_LABELS.SecondaryText.Size -2
-                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                Text: ="Owner"
-                Underline: =APP_LABELS.SecondaryText.Underline
-                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
-                Width: =If(g_HomeExpandOwner,180, 60)
-                Wrap: =APP_LABELS.SecondaryText.Wrap
-                X: =th_3.X + th_3.Width
-                ZIndex: =4
-
-            th_5 As label:
-                Align: =Align.Center
-                BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                Color: =APP_LABELS.SecondaryText.Color
-                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                DisplayMode: =DisplayMode.View
-                Fill: =APP_LABELS.SecondaryText.Fill
-                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                Font: =APP_LABELS.SecondaryText.Font
-                FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                Height: =24
-                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                Italic: =APP_LABELS.SecondaryText.Italic
-                LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                Overflow: =APP_LABELS.SecondaryText.Overflow
-                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
-                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
-                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                Size: =APP_LABELS.SecondaryText.Size - 2
-                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                Text: ="Target"
-                Underline: =APP_LABELS.SecondaryText.Underline
-                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
-                Width: =80
-                Wrap: =APP_LABELS.SecondaryText.Wrap
-                X: =th_4.X + th_4.Width
-                ZIndex: =5
-
-            tog_WrapActionText As toggleSwitch:
-                BorderColor: =APP_INPUT_CONTROLS.Toggle.BorderColor
-                BorderStyle: =APP_INPUT_CONTROLS.Toggle.BorderStyle
-                BorderThickness: =APP_INPUT_CONTROLS.Toggle.BorderThickness
-                Color: =APP_INPUT_CONTROLS.Toggle.Color
-                Default: =If(ScreenSmall, false, true)
-                DisabledBorderColor: =APP_INPUT_CONTROLS.Toggle.DisabledBorderColor
-                DisabledColor: =APP_INPUT_CONTROLS.Toggle.DisabledColor
-                FalseFill: |+
-                    =APP_INPUT_CONTROLS.Toggle.FalseFill
-                    
-                FalseHoverFill: =APP_INPUT_CONTROLS.Toggle.FalseHoverFill
-                FalseText: ="No wrap"
-                FocusedBorderColor: =APP_INPUT_CONTROLS.Toggle.FocusedBorderColor
-                FocusedBorderThickness: =APP_INPUT_CONTROLS.Toggle.FocusedBorderThickness
-                Font: =APP_INPUT_CONTROLS.Toggle.Font
-                FontWeight: =APP_INPUT_CONTROLS.Toggle.FontWeight
-                HandleFill: =APP_INPUT_CONTROLS.Toggle.HandleFill
-                Height: =13
-                HoverBorderColor: =APP_INPUT_CONTROLS.Toggle.HoverBorderColor
-                Italic: =APP_INPUT_CONTROLS.Toggle.Italic
-                LabelPaddingLeft: =APP_INPUT_CONTROLS.Toggle.LabelPaddingLeft
-                LabelPaddingRight: =APP_INPUT_CONTROLS.Toggle.LabelPaddingRight
-                PressedBorderColor: =APP_INPUT_CONTROLS.Toggle.PressedBorderColor
-                ShowLabel: |
-                    =false
-                Size: |
-                    =8
-                Strikethrough: =APP_INPUT_CONTROLS.Toggle.Strikethrough
-                TextPosition: =TextPosition.Left
-                Tooltip: =If(Self.Value, "Text wrap on", "Text wrap off")
-                TrueFill: =APP_INPUT_CONTROLS.Toggle.TrueFill
-                TrueHoverFill: =APP_INPUT_CONTROLS.Toggle.TrueHoverFill
-                TrueText: ="Wrap"
-                Underline: =APP_INPUT_CONTROLS.Toggle.Underline
-                Width: =25
-                X: =th_ActionText.Width - Self.Width - 4
-                ZIndex: =6
-
-            btn_Edit_1 As icon.EmojiSmile:
-                BorderColor: =APP_BUTTONS.Icon.BorderColor
-                BorderStyle: =APP_BUTTONS.Icon.BorderStyle
-                BorderThickness: =APP_BUTTONS.Icon.BorderThickness
-                Color: =APP_BUTTONS.Icon.Color
-                DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
-                DisabledColor: =APP_BUTTONS.Icon.DisabledColor
-                DisabledFill: =APP_BUTTONS.Icon.DisabledFill
-                Fill: =APP_BUTTONS.Icon.Fill
-                FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
-                FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
-                Height: =20
-                HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
-                HoverColor: =APP_BUTTONS.Icon.HoverColor
-                HoverFill: =APP_BUTTONS.Icon.HoverFill
-                Icon: =If(g_HomeExpandOwner, ArrowLeft,ArrowRight)
-                OnSelect: =Set(g_HomeExpandOwner, !g_HomeExpandOwner)
-                PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
-                PaddingLeft: =2
-                PaddingRight: =2
-                PaddingTop: =1
-                PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
-                PressedColor: =APP_BUTTONS.Icon.PressedColor
-                PressedFill: =APP_BUTTONS.Icon.PressedFill
-                Tooltip: =If(g_HomeExpandOwner,"Minimise","Maximise") & " owner"
-                Width: =15
-                X: =th_4.X + th_4.Width -Self.Width
-                ZIndex: =7
-
-            th_6 As label:
-                Align: =Align.Center
-                BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                Color: =APP_LABELS.SecondaryText.Color
-                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                DisplayMode: =DisplayMode.View
-                Fill: =APP_LABELS.SecondaryText.Fill
-                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                Font: =APP_LABELS.SecondaryText.Font
-                FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                Height: =20
-                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                Italic: =APP_LABELS.SecondaryText.Italic
-                LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                Overflow: =APP_LABELS.SecondaryText.Overflow
-                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                Size: =APP_LABELS.SecondaryText.Size - 4
-                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                Text: ="Closer"
-                Underline: =APP_LABELS.SecondaryText.Underline
-                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
-                Width: =45
-                Wrap: =APP_LABELS.SecondaryText.Wrap
-                X: =th_5.X + th_5.Width
-                ZIndex: =8
-
-            th_7 As label:
-                BorderColor: =APP_LABELS.SecondaryText.BorderColor
-                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
-                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
-                Color: =APP_LABELS.SecondaryText.Color
-                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
-                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
-                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
-                DisplayMode: =DisplayMode.View
-                Fill: =APP_LABELS.SecondaryText.Fill
-                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
-                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
-                Font: =APP_LABELS.SecondaryText.Font
-                FontWeight: =APP_LABELS.SecondaryText.FontWeight
-                Height: =20
-                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
-                HoverColor: =APP_LABELS.SecondaryText.HoverColor
-                HoverFill: =APP_LABELS.SecondaryText.HoverFill
-                Italic: =APP_LABELS.SecondaryText.Italic
-                LineHeight: =APP_LABELS.SecondaryText.LineHeight
-                Overflow: =APP_LABELS.SecondaryText.Overflow
-                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
-                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
-                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
-                PressedColor: =APP_LABELS.SecondaryText.PressedColor
-                PressedFill: =APP_LABELS.SecondaryText.PressedFill
-                Size: =APP_LABELS.SecondaryText.Size - 4
-                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
-                Text: ="Latest post"
-                Underline: =APP_LABELS.SecondaryText.Underline
-                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
-                Visible: =(Self.X + Self.Width) < Parent.Width
-                Width: =If(g_HomeExpandQuickPost,250, 120)
-                Wrap: =APP_LABELS.SecondaryText.Wrap
-                X: =th_6.X + th_6.Width + 5
-                ZIndex: =9
-
-            btn_THExpandQuickPost As icon.EmojiSmile:
-                BorderColor: =APP_BUTTONS.Icon.BorderColor
-                BorderStyle: =APP_BUTTONS.Icon.BorderStyle
-                BorderThickness: =APP_BUTTONS.Icon.BorderThickness
-                Color: =APP_BUTTONS.Icon.Color
-                DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
-                DisabledColor: =APP_BUTTONS.Icon.DisabledColor
-                DisabledFill: =APP_BUTTONS.Icon.DisabledFill
-                Fill: =APP_BUTTONS.Icon.Fill
-                FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
-                FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
-                Height: =20
-                HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
-                HoverColor: =APP_BUTTONS.Icon.HoverColor
-                HoverFill: =APP_BUTTONS.Icon.HoverFill
-                Icon: =If(g_HomeExpandQuickPost, ArrowLeft,ArrowRight)
-                OnSelect: =Set(g_HomeExpandQuickPost, !g_HomeExpandQuickPost)
-                PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
-                PaddingLeft: =2
-                PaddingRight: =2
-                PaddingTop: =1
-                PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
-                PressedColor: =APP_BUTTONS.Icon.PressedColor
-                PressedFill: =APP_BUTTONS.Icon.PressedFill
-                Tooltip: =If(g_HomeExpandOwner,"Minimise","Maximise") & " owner"
-                Width: =15
-                X: =th_7.X + th_7.Width -Self.Width
-                ZIndex: =10
+    slide_Slider_2 As slider:
+        BorderColor: =APP_INPUT_CONTROLS.Slider.BorderColor
+        BorderStyle: =APP_INPUT_CONTROLS.Slider.BorderStyle
+        BorderThickness: =APP_INPUT_CONTROLS.Slider.BorderThickness
+        Default: =If(ScreenSmall,  Self.Width/2,  Self.Width/3)
+        DisabledBorderColor: =APP_INPUT_CONTROLS.Slider.DisabledBorderColor
+        FocusedBorderColor: =APP_INPUT_CONTROLS.Slider.FocusedBorderColor
+        FocusedBorderThickness: =APP_INPUT_CONTROLS.Slider.FocusedBorderThickness
+        HandleActiveFill: =APP_INPUT_CONTROLS.Slider.HandleActiveFill
+        HandleFill: =APP_INPUT_CONTROLS.Slider.HandleFill
+        HandleHoverFill: =APP_INPUT_CONTROLS.Slider.HandleHoverFill
+        HandleSize: =13
+        Height: =20
+        HoverBorderColor: =APP_INPUT_CONTROLS.Slider.HoverBorderColor
+        Max: =Self.Width
+        PressedBorderColor: =APP_INPUT_CONTROLS.Slider.PressedBorderColor
+        RailFill: =APP_INPUT_CONTROLS.Slider.RailFill
+        RailHoverFill: =APP_INPUT_CONTROLS.Slider.RailHoverFill
+        RailThickness: =1
+        ShowValue: =APP_INPUT_CONTROLS.Slider.ShowValue
+        ValueFill: =APP_INPUT_CONTROLS.Slider.ValueFill
+        ValueHoverFill: =APP_INPUT_CONTROLS.Slider.ValueHoverFill
+        Width: =Parent.Width - Self.X - 5
+        X: =If(ScreenSmall, 5, 55)
+        Y: =115
+        ZIndex: =2
 
     btn_HomeAddAction As button:
         Align: =APP_BUTTONS.Primary.Align
@@ -1540,12 +1701,75 @@ Home As screen:
         Width: =100
         X: =App.Width - Self.Width - 20
         Y: =72
-        ZIndex: =2
+        ZIndex: =3
+
+    btn_HomeFilter As icon.EmojiSmile:
+        BorderColor: =APP_BUTTONS.Icon.BorderColor
+        BorderStyle: =APP_BUTTONS.Icon.BorderStyle
+        BorderThickness: =APP_BUTTONS.Icon.BorderThickness
+        Color: =APP_BUTTONS.Icon.Color
+        DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
+        DisabledColor: =APP_BUTTONS.Icon.DisabledColor
+        DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+        Fill: =APP_BUTTONS.Icon.Fill
+        FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
+        FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
+        Height: =30
+        HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
+        HoverColor: =APP_BUTTONS.Icon.HoverColor
+        HoverFill: =APP_BUTTONS.Icon.HoverFill
+        Icon: =Icon.Filter
+        OnSelect: =Navigate(Filtering)
+        PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
+        PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
+        PaddingRight: =APP_BUTTONS.Icon.PaddingRight
+        PaddingTop: =APP_BUTTONS.Icon.PaddingTop
+        PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
+        PressedColor: =APP_BUTTONS.Icon.PressedColor
+        PressedFill: =APP_BUTTONS.Icon.PressedFill
+        Tooltip: ="Filtering & Sorting"
+        Width: =30
+        X: =grp_MainGallery.X + 20
+        Y: =65
+        ZIndex: =4
+
+    btn_Refresh As icon.EmojiSmile:
+        BorderColor: =APP_BUTTONS.Icon.BorderColor
+        BorderStyle: =APP_BUTTONS.Icon.BorderStyle
+        BorderThickness: =APP_BUTTONS.Icon.BorderThickness
+        Color: =APP_BUTTONS.Icon.Color
+        DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
+        DisabledColor: =APP_BUTTONS.Icon.DisabledColor
+        DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+        Fill: =APP_BUTTONS.Icon.Fill
+        FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
+        FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
+        Height: =30
+        HoverBorderColor: =APP_BUTTONS.Icon.HoverBorderColor
+        HoverColor: =APP_BUTTONS.Icon.HoverColor
+        HoverFill: =APP_BUTTONS.Icon.HoverFill
+        Icon: =Icon.Reload
+        OnSelect: |-
+            =Refresh(Actions);
+            Refresh(Projects);
+            Refresh(People);
+        PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
+        PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
+        PaddingRight: =APP_BUTTONS.Icon.PaddingRight
+        PaddingTop: =APP_BUTTONS.Icon.PaddingTop
+        PressedBorderColor: =APP_BUTTONS.Icon.PressedBorderColor
+        PressedColor: =APP_BUTTONS.Icon.PressedColor
+        PressedFill: =APP_BUTTONS.Icon.PressedFill
+        Tooltip: ="Filtering & Sorting"
+        Width: =30
+        X: =btn_HomeAddAction.X - Self.Width - 20
+        Y: =72
+        ZIndex: =5
 
     Dialogs_2 As groupContainer.manualLayoutContainer:
         Height: =If(IsBlank(g_VisibleDialog), 0, Parent.Height)
         Width: =Parent.Width
-        ZIndex: =3
+        ZIndex: =6
 
         rect_DialogBackdrop_2 As rectangle:
             Fill: =RGBA(80, 80, 80, 0.8)
@@ -1691,21 +1915,24 @@ Home As screen:
                 Italic: =APP_BUTTONS.Primary.Italic
                 OnSelect: |-
                     =// Close the action.
-                    Patch(Actions, g_TheAction, { 
+                    Set(g_TheAction, Patch(Actions, g_TheAction, { 
                         Status: "Pending Closure",
                         ClosureEvidence: txt_RequestClosureEvidence.Text
-                    });
+                    }));
                     
                     If(!IsBlank(g_TheAction.RequestedCloser),
                         With({Email: EmailFn.Builder({
                             To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email),
-                            Subject: "ACTION CLOSED: " & g_TheAction.Title,
-                            Header: "",
-                            Content: "",
-                            MinWidth: 550
-                        })},
-                            Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
-                        );
+                            Subject: "ACTION CLOSURE REQUEST: " & g_TheAction.Title, 
+                            Header: "ACTION CLOSURE REQUEST",
+                            Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                "<p>You are <b>requested to close</b> this action by " & USER.Name & "." &
+                                "<p>Closure evidence: <i>" & If(IsBlank(g_TheAction.ClosureEvidence), "None", g_TheAction.ClosureEvidence) & "</i>." &
+                                "<p>Choose to confirm or reject closure:" & EmailFn.ButtonRow([
+                                    EmailFn.Button("Confirm", RESPONDER_APP_URL & "&RequestType=ActionConfirmClosure&Id=" & g_TheAction.ID & "&Response=Accept", 120, APP_COLORS_HEX.Success),
+                                    EmailFn.Button("Reject", RESPONDER_APP_URL & "&RequestType=ActionConfirmClosure&Id=" & g_TheAction.ID & "&Response=Reject", 120, APP_COLORS_HEX.Danger )]),
+                            MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                        );    
                     );
                     Select(btn_CancelRequestClosure);
                 PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
@@ -1909,6 +2136,7 @@ Home As screen:
         AboutScreen: =About
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
+        DynamicWidth: =If(g_ShowMenu || g_ShowSubmitFeedbackDialog, App.Width, Sidebar_v1___1.Style.Width.Collapsed)
         Height: =Parent.Height - Self.Y
         Menu: =APP_SIDEBAR.Menu
         MenuActions: |-
@@ -1918,26 +2146,28 @@ Home As screen:
                 1, Notify("Hello")
             )
         Style: =APP_SIDEBAR.Style
-        Visible: =If(ScreenSmall, false, true)
+        Visible: =If(ScreenSmall, Self.Width > 50, true)
         Width: =Sidebar_v1___1.DynamicWidth
         Y: =60
-        ZIndex: =4
+        ZIndex: =7
 
     Header_v2___1 As Header_v2__:
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
         AppURL: =APP_URL
+        DynamicHeight: =If(g_ShowBetaBar, Header_v2___1.Style.Height.ExpandedHeader, Header_v2___1.Style.Height.HeaderOnly)
         Fill: =Header_v2___1.Style.Fill
         Style: =APP_HEADER
         User: =USER
-        ZIndex: =5
+        ZIndex: =8
 
     Label1 As label:
         Color: =RGBA(255, 255, 0, 1)
         Height: =26
         PaddingTop: =0
-        Text: ="v15 Deployed"
+        Size: =11
+        Text: ="v7"
         Width: =300
         X: =109
-        ZIndex: =7
+        ZIndex: =9
 

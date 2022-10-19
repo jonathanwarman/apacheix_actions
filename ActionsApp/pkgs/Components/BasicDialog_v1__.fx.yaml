@@ -239,7 +239,7 @@ BasicDialog_v1__ As CanvasComponent:
             Width: =BasicDialog_v1__.Style.Icon.Size
             ZIndex: =1
 
-        Label2_4 As label:
+        Label2_2 As label:
             Align: =Align.Center
             FontWeight: =FontWeight.Semibold
             Height: =70
@@ -263,6 +263,7 @@ BasicDialog_v1__ As CanvasComponent:
         Height: |+
             =40
             
+        LayoutAlignItems: =LayoutAlignItems.Center
         LayoutGap: =20
         LayoutJustifyContent: =LayoutJustifyContent.Center
         LayoutMode: =LayoutMode.Auto

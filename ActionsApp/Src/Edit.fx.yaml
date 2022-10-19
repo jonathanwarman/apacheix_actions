@@ -1,7 +1,7 @@
 Edit As screen:
     OnVisible: |-
-        =ClearCollect(g_ClosersDropdown, {ID:-1, FullName:"(None)"}, ShowColumns(Filter(g_Employees, ID <> g_TheAction.Owner.Id), "ID", "FullName"));
-        ClearCollect(g_ProjectsDropdown, {ID:-1, Title:"(None)"}, ShowColumns(g_Projects, "ID", "Title"));
+        =ClearCollect(g_ClosersDropdown, {ID:-1, FullName:"(None)"}, ShowColumns(g_Employees, "ID", "FullName"));
+        
         SetFocus(txt_EditActionText);
 
     fn_EditActionSendEmails As button:
@@ -750,7 +750,7 @@ Edit As screen:
                         Color: =APP_INPUT_CONTROLS.Dropdown.Color
                         Default: |-
                             =// This ensures that when changing the importance to Low, the field looks empty regardless of whether g_TheAction still has a closer selected. 
-                            If(rad_EditImportance.Selected.Value = "Low", Blank(), g_TheAction.RequestedCloser.Value)
+                            If(rad_EditImportance.Selected.Value = "Low" || IsBlank(g_TheAction.RequestedCloser), "(None)", g_TheAction.RequestedCloser.Value)
                         DisabledBorderColor: =APP_INPUT_CONTROLS.Dropdown.DisabledBorderColor
                         DisabledColor: =APP_INPUT_CONTROLS.Dropdown.DisabledColor
                         DisabledFill: =APP_INPUT_CONTROLS.Dropdown.DisabledFill
@@ -980,7 +980,7 @@ Edit As screen:
                         BorderStyle: =APP_INPUT_CONTROLS.DatePicker.BorderStyle
                         BorderThickness: =APP_INPUT_CONTROLS.DatePicker.BorderThickness
                         Color: =APP_INPUT_CONTROLS.DatePicker.Color
-                        DefaultDate: =Today()-1
+                        DefaultDate: =If(IsBlank(g_TheAction) || IsBlank(g_TheAction.Target), Blank(), g_TheAction.Target)
                         DisabledBorderColor: =APP_INPUT_CONTROLS.DatePicker.DisabledBorderColor
                         DisabledColor: =APP_INPUT_CONTROLS.DatePicker.DisabledColor
                         DisabledFill: =APP_INPUT_CONTROLS.DatePicker.DisabledFill
@@ -993,6 +993,7 @@ Edit As screen:
                         Height: =25
                         IconBackground: =APP_INPUT_CONTROLS.DatePicker.IconBackground
                         IconFill: =APP_INPUT_CONTROLS.DatePicker.IconFill
+                        InputTextPlaceholder: =
                         IsEditable: =APP_INPUT_CONTROLS.DatePicker.IsEditable
                         Italic: =APP_INPUT_CONTROLS.DatePicker.Italic
                         PaddingBottom: =APP_INPUT_CONTROLS.DatePicker.PaddingBottom
@@ -1063,6 +1064,7 @@ Edit As screen:
                         DisabledBorderColor: =APP_BUTTONS.Icon.DisabledBorderColor
                         DisabledColor: =APP_BUTTONS.Icon.DisabledColor
                         DisabledFill: =APP_BUTTONS.Icon.DisabledFill
+                        DisplayMode: =If(IsBlank(g_TheAction), DisplayMode.Disabled, DisplayMode.Edit)
                         Fill: =APP_BUTTONS.Icon.Fill
                         FocusedBorderColor: =APP_BUTTONS.Icon.FocusedBorderColor
                         FocusedBorderThickness: =APP_BUTTONS.Icon.FocusedBorderThickness
@@ -1071,7 +1073,7 @@ Edit As screen:
                         HoverColor: =APP_BUTTONS.Icon.HoverColor
                         HoverFill: =APP_BUTTONS.Icon.HoverFill
                         Icon: =Icon.Post
-                        OnSelect: =Navigate(ProgressHistory);
+                        OnSelect: =Navigate(Progress);
                         PaddingBottom: =APP_BUTTONS.Icon.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Icon.PaddingLeft
                         PaddingRight: =APP_BUTTONS.Icon.PaddingRight
@@ -1169,7 +1171,7 @@ Edit As screen:
                         Wrap: =APP_LABELS.SecondaryText.Wrap
                         ZIndex: =3
 
-                Container4 As groupContainer.horizontalAutoLayoutContainer:
+                grp_EditButtons As groupContainer.horizontalAutoLayoutContainer:
                     AlignInContainer: =AlignInContainer.SetByContainer
                     Height: =40
                     LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
@@ -1209,6 +1211,9 @@ Edit As screen:
                             Reset(txt_ExternalOwners);
                             Reset(drop_EditCloser);
                             Reset(date_EditTarget);
+                            
+                            // Note this reset is deliberately not done so that multiple new actions are by default created against the same project. i.e. the context of your current actions is saved.
+                            // Reset(drop_EditContextProject);
                             
                             Navigate(Home);
                         PaddingBottom: =APP_BUTTONS.Secondary.PaddingBottom
@@ -1259,7 +1264,10 @@ Edit As screen:
                                 Set(g_Toast, { Text: "The Action Summary is a mandatory field.", Type: TOAST_TYPE.Error, Timestamp: Now() }),
                             
                             If(rad_EditImportance.Selected.Value = "Significant" && (IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1),
-                                Set(g_Toast, { Text: "Significant actions must have a nominated Closer.", Type: TOAST_TYPE.Error, Timestamp: Now() });
+                                Set(g_Toast, { Text: "Significant actions must have a nominated Closer.", Type: TOAST_TYPE.Error, Timestamp: Now() }),
+                            
+                            If(drop_EditOwner.Selected.ID = drop_EditCloser.Selected.ID,
+                                Set(g_Toast, { Text: "The Owner cannot be nominated as the Closer. <br><small>An independent Closer is mandatory for Significant actions. Other actions do not require a Closer.</small>", Type: TOAST_TYPE.Error, Timestamp: Now() });
                             
                             , // Else
                             
@@ -1282,7 +1290,9 @@ Edit As screen:
                                     tmp_NewAction: IsBlank(g_TheAction),
                                     tmp_OwnerDropdown: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditOwner.Selected.ID, Value: drop_EditOwner.Selected.FullName },
                                     tmp_Closer: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditCloser.Selected.ID, Value: drop_EditCloser.Selected.FullName },
-                                    tmp_Project: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditContextProject.Selected.ID, Value: drop_EditContextProject.Selected.Title }
+                                    tmp_Project: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: drop_EditContextProject.Selected.ID, Value: drop_EditContextProject.Selected.Title },
+                                    tmp_OldOwnerEmail: LookUp(People, ID = g_TheAction.Owner.Id, Email),
+                                    tmp_RequestedOwnerEmail: LookUp(People, ID = drop_EditOwner.Selected.ID, Email)
                                 },
                              
                                 
@@ -1291,7 +1301,7 @@ Edit As screen:
                                     Detail: txt_EditActionDetail.HtmlText,
                                     Status: "Open",
                                     Importance: rad_EditImportance.Selected.Value,
-                                    Target: If(date_EditTarget.SelectedDate = Today()-1, Blank(), date_EditTarget.SelectedDate),
+                                    Target: If(IsBlank(date_EditTarget.SelectedDate), Blank(), date_EditTarget.SelectedDate),
                                     RequestedCloser: If(rad_EditImportance.Selected.Value = "Low" || IsBlank(drop_EditCloser.Selected) || drop_EditCloser.Selected.ID = -1, BLANK_RECORD, tmp_Closer),
                                     Project: If(drop_EditContextProject.Selected.ID = -1, BLANK_RECORD, tmp_Project)       
                                     //Context_TEST: { '@odata.type':"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference", Id: varContext.ID, Value: varContext.Title }
@@ -1311,23 +1321,59 @@ Edit As screen:
                                                 Owner: USER_RECORD, // A new action owner is always set to the creator.
                                                 RequestedOwner: tmp_OwnerDropdown
                                             }));
-                                            Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
+                                            
+                                            With({Email: EmailFn.Builder({
+                                                To: tmp_RequestedOwnerEmail,
+                                                Subject: "ACTION ASSIGNED: " & g_TheAction.Title, 
+                                                Header: "ACTION ASSIGNED",
+                                                Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                    "<p>You are <b>requested to accept</b> ownership of this action by " & USER.Name & "." &              
+                                                    "<p>Choose to accept or reject this action:" & EmailFn.ButtonRow([
+                                                        EmailFn.Button("Accept", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Accept", 120, APP_COLORS_HEX.Success),
+                                                        EmailFn.Button("Reject", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Reject", 120, APP_COLORS_HEX.Danger )]),
+                                                MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                            );
                                         );
                             
                                     , // Else existing action
                                         
-                                        // If the action is being taken by the current user, just set the owner.
-                                        If(drop_EditOwner.Selected.ID = USER.ID,
-                                            Set(g_TheAction, Patch(Actions, g_TheAction, { 
-                                                Owner: USER_RECORD
-                                            }));
-                                        , // else
-                                            If(g_TheAction.Owner.Id <> drop_EditOwner.Selected.ID,
+                                        // Check the owner has changed.
+                                        If(g_TheAction.Owner.Id <> drop_EditOwner.Selected.ID,
+                            
+                                            // If the action is being taken by the current user, just set the owner.
+                                            If(drop_EditOwner.Selected.ID = USER.ID,
+                                                Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                                    Owner: USER_RECORD
+                                                }));
+                                                
+                                                With({Email: EmailFn.Builder({
+                                                    To: tmp_OldOwnerEmail & g_TheAction.Notify,
+                                                    Subject: "ACTION RE-ASSIGNED: " & g_TheAction.Title, 
+                                                    Header: "ACTION RE-ASSIGNED",
+                                                    Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                        "<p>" & USER.Name & " has taken ownership of this action.",
+                                                    MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                                );                    
+                                            
+                                            , // else
+                            
                                                 Set(g_TheAction, Patch(Actions, g_TheAction, { 
                                                     RequestedOwner: tmp_OwnerDropdown
                                                 }));
-                                                Set(g_EditActionSendEmail, "NewRequestedOwner"); Select(fn_EditActionSendEmails);
-                                            )
+                                                
+                                                With({Email: EmailFn.Builder({
+                                                    To: tmp_RequestedOwnerEmail,
+                                                    Subject: "ACTION ASSIGNED: " & g_TheAction.Title, 
+                                                    Header: "ACTION ASSIGNED",
+                                                    Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                        "<p>You are <b>requested to accept</b> ownership of this action by " & USER.Name & "." &
+                                                        "<p><i>Current Owner:</i> " & g_TheAction.Owner.Value & "<p>" &                
+                                                        "<p>Choose to accept or reject this action:" & EmailFn.ButtonRow([
+                                                            EmailFn.Button("Accept", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Accept", 120, APP_COLORS_HEX.Success),
+                                                            EmailFn.Button("Reject", RESPONDER_APP_URL & "&RequestType=ActionRequestOwnership&Id=" & g_TheAction.ID & "&Response=Reject", 120, APP_COLORS_HEX.Danger )]),
+                                                    MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                                );
+                                            );
                                         );
                                     );
                                 );
@@ -1341,7 +1387,7 @@ Edit As screen:
                                 );
                             
                                 ); // end with
-                            )); // end if
+                            ))); // end if
                         PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
                         PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
                         PaddingRight: =APP_BUTTONS.Primary.PaddingRight
@@ -1397,11 +1443,10 @@ Edit As screen:
                                     With({Email: EmailFn.Builder({
                                         To: LookUp(People, ID = g_TheAction.RequestedCloser.Id, Email) &";" & g_TheAction.Notify,
                                         Subject: "ACTION RE-OPENED: " & g_TheAction.Title,
-                                        Header: "",
-                                        Content: "",
-                                        MinWidth: 550
-                                    })},
-                                        Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
+                                        Header: "ACTION RE-OPENED",
+                                        Content: "<h2>" & g_TheAction.Title & "</h2>" &
+                                                 "<p>" & USER.Name & " has re-opened the action.",
+                                        MinWidth: 550 })}, Office365Outlook.SendEmailV2(Email.To, Email.Subject, Email.Body);
                                     );
                                 );
                             )
@@ -1433,6 +1478,7 @@ Edit As screen:
         AppRelease: =APP_RELEASE
         AppTitle: =APP_TITLE
         AppURL: =APP_URL
+        DynamicHeight: =If(g_ShowBetaBar, Header_v2___2.Style.Height.ExpandedHeader, Header_v2___2.Style.Height.HeaderOnly)
         Fill: =Header_v2___2.Style.Fill
         Style: =APP_HEADER
         User: =USER

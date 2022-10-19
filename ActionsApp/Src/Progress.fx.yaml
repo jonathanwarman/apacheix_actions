@@ -1,0 +1,531 @@
+Progress As screen:
+
+    ProgressHistoryPanel As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height - Self.Y
+        Width: =EditScreenCardWidth
+        X: =Parent.Width/2 - Self.Width/2
+        Y: =60
+        ZIndex: =2
+
+        ShadowRectangle_v2___3 As ShadowRectangle_v2__:
+            Height: =Parent.Height
+            Width: =Parent.Width
+
+        Container11 As groupContainer.verticalAutoLayoutContainer:
+            Height: =Parent.Height - 2*Self.Y
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =5
+            PaddingRight: =5
+            Width: =Parent.Width - 2*Self.X
+            X: =30
+            Y: =30
+            ZIndex: =14
+
+            lbl_Heading2_6 As label:
+                Align: =APP_LABELS.H2.Align
+                BorderColor: =APP_LABELS.H2.BorderColor
+                BorderStyle: =APP_LABELS.H2.BorderStyle
+                BorderThickness: =APP_LABELS.H2.BorderThickness
+                Color: =APP_LABELS.H2.Color
+                DisabledBorderColor: =APP_LABELS.H2.DisabledBorderColor
+                DisabledColor: =APP_LABELS.H2.DisabledColor
+                DisabledFill: =APP_LABELS.H2.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.H2.Fill
+                FocusedBorderColor: =APP_LABELS.H2.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.H2.FocusedBorderThickness
+                Font: =APP_LABELS.H2.Font
+                FontWeight: =APP_LABELS.H2.FontWeight
+                Height: =50
+                HoverBorderColor: =APP_LABELS.H2.HoverBorderColor
+                HoverColor: =APP_LABELS.H2.HoverColor
+                HoverFill: =APP_LABELS.H2.HoverFill
+                Italic: =APP_LABELS.H2.Italic
+                LineHeight: =APP_LABELS.H2.LineHeight
+                Overflow: =APP_LABELS.H2.Overflow
+                PaddingBottom: =APP_LABELS.H2.PaddingBottom
+                PaddingLeft: =APP_LABELS.H2.PaddingLeft
+                PaddingRight: =APP_LABELS.H2.PaddingRight
+                PaddingTop: =APP_LABELS.H2.PaddingTop
+                PressedBorderColor: =APP_LABELS.H2.PressedBorderColor
+                PressedColor: =APP_LABELS.H2.PressedColor
+                PressedFill: =APP_LABELS.H2.PressedFill
+                Size: =APP_LABELS.H2.Size
+                Strikethrough: =APP_LABELS.H2.Strikethrough
+                Text: ="Progress History"
+                Underline: =APP_LABELS.H2.Underline
+                VerticalAlign: =APP_LABELS.H2.VerticalAlign
+                Width: =Parent.Width
+                Wrap: =APP_LABELS.H2.Wrap
+                Y: =40
+                ZIndex: =1
+
+            lbl_SecondaryText_14 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =20
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: |-
+                    ="Action Text:"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =179
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =EditScreenCardMargin
+                Y: =49
+                ZIndex: =2
+
+            lbl_PrimaryText_6 As label:
+                Align: =APP_LABELS.PrimaryText.Align
+                AutoHeight: =true
+                BorderColor: =APP_LABELS.PrimaryText.BorderColor
+                BorderStyle: =APP_LABELS.PrimaryText.BorderStyle
+                BorderThickness: =APP_LABELS.PrimaryText.BorderThickness
+                Color: |
+                    =APP_LABELS.PrimaryText.Color
+                DisabledBorderColor: =APP_LABELS.PrimaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.PrimaryText.DisabledColor
+                DisabledFill: =APP_LABELS.PrimaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.PrimaryText.Fill
+                FocusedBorderColor: =APP_LABELS.PrimaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.PrimaryText.FocusedBorderThickness
+                Font: =APP_LABELS.PrimaryText.Font
+                FontWeight: =APP_LABELS.PrimaryText.FontWeight
+                Height: =65
+                HoverBorderColor: =APP_LABELS.PrimaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.PrimaryText.HoverColor
+                HoverFill: =APP_LABELS.PrimaryText.HoverFill
+                Italic: =APP_LABELS.PrimaryText.Italic
+                LineHeight: =APP_LABELS.PrimaryText.LineHeight
+                Overflow: =APP_LABELS.PrimaryText.Overflow
+                PaddingBottom: =APP_LABELS.PrimaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.PrimaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.PrimaryText.PaddingRight
+                PaddingTop: =APP_LABELS.PrimaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.PrimaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.PrimaryText.PressedColor
+                PressedFill: =APP_LABELS.PrimaryText.PressedFill
+                Size: =APP_LABELS.PrimaryText.Size + 6
+                Strikethrough: =APP_LABELS.PrimaryText.Strikethrough
+                Text: =g_TheAction.Title
+                Underline: =APP_LABELS.PrimaryText.Underline
+                VerticalAlign: =APP_LABELS.PrimaryText.VerticalAlign
+                Width: =Parent.Width - 2*Self.X
+                Wrap: =APP_LABELS.PrimaryText.Wrap
+                X: =EditScreenCardMargin
+                Y: =20
+                ZIndex: =3
+
+            lbl_SecondaryText_15 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =20
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: |-
+                    ="Progress history:"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =179
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =EditScreenCardMargin
+                Y: =105
+                ZIndex: =4
+
+            separator_1 As rectangle:
+                Fill: =APP_COLORS.Outline
+                Height: =2
+                OnSelect: =
+                Width: =Parent.Width - 2*Self.X
+                X: =EditScreenCardMargin
+                ZIndex: =5
+
+            Gallery3 As gallery.variableTemplateHeightGallery:
+                Items: |-
+                    =ForAll(Table(ParseJSON(g_TheAction.Progress)), {
+                            Statement: Text(ThisRecord.Value.Statement),
+                            PostedBy: Text(ThisRecord.Value.PostedBy),
+                            PostedOn: DateValue(ThisRecord.Value.PostedOn)
+                        }
+                    )
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                TemplatePadding: =0
+                TemplateSize: =30
+                ZIndex: =7
+
+                Container13 As groupContainer.manualLayoutContainer:
+                    Height: =Max(lbl_ProgressStatement.Height,lbl_ProgressNameDate.Height) + 1
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                    lbl_ProgressStatement As label:
+                        AutoHeight: =true
+                        Height: =20
+                        Size: =8
+                        Text: =ThisItem.Statement
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width - lbl_ProgressNameDate.Width
+                        ZIndex: =1
+
+                    lbl_ProgressNameDate As label:
+                        Height: =30
+                        PaddingTop: =2
+                        Size: =7
+                        Text: =ThisItem.PostedBy & Char(10) & ThisItem.PostedOn
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =120
+                        X: =Parent.Width - Self.Width
+                        ZIndex: =2
+
+                    separator As rectangle:
+                        Fill: =APP_COLORS.Outline
+                        Height: =1
+                        Width: =Parent.Width
+                        Y: =Parent.Height - 1
+                        ZIndex: =3
+
+            lbl_SecondaryText_16 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =20
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: |-
+                    ="New progress statement:"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =179
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =EditScreenCardMargin
+                Y: =390
+                ZIndex: =8
+
+            txt_ProgressNewStatement As text:
+                Align: =APP_INPUT_CONTROLS.Textbox.Align
+                BorderColor: =APP_INPUT_CONTROLS.Textbox.BorderColor
+                BorderStyle: =APP_INPUT_CONTROLS.Textbox.BorderStyle
+                BorderThickness: =APP_INPUT_CONTROLS.Textbox.BorderThickness
+                Clear: =APP_INPUT_CONTROLS.Textbox.Clear
+                Color: =APP_INPUT_CONTROLS.Textbox.Color
+                Default: =
+                DisabledBorderColor: =APP_INPUT_CONTROLS.Textbox.DisabledBorderColor
+                DisabledColor: =APP_INPUT_CONTROLS.Textbox.DisabledColor
+                DisabledFill: =APP_INPUT_CONTROLS.Textbox.DisabledFill
+                DisplayMode: =If(g_TheAction.Status = "Open", DisplayMode.Edit, DisplayMode.Disabled)
+                EnableSpellCheck: =true
+                Fill: =APP_INPUT_CONTROLS.Textbox.Fill
+                FocusedBorderColor: =APP_INPUT_CONTROLS.Textbox.FocusedBorderColor
+                FocusedBorderThickness: =APP_INPUT_CONTROLS.Textbox.FocusedBorderThickness
+                Font: =APP_INPUT_CONTROLS.Textbox.Font
+                FontWeight: =APP_INPUT_CONTROLS.Textbox.FontWeight
+                Height: =65
+                HintText: ="(Add new progress here...)"
+                HoverBorderColor: =APP_INPUT_CONTROLS.Textbox.HoverBorderColor
+                HoverColor: =APP_INPUT_CONTROLS.Textbox.HoverColor
+                HoverFill: =APP_INPUT_CONTROLS.Textbox.HoverFill
+                Italic: =APP_INPUT_CONTROLS.Textbox.Italic
+                LineHeight: =APP_INPUT_CONTROLS.Textbox.LineHeight
+                Mode: =TextMode.MultiLine
+                PaddingBottom: =APP_INPUT_CONTROLS.Textbox.PaddingBottom
+                PaddingLeft: =APP_INPUT_CONTROLS.Textbox.PaddingLeft
+                PaddingRight: =APP_INPUT_CONTROLS.Textbox.PaddingRight
+                PaddingTop: =APP_INPUT_CONTROLS.Textbox.PaddingTop
+                PressedBorderColor: =APP_INPUT_CONTROLS.Textbox.PressedBorderColor
+                PressedColor: =APP_INPUT_CONTROLS.Textbox.PressedColor
+                PressedFill: =APP_INPUT_CONTROLS.Textbox.PressedFill
+                RadiusBottomLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                RadiusBottomRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                RadiusTopLeft: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                RadiusTopRight: =APP_INPUT_CONTROLS.Textbox.BorderRadius
+                Size: =APP_INPUT_CONTROLS.Textbox.Size - 2
+                Strikethrough: =APP_INPUT_CONTROLS.Textbox.Strikethrough
+                Underline: =APP_INPUT_CONTROLS.Textbox.Underline
+                Width: =Parent.Width - 2*Self.X
+                X: =EditScreenCardMargin
+                Y: =410
+                ZIndex: =9
+
+            lbl_SecondaryText_22 As label:
+                Align: =APP_LABELS.SecondaryText.Align
+                AlignInContainer: =AlignInContainer.Start
+                BorderColor: =APP_LABELS.SecondaryText.BorderColor
+                BorderStyle: =APP_LABELS.SecondaryText.BorderStyle
+                BorderThickness: =APP_LABELS.SecondaryText.BorderThickness
+                Color: =APP_LABELS.SecondaryText.Color
+                DisabledBorderColor: =APP_LABELS.SecondaryText.DisabledBorderColor
+                DisabledColor: =APP_LABELS.SecondaryText.DisabledColor
+                DisabledFill: =APP_LABELS.SecondaryText.DisabledFill
+                DisplayMode: =DisplayMode.View
+                Fill: =APP_LABELS.SecondaryText.Fill
+                FocusedBorderColor: =APP_LABELS.SecondaryText.FocusedBorderColor
+                FocusedBorderThickness: =APP_LABELS.SecondaryText.FocusedBorderThickness
+                Font: =APP_LABELS.SecondaryText.Font
+                FontWeight: =APP_LABELS.SecondaryText.FontWeight
+                Height: =25
+                HoverBorderColor: =APP_LABELS.SecondaryText.HoverBorderColor
+                HoverColor: =APP_LABELS.SecondaryText.HoverColor
+                HoverFill: =APP_LABELS.SecondaryText.HoverFill
+                Italic: =APP_LABELS.SecondaryText.Italic
+                LineHeight: =APP_LABELS.SecondaryText.LineHeight
+                Overflow: =APP_LABELS.SecondaryText.Overflow
+                PaddingBottom: =APP_LABELS.SecondaryText.PaddingBottom
+                PaddingLeft: =APP_LABELS.SecondaryText.PaddingLeft
+                PaddingRight: =APP_LABELS.SecondaryText.PaddingRight
+                PaddingTop: =APP_LABELS.SecondaryText.PaddingTop
+                PressedBorderColor: =APP_LABELS.SecondaryText.PressedBorderColor
+                PressedColor: =APP_LABELS.SecondaryText.PressedColor
+                PressedFill: =APP_LABELS.SecondaryText.PressedFill
+                Size: =APP_LABELS.SecondaryText.Size - 2
+                Strikethrough: =APP_LABELS.SecondaryText.Strikethrough
+                Text: |-
+                    ="Target:"
+                Underline: =APP_LABELS.SecondaryText.Underline
+                VerticalAlign: =APP_LABELS.SecondaryText.VerticalAlign
+                Width: =50
+                Wrap: =APP_LABELS.SecondaryText.Wrap
+                X: =EditScreenCardMargin
+                Y: =481
+                ZIndex: =10
+
+            date_ProgressTarget As datepicker:
+                AlignInContainer: =AlignInContainer.Start
+                BorderColor: =APP_INPUT_CONTROLS.DatePicker.BorderColor
+                BorderStyle: =APP_INPUT_CONTROLS.DatePicker.BorderStyle
+                BorderThickness: =APP_INPUT_CONTROLS.DatePicker.BorderThickness
+                Color: =APP_INPUT_CONTROLS.DatePicker.Color
+                DefaultDate: =If(IsBlank(g_TheAction) || IsBlank(g_TheAction.Target), Blank(), g_TheAction.Target)
+                DisabledBorderColor: =APP_INPUT_CONTROLS.DatePicker.DisabledBorderColor
+                DisabledColor: =APP_INPUT_CONTROLS.DatePicker.DisabledColor
+                DisabledFill: =APP_INPUT_CONTROLS.DatePicker.DisabledFill
+                DisplayMode: =If(g_TheAction.Status = "Open", DisplayMode.Edit, DisplayMode.Disabled)
+                Fill: =APP_INPUT_CONTROLS.DatePicker.Fill
+                FocusedBorderColor: =APP_INPUT_CONTROLS.DatePicker.FocusedBorderColor
+                FocusedBorderThickness: =APP_INPUT_CONTROLS.DatePicker.FocusedBorderThickness
+                Font: =APP_INPUT_CONTROLS.DatePicker.Font
+                FontWeight: =APP_INPUT_CONTROLS.DatePicker.FontWeight
+                Height: =25
+                IconBackground: =APP_INPUT_CONTROLS.DatePicker.IconBackground
+                IconFill: =APP_INPUT_CONTROLS.DatePicker.IconFill
+                InputTextPlaceholder: =
+                IsEditable: =APP_INPUT_CONTROLS.DatePicker.IsEditable
+                Italic: =APP_INPUT_CONTROLS.DatePicker.Italic
+                PaddingBottom: =APP_INPUT_CONTROLS.DatePicker.PaddingBottom
+                PaddingLeft: =APP_INPUT_CONTROLS.DatePicker.PaddingLeft
+                PaddingRight: =APP_INPUT_CONTROLS.DatePicker.PaddingRight
+                PaddingTop: =APP_INPUT_CONTROLS.DatePicker.PaddingTop
+                Size: =APP_INPUT_CONTROLS.DatePicker.Size
+                Width: =160
+                X: =lbl_SecondaryText_22.X + lbl_SecondaryText_22.Width
+                Y: =lbl_SecondaryText_22.Y
+                ZIndex: =11
+
+            grp_ProgressButtons As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =60
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =1
+                PaddingRight: =1
+                PaddingTop: =10
+                ZIndex: =12
+
+                btn_ProgressCancel As button:
+                    Align: =APP_BUTTONS.Secondary.Align
+                    BorderColor: =APP_BUTTONS.Secondary.BorderColor
+                    BorderStyle: =APP_BUTTONS.Secondary.BorderStyle
+                    BorderThickness: =APP_BUTTONS.Secondary.BorderThickness
+                    Color: =APP_BUTTONS.Secondary.Color
+                    DisabledBorderColor: =APP_BUTTONS.Secondary.DisabledBorderColor
+                    DisabledColor: =APP_BUTTONS.Secondary.DisabledColor
+                    DisabledFill: =APP_BUTTONS.Secondary.DisabledFill
+                    Fill: =APP_BUTTONS.Secondary.Fill
+                    FocusedBorderColor: =APP_BUTTONS.Secondary.FocusedBorderColor
+                    FocusedBorderThickness: =APP_BUTTONS.Secondary.FocusedBorderThickness
+                    Font: =APP_BUTTONS.Secondary.Font
+                    FontWeight: =APP_BUTTONS.Secondary.FontWeight
+                    Height: =25
+                    HoverBorderColor: =APP_BUTTONS.Secondary.HoverBorderColor
+                    HoverColor: =APP_BUTTONS.Secondary.HoverColor
+                    HoverFill: =APP_BUTTONS.Secondary.HoverFill
+                    Italic: =APP_BUTTONS.Secondary.Italic
+                    OnSelect: |-
+                        =// Note this is called by the Add/Update button. 
+                        Reset(txt_ProgressNewStatement);
+                        Reset(date_ProgressTarget);
+                        
+                        Navigate(Edit);
+                    PaddingBottom: =APP_BUTTONS.Secondary.PaddingBottom
+                    PaddingLeft: =APP_BUTTONS.Secondary.PaddingLeft
+                    PaddingRight: =APP_BUTTONS.Secondary.PaddingRight
+                    PaddingTop: =APP_BUTTONS.Secondary.PaddingTop
+                    PressedBorderColor: =APP_BUTTONS.Secondary.PressedBorderColor
+                    PressedColor: =APP_BUTTONS.Secondary.PressedColor
+                    PressedFill: =APP_BUTTONS.Secondary.PressedFill
+                    RadiusBottomLeft: =APP_BUTTONS.Secondary.RadiusBottomLeft
+                    RadiusBottomRight: =APP_BUTTONS.Secondary.RadiusBottomRight
+                    RadiusTopLeft: =APP_BUTTONS.Secondary.RadiusTopLeft
+                    RadiusTopRight: =APP_BUTTONS.Secondary.RadiusTopright
+                    Size: =APP_BUTTONS.Secondary.Size
+                    Strikethrough: =APP_BUTTONS.Secondary.Strikethrough
+                    Text: ="Cancel"
+                    Underline: =APP_BUTTONS.Secondary.Underline
+                    VerticalAlign: =APP_BUTTONS.Secondary.VerticalAlign
+                    Width: =100
+                    X: =EditScreenCardMargin
+                    Y: =575
+                    ZIndex: =1
+
+                btn_ProgressDone As button:
+                    Align: =APP_BUTTONS.Primary.Align
+                    BorderColor: =APP_BUTTONS.Primary.BorderColor
+                    BorderStyle: =APP_BUTTONS.Primary.BorderStyle
+                    BorderThickness: =APP_BUTTONS.Primary.BorderThickness
+                    Color: =APP_BUTTONS.Primary.Color
+                    DisabledBorderColor: =APP_BUTTONS.Primary.DisabledBorderColor
+                    DisabledColor: =APP_BUTTONS.Primary.DisabledColor
+                    DisabledFill: =APP_BUTTONS.Primary.DisabledFill
+                    DisplayMode: =If(!IsBlank(g_TheAction) && g_TheAction.Status <> "Open", DisplayMode.Disabled, DisplayMode.Edit)
+                    Fill: =APP_BUTTONS.Primary.Fill
+                    FocusedBorderColor: =APP_BUTTONS.Primary.FocusedBorderColor
+                    FocusedBorderThickness: =APP_BUTTONS.Primary.FocusedBorderThickness
+                    Font: =APP_BUTTONS.Primary.Font
+                    FontWeight: =APP_BUTTONS.Primary.FontWeight
+                    Height: =25
+                    HoverBorderColor: =APP_BUTTONS.Primary.HoverBorderColor
+                    HoverColor: =APP_BUTTONS.Primary.HoverColor
+                    HoverFill: =APP_BUTTONS.Primary.HoverFill
+                    Italic: =APP_BUTTONS.Primary.Italic
+                    OnSelect: |-
+                        =
+                        // Note not checking that action is Open, as that's done in the controls DisplayMode.
+                        If(!IsBlank(txt_ProgressNewStatement.Text),
+                            With({tmp_NewPost: { Statement: txt_ProgressNewStatement.Text, PostedBy: USER.Name, PostedOn: Now() }},
+                                Set(g_TheAction, Patch(Actions, g_TheAction, If(IsBlank(g_TheAction.Progress),
+                                    { Progress: JSON(Table(tmp_NewPost))},
+                                    { Progress: Mid(g_TheAction.Progress, 1, Len(g_TheAction.Progress)-1) & "," & JSON(tmp_NewPost) & "]" })
+                                ))
+                            );
+                        );
+                        
+                        If(!IsBlank(date_ProgressTarget.SelectedDate) && date_ProgressTarget.SelectedDate <> g_TheAction.Target,
+                            Set(g_TheAction, Patch(Actions, g_TheAction, { 
+                                Target: date_ProgressTarget.SelectedDate
+                            }));
+                        );
+                        
+                        
+                        // Called to reset all controls.
+                        Select(btn_ProgressCancel);
+                    PaddingBottom: =APP_BUTTONS.Primary.PaddingBottom
+                    PaddingLeft: =APP_BUTTONS.Primary.PaddingLeft
+                    PaddingRight: =APP_BUTTONS.Primary.PaddingRight
+                    PaddingTop: =APP_BUTTONS.Primary.PaddingTop
+                    PressedBorderColor: =APP_BUTTONS.Primary.PressedBorderColor
+                    PressedColor: =APP_BUTTONS.Primary.PressedColor
+                    PressedFill: =APP_BUTTONS.Primary.PressedFill
+                    RadiusBottomLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+                    RadiusBottomRight: =APP_BUTTONS.Primary.RadiusBottomRight
+                    RadiusTopLeft: =APP_BUTTONS.Primary.RadiusTopLeft
+                    RadiusTopRight: =APP_BUTTONS.Primary.RadiusTopright
+                    Size: =APP_BUTTONS.Primary.Size
+                    Strikethrough: =APP_BUTTONS.Primary.Strikethrough
+                    Text: ="Done"
+                    Underline: =APP_BUTTONS.Primary.Underline
+                    VerticalAlign: =APP_BUTTONS.Primary.VerticalAlign
+                    Width: =100
+                    X: =Parent.Width - Self.Width - (Parent.Width / 100 * 5) // 5% margins
+                    Y: =575
+                    ZIndex: =2
+
+    Header_v2___4 As Header_v2__:
+        AppRelease: =APP_RELEASE
+        AppTitle: =APP_TITLE
+        AppURL: =APP_URL
+        Fill: =Header_v2___4.Style.Fill
+        Style: =APP_HEADER
+        User: =USER
+        ZIndex: =3
+
