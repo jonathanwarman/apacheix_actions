@@ -27,9 +27,9 @@
       }
     },
     "dataSources": [
-      "Actions",
       "People",
-      "Projects"
+      "Projects",
+      "Actions"
     ],
     "dependencies": {},
     "dependents": [],
