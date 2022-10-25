@@ -41,29 +41,31 @@ EmailFns_v1__ As CanvasComponent:
                 ="#0000FF"
         ThisProperty:
             Default: |-
-                ="<table width='" & Width & "' style='font-family: Helvetica, sans-serif;font-size: 100%;margin: 0;padding: 0;margin-top: 0; margin-bottom:5px'>
-                <tr><td>
-                    <!--[if mso]>
-                        
-                    <v:rect style='height:40px;width:0;' fill='f' stroke='f' xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word' />
-                        
-                    <v:roundrect style='width:" & Width + 8 & "px;height:55px;position:relative;top:0;left:-4px;' arcsize='30%' stroke='f' fill='true' xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w=&quot;urn:schemas-microsoft-com:office:word&quot;>
-                        <v:fill type='gradientradial' color='transparent' color2='" & ColorHex & "' focus='0' focusposition='.05,0.23' focussize='.9,0.25' />
-                    </v:roundrect>
-                        
-                    <v:roundrect href='" & URL & "' style='width:" & Width & "px;height:40px;position:relative;top:0;left:0;v-text-anchor:middle;' arcsize='30%' stroke='f' fillcolor='" & ColorHex & "' xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word'>
-                        <w:anchorlock/>
-                        <v:textbox inset='0,0,0,0'>
-                        <center>
-                    <![endif]-->
-                    <a href='" & URL & "' style='font-family: Helvetica, sans-serif;font-size: 14px;margin: 0;padding: 0 24px;color: #ffffff;margin-top: 0;font-weight: bold;line-height: 40px;letter-spacing: 0.1ch;text-transform: uppercase;background-color: " & ColorHex & ";border-radius: 0px;box-shadow: 0 8px 14px 2px " & ColorHex & "24, 0 6px 20px 5px " & ColorHex & "1f, 0 8px 10px -5px " & ColorHex & "33;display: inline-block;text-align: center;text-decoration: none;white-space: nowrap;-webkit-text-size-adjust: none'>" & Text & "</a>
-                    <!--[if mso]>
-                        </center>
-                        </v:textbox>
-                    </v:roundrect>
-                    <![endif]-->
-                </td></tr>
-                </table>"
+                =With({ TrimmedColorHex: If(Len(ColorHex) = 9, Left(ColorHex, 7), ColorHex)},
+                    "<table width='" & Width & "' style='font-family: Helvetica, sans-serif;font-size: 100%;margin: 0;padding: 0;margin-top: 0; margin-bottom:5px'>
+                    <tr><td>
+                        <!--[if mso]>
+                            
+                        <v:rect style='height:40px;width:0;' fill='f' stroke='f' xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word' />
+                            
+                        <v:roundrect style='width:" & Width + 8 & "px;height:55px;position:relative;top:0;left:-4px;' arcsize='30%' stroke='f' fill='true' xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w=&quot;urn:schemas-microsoft-com:office:word&quot;>
+                            <v:fill type='gradientradial' color='transparent' color2='" & TrimmedColorHex & "' focus='0' focusposition='.05,0.23' focussize='.9,0.25' />
+                        </v:roundrect>
+                            
+                        <v:roundrect href='" & URL & "' style='width:" & Width & "px;height:40px;position:relative;top:0;left:0;v-text-anchor:middle;' arcsize='30%' stroke='f' fillcolor='" & TrimmedColorHex & "' xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word'>
+                            <w:anchorlock/>
+                            <v:textbox inset='0,0,0,0'>
+                            <center>
+                        <![endif]-->
+                        <a href='" & URL & "' style='font-family: Helvetica, sans-serif;font-size: 14px;margin: 0;padding: 0 24px;color: #ffffff;margin-top: 0;font-weight: bold;line-height: 40px;letter-spacing: 0.1ch;text-transform: uppercase;background-color: " & TrimmedColorHex & ";border-radius: 0px;box-shadow: 0 8px 14px 2px " & TrimmedColorHex & "24, 0 6px 20px 5px " & TrimmedColorHex & "1f, 0 8px 10px -5px " & TrimmedColorHex & "33;display: inline-block;text-align: center;text-decoration: none;white-space: nowrap;-webkit-text-size-adjust: none'>" & Text & "</a>
+                        <!--[if mso]>
+                            </center>
+                            </v:textbox>
+                        </v:roundrect>
+                        <![endif]-->
+                    </td></tr>
+                    </table>"
+                )
     ButtonRow(Buttons As Table):
         Buttons:
             Default: =["None"]
