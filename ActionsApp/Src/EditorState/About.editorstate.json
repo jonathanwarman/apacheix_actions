@@ -209,7 +209,7 @@
         {
           "Category": "Data",
           "PropertyName": "Container",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "System"
         },
         {
           "Category": "Data",
@@ -219,12 +219,12 @@
         {
           "Category": "Data",
           "PropertyName": "Subject",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "System"
         },
         {
           "Category": "Data",
           "PropertyName": "Builder",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "System"
         },
         {
           "Category": "Data",
@@ -239,7 +239,7 @@
         {
           "Category": "Data",
           "PropertyName": "To",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "System"
         },
         {
           "Category": "Data",
@@ -304,7 +304,7 @@
         {
           "Category": "Data",
           "PropertyName": "Button",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "System"
         },
         {
           "Category": "Design",
