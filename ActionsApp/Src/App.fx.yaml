@@ -2,7 +2,7 @@ App As appinfo:
     BackEnabled: =false
     Formulas: |+
         =APP_TITLE = "Actions (Gen2)";
-        APP_RELEASE = { Type: "Dev", Release: 0, Fix: 0 };
+        APP_RELEASE = { Type: "Dev", Release: 1, Fix: 1 };
         
         APP_URL = "https://apps.powerapps.com/play/" & 
             If(APP_RELEASE.Type = "Dev",               "https://apps.powerapps.com/play/9077a299-72af-42dd-802c-eb17e9afc183?tenantId=00d7b6a8-b13f-4935-9a8e-954dfc10f607",
